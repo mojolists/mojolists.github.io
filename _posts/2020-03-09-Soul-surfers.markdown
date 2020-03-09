@@ -3,4 +3,4 @@ layout: post
 title:  "Welcome to Jekyll!"
 ---
 
-Time to! party
+Time to party
