@@ -29,7 +29,7 @@ plugins:
   - jekyll-sitemap
   - jekyll-paginate
   - jemoji
-remote_theme: minimal-mistakes-jekyll
+
 paginate: 8
 paginate_path: "/page/:num"
 
