@@ -4,7 +4,7 @@ title:  "The Soul Surfers – Soul Rock!"
 date: 2020-03-11 13:32:20 +0300
 categories: music reviews
 description: You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your changes. # Add post description (optional)
-img:  # Add image post (optional)
+img: soulsurfer.jpg # Add image post (optional)
 ---
 
 	
