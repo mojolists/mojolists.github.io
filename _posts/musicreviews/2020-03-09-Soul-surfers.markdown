@@ -9,9 +9,7 @@ img: soulsurfer.jpg # Add image post (optional)
 
 	
 		
-## The Soul Surfers – *Soul Rock!*
-		
-		
+
 I have several of their singles and had high hopes for their first album. The Soul Surfers did not disappoint, this is a kick ass album in ever funky way possible. 
 
 After releasing countless collectable and in-demand 7in singles and making a name for themselves in the contemporary “raw funk and soul” scene, The Soul Surfers drop their debut album *Soul Rock!*; a magnum opus of raw, gritty soul and greasy funk featuring eminent guests from the aforementioned scene that birthed their sound. 
