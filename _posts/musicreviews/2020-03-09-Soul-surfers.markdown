@@ -9,7 +9,7 @@ img: soulsurfer.jpg # Add image post (optional)
 
 	
 		
-The Soul Surfers – *Soul Rock!"
+## The Soul Surfers – *Soul Rock!*
 		
 		
 I have several of their singles and had high hopes for their first album. The Soul Surfers did not disappoint, this is a kick ass album in ever funky way possible. 
