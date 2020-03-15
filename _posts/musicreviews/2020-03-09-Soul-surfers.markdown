@@ -19,3 +19,7 @@ After releasing countless collectable and in-demand 7in singles and making a nam
 Soul crooners Myron & E break out of their “smooth” vocal personas and deliver a decidedly more stripped down and visceral performance in the lead-off single “You Can Run (But You Can’t Hide) From My Love that also promises to be a dance floor filler.
 
 Co-collaborators JJ Whitefield from The Poets of Rhythm and Malcom Catto of the Heliocentrics add their signature touch on two of the album’s ”heavier” cuts “Raw” and “Stop Fooling Around.” Label-mate, multi-instrumentalist and studio genius Shawn Lee lends his vocal, guitar and mixing board talents to “Time Is A Gun” while noted producer Didier from the Soul Investigators gets in on the mix, vibes, and percussion on the heavy slow-burner “Astra”. Smoove & Turrell round out the album with the blue-eyed soul stomper “Straight Up”.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/HIBoBqW8ts0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+
