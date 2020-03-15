@@ -5,6 +5,8 @@ description: > # this means to ignore newlines until "baseurl:"
   Google search results) and in your feed.xml site description.
 permalink: ':title/'
 baseurl: "" # the subpath of your site, e.g. /blog
+include: ['_posts']
+include: ['_posts/musicreviews']
 url: "https://mojolists.com" # the base hostname & protocol for your site, e.g. https://mojolists.com
 site-twitter: #Mojolists
 # Author Settings
