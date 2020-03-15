@@ -18,7 +18,7 @@ Soul crooners Myron & E break out of their “smooth” vocal personas and deliv
 
 Co-collaborators JJ Whitefield from The Poets of Rhythm and Malcom Catto of the Heliocentrics add their signature touch on two of the album’s ”heavier” cuts “Raw” and “Stop Fooling Around.” Label-mate, multi-instrumentalist and studio genius Shawn Lee lends his vocal, guitar and mixing board talents to “Time Is A Gun” while noted producer Didier from the Soul Investigators gets in on the mix, vibes, and percussion on the heavy slow-burner “Astra”. Smoove & Turrell round out the album with the blue-eyed soul stomper “Straight Up”.
 
-[Buy the CD here] (https://www.amazon.com/gp/product/B011LQUGGO/ref=as_li_qf_asin_il_tl?ie=UTF8&tag=mojolists-20&creative=9325&linkCode=as2&creativeASIN=B011LQUGGO&linkId=debd810fdbf75fbe139fb587d3a285dd)
+[Buy the CD here](https://www.amazon.com/gp/product/B011LQUGGO/ref=as_li_qf_asin_il_tl?ie=UTF8&tag=mojolists-20&creative=9325&linkCode=as2&creativeASIN=B011LQUGGO&linkId=debd810fdbf75fbe139fb587d3a285dd)
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/HIBoBqW8ts0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
