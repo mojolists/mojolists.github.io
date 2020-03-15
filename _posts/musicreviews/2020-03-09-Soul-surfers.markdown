@@ -7,7 +7,7 @@ description: You’ll find this post in your `_posts` directory. Go ahead and ed
 img: soulsurfer.jpg # Add image post (optional)
 ---
 
-	## Kick Ass In Every Funky Way!
+	Kick Ass In Every Funky Way!
 		
 
 I have several of their singles and had high hopes for their first album. The Soul Surfers did not disappoint, this is a kick ass album in every funky way possible. 
