@@ -5,9 +5,10 @@ date: 2020-03-11 13:32:20 +0300
 categories: music reviews
 description: You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your changes. # Add post description (optional)
 img: wilybowalker.jpg # Add image post (optional)
+<font color="white"></font> 
 ---
 
-
+<font color="white">Walkers voice hits you like your best girl talking dirty in church</font> 
 
 I have heard of Wily Bo Walker only peripherally but being a fan of horns and a big band sound I couldn’t resist his new album, Wily Bo Walker and The Danny Flam Big band. The name caught my attention and after a short bit of research, I downloaded the MP3 version. Walker is known as a vocalist, mutli-instrumentalist, arranger, and songwriter.
 
