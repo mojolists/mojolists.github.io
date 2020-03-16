@@ -1,11 +1,11 @@
 ---
 layout: post
-title:  "Voo Davis - Vicious Things"
-date: 2020-03-11 13:32:20 +0300
+title: Voo Davis - Vicious Things
+date: 2020-03-16 13:32:20 +0300
 categories: music reviews
 description: Review of the new album, Vicious Things by Voo Davis # Add post description (optional)
 img: vicious.jpg # Add image post (optional)
-
+---
 
 I have been anxiously awaiting the arrival of the new Voo Davis album since I listened to his first one, A Place for Secrets. His initial offering showed a talent that was on the verge of full bloom. The recording was raw, the song writing strong but still somewhat unpolished. It was filled with promises.
 
