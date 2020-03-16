@@ -24,4 +24,8 @@ Whispers picks right up again and takes us on a ride through the dark history of
 
 *Vicious Things* is the tale of the long journey between playing at being a bluesman and actually making the sacrifice required to be great without dealing at the crossroad. At its core, it takes us through the struggles of getting from *A Place for Secrets* to *Vicious Things*. This is what I see and hear when I listen. It is the road I like to imagine Voo walked to create an album that is as forward thinking as it is wrapped in the classic technology it embraces.
 
-Voo Davis has established himself with *Vicious Things* and his future as a musician is now on much firmer ground and not just as a bluesman. I could go on and on about *Vicious Things*, it just hits me in the right place. I appreciate the care Voo took in recording this album, but right now, all I want to do is put the top down and crank "One for the habit, One for the Road" while I blast down a central Texas country road at a very unsafe velocity. 
+Voo Davis has established himself with *Vicious Things* and his future as a musician is now on much firmer ground and not just as a bluesman. I could go on and on about *Vicious Things*, it just hits me in the right place. I appreciate the care Voo took in recording this album, but right now, all I want to do is put the top down and crank "One for the habit, One for the Road" while I blast down a central Texas country road at a very unsafe velocity.
+
+[Buy Vicious Things](http://www.amazon.com/gp/product/B00DNN9Z0C/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B00DNN9Z0C&linkCode=as2&tag=mojolists-20)
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/B4mOG4XiF2E" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> 
