@@ -5,7 +5,7 @@ date: 2020-03-11 13:32:20 +0300
 categories: music reviews
 description: You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your changes. # Add post description (optional)
 img: vicious.jpg # Add image post (optional)
-
+---
 
 I have been anxiously awaiting the arrival of the new Voo Davis album since I listened to his first one, A Place for Secrets. His initial offering showed a talent that was on the verge of full bloom. The recording was raw, the song writing strong but still somewhat unpolished. It was filled with promises.
 

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Voo Davis - Vicious Things
+title: Voo Davis: Vicious Things
 date: 2020-03-16 13:32:20 +0300
 categories: music reviews
 description: Review of the new album, Vicious Things by Voo Davis # Add post description (optional)
