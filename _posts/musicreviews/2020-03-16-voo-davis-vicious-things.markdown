@@ -7,6 +7,8 @@ description: You’ll find this post in your `_posts` directory. Go ahead and ed
 img: vicious.jpg # Add image post (optional)
 ---
 
+###Vicious Things* opens up with what I have begun to call the “Wall of Voo” sound
+
 I have been anxiously awaiting the arrival of the new Voo Davis album since I listened to his first one, A Place for Secrets. His initial offering showed a talent that was on the verge of full bloom. The recording was raw, the song writing strong but still somewhat unpolished. It was filled with promises.
 
 Since I first started following Voo he has been spending a lot of time on the road, he has been more focused on his music and as a proud new father, his family. He has managed to juggle his priorities and keep them in balance. *Vicious Things* is itself a wonder of balance and growth. Everything about *Vicious Things* showcases Voo mastering his craft, from the polished songwriting down to one of the best blues mixes I have heard. The guitar work is extraordinary, as is the rest of the band. In particular, I found Calvin Conway’s harp playing outstanding, as I would expect from my favorite blues harmonica player.
