@@ -7,7 +7,7 @@ description: You’ll find this post in your `_posts` directory. Go ahead and ed
 img: vicious.jpg # Add image post (optional)
 ---
 
-###Vicious Things* opens up with what I have begun to call the “Wall of Voo” sound
+###*Vicious Things* opens up with what I have begun to call the “Wall of Voo” sound
 
 I have been anxiously awaiting the arrival of the new Voo Davis album since I listened to his first one, A Place for Secrets. His initial offering showed a talent that was on the verge of full bloom. The recording was raw, the song writing strong but still somewhat unpolished. It was filled with promises.
 
