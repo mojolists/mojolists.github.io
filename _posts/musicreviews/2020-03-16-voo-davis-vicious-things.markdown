@@ -4,8 +4,8 @@ title:  "Voo Davis - Vicious Things"
 date: 2020-03-11 13:32:20 +0300
 categories: music reviews
 description: You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your changes. # Add post description (optional)
-img: vicious.jpg # Add image post (optional)
- # <font color="white"></font> 
+img: vicious.jpg # Add image post (optional) <font color="white"></font>
+
 ---
 
 <font color="white">Vicious Things opens up with what I have begun to call the “Wall of Voo” sound                                                          </font> 
