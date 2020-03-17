@@ -10,7 +10,7 @@ include: ['_posts/musicreviews']
 url: "https://mojolists.com" # the base hostname & protocol for your site, e.g. https://mojolists.com
 site-twitter: #Mojolists
 # Author Settings
-author: Doug Hanson # add your name
+author: Douglas L Hanson # add your name
 author-img: logohome2.jpg # add your photo
 about-author: Music, technology and equipment reviews from a fanatic with wide ranging tastes and a love of the unexpected, # add description
 social-twitter: # Mojolists
