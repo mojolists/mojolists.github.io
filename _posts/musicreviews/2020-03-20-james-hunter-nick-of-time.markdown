@@ -8,6 +8,8 @@ img: nickoftime.jpg # Add image post (optional) <font color="white"></font>
 
 ---
 
+<font color="white">James immediately gained the super ability to take any retro soul sound and improve it                                                                     </font>
+
 Somewhere during his musical travels, including bandleader for Van Morrison, James Hunter was bitten by a radioactive hamster. James immediately gained the super ability to take any retro soul sound and improve it. The James Hunter Six’s newest release, *Nick Of Time* finds our intrepid hero and his merry band of musicians laying down some of the best, modernized soul you will ever hear.
 
 As the third release for the legendary Daptone records, *Nick Of Time* is a continuation of James nearly mythical ability to match witty, heartfelt lyrics with undeniable hooks. Right out of the gate, “I Can Change Your Mind” throws you into a midtempo grind you can’t help but sway to. The video (see below) for “I Can Change Your mind” is a playful and unique romp through a funhouse and shouldn’t be missed.
