@@ -7,7 +7,7 @@ description: You’ll find this post in your `_posts` directory. Go ahead and ed
 img: bjl.jpg # Add image post (optional) <font color="white"></font>
 
 ---
-<font color="white">strap yourself into an emotion fueled ride through his own brand of blues.                                </font>
+<font color="white">Strap yourself into an emotion fueled ride through his own brand of blues.                                </font>
 
 To hear Black Joe Lewis recorded is to strap yourself into an emotion fueled ride through his own brand of blues. To fully appreciate Lewis, however, you have to see him live, where the energy of both Lewis and his band, once known as The Honeybears, power the show on raw emotion. Whatever surrounds their live shows is completely lost to those on stage as they pour every ounce of themselves into the music and the happiness of doing so shows on their faces.
 

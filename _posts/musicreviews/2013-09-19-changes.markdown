@@ -1,0 +1,26 @@
+---
+layout: post
+title:  "`Changes For Collectors"
+date: 2013-09-19 13:32:20 +0300
+categories: music reviews
+description: You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your changes. # Add post description (optional)
+img: changes.jpg # Add image post (optional) <font color="white"></font>
+
+---
+<font color="white">The act of holding, cataloging, and organizing media is an important part of my world, it relaxes me, it is one part of my life that I alone control                                </font>
+
+I am a collector of media, I love arranging it in whatever form it takes. I plan occasional weekends around pulling my movie or music collection down and performing the collector’s ritual. I dust each case off carefully, verify it indeed holds a disc, that it is the correct disc, that all potential disc are there and that they are safe in their plastic confines. I then check the computer database to verify everything is in order and continue to the next disc. I do this over and over again, sometimes thousands of times before I begin placing them back into the order I have deemed appropriate this time around. 
+
+The act of holding, cataloging, and organizing media is an important part of my world, it relaxes me, it is one part of my life that I alone control. This brings me to the changes that I, as a collector can no longer dismiss or ignore. Physical media is going the way of the horse and cart. With the exception of vinyl, which is enjoying a splendid resurgence, movies and music will soon only be available as a computer file. On one hand, I do enjoy the seemingly limitless tagging options digital files provide my OCD brain but, I can’t touch it, I can’t read the liner notes, or place them in a great line on a wall so all that see it are in awe.
+
+In truth I adjusted to digital long ago, in fact way ahead of most folks, but where I differ is in how I went digital. I still buy a CD when it is available because it just feels right. Then I rip it with Exact Audio Copy (EAC) into FLAC format for my home systems and then a second MP3 copy for iPod use in our cars. The physical disc goes onto a shelf where it will reside for the rest of its life. On rare occasions, I do pull them down and flip through the liner notes again but in truth, I have moved fully into the digital age.
+
+It is convenient and I believe when proper care in selecting and setting up equipment is taken, it sounds as good or better than CD for a long list of reasons I will have to save for another time. FLAC is my chosen lossless format and it seems to be the closest to becoming the standard. The limited capability MP3 provides has been the biggest reason I haven’t just moved to downloading everything. I find it fine for my car or background listening but it falls apart in critical listening situations. The exception to this is any current pop music or massively over compressed rock being perpetrated on the public today.
+
+I do have an extensive SACD and DVD-Audio collection as well but have not ripped the hi-res content to digital, I actually drop them into the OPPO when I want to hear them. These formats are on their last legs and have been for years. The advent of Hi-Res audio downloads from places like HDTracks.com has caught my attention but the selection is just too slim right now. It is making headway though and I have found myself purchasing more all the time. One thing I dislike about HDTracks however is their lack of a coming soon database. I order my music online so I pre-order many discs only to find it available on HDTracks the same day. They lost the sale and I feel cheated, implement a full releasing soon list HDTracks!
+
+One last word on Hi-Res, I do hear a difference on my main systems and I don’t care if you do or not. That said, I can only pray that the musicians going back to the superior, old analog recording methods have an impact on the people who buy music. I know caring about sound quality places me in a small group of people but the huge gains made around vinyl give me hope. The same can be said of the tremendous growth in the high-end headphone market, someone cares and I hope the labels are listening. There is money to be made in high quality recordings and with no media format wars to dilute sales it seems like a no brainer.
+
+I don’t see the death of vinyl any time soon and it will be the last physical format for music in the future. Perhaps I will be saved from the future by a technology almost as old as recorded sound itself. How has digital music changed your music habits?
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/mtM5WyCavd8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
