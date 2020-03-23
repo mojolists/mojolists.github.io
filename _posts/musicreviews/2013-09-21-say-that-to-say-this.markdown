@@ -7,7 +7,7 @@ description: You’ll find this post in your `_posts` directory. Go ahead and ed
 img: ts.jpg # Add image post (optional) <font color="white"></font>
 
 ---
-<font color="white">*Say That To Say This* was recorded with great care for the sound quality and it pays off on spades                                </font>
+<font color="white">Say That To Say This was recorded with great care for the sound quality and it pays off on spades                                </font>
 
 The story of Troy ‘Trombone Shorty’ Andrews career, which started at the age of four, when he and his chosen instrument, which was twice as tall as he, stood on stage with Bo Diddly. The crowd and Mr. Diddley were blown away all those years ago and Trombone Shorty has never looked back. NOLA has never forgotten this treasure and Trombone Shorty has never forgotten from whence he came.
 
