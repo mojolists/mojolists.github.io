@@ -7,6 +7,7 @@ description: You’ll find this post in your `_posts` directory. Go ahead and ed
 img: ffys.jpg # Add image post (optional) <font color="white"></font>
 
 ---
+
 <font color="white">After a seven year hiatus from studio recording, Jonny Lang has come back with a more mature, more polished, and all-around better album than his past efforts                                 </font>
 
 When you are gifted with the guitar playing abilities and natural blues voice of Jonny Lang, there are expectations that would cripple most 16 year olds, but he never backed away from the challenge. Lang’s guitar abilities were never in question, nor his vocal ability, but his albums always left you feeling like he was trapped in the blues by those around him. After a seven year hiatus from studio recording, Jonny Lang has come back with a more mature, more polished, and all-around better album than his past efforts called *Fight For My Soul*.
