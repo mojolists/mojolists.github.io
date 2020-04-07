@@ -4,7 +4,7 @@ title:  "Neal Francis – Changes"
 date: 2020-04-07 13:32:20 +0300
 categories: music reviews
 description: You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your changes. # Add post description (optional)
-img: nealfrancis.jpg # Add image post (optional) <font color="white"></font>
+img: NealFrancis.jpg # Add image post (optional) <font color="white"></font>
 
 ---
 
