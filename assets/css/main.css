@@ -1479,3 +1479,75 @@ a.newer-posts:hover {
     font-size: 21px;
   }
 }
+/* ==========================================================================
+   MOJO MODERN OVERRIDE 
+   ========================================================================== */
+
+/* 1. Global Dark Mode Reset */
+body {
+    background-color: #0a0a0a !important;
+    color: #e0e0e0 !important;
+    font-family: 'Montserrat', sans-serif !important;
+}
+
+/* 2. Kill the Sidebar (If you want the full-width magazine look) */
+.sidebar {
+    display: none !important; /* This removes the 90s left-hand menu */
+}
+
+.content-box {
+    margin-left: 0 !important; /* Centers the content now that sidebar is gone */
+    width: 100% !important;
+    max-width: 1200px !important;
+    margin: 0 auto !important;
+    background: transparent !important;
+}
+
+/* 3. The Grid & Card System */
+.review-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 40px;
+    padding: 40px 20px;
+}
+
+.mojo-card {
+    background: #141414;
+    border: 1px solid #222;
+    text-decoration: none;
+    color: inherit;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease;
+}
+
+.mojo-card:hover {
+    transform: translateY(-10px);
+    border-color: #D32F2F;
+}
+
+/* 4. THE IMAGE FIX: Forcing correct dimensions */
+.mojo-card .img-container {
+    width: 100% !important;
+    height: 250px !important;
+    overflow: hidden;
+}
+
+.mojo-card img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important; /* Crops image to fit the 250px box */
+    display: block !important;
+}
+
+.mojo-card-body {
+    padding: 25px;
+}
+
+.mojo-card-title {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 1.4rem;
+    color: #fff;
+    margin: 0 0 10px 0;
+}
