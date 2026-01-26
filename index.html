@@ -3,112 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MojoLists | Music & Hardware</title>
-    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@700&family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
-   <style>
-    /* ... (Keep your root and body styles) ... */
-
-    .grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-        gap: 30px;
-    }
-
-    .card {
-        background: var(--card-bg);
-        border: 1px solid #222;
-        text-decoration: none;
-        color: inherit;
-        display: flex;
-        flex-direction: column;
-        overflow: hidden;
-        transition: 0.3s;
-        height: 100%; /* Ensures all cards in a row are the same height */
-    }
-
-    /* THE FIX: The "Picture Frame" */
-    .card-image-wrapper {
-        width: 100%;
-        height: 250px; /* Adjust this to make the "frame" taller or shorter */
-        overflow: hidden; /* Chops off anything that doesn't fit */
-        background-color: #1a1a1a;
-    }
-
-    .card img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover; /* Forces image to fill the frame without stretching */
-        object-position: center; /* Keeps the focus on the middle of the art */
-        display: block;
-    }
-
-    .card-body { 
-        padding: 20px; 
-        flex-grow: 1; /* Pushes the footer/text to fill the card */
-    }
-
-    .card-title {
-        font-family: 'Libre Baskerville', serif;
-        font-size: 1.2rem;
-        margin: 0 0 10px 0;
-        color: #fff;
-        line-height: 1.3;
-    }
-
-    .card-excerpt {
-        color: var(--text-dim);
-        font-size: 0.85rem;
-        margin: 0;
-    }
-</style>
-
-<div class="grid">
-    <a href="say-that-to-say-this.html" class="card">
-        <div class="card-image-wrapper">
-            <img src="/assets/img/ts.jpg" alt="Trombone Shorty">
-        </div>
-        <div class="card-body">
-            <h2 class="card-title">Trombone Shorty: Say That To Say This</h2>
-            <p class="card-excerpt">A masterclass in NOLA funk recorded with an audiophile's ear.</p>
-        </div>
-    </a>
-    
-    </div>
+    <title>MojoLists | High-Fidelity Reviews</title>
+    <link rel="stylesheet" href="/assets/css/main.css">
 </head>
 <body>
 
     <header>
         <a href="/" class="logo">mojo<span>lists</span></a>
+        <div class="tagline">Music & Technology for the Soul</div>
     </header>
+
+    <div class="rig-strip">
+        Signal Path: Jarvis Server ➔ X51.2 ➔ Main Listening Rig
+    </div>
 
     <div class="container">
         <div class="grid">
             
             <a href="say-that-to-say-this.html" class="card">
-                <img src="/assets/img/ts.jpg" alt="Trombone Shorty Album Art">
+                <div class="card-image-wrapper">
+                    <img src="/assets/img/ts.jpg" alt="Trombone Shorty">
+                </div>
                 <div class="card-body">
+                    <span class="card-category">Review</span>
                     <h2 class="card-title">Trombone Shorty: Say That To Say This</h2>
                     <p class="card-excerpt">A masterclass in NOLA funk recorded with an audiophile's ear for dynamics.</p>
                 </div>
             </a>
 
-            <a href="fight-for-your-soul.html" class="card">
-                <img src="/assets/img/ffys.jpg" alt="Jonny Lang Album Art">
-                <div class="card-body">
-                    <h2 class="card-title">Jonny Lang: Fight For My Soul</h2>
-                    <p class="card-excerpt">A polished, mature sound that leaves the child prodigy labels behind.</p>
-                </div>
-            </a>
-
-            <a href="bamboos-fever-in-the-road.html" class="card">
-                <img src="/assets/img/feveritr.jpg" alt="The Bamboos Album Art">
-                <div class="card-body">
-                    <h2 class="card-title">The Bamboos: Fever In The Road</h2>
-                    <p class="card-excerpt">Australian funk at its absolute finest. Deep grooves and spacious recording.</p>
-                </div>
-            </a>
-
-        </div>
+            </div>
     </div>
 
 </body>
