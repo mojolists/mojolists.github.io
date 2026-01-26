@@ -5,91 +5,75 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MojoLists | Music & Hardware</title>
     <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@700&family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg: #0a0a0a;
-            --card-bg: #141414;
-            --accent: #D32F2F;
-            --text-main: #e0e0e0;
-            --text-dim: #888;
-            --gold: #FFB300;
-        }
+   <style>
+    /* ... (Keep your root and body styles) ... */
 
-        body {
-            background-color: var(--bg);
-            color: var(--text-main);
-            font-family: 'Montserrat', sans-serif;
-            margin: 0;
-            line-height: 1.6;
-        }
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 30px;
+    }
 
-        header {
-            padding: 60px 5%;
-            text-align: center;
-            border-bottom: 1px solid #222;
-        }
+    .card {
+        background: var(--card-bg);
+        border: 1px solid #222;
+        text-decoration: none;
+        color: inherit;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        transition: 0.3s;
+        height: 100%; /* Ensures all cards in a row are the same height */
+    }
 
-        .logo {
-            font-family: 'Libre Baskerville', serif;
-            font-size: 3.5rem;
-            margin: 0;
-            color: #fff;
-            text-decoration: none;
-        }
+    /* THE FIX: The "Picture Frame" */
+    .card-image-wrapper {
+        width: 100%;
+        height: 250px; /* Adjust this to make the "frame" taller or shorter */
+        overflow: hidden; /* Chops off anything that doesn't fit */
+        background-color: #1a1a1a;
+    }
 
-        .logo span { color: var(--accent); }
+    .card img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* Forces image to fill the frame without stretching */
+        object-position: center; /* Keeps the focus on the middle of the art */
+        display: block;
+    }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 50px 20px;
-        }
+    .card-body { 
+        padding: 20px; 
+        flex-grow: 1; /* Pushes the footer/text to fill the card */
+    }
 
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 30px;
-        }
+    .card-title {
+        font-family: 'Libre Baskerville', serif;
+        font-size: 1.2rem;
+        margin: 0 0 10px 0;
+        color: #fff;
+        line-height: 1.3;
+    }
 
-        .card {
-            background: var(--card-bg);
-            border: 1px solid #222;
-            text-decoration: none;
-            color: inherit;
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
-            transition: 0.3s;
-        }
+    .card-excerpt {
+        color: var(--text-dim);
+        font-size: 0.85rem;
+        margin: 0;
+    }
+</style>
 
-        .card:hover {
-            transform: translateY(-5px);
-            border-color: var(--accent);
-        }
-
-        /* Standard Image Tag Styling */
-        .card img {
-            width: 100%;
-            height: 250px;
-            object-fit: cover; /* This keeps the image from stretching */
-            display: block;
-            background-color: #222; /* Placeholder color while loading */
-        }
-
-        .card-body { padding: 20px; }
-
-        .card-title {
-            font-family: 'Libre Baskerville', serif;
-            font-size: 1.4rem;
-            margin: 10px 0;
-            color: #fff;
-        }
-
-        .card-excerpt {
-            color: var(--text-dim);
-            font-size: 0.9rem;
-        }
-    </style>
+<div class="grid">
+    <a href="say-that-to-say-this.html" class="card">
+        <div class="card-image-wrapper">
+            <img src="/assets/img/ts.jpg" alt="Trombone Shorty">
+        </div>
+        <div class="card-body">
+            <h2 class="card-title">Trombone Shorty: Say That To Say This</h2>
+            <p class="card-excerpt">A masterclass in NOLA funk recorded with an audiophile's ear.</p>
+        </div>
+    </a>
+    
+    </div>
 </head>
 <body>
 
