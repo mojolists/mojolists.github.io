@@ -16,62 +16,56 @@ body {
     font-family: 'Montserrat', sans-serif;
     margin: 0;
     padding: 0;
-    line-height: 1.6;
 }
 
+/* COMPACT LETTERBOX HEADER */
 header {
-    height: 450px;
+    height: 280px; /* Reduced from 450px */
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     position: relative;
-    background-color: #1a1a1a; 
-    
-    /* UPDATED TO PNG + THE CORRECT STEP-BACK PATHWAY */
+    background-color: #1a1a1a;
     background-image: 
-        linear-gradient(to bottom, rgba(10, 10, 10, 0.1), rgba(10, 10, 10, 1)),
+        linear-gradient(to bottom, rgba(10, 10, 10, 0.3), rgba(10, 10, 10, 0.9)),
         url('../img/lifestyle-bg.png');
-        
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    border-bottom: 1px solid #222;
 }
 
-.header-content {
-    text-align: center;
-    z-index: 2;
-}
+.header-content { text-align: center; z-index: 2; }
 
 .logo {
     font-family: 'Libre Baskerville', serif;
-    font-size: 5.5rem;
+    font-size: 4.5rem; /* Slightly smaller for the shorter header */
     color: #fff;
     text-decoration: none;
     display: block;
-    line-height: 0.8;
+    line-height: 0.9;
     letter-spacing: -2px;
-    text-shadow: 0 10px 40px rgba(0,0,0,1);
+    text-shadow: 0 5px 20px rgba(0,0,0,0.9);
 }
 
 .logo span { color: var(--accent); font-style: italic; }
 
 .tagline {
     text-transform: uppercase;
-    letter-spacing: 10px;
-    font-size: 0.75rem;
+    letter-spacing: 12px; /* Increased spacing for an elegant look */
+    font-size: 0.7rem;
     color: var(--gold);
-    margin-top: 25px;
+    margin-top: 15px;
     font-weight: 600;
-    text-shadow: 0 2px 10px rgba(0,0,0,1);
 }
 
 .rig-strip {
     background: #000;
     border-bottom: 2px solid var(--accent);
-    padding: 18px 0;
+    padding: 15px 0;
     text-align: center;
-    font-size: 0.65rem;
+    font-size: 0.6rem;
     letter-spacing: 4px;
     color: #fff;
     text-transform: uppercase;
@@ -81,13 +75,13 @@ header {
 .container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 60px 20px;
+    padding: 40px 20px;
 }
 
 .grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 50px;
+    gap: 40px;
 }
 
 .card {
@@ -95,18 +89,17 @@ header {
     color: inherit;
     display: flex;
     flex-direction: column;
-    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transition: transform 0.3s ease;
 }
 
-.card:hover { transform: translateY(-10px); }
+.card:hover { transform: translateY(-8px); }
 
 .card-image-wrapper {
     width: 100%;
     aspect-ratio: 1 / 1;
     overflow: hidden;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.8);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.8);
     border: 1px solid #222;
-    background: #000;
 }
 
 .card img {
@@ -117,33 +110,31 @@ header {
 }
 
 .card-body {
-    padding: 25px 15px;
+    padding: 20px 15px;
     text-align: center;
     background: var(--card-bg);
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255,255,255,0.05);
-    border-top: none;
 }
 
 .card-title {
     font-family: 'Libre Baskerville', serif;
-    font-size: 1.4rem;
+    font-size: 1.3rem;
     color: #fff;
-    margin: 0 0 10px 0;
-    line-height: 1.2;
+    margin: 0 0 8px 0;
 }
 
 .card-excerpt {
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     color: #bbb;
     margin: 0;
     font-weight: 300;
 }
 
 footer {
-    padding: 80px 0;
+    padding: 60px 0;
     text-align: center;
-    font-size: 0.7rem;
+    font-size: 0.6rem;
     color: #444;
     letter-spacing: 3px;
     text-transform: uppercase;
