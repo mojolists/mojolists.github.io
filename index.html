@@ -1,20 +1,182 @@
----
-layout: main
----
-{% for post in paginator.posts %}
-<article class="post">
-  {% if post.img %}
-    <a class="post-thumbnail" style="background-image: url({{"/assets/img/" | prepend: site.baseurl | append : post.img}})" href="{{post.url | prepend: site.baseurl}}"></a>
-  {% else %}
-  {% endif %}
-  <div class="post-content">
-    <h2 class="post-title"><a href="{{post.url | prepend: site.baseurl}}">{{post.title}}</a></h2>
-    <p>{{ post.content | strip_html | truncatewords: 15 }}</p>
-    <span class="post-date">{{post.date | date: '%Y, %b %d'}}&nbsp;&nbsp;&nbsp;—&nbsp;</span>
-    <span class="post-words">{% capture words %}{{ post.content | number_of_words }}{% endcapture %}{% unless words contains "-" %}{{ words | plus: 250 | divided_by: 250 | append: " minute read" }}{% endunless %}</span>
-  </div>
-</article>
-{% endfor %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MojoLists | Music & Hardware</title>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@700&family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0a0a0a;
+            --card-bg: #141414;
+            --accent: #D32F2F;
+            --text-main: #e0e0e0;
+            --text-dim: #888;
+            --gold: #FFB300;
+        }
 
-{% include pagination.html %}
+        body {
+            background-color: var(--bg);
+            color: var(--text-main);
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            line-height: 1.6;
+        }
 
+        /* Editorial Header */
+        header {
+            padding: 60px 5%;
+            border-bottom: 1px solid #222;
+            text-align: center;
+        }
+
+        .logo {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 3.5rem;
+            letter-spacing: -2px;
+            margin: 0;
+            color: #fff;
+            text-transform: lowercase;
+        }
+
+        .logo span { color: var(--accent); }
+
+        .tagline {
+            text-transform: uppercase;
+            letter-spacing: 6px;
+            font-size: 0.7rem;
+            color: var(--text-dim);
+            margin-top: 10px;
+        }
+
+        /* The Rig Path Strip */
+        .rig-strip {
+            background: var(--card-bg);
+            padding: 15px 0;
+            text-align: center;
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: var(--gold);
+            text-transform: uppercase;
+            border-bottom: 4px solid var(--accent);
+        }
+
+        /* Main Content Grid */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 50px 20px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 40px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid #222;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent);
+        }
+
+        .card-img {
+            width: 100%;
+            height: 250px;
+            background-color: #222;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .card-body { padding: 25px; }
+
+        .card-meta {
+            font-size: 0.7rem;
+            color: var(--accent);
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .card-title {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 1.6rem;
+            margin: 0 0 15px 0;
+            line-height: 1.2;
+            color: #fff;
+        }
+
+        .card-excerpt {
+            color: var(--text-dim);
+            font-size: 0.95rem;
+            font-weight: 300;
+        }
+
+        footer {
+            padding: 50px;
+            text-align: center;
+            border-top: 1px solid #222;
+            font-size: 0.8rem;
+            color: #444;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1 class="logo">mojo<span>lists</span></h1>
+        <div class="tagline">Music, Technology, and Sound Quality</div>
+    </header>
+
+    <div class="rig-strip">
+        Signal Path: Jarvis Server ➔ X51.2 ➔ Main Listening Rig
+    </div>
+
+    <div class="container">
+        <div class="grid">
+            
+            <a href="#" class="card">
+                <div class="card-img" style="background-image: url('https://via.placeholder.com/600/141414/D32F2F?text=Say+That+To+Say+This');"></div>
+                <div class="card-body">
+                    <span class="card-meta">Review / Soul</span>
+                    <h2 class="card-title">Trombone Shorty: Say That To Say This</h2>
+                    <p class="card-excerpt">A masterclass in NOLA funk recorded with an audiophile's ear for dynamics. This is how a recording is meant to be presented.</p>
+                </div>
+            </a>
+
+            <a href="#" class="card">
+                <div class="card-img" style="background-image: url('https://via.placeholder.com/600/141414/888?text=Fight+For+My+Soul');"></div>
+                <div class="card-body">
+                    <span class="card-meta">Review / Blues</span>
+                    <h2 class="card-title">Jonny Lang: Fight For My Soul</h2>
+                    <p class="card-excerpt">After a seven-year hiatus, Lang returns with a polished, mature sound that leaves the child prodigy labels behind.</p>
+                </div>
+            </a>
+
+            <a href="#" class="card">
+                <div class="card-img" style="background-image: url('https://via.placeholder.com/600/141414/D32F2F?text=Fever+In+The+Road');"></div>
+                <div class="card-body">
+                    <span class="card-meta">Review / Funk</span>
+                    <h2 class="card-title">The Bamboos: Fever In The Road</h2>
+                    <p class="card-excerpt">Australian funk at its absolute finest. Deep grooves that demand high-quality vinyl playback.</p>
+                </div>
+            </a>
+
+        </div>
+    </div>
+
+    <footer>
+        &copy; 2024 Mojolists. No corporate filler. Just high-fidelity music.
+    </footer>
+
+</body>
+</html>
