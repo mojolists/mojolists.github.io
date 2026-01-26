@@ -1,151 +1,63 @@
-@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;600;900&display=swap');
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MojoLists | The Art of High-Fidelity</title>
+    <link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
 
-:root {
-    --bg: #0a0a0a;
-    --card-bg: rgba(18, 18, 18, 0.9);
-    --accent: #D32F2F;
-    --text-main: #f5f5f5;
-    --gold: #C5A059;
-}
+    <header>
+        <div class="header-content">
+            <a href="/" class="logo">mojo<span>lists</span></a>
+            <div class="tagline">The Art of Listening</div>
+        </div>
+    </header>
 
-* { box-sizing: border-box; }
+    <div class="rig-strip">
+        Signal Path: Jarvis Server • X51.2 • Analog Stage • Master Monitor
+    </div>
 
-body {
-    background-color: var(--bg);
-    color: var(--text-main);
-    font-family: 'Montserrat', sans-serif;
-    margin: 0;
-    padding: 0;
-    line-height: 1.6;
-}
+    <main class="container">
+        <div class="grid">
+            
+            <a href="say-that-to-say-this.html" class="card">
+                <div class="card-image-wrapper">
+                    <img src="assets/img/ts.jpg" alt="Trombone Shorty">
+                </div>
+                <div class="card-body">
+                    <h2 class="card-title">Trombone Shorty</h2>
+                    <p class="card-excerpt">A masterclass in NOLA funk recorded for audiophiles.</p>
+                </div>
+            </a>
 
-/* PANORAMIC ATMOSPHERIC HEADER */
-header {
-    height: 450px;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    background-color: #1a1a1a; /* Fallback color if image fails */
-    
-    /* THE CORRECT PATHWAY FIX */
-    background-image: 
-        linear-gradient(to bottom, rgba(10, 10, 10, 0.2), rgba(10, 10, 10, 1)),
-        url('../img/lifestyle-bg.jpg');
-        
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-}
+            <a href="fight-for-your-soul.html" class="card">
+                <div class="card-image-wrapper">
+                    <img src="assets/img/ffys.jpg" alt="Jonny Lang">
+                </div>
+                <div class="card-body">
+                    <h2 class="card-title">Jonny Lang</h2>
+                    <p class="card-excerpt">A polished sound that defines modern blues.</p>
+                </div>
+            </a>
 
-.header-content {
-    text-align: center;
-    z-index: 2;
-}
+            <a href="bamboos-fever-in-the-road.html" class="card">
+                <div class="card-image-wrapper">
+                    <img src="assets/img/feveritr.jpg" alt="The Bamboos">
+                </div>
+                <div class="card-body">
+                    <h2 class="card-title">The Bamboos</h2>
+                    <p class="card-excerpt">Australian funk at its absolute finest.</p>
+                </div>
+            </a>
 
-.logo {
-    font-family: 'Libre Baskerville', serif;
-    font-size: 5rem;
-    color: #fff;
-    text-decoration: none;
-    display: block;
-    line-height: 0.8;
-    letter-spacing: -2px;
-    text-shadow: 0 10px 30px rgba(0,0,0,0.8);
-}
+        </div>
+    </main>
 
-.logo span { color: var(--accent); font-style: italic; }
+    <footer>
+        &copy; 2026 MOJOLISTS
+    </footer>
 
-.tagline {
-    text-transform: uppercase;
-    letter-spacing: 8px;
-    font-size: 0.75rem;
-    color: var(--gold);
-    margin-top: 25px;
-    font-weight: 600;
-    text-shadow: 0 2px 10px rgba(0,0,0,1);
-}
-
-.rig-strip {
-    background: #000;
-    border-bottom: 2px solid var(--accent);
-    padding: 18px 0;
-    text-align: center;
-    font-size: 0.65rem;
-    letter-spacing: 4px;
-    color: #fff;
-    text-transform: uppercase;
-    font-weight: 700;
-}
-
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 60px 20px;
-}
-
-.grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 50px;
-}
-
-.card {
-    text-decoration: none;
-    color: inherit;
-    display: flex;
-    flex-direction: column;
-    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-.card:hover { transform: translateY(-10px); }
-
-.card-image-wrapper {
-    width: 100%;
-    aspect-ratio: 1 / 1;
-    overflow: hidden;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.6);
-    border: 1px solid #222;
-    background: #000;
-}
-
-.card img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-}
-
-.card-body {
-    padding: 25px 15px;
-    text-align: center;
-    background: var(--card-bg);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255,255,255,0.05);
-    border-top: none;
-}
-
-.card-title {
-    font-family: 'Libre Baskerville', serif;
-    font-size: 1.4rem;
-    color: #fff;
-    margin: 0 0 10px 0;
-    line-height: 1.2;
-}
-
-.card-excerpt {
-    font-size: 0.85rem;
-    color: #bbb;
-    margin: 0;
-    font-weight: 300;
-}
-
-footer {
-    padding: 80px 0;
-    text-align: center;
-    font-size: 0.7rem;
-    color: #444;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-}
+</body>
+</html>
