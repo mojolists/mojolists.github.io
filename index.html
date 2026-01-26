@@ -25,40 +25,19 @@
 
         header {
             padding: 60px 5%;
-            border-bottom: 1px solid #222;
             text-align: center;
+            border-bottom: 1px solid #222;
         }
 
         .logo {
             font-family: 'Libre Baskerville', serif;
             font-size: 3.5rem;
-            letter-spacing: -2px;
             margin: 0;
             color: #fff;
-            text-transform: lowercase;
+            text-decoration: none;
         }
 
         .logo span { color: var(--accent); }
-
-        .tagline {
-            text-transform: uppercase;
-            letter-spacing: 6px;
-            font-size: 0.7rem;
-            color: var(--text-dim);
-            margin-top: 10px;
-        }
-
-        .rig-strip {
-            background: var(--card-bg);
-            padding: 15px 0;
-            text-align: center;
-            font-size: 0.65rem;
-            font-weight: 700;
-            letter-spacing: 2px;
-            color: var(--gold);
-            text-transform: uppercase;
-            border-bottom: 4px solid var(--accent);
-        }
 
         .container {
             max-width: 1200px;
@@ -68,101 +47,78 @@
 
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 40px;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 30px;
         }
 
         .card {
             background: var(--card-bg);
             border: 1px solid #222;
-            transition: transform 0.3s ease, border-color 0.3s ease;
             text-decoration: none;
             color: inherit;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            transition: 0.3s;
         }
 
         .card:hover {
-            transform: translateY(-8px);
+            transform: translateY(-5px);
             border-color: var(--accent);
         }
 
-        .card-img {
+        /* Standard Image Tag Styling */
+        .card img {
             width: 100%;
             height: 250px;
-            background-color: #222;
-            background-size: cover;
-            background-position: center;
-        }
-
-        .card-body { padding: 25px; }
-
-        .card-meta {
-            font-size: 0.7rem;
-            color: var(--accent);
-            font-weight: 700;
-            text-transform: uppercase;
-            margin-bottom: 10px;
+            object-fit: cover; /* This keeps the image from stretching */
             display: block;
+            background-color: #222; /* Placeholder color while loading */
         }
+
+        .card-body { padding: 20px; }
 
         .card-title {
             font-family: 'Libre Baskerville', serif;
-            font-size: 1.6rem;
-            margin: 0 0 15px 0;
-            line-height: 1.2;
+            font-size: 1.4rem;
+            margin: 10px 0;
             color: #fff;
         }
 
         .card-excerpt {
             color: var(--text-dim);
-            font-size: 0.95rem;
-            font-weight: 300;
-        }
-
-        footer {
-            padding: 50px;
-            text-align: center;
-            border-top: 1px solid #222;
-            font-size: 0.8rem;
-            color: #444;
+            font-size: 0.9rem;
         }
     </style>
 </head>
 <body>
 
     <header>
-        <h1 class="logo">mojo<span>lists</span></h1>
-        <div class="tagline">Music, Technology, and Sound Quality</div>
+        <a href="/" class="logo">mojo<span>lists</span></a>
     </header>
-
-    <div class="rig-strip">
-        Signal Path: Jarvis Server ➔ X51.2 ➔ Main Listening Rig
-    </div>
 
     <div class="container">
         <div class="grid">
             
             <a href="say-that-to-say-this.html" class="card">
-                <div class="card-img" style="background-image: url('assets/img/ts.jpg');"></div>
+                <img src="/assets/img/ts.jpg" alt="Trombone Shorty Album Art">
                 <div class="card-body">
-                    <span class="card-meta">Review / Soul</span>
                     <h2 class="card-title">Trombone Shorty: Say That To Say This</h2>
                     <p class="card-excerpt">A masterclass in NOLA funk recorded with an audiophile's ear for dynamics.</p>
                 </div>
             </a>
 
             <a href="fight-for-your-soul.html" class="card">
-                <div class="card-img" style="background-image: url('assets/img/ffys.jpg');"></div>
+                <img src="/assets/img/ffys.jpg" alt="Jonny Lang Album Art">
                 <div class="card-body">
-                    <span class="card-meta">Review / Blues</span>
                     <h2 class="card-title">Jonny Lang: Fight For My Soul</h2>
                     <p class="card-excerpt">A polished, mature sound that leaves the child prodigy labels behind.</p>
                 </div>
             </a>
 
             <a href="bamboos-fever-in-the-road.html" class="card">
-                <div class="card-img" style="background-image: url('assets/img/feveritr.jpg');"></div>
+                <img src="/assets/img/feveritr.jpg" alt="The Bamboos Album Art">
                 <div class="card-body">
-                    <span class="card-meta">Review / Funk</span>
                     <h2 class="card-title">The Bamboos: Fever In The Road</h2>
                     <p class="card-excerpt">Australian funk at its absolute finest. Deep grooves and spacious recording.</p>
                 </div>
@@ -170,10 +126,6 @@
 
         </div>
     </div>
-
-    <footer>
-        &copy; 2024 Mojolists. No corporate filler.
-    </footer>
 
 </body>
 </html>
