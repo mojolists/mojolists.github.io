@@ -4,17 +4,187 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MojoLists | High-Fidelity Reviews</title>
-    <link rel="stylesheet" href="/assets/css/main.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;600&display=swap');
+
+        :root {
+            --bg: #0f0f0f;
+            --card-bg: rgba(22, 22, 22, 0.9); /* Slightly transparent to show background */
+            --accent: #D32F2F;
+            --text-main: #f5f5f5;
+            --text-dim: #bbb;
+            --gold: #C5A059;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            background-color: var(--bg);
+            /* THE BACKGROUND IMAGE */
+            background-image: 
+                linear-gradient(to bottom, rgba(15, 15, 15, 0.7), rgba(15, 15, 15, 0.9)),
+                url('https://images.unsplash.com/photo-1542208998-f6dbbb27a72f?auto=format&fit=crop&q=80&w=2000'); /* Placeholder: High-end listening room */
+            background-attachment: fixed;
+            background-size: cover;
+            background-position: center;
+            color: var(--text-main);
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.8;
+        }
+
+        /* Gaussian Blur Overlay for the whole body background */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: inherit;
+            filter: blur(8px); /* Adjust blur strength here */
+            z-index: -1;
+            transform: scale(1.1); /* Prevents white edges from blur */
+        }
+
+        header {
+            padding: 120px 5% 60px;
+            text-align: center;
+        }
+
+        .logo {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 5rem;
+            font-weight: 400;
+            color: #fff;
+            text-decoration: none;
+            display: block;
+            line-height: 0.8;
+            letter-spacing: -2px;
+            text-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .logo span { 
+            color: var(--accent);
+            font-style: italic;
+        }
+
+        .tagline {
+            text-transform: uppercase;
+            letter-spacing: 6px;
+            font-size: 0.8rem;
+            color: var(--gold);
+            margin-top: 30px;
+            font-weight: 600;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+        }
+
+        .rig-strip {
+            backdrop-filter: blur(10px);
+            background: rgba(0, 0, 0, 0.6);
+            border-top: 1px solid rgba(255,255,255,0.1);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding: 15px 0;
+            margin: 0 5%;
+            text-align: center;
+            font-size: 0.65rem;
+            font-style: italic;
+            letter-spacing: 2px;
+            color: #fff;
+            text-transform: uppercase;
+        }
+
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 80px 20px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 60px;
+        }
+
+        .card {
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+            transition: 0.4s ease;
+        }
+
+        .card-image-wrapper {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            position: relative;
+            overflow: hidden;
+            background: #000;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.6);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .card img {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            object-fit: cover;
+            transition: 0.6s cubic-bezier(0.2, 1, 0.3, 1);
+        }
+
+        .card:hover img {
+            transform: scale(1.05);
+        }
+
+        .card-body {
+            padding: 30px 20px;
+            background: var(--card-bg); /* Dark semi-transparent backing for text */
+            margin-top: -20px; /* Slight overlap for modern look */
+            margin-left: 20px;
+            margin-right: 20px;
+            z-index: 2;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .card-category {
+            color: var(--accent);
+            font-family: 'Libre Baskerville', serif;
+            font-style: italic;
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .card-title {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 1.5rem;
+            color: #fff;
+            margin: 0 0 10px 0;
+            line-height: 1.2;
+        }
+
+        .card-excerpt {
+            font-size: 0.9rem;
+            color: var(--text-dim);
+            margin: 0;
+            font-weight: 300;
+        }
+
+        footer {
+            padding: 100px 5%;
+            text-align: center;
+            color: #888;
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+        }
+    </style>
 </head>
 <body>
 
     <header>
         <a href="/" class="logo">mojo<span>lists</span></a>
-        <div class="tagline">Music & Technology for the Soul</div>
+        <div class="tagline">The Sound of High-Fidelity</div>
     </header>
 
     <div class="rig-strip">
-        Signal Path: Jarvis Server ➔ X51.2 ➔ Main Listening Rig
+        Signal Path: Jarvis Server • X51.2 • Analog Stage • Master Monitor
     </div>
 
     <main class="container">
@@ -25,8 +195,9 @@
                     <img src="/assets/img/ts.jpg" alt="Trombone Shorty">
                 </div>
                 <div class="card-body">
-                    <h2 class="card-title">Trombone Shorty: Say That To Say This</h2>
-                    <p class="card-excerpt">NOLA funk recorded with an audiophile's ear.</p>
+                    <span class="card-category">Soul & Funk</span>
+                    <h2 class="card-title">Trombone Shorty</h2>
+                    <p class="card-excerpt">A masterclass in NOLA funk recorded with an audiophile's ear.</p>
                 </div>
             </a>
 
@@ -35,8 +206,9 @@
                     <img src="/assets/img/ffys.jpg" alt="Jonny Lang">
                 </div>
                 <div class="card-body">
-                    <h2 class="card-title">Jonny Lang: Fight For My Soul</h2>
-                    <p class="card-excerpt">A polished, mature sound for the modern bluesman.</p>
+                    <span class="card-category">Modern Blues</span>
+                    <h2 class="card-title">Jonny Lang</h2>
+                    <p class="card-excerpt">A polished sound that defines the modern blues landscape.</p>
                 </div>
             </a>
 
@@ -45,38 +217,9 @@
                     <img src="/assets/img/feveritr.jpg" alt="The Bamboos">
                 </div>
                 <div class="card-body">
-                    <h2 class="card-title">The Bamboos: Fever In The Road</h2>
-                    <p class="card-excerpt">Deep Australian funk grooves.</p>
-                </div>
-            </a>
-
-            <a href="gregory-porter-liquid-spirit.html" class="card">
-                <div class="card-image-wrapper">
-                    <img src="/assets/img/liquidspirit.jpg" alt="Gregory Porter">
-                </div>
-                <div class="card-body">
-                    <h2 class="card-title">Gregory Porter: Liquid Spirit</h2>
-                    <p class="card-excerpt">Masterful vocals on the Blue Note label.</p>
-                </div>
-            </a>
-
-            <a href="snarky-puppy-groundup.html" class="card">
-                <div class="card-image-wrapper">
-                    <img src="/assets/img/groundup.jpg" alt="Snarky Puppy">
-                </div>
-                <div class="card-body">
-                    <h2 class="card-title">Snarky Puppy: GroundUP</h2>
-                    <p class="card-excerpt">Complex jazz-fusion recorded live.</p>
-                </div>
-            </a>
-
-            <a href="robert-glasper-black-radio.html" class="card">
-                <div class="card-image-wrapper">
-                    <img src="/assets/img/blackradio.jpg" alt="Robert Glasper">
-                </div>
-                <div class="card-body">
-                    <h2 class="card-title">Robert Glasper: Black Radio</h2>
-                    <p class="card-excerpt">The definitive bridge between jazz and hip-hop.</p>
+                    <span class="card-category">Deep Funk</span>
+                    <h2 class="card-title">The Bamboos</h2>
+                    <p class="card-excerpt">Australian funk at its absolute finest. Deep grooves.</p>
                 </div>
             </a>
 
@@ -84,7 +227,7 @@
     </main>
 
     <footer>
-        &copy; 2024 Mojolists
+        &copy; 2024 MOJOLISTS • IN THE PURSUIT OF SOUND
     </footer>
 
 </body>
