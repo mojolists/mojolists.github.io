@@ -31,7 +31,7 @@ header {
     /* This applies the image you uploaded */
     background-image: 
         linear-gradient(to bottom, rgba(10, 10, 10, 0.2), rgba(10, 10, 10, 1)),
-        url('/assets/img/lifestyle-bg.jpg');
+        url('../img/lifestyle-bg.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
