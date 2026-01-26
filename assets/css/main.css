@@ -19,7 +19,6 @@ body {
     line-height: 1.6;
 }
 
-/* PANORAMIC ATMOSPHERIC HEADER */
 header {
     height: 450px;
     width: 100%;
@@ -27,12 +26,12 @@ header {
     justify-content: center;
     align-items: center;
     position: relative;
-    background-color: #1a1a1a; /* Fallback color if image fails */
+    background-color: #1a1a1a; 
     
-    /* THE CORRECT PATHWAY FIX */
+    /* UPDATED TO PNG + THE CORRECT STEP-BACK PATHWAY */
     background-image: 
-        linear-gradient(to bottom, rgba(10, 10, 10, 0.2), rgba(10, 10, 10, 1)),
-        url('../img/lifestyle-bg.jpg');
+        linear-gradient(to bottom, rgba(10, 10, 10, 0.1), rgba(10, 10, 10, 1)),
+        url('../img/lifestyle-bg.png');
         
     background-size: cover;
     background-position: center;
@@ -46,20 +45,20 @@ header {
 
 .logo {
     font-family: 'Libre Baskerville', serif;
-    font-size: 5rem;
+    font-size: 5.5rem;
     color: #fff;
     text-decoration: none;
     display: block;
     line-height: 0.8;
     letter-spacing: -2px;
-    text-shadow: 0 10px 30px rgba(0,0,0,0.8);
+    text-shadow: 0 10px 40px rgba(0,0,0,1);
 }
 
 .logo span { color: var(--accent); font-style: italic; }
 
 .tagline {
     text-transform: uppercase;
-    letter-spacing: 8px;
+    letter-spacing: 10px;
     font-size: 0.75rem;
     color: var(--gold);
     margin-top: 25px;
@@ -105,7 +104,7 @@ header {
     width: 100%;
     aspect-ratio: 1 / 1;
     overflow: hidden;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.8);
     border: 1px solid #222;
     background: #000;
 }
