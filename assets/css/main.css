@@ -1,12 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@700&family=Montserrat:wght@300;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;600;900&display=swap');
 
 :root {
     --bg: #0a0a0a;
-    --card-bg: #111111;
+    --card-bg: rgba(18, 18, 18, 0.9);
     --accent: #D32F2F;
-    --text-main: #e0e0e0;
-    --text-dim: #888;
-    --gold: #FFB300;
+    --text-main: #f5f5f5;
+    --gold: #C5A059;
 }
 
 * { box-sizing: border-box; }
@@ -20,42 +19,66 @@ body {
     line-height: 1.6;
 }
 
+/* PANORAMIC ATMOSPHERIC HEADER */
 header {
-    padding: 50px 5% 30px;
+    height: 450px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    background-color: #000;
+    /* This applies the image you uploaded */
+    background-image: 
+        linear-gradient(to bottom, rgba(10, 10, 10, 0.2), rgba(10, 10, 10, 1)),
+        url('/assets/img/lifestyle-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.header-content {
     text-align: center;
-    border-bottom: 1px solid #222;
+    z-index: 2;
 }
 
 .logo {
     font-family: 'Libre Baskerville', serif;
-    font-size: 3rem;
+    font-size: 5rem;
     color: #fff;
     text-decoration: none;
     display: block;
+    line-height: 0.8;
+    letter-spacing: -2px;
+    text-shadow: 0 10px 30px rgba(0,0,0,0.8);
 }
 
-.logo span { color: var(--accent); }
+.logo span { color: var(--accent); font-style: italic; }
 
 .tagline {
     text-transform: uppercase;
-    letter-spacing: 5px;
-    font-size: 0.7rem;
-    color: var(--text-dim);
-    margin-top: 10px;
+    letter-spacing: 8px;
+    font-size: 0.75rem;
+    color: var(--gold);
+    margin-top: 25px;
+    font-weight: 600;
+    text-shadow: 0 2px 10px rgba(0,0,0,1);
 }
 
+/* THE RIG STRIP */
 .rig-strip {
-    background: #181818;
-    padding: 15px 0;
+    background: #000;
+    border-bottom: 2px solid var(--accent);
+    padding: 18px 0;
     text-align: center;
     font-size: 0.65rem;
-    font-weight: 700;
-    letter-spacing: 2px;
-    color: var(--gold);
+    letter-spacing: 4px;
+    color: #fff;
     text-transform: uppercase;
-    border-bottom: 3px solid var(--accent);
+    font-weight: 700;
 }
 
+/* CONTENT GRID */
 .container {
     max-width: 1200px;
     margin: 0 auto;
@@ -64,61 +87,74 @@ header {
 
 .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 30px;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 50px;
 }
 
-/* THE IMAGE FIX: This forces the image to behave */
 .card {
-    background: var(--card-bg);
-    border: 1px solid #222;
     text-decoration: none;
     color: inherit;
     display: flex;
     flex-direction: column;
-    overflow: hidden; /* Keeps huge images from bleeding out */
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
+
+.card:hover { transform: translateY(-10px); }
 
 .card-image-wrapper {
     width: 100%;
-    aspect-ratio: 1 / 1; /* Forces the box to be a square */
-    position: relative;
+    aspect-ratio: 1 / 1;
     overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+    border: 1px solid #222;
     background: #000;
 }
 
 .card img {
-    position: absolute;
-    top: 0;
-    left: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover; /* This crops the image to fill the square perfectly */
+    object-fit: cover;
     display: block;
 }
 
 .card-body {
-    padding: 20px;
+    padding: 25px 15px;
     text-align: center;
+    background: var(--card-bg);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.05);
+    border-top: none;
+}
+
+.card-category {
+    color: var(--accent);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+    display: block;
 }
 
 .card-title {
     font-family: 'Libre Baskerville', serif;
-    font-size: 1.1rem;
+    font-size: 1.4rem;
     color: #fff;
     margin: 0 0 10px 0;
-    line-height: 1.3;
+    line-height: 1.2;
 }
 
 .card-excerpt {
-    font-size: 0.8rem;
-    color: var(--text-dim);
+    font-size: 0.85rem;
+    color: #bbb;
     margin: 0;
+    font-weight: 300;
 }
 
 footer {
-    padding: 40px;
+    padding: 80px 0;
     text-align: center;
-    color: #444;
     font-size: 0.7rem;
+    color: #444;
+    letter-spacing: 3px;
+    text-transform: uppercase;
 }
