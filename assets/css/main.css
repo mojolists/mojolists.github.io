@@ -41,7 +41,7 @@ body {
   font-weight: 600;
 }
 
-/* --- Nav Strip with Shake & Color Change --- */
+/* --- Nav Strip --- */
 .rig-strip {
   background: #000;
   border-bottom: 2px solid var(--accent);
@@ -75,65 +75,49 @@ body {
   100% { transform: translate(0, 0); }
 }
 
-/* --- Featured Hero --- */
-.featured-hero {
-    margin: 40px auto;
-    max-width: 1200px;
-    background: #111;
-    display: flex;
-    align-items: center;
-    border: 1px solid #222;
-    overflow: hidden;
+/* --- New Featured Mini-Grid --- */
+.featured-strip {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: #222; /* Creates the border lines */
+    border-bottom: 1px solid #222;
 }
 
-.featured-img {
-    flex: 1;
-    height: 450px;
-    background: url('/assets/img/hero-feature.jpg') center/cover;
-}
-
-.featured-content {
-    flex: 1;
-    padding: 60px;
-}
-
-.featured-label {
-    color: var(--accent);
-    text-transform: uppercase;
-    letter-spacing: 5px;
-    font-size: 0.7rem;
-    font-weight: 900;
-    margin-bottom: 20px;
-}
-
-.featured-title {
-    font-family: 'Libre Baskerville', serif;
-    font-size: 2.2rem;
-    margin: 0 0 20px 0;
-    line-height: 1.2;
-}
-
-.btn-minimal {
-    display: inline-block;
-    color: var(--gold);
+.mini-card {
+    background: var(--bg);
+    padding: 30px 20px;
     text-decoration: none;
-    font-size: 0.7rem;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    font-weight: 700;
-    border-bottom: 1px solid var(--gold);
-    padding-bottom: 5px;
-    margin-top: 20px;
-    transition: letter-spacing 0.3s ease;
+    transition: background 0.3s ease;
+    text-align: center;
 }
 
-.btn-minimal:hover { letter-spacing: 4px; }
+.mini-card:hover {
+    background: #111;
+}
+
+.mini-label {
+    color: var(--accent);
+    font-size: 0.55rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-weight: 900;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.mini-title {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 1.1rem;
+    color: #fff;
+    margin: 0;
+}
 
 /* --- Content Grid --- */
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 20px 60px 20px;
+  padding: 60px 20px;
 }
 
 .grid {
@@ -171,7 +155,6 @@ body {
   padding: 20px 15px;
   text-align: center;
   background: var(--card-bg);
-  backdrop-filter: blur(10px);
 }
 
 .card-title {
