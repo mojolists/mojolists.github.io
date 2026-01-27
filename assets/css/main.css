@@ -34,14 +34,14 @@ body {
 
 .tagline {
   text-transform: uppercase;
-  letter-spacing: 12px;
+  letter-spacing: 10px;
   font-size: 0.7rem;
   color: var(--gold);
   margin-top: 15px;
   font-weight: 600;
 }
 
-/* --- Navigation & Shake Animation --- */
+/* --- Nav Strip with Shake & Color Change --- */
 .rig-strip {
   background: #000;
   border-bottom: 2px solid var(--accent);
@@ -52,7 +52,7 @@ body {
 }
 
 .rig-strip a {
-  display: inline-block; /* Required for transform to work */
+  display: inline-block;
   text-decoration: none;
   font-size: 0.65rem;
   letter-spacing: 4px;
@@ -64,7 +64,7 @@ body {
 
 .rig-strip a:hover {
   color: var(--gold);
-  animation: haptic-shake 0.15s linear infinite;
+  animation: haptic-shake 0.12s linear infinite;
 }
 
 @keyframes haptic-shake {
@@ -75,9 +75,10 @@ body {
   100% { transform: translate(0, 0); }
 }
 
-/* --- Featured Section --- */
+/* --- Featured Hero --- */
 .featured-hero {
-    margin-top: 40px;
+    margin: 40px auto;
+    max-width: 1200px;
     background: #111;
     display: flex;
     align-items: center;
@@ -87,7 +88,7 @@ body {
 
 .featured-img {
     flex: 1;
-    height: 400px;
+    height: 450px;
     background: url('/assets/img/hero-feature.jpg') center/cover;
 }
 
@@ -107,22 +108,38 @@ body {
 
 .featured-title {
     font-family: 'Libre Baskerville', serif;
-    font-size: 2.5rem;
-    margin-bottom: 20px;
+    font-size: 2.2rem;
+    margin: 0 0 20px 0;
+    line-height: 1.2;
 }
 
-/* --- Grid System --- */
+.btn-minimal {
+    display: inline-block;
+    color: var(--gold);
+    text-decoration: none;
+    font-size: 0.7rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 700;
+    border-bottom: 1px solid var(--gold);
+    padding-bottom: 5px;
+    margin-top: 20px;
+    transition: letter-spacing 0.3s ease;
+}
+
+.btn-minimal:hover { letter-spacing: 4px; }
+
+/* --- Content Grid --- */
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 20px 40px 20px;
+  padding: 0 20px 60px 20px;
 }
 
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
   gap: 40px;
-  margin-top: 40px;
 }
 
 .card {
@@ -155,7 +172,6 @@ body {
   text-align: center;
   background: var(--card-bg);
   backdrop-filter: blur(10px);
-  border: 1px solid rgba(255,255,255,0.05);
 }
 
 .card-title {
@@ -169,6 +185,7 @@ body {
   font-size: 0.8rem;
   color: #bbb;
   margin: 0;
+  line-height: 1.6;
 }
 
 footer {
