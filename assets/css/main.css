@@ -19,7 +19,7 @@ body {
   line-height: 1.6;
 }
 
-/* --- Header & Logo --- */
+/* --- Global Header --- */
 .logo {
   font-family: 'Libre Baskerville', serif;
   font-size: 4rem;
@@ -41,7 +41,7 @@ body {
   font-weight: 600;
 }
 
-/* --- Navigation & Action Strip --- */
+/* --- Navigation --- */
 .rig-strip {
   background: #000;
   border-bottom: 2px solid var(--accent);
@@ -72,11 +72,12 @@ body {
   100% { transform: translate(0, 0); }
 }
 
+/* --- Action Strip --- */
 .featured-strip {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 1px;
-    background: #222;
+    background: #222; 
     border-bottom: 1px solid #222;
 }
 .mini-card {
@@ -104,7 +105,7 @@ body {
 }
 .mini-card:hover .mini-label, .mini-card:hover .mini-title { color: #000; }
 
-/* --- Review Page Specifics --- */
+/* --- Review Content Layout --- */
 .review-header {
     text-align: center;
     padding: 80px 20px;
@@ -122,29 +123,38 @@ body {
     font-family: 'Libre Baskerville', serif;
     font-size: 3.5rem;
     margin: 20px 0;
+    line-height: 1.1;
 }
 .review-layout {
     display: grid;
-    grid-template-columns: 1fr 300px;
+    grid-template-columns: 1fr 320px;
     gap: 60px;
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px 100px 20px;
 }
-.review-content {
+.review-body {
     font-family: 'Libre Baskerville', serif;
-    font-size: 1.1rem;
+    font-size: 1.15rem;
     color: #ccc;
+    line-height: 1.8;
 }
-.review-content p { margin-bottom: 1.8rem; }
-.review-content h2 { color: #fff; font-family: 'Montserrat', sans-serif; text-transform: uppercase; letter-spacing: 2px; font-size: 1rem; margin-top: 40px; }
+.review-body p { margin-bottom: 2rem; }
+.review-body h2 { 
+    color: #fff; 
+    font-family: 'Montserrat', sans-serif; 
+    text-transform: uppercase; 
+    letter-spacing: 2px; 
+    font-size: 1rem; 
+    margin: 50px 0 20px 0; 
+}
 
+/* --- Review Sidebar --- */
 .sidebar-box {
     background: #111;
     padding: 30px;
     border-top: 3px solid var(--accent);
-    position: sticky;
-    top: 40px;
+    margin-bottom: 30px;
 }
 .sidebar-title {
     font-size: 0.7rem;
@@ -158,34 +168,57 @@ body {
     list-style: none;
     padding: 0;
     margin: 0;
-    font-size: 0.8rem;
+    font-size: 0.85rem;
 }
 .spec-list li {
-    padding: 10px 0;
+    padding: 12px 0;
     border-bottom: 1px solid #222;
-    color: #888;
+    color: #999;
 }
 .spec-list b { color: #fff; display: block; margin-bottom: 2px; }
 
 .score-circle {
-    width: 80px;
-    height: 80px;
+    width: 100px;
+    height: 100px;
     border: 2px solid var(--gold);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.5rem;
+    font-size: 2rem;
     font-weight: 900;
     margin: 20px auto;
     color: var(--gold);
+    font-family: 'Montserrat', sans-serif;
 }
 
-footer {
-  padding: 80px 0;
-  text-align: center;
-  font-size: 0.6rem;
-  color: #444;
-  letter-spacing: 3px;
-  text-transform: uppercase;
+/* --- Main Grid --- */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 60px 20px;
 }
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 40px;
+}
+.card {
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.3s ease;
+}
+.card:hover { transform: translateY(-8px); }
+.card-image-wrapper {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  box-shadow: 0 15px 30px rgba(0,0,0,0.8);
+  border: 1px solid #222;
+}
+.card img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.card-body { padding: 25px 15px; text-align: center; background: var(--card-bg); }
+.card-title { font-family: 'Libre Baskerville', serif; font-size: 1.3rem; color: #fff; margin: 0 0 8px 0; }
+.card-excerpt { font-size: 0.8rem; color: #bbb; margin: 0; }
+
+footer { padding: 80px 0; text-align: center; font-size: 0.6rem; color: #444; letter-spacing: 3px; text-transform: uppercase; }
