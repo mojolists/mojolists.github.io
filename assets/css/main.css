@@ -18,6 +18,7 @@ body {
   padding: 0;
 }
 
+/* --- Header & Logo --- */
 .logo {
   font-family: 'Libre Baskerville', serif;
   font-size: 4rem;
@@ -40,7 +41,7 @@ body {
   font-weight: 600;
 }
 
-/* Updated Nav Strip */
+/* --- Navigation & Shake Animation --- */
 .rig-strip {
   background: #000;
   border-bottom: 2px solid var(--accent);
@@ -51,6 +52,7 @@ body {
 }
 
 .rig-strip a {
+  display: inline-block; /* Required for transform to work */
   text-decoration: none;
   font-size: 0.65rem;
   letter-spacing: 4px;
@@ -62,18 +64,65 @@ body {
 
 .rig-strip a:hover {
   color: var(--gold);
+  animation: haptic-shake 0.15s linear infinite;
 }
 
+@keyframes haptic-shake {
+  0% { transform: translate(0, 0); }
+  25% { transform: translate(1px, 1px); }
+  50% { transform: translate(-1px, -1px); }
+  75% { transform: translate(1px, -1px); }
+  100% { transform: translate(0, 0); }
+}
+
+/* --- Featured Section --- */
+.featured-hero {
+    margin-top: 40px;
+    background: #111;
+    display: flex;
+    align-items: center;
+    border: 1px solid #222;
+    overflow: hidden;
+}
+
+.featured-img {
+    flex: 1;
+    height: 400px;
+    background: url('/assets/img/hero-feature.jpg') center/cover;
+}
+
+.featured-content {
+    flex: 1;
+    padding: 60px;
+}
+
+.featured-label {
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    font-size: 0.7rem;
+    font-weight: 900;
+    margin-bottom: 20px;
+}
+
+.featured-title {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+/* --- Grid System --- */
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 40px 20px;
+  padding: 0 20px 40px 20px;
 }
 
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
   gap: 40px;
+  margin-top: 40px;
 }
 
 .card {
