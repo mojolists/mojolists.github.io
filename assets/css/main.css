@@ -19,7 +19,7 @@ body {
   line-height: 1.6;
 }
 
-/* --- Global Header (Locked 250px) --- */
+/* --- Locked Global Header (250px) --- */
 header.site-header {
     height: 250px !important;
     background-image: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(10,10,10,1)), url('/assets/img/lifestyle-bg.jpg');
@@ -164,4 +164,11 @@ header.site-header {
 .card-title { font-family: 'Libre Baskerville', serif; font-size: 1.3rem; color: #fff; margin: 0 0 8px 0; }
 .card-excerpt { font-size: 0.8rem; color: #bbb; margin: 0; }
 
-footer { padding: 80px 0; text-align: center; font-size: 0.6rem; color: #444; letter-spacing: 3px; text-transform: uppercase; }
+/* --- Review Specific Layout --- */
+.review-header { text-align: center; padding: 80px 20px; max-width: 900px; margin: 0 auto; }
+.review-category { color: var(--gold); text-transform: uppercase; letter-spacing: 5px; font-size: 0.8rem; font-weight: 900; }
+.review-title { font-family: 'Libre Baskerville', serif; font-size: 3.5rem; margin: 20px 0; line-height: 1.1; }
+.review-layout { display: grid; grid-template-columns: 1fr 320px; gap: 60px; max-width: 1200px; margin: 0 auto; padding: 0 20px 100px 20px; }
+.review-body { font-family: 'Libre Baskerville', serif; font-size: 1.15rem; color: #ccc; }
+.sidebar-box { background: #111; padding: 30px; border-top: 3px solid var(--accent); margin-bottom: 30px; }
+.score-circle { width: 100px; height: 100px;
