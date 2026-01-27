@@ -1,1 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Review: McIntosh MT5 | MojoLists</title>
+    <link rel="stylesheet" href="/assets/css/main.css">
+</head>
+<body>
 
+<header style="height: 250px !important; background-image: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(10,10,10,1)), url('/assets/img/lifestyle-bg.jpg'); background-position: top !important; background-size: cover !important; display: flex; justify-content: center; align-items: center; width: 100%; position: relative; border-bottom: 1px solid #222;">
+    <div class="header-content" style="text-align: center; z-index: 2;">
+        <a href="/" class="logo">Mojo<span>Lists</span></a>
+        <div class="tagline">The Soul Of The Sound</div>
+    </div>
+</header>
+
+<nav class="rig-strip">
+    <a href="/reviews">Reviews</a>
+    <a href="/hardware">Hardware</a>
+    <a href="/vinyl">Vinyl</a>
+    <a href="/about">The Path</a>
+</nav>
+
+<article>
+    <div class="review-header">
+        <span class="review-category">Hardware Review</span>
+        <h1 class="review-title">McIntosh MT5: The Green Glow of Analog Perfection</h1>
+    </div>
+
+    <div class="review-layout">
+        <div class="review-content">
+            <p>There is a certain gravity to a McIntosh. Before you even drop the needle, the iconic glowing green platter and the industrial-grade glass faceplate tell you that this isn't just a turntable—it's a statement of intent.</p>
+            
+            <img src="/assets/img/mt5-detail.jpg" alt="McIntosh MT5 detail" style="width: 100%; margin: 20px 0; border: 1px solid #222;">
+
+            <h2>The Build</h2>
+            <p>Weight is the enemy of resonance, and the MT5 is a heavyweight champion. The magnetically suspended ceramic platter floats with a frictionless grace that seems to defy the laws of physics. In our 30-day testing period, the speed stability was nothing short of surgical.</p>
+
+            <h2>The Sound</h2>
+            <p>Pairing the MT5 with a Sumiko Blue Point cartridge, the first thing we noticed was the noise floor—or rather, the lack of one. On a clean pressing of Miles Davis's <i>Kind of Blue</i>, the trumpet emerges from a void so black it feels like the musicians are in the room with you.</p>
+        </div>
+
+        <aside class="sidebar">
+            <div class="sidebar-box">
+                <span class="sidebar-title">The Score</span>
+                <div class="score-circle">9.2</div>
+                <ul class="spec-list">
+                    <li><b>Drive System</b> Belt Drive</li>
+                    <li><b>Motor</b> DC Brushless</li>
+                    <li><b>Speeds</b> 33, 45, 78</li>
+                    <li><b>Weight</b> 31.5 lbs</li>
+                </ul>
+            </div>
+            
+            <div class="sidebar-box" style="margin-top: 20px; border-top-color: var(--gold);">
+                <span class="sidebar-title">Test Rig</span>
+                <ul class="spec-list">
+                    <li><b>Preamp</b> McIntosh C2700</li>
+                    <li><b>Speakers</b> Klipsch Heritage</li>
+                    <li><b>Cables</b> AudioQuest Robin Hood</li>
+                </ul>
+            </div>
+        </aside>
+    </div>
+</article>
+
+<footer>&copy; 2026 MOJOLISTS</footer>
+</body>
+</html>
