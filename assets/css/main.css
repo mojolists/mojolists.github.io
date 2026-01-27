@@ -16,6 +16,7 @@ body {
   font-family: 'Montserrat', sans-serif;
   margin: 0;
   padding: 0;
+  line-height: 1.6;
 }
 
 /* --- Header & Logo --- */
@@ -29,7 +30,6 @@ body {
   letter-spacing: -2px;
   text-shadow: 0 5px 20px rgba(0,0,0,0.9);
 }
-
 .logo span { color: var(--accent); font-style: italic; }
 
 .tagline {
@@ -41,7 +41,7 @@ body {
   font-weight: 600;
 }
 
-/* --- Nav Strip --- */
+/* --- Navigation & Action Strip --- */
 .rig-strip {
   background: #000;
   border-bottom: 2px solid var(--accent);
@@ -50,7 +50,6 @@ body {
   justify-content: center;
   gap: 40px;
 }
-
 .rig-strip a {
   display: inline-block;
   text-decoration: none;
@@ -61,12 +60,10 @@ body {
   font-weight: 700;
   transition: color 0.3s ease;
 }
-
 .rig-strip a:hover {
   color: var(--gold);
   animation: haptic-shake 0.12s linear infinite;
 }
-
 @keyframes haptic-shake {
   0% { transform: translate(0, 0); }
   25% { transform: translate(1px, 1px); }
@@ -75,15 +72,13 @@ body {
   100% { transform: translate(0, 0); }
 }
 
-/* --- Featured Action Strip --- */
 .featured-strip {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 1px;
-    background: #222; 
+    background: #222;
     border-bottom: 1px solid #222;
 }
-
 .mini-card {
     background: var(--bg);
     padding: 35px 20px;
@@ -91,11 +86,7 @@ body {
     transition: all 0.3s ease;
     text-align: center;
 }
-
-.mini-card:hover {
-    background: var(--gold);
-}
-
+.mini-card:hover { background: var(--gold); }
 .mini-label {
     color: var(--accent);
     font-size: 0.55rem;
@@ -104,78 +95,90 @@ body {
     font-weight: 900;
     margin-bottom: 10px;
     display: block;
-    transition: color 0.3s ease;
 }
-
 .mini-title {
     font-family: 'Libre Baskerville', serif;
     font-size: 1.15rem;
     color: #fff;
     margin: 0;
-    transition: color 0.3s ease;
 }
+.mini-card:hover .mini-label, .mini-card:hover .mini-title { color: #000; }
 
-.mini-card:hover .mini-label,
-.mini-card:hover .mini-title {
-    color: #000;
+/* --- Review Page Specifics --- */
+.review-header {
+    text-align: center;
+    padding: 80px 20px;
+    max-width: 900px;
+    margin: 0 auto;
 }
-
-/* --- Main Grid Container --- */
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 60px 20px;
+.review-category {
+    color: var(--gold);
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    font-size: 0.8rem;
+    font-weight: 900;
 }
-
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 40px;
+.review-title {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 3.5rem;
+    margin: 20px 0;
 }
-
-.card {
-  text-decoration: none;
-  color: inherit;
-  display: flex;
-  flex-direction: column;
-  transition: transform 0.3s ease;
+.review-layout {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 60px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px 100px 20px;
 }
-
-.card:hover { transform: translateY(-8px); }
-
-.card-image-wrapper {
-  width: 100%;
-  aspect-ratio: 1 / 1;
-  overflow: hidden;
-  box-shadow: 0 15px 30px rgba(0,0,0,0.8);
-  border: 1px solid #222;
+.review-content {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 1.1rem;
+    color: #ccc;
 }
+.review-content p { margin-bottom: 1.8rem; }
+.review-content h2 { color: #fff; font-family: 'Montserrat', sans-serif; text-transform: uppercase; letter-spacing: 2px; font-size: 1rem; margin-top: 40px; }
 
-.card img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
+.sidebar-box {
+    background: #111;
+    padding: 30px;
+    border-top: 3px solid var(--accent);
+    position: sticky;
+    top: 40px;
 }
-
-.card-body {
-  padding: 25px 15px;
-  text-align: center;
-  background: var(--card-bg);
+.sidebar-title {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: var(--gold);
+    margin-bottom: 20px;
+    display: block;
 }
-
-.card-title {
-  font-family: 'Libre Baskerville', serif;
-  font-size: 1.3rem;
-  color: #fff;
-  margin: 0 0 8px 0;
+.spec-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: 0.8rem;
 }
+.spec-list li {
+    padding: 10px 0;
+    border-bottom: 1px solid #222;
+    color: #888;
+}
+.spec-list b { color: #fff; display: block; margin-bottom: 2px; }
 
-.card-excerpt {
-  font-size: 0.8rem;
-  color: #bbb;
-  margin: 0;
-  line-height: 1.6;
+.score-circle {
+    width: 80px;
+    height: 80px;
+    border: 2px solid var(--gold);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: 900;
+    margin: 20px auto;
+    color: var(--gold);
 }
 
 footer {
