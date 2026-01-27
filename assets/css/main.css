@@ -1,14 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;600;900&display=swap');
 
 :root {
-  --bg: #0a0a0a; /* [cite: 67, 75] */
-  --card-bg: rgba(18, 18, 18, 0.9); /* [cite: 68] */
-  --accent: #D32F2F; /* [cite: 69] */
-  --text-main: #f5f5f5; /* [cite: 70] */
-  --gold: #C5A059; /* [cite: 71, 96] */
+  --bg: #0a0a0a;
+  --card-bg: rgba(18, 18, 18, 0.9);
+  --accent: #D32F2F;
+  --text-main: #f5f5f5;
+  --gold: #C5A059;
 }
 
-* { box-sizing: border-box; } /* [cite: 73] */
+* { box-sizing: border-box; }
 
 body {
   background-color: var(--bg);
@@ -17,20 +17,20 @@ body {
   margin: 0;
   padding: 0;
   line-height: 1.6;
-} /* [cite: 74, 76, 77, 80] */
+}
 
-/* --- Locked Global Header --- */
+/* --- Global Header (Locked 250px) --- */
 header.site-header {
-    height: 250px !important; /* [cite: 4, 26] */
-    background-image: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(10,10,10,1)), url('/assets/img/lifestyle-bg.jpg'); /* [cite: 4, 26] */
-    background-position: top !important; /* [cite: 5, 26] */
-    background-size: cover !important; /* [cite: 26] */
+    height: 250px !important;
+    background-image: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(10,10,10,1)), url('/assets/img/lifestyle-bg.jpg');
+    background-position: top !important;
+    background-size: cover !important;
     display: flex; 
     justify-content: center; 
     align-items: center; 
     width: 100%; 
     position: relative; 
-    border-bottom: 1px solid #222; /* [cite: 26] */
+    border-bottom: 1px solid #222;
 }
 
 .logo {
@@ -42,8 +42,8 @@ header.site-header {
   line-height: 0.9;
   letter-spacing: -2px;
   text-shadow: 0 5px 20px rgba(0,0,0,0.9);
-} /* [cite: 81, 82, 83, 85, 87, 88, 89] */
-.logo span { color: var(--accent); font-style: italic; } /* [cite: 91] */
+}
+.logo span { color: var(--accent); font-style: italic; }
 
 .tagline {
   text-transform: uppercase;
@@ -53,9 +53,9 @@ header.site-header {
   margin-top: 15px;
   font-weight: 600;
   text-align: center;
-} /* [cite: 92, 93, 94, 95, 96, 97, 98] */
+}
 
-/* --- Navigation & Action Strip --- */
+/* --- Navigation --- */
 .rig-strip {
   background: #000;
   border-bottom: 2px solid var(--accent);
@@ -63,7 +63,7 @@ header.site-header {
   display: flex;
   justify-content: center;
   gap: 40px;
-} /* [cite: 100, 101, 102, 103] */
+}
 
 .rig-strip a {
   display: inline-block;
@@ -74,7 +74,7 @@ header.site-header {
   text-transform: uppercase;
   font-weight: 700;
   transition: color 0.3s ease;
-} /* [cite: 105, 106, 107, 108, 109] */
+}
 
 .rig-strip a:hover {
   color: var(--gold);
@@ -89,7 +89,7 @@ header.site-header {
   100% { transform: translate(0, 0); }
 }
 
-/* --- Featured Highlight Strip --- */
+/* --- Action Strip --- */
 .featured-strip {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -123,18 +123,18 @@ header.site-header {
 }
 .mini-card:hover .mini-label, .mini-card:hover .mini-title { color: #000; }
 
-/* --- Main Grid (Home) --- */
+/* --- Main Grid --- */
 .container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 60px 20px;
-} /* [cite: 111, 112, 113, 114] */
+}
 
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
   gap: 40px;
-} /* [cite: 116, 117, 118, 119] */
+}
 
 .card {
   text-decoration: none;
@@ -142,8 +142,8 @@ header.site-header {
   display: flex;
   flex-direction: column;
   transition: transform 0.3s ease;
-} /* [cite: 121, 122, 123, 124, 126] */
-.card:hover { transform: translateY(-8px); } /* [cite: 128] */
+}
+.card:hover { transform: translateY(-8px); }
 
 .card-image-wrapper {
   width: 100%;
@@ -151,30 +151,17 @@ header.site-header {
   overflow: hidden;
   box-shadow: 0 15px 30px rgba(0,0,0,0.8);
   border: 1px solid #222;
-} /* [cite: 129, 131, 132, 133, 134] */
+}
 
-.card img { width: 100%; height: 100%; object-fit: cover; display: block; } /* [cite: 136, 139, 140] */
+.card img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
 .card-body { 
     padding: 25px 15px; 
     text-align: center; 
     background: var(--card-bg); 
-} /* [cite: 142, 143, 144, 145] */
-
-.card-title { font-family: 'Libre Baskerville', serif; font-size: 1.3rem; color: #fff; margin: 0 0 8px 0; } /* [cite: 149, 150, 151, 152, 153] */
-.card-excerpt { font-size: 0.8rem; color: #bbb; margin: 0; } /* [cite: 155, 156, 157, 158] */
-
-/* --- Review Page Styling --- */
-.review-layout {
-    display: grid;
-    grid-template-columns: 1fr 320px;
-    gap: 60px;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px 100px 20px;
 }
-.review-body { font-family: 'Libre Baskerville', serif; font-size: 1.15rem; color: #ccc; }
-.sidebar-box { background: #111; padding: 30px; border-top: 3px solid var(--accent); margin-bottom: 30px; }
-.score-circle { width: 100px; height: 100px; border: 2px solid var(--gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; font-weight: 900; margin: 20px auto; color: var(--gold); }
 
-footer { padding: 80px 0; text-align: center; font-size: 0.6rem; color: #444; letter-spacing: 3px; text-transform: uppercase; } /* [cite: 160, 161, 162, 163, 164, 165, 166] */
+.card-title { font-family: 'Libre Baskerville', serif; font-size: 1.3rem; color: #fff; margin: 0 0 8px 0; }
+.card-excerpt { font-size: 0.8rem; color: #bbb; margin: 0; }
+
+footer { padding: 80px 0; text-align: center; font-size: 0.6rem; color: #444; letter-spacing: 3px; text-transform: uppercase; }
