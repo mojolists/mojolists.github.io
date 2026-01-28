@@ -37,6 +37,7 @@ header.site-header {
 .review-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
 .feed-item { background: var(--card-bg); border: 1px solid #222; transition: 0.3s; }
 .feed-item:hover { border-color: var(--gold); transform: translateY(-5px); }
+.feed-item a { text-decoration: none; }
 
 .image-wrap { width: 100%; aspect-ratio: 1 / 1; overflow: hidden; background: #000; }
 .image-wrap img { width: 100%; height: 100%; object-fit: cover; }
