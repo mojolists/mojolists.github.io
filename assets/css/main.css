@@ -2,6 +2,7 @@
 
 :root {
   --bg: #0a0a0a;
+  --card-bg: rgba(18, 18, 18, 0.9);
   --accent: #D32F2F;
   --text-main: #f5f5f5;
   --gold: #C5A059;
@@ -18,89 +19,148 @@ body {
   line-height: 1.6;
 }
 
-/* --- HEADER --- */
+/* --- RESTORED: Locked Global Header (250px) --- */
 header.site-header {
-    height: 250px;
-    background-image: linear-gradient(to bottom, rgba(0,0,0,0.4), rgba(10,10,10,1)), url('/assets/img/lifestyle-bg.jpg');
-    background-position: top;
-    background-size: cover;
+    height: 250px !important;
+    background-image: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(10,10,10,1)), url('/assets/img/lifestyle-bg.jpg');
+    background-position: top !important;
+    background-size: cover !important;
     display: flex; 
     justify-content: center; 
     align-items: center; 
-    border-bottom: 1px solid #1a1a1a;
+    width: 100%; 
+    position: relative; 
+    border-bottom: 1px solid #222;
 }
 
 .logo {
   font-family: 'Libre Baskerville', serif;
-  font-size: 3.5rem;
+  font-size: 4rem;
   color: #fff;
   text-decoration: none;
-  letter-spacing: -1px;
+  display: block;
+  line-height: 0.9;
+  letter-spacing: -2px;
+  text-shadow: 0 5px 20px rgba(0,0,0,0.9);
 }
 .logo span { color: var(--accent); font-style: italic; }
 
 .tagline {
   text-transform: uppercase;
   letter-spacing: 10px;
-  font-size: 0.6rem;
+  font-size: 0.7rem;
   color: var(--gold);
+  margin-top: 15px;
+  font-weight: 600;
   text-align: center;
 }
 
-/* --- NAVIGATION --- */
+/* --- RESTORED: Navigation with Haptic Shake --- */
 .rig-strip {
   background: #000;
   border-bottom: 2px solid var(--accent);
-  padding: 12px 0;
+  padding: 15px 0;
   display: flex;
   justify-content: center;
-  gap: 30px;
+  gap: 40px;
 }
+
 .rig-strip a {
+  display: inline-block;
   text-decoration: none;
-  font-size: 0.6rem;
-  letter-spacing: 3px;
+  font-size: 0.65rem;
+  letter-spacing: 4px;
   color: #fff;
   text-transform: uppercase;
   font-weight: 700;
+  transition: color 0.3s ease;
 }
 
-/* --- REVIEW PAGE LAYOUT --- */
-.review-wrapper {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 20px 40px; /* Minimal top padding to remove black space */
+.rig-strip a:hover {
+  color: var(--gold);
+  animation: haptic-shake 0.12s linear infinite;
+}
+
+@keyframes haptic-shake {
+  0% { transform: translate(0, 0); }
+  25% { transform: translate(1px, 1px); }
+  50% { transform: translate(-1px, -1px); }
+  75% { transform: translate(1px, -1px); }
+  100% { transform: translate(0, 0); }
+}
+
+/* --- RESTORED: Action Strip (Mini-Cards) --- */
+.featured-strip {
     display: grid;
-    grid-template-columns: 1fr 320px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: #222; 
+    border-bottom: 1px solid #222;
+}
+
+.mini-card {
+    background: var(--bg);
+    padding: 35px 20px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+.mini-card:hover { background: var(--gold); }
+.mini-label {
+    color: var(--accent);
+    font-size: 0.55rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-weight: 900;
+    margin-bottom: 10px;
+    display: block;
+}
+.mini-title {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 1.15rem;
+    color: #fff;
+    margin: 0;
+}
+.mini-card:hover .mini-label, .mini-card:hover .mini-title { color: #000; }
+
+/* --- REFINED: Review Layout Spacing --- */
+.review-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 30px 40px 100px 40px; /* Tight top gap */
+    display: grid;
+    grid-template-columns: 1fr 350px;
     gap: 60px;
 }
 
 .review-article-header {
     grid-column: 1 / -1;
-    margin-bottom: 20px; /* Minimal gap */
-    padding: 0;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #222;
+    padding-bottom: 20px;
 }
 
 .review-title-xl {
     font-family: 'Libre Baskerville', serif;
-    font-size: 2.8rem; /* Significant reduction from the clownish size */
+    font-size: 3.5rem; /* Balanced size */
+    line-height: 1;
     margin: 0;
     color: #fff;
 }
 
 .review-artist-sub {
     font-family: 'Libre Baskerville', serif;
-    font-size: 1.4rem;
+    font-size: 1.8rem;
     font-style: italic;
     color: var(--gold);
-    margin-top: 5px;
 }
 
-/* --- THE IMAGE (FORCED SHRINK) --- */
+/* --- THE IMAGE (Fixed 400px Scale) --- */
 .review-image-frame {
-    margin: 10px 0; /* Tightened space above/below */
-    max-width: 400px; /* Hard limit to ensure it is 25% smaller than the column */
+    margin: 20px 0 10px 0;
+    max-width: 400px; /* Your requested shrink */
     border: 1px solid #222;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.8);
 }
 .review-image-frame img { width: 100%; display: block; }
 
@@ -109,30 +169,31 @@ header.site-header {
     color: #555;
     text-transform: uppercase;
     letter-spacing: 2px;
-    margin-bottom: 30px;
+    margin-bottom: 40px;
 }
 
-/* --- PROSE --- */
 .review-body {
     font-family: 'Libre Baskerville', serif;
-    font-size: 1.15rem;
+    font-size: 1.2rem;
     color: #ccc;
+    line-height: 1.8;
 }
 
 .review-body p:first-of-type::first-letter {
+    font-family: 'Montserrat', sans-serif;
     font-weight: 900;
-    font-size: 4rem;
+    font-size: 4.5rem;
     float: left;
     line-height: 1;
-    margin-right: 10px;
+    margin-right: 15px;
     color: var(--gold);
 }
 
-/* --- SIDEBAR --- */
+/* --- STICKY SIDEBAR --- */
 .sidebar-sticky { position: sticky; top: 40px; height: fit-content; }
-.data-block { background: #111; border: 1px solid #222; padding: 25px; margin-bottom: 15px; }
-.data-row { display: flex; justify-content: space-between; font-size: 0.75rem; padding: 8px 0; border-bottom: 1px solid #1a1a1a; }
-.big-mojo-score { background: var(--accent); color: #fff; padding: 20px; text-align: center; }
-.score-val { font-size: 3.5rem; font-weight: 900; display: block; }
+.data-block { background: #111; border: 1px solid #222; padding: 30px; margin-bottom: 20px; }
+.data-row { display: flex; justify-content: space-between; font-size: 0.8rem; padding: 10px 0; border-bottom: 1px solid #1a1a1a; }
+.big-mojo-score { background: var(--accent); color: #fff; padding: 30px; text-align: center; }
+.score-val { font-size: 4rem; font-weight: 900; display: block; }
 
-footer { padding: 60px 0; text-align: center; font-size: 0.6rem; color: #444; }
+footer { padding: 80px 0; text-align: center; font-size: 0.6rem; color: #444; letter-spacing: 3px; }
