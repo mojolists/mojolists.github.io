@@ -31,9 +31,9 @@
         <span class="mini-label">Industry</span>
         <h3 class="mini-title">Changes in Music</h3>
     </a>
-    <a href="reviews/good-as-gold.html" id="latest-review-link" class="mini-card">
+    <a href="reviews/say-that-to-say-this.html" class="mini-card">
         <span class="mini-label">Newest Review</span>
-        <h3 class="mini-title" id="latest-review-title"><i>Good As Gold</i></h3>
+        <h3 class="mini-title"><i>Say That To Say This</i></h3>
     </a>
 </section>
 
@@ -42,12 +42,23 @@
 
     <div class="review-grid">
         <article class="feed-item">
+            <a href="reviews/say-that-to-say-this.html">
+                <div class="image-wrap"><img src="/assets/img/ts.jpg" alt="Say That To Say This"></div>
+                <div class="item-meta">
+                    <span class="artist">Trombone Shorty</span>
+                    <h2 class="album"><i>Say That To Say This</i></h2>
+                    <p class="excerpt">Recorded with great care for sound quality... a maturation of an artist mastering his craft.</p>
+                </div>
+            </a>
+        </article>
+
+        <article class="feed-item">
             <a href="reviews/good-as-gold.html">
                 <div class="image-wrap"><img src="/assets/img/gag.jpg" alt="Good As Gold"></div>
                 <div class="item-meta">
                     <span class="artist">The Nightowls</span>
                     <h2 class="album"><i>Good As Gold</i></h2>
-                    <p class="excerpt">Austin band, The Nightowls began their soul journey around 2011 and recently released their first album...</p>
+                    <p class="excerpt">Catchy series of funk infused soul syrup too sweet to resist. Austin soul at its finest.</p>
                 </div>
             </a>
         </article>
@@ -58,7 +69,7 @@
                 <div class="item-meta">
                     <span class="artist">No Show Ponies</span>
                     <h2 class="album"><i>A Manual For Defeat</i></h2>
-                    <p class="excerpt">It is three-piece rock music recorded mostly live to tape. What you’ll hear is the sound of a band in a room...</p>
+                    <p class="excerpt">Three-piece rock music recorded mostly live to tape. Raw, room-driven sound.</p>
                 </div>
             </a>
         </article>
@@ -69,7 +80,7 @@
                 <div class="item-meta">
                     <span class="artist">The Bamboos</span>
                     <h2 class="album"><i>Fever In The Road</i></h2>
-                    <p class="excerpt">Australian funk/soul band that has miraculously managed to do more than simply survive, they have thrived...</p>
+                    <p class="excerpt">Australian funk/soul heavyweights return with a sixth full-length masterpiece.</p>
                 </div>
             </a>
         </article>
@@ -80,18 +91,7 @@
                 <div class="item-meta">
                     <span class="artist">Jonny Lang</span>
                     <h2 class="album"><i>Fight For My Soul</i></h2>
-                    <p class="excerpt">After a seven year hiatus from studio recording, Jonny Lang has come back with a more mature, polished album...</p>
-                </div>
-            </a>
-        </article>
-
-        <article class="feed-item">
-            <a href="reviews/say-that-to-say-this.html">
-                <div class="image-wrap"><img src="/assets/img/ts.jpg" alt="Say That To Say This"></div>
-                <div class="item-meta">
-                    <span class="artist">Trombone Shorty</span>
-                    <h2 class="album"><i>Say That To Say This</i></h2>
-                    <p class="excerpt">The maturation of an artist mastering his craft. Rock, jazz, blues, hip-hop, soul and the taste of NOLA...</p>
+                    <p class="excerpt">A polished, soulful return from a hiatus. Lang finds his own direction.</p>
                 </div>
             </a>
         </article>
@@ -99,23 +99,6 @@
 </main>
 
 <footer>&copy; 2026 MOJOLISTS // THE SOUL OF THE SOUND</footer>
-
-<script>
-    // --- CONTENT MANAGER ---
-    const latestReview = {
-        title: "Good As Gold",
-        url: "reviews/good-as-gold.html"
-    };
-
-    document.addEventListener("DOMContentLoaded", function() {
-        const titleEl = document.getElementById('latest-review-title');
-        const linkEl = document.getElementById('latest-review-link');
-        if (titleEl && linkEl) {
-            titleEl.innerHTML = `<i>${latestReview.title}</i>`;
-            linkEl.href = latestReview.url;
-        }
-    });
-</script>
 
 </body>
 </html>
