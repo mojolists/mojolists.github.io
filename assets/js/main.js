@@ -1,4 +1,3 @@
-// --- MOJOLISTS DATA SOURCE ---
 const reviews = [
     {
         artist: "The Nightowls",
@@ -27,13 +26,6 @@ const reviews = [
         url: "reviews/say-that-to-say-this.html",
         img: "assets/img/ts.jpg",
         excerpt: "The maturation of an artist mastering his craft. Pure NOLA soul."
-    },
-    {
-        artist: "Jonny Lang",
-        album: "Fight For My Soul",
-        url: "reviews/fight-for-my-soul.html",
-        img: "assets/img/ffys.jpg",
-        excerpt: "A polished, soulful return. Lang moves in a direction of his own choosing."
     }
 ];
 
