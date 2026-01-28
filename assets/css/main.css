@@ -1,180 +1,55 @@
-/* --- GOOGLE FONTS --- */
 @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;600;900&display=swap');
 
 :root {
   --bg: #0a0a0a;
   --card-bg: #111;
-  --accent: #D32F2F; /* Mojo Red */
+  --accent: #D32F2F;
   --text-main: #f5f5f5;
   --gold: #C5A059;
 }
 
-/* --- RESET --- */
 * { box-sizing: border-box; }
+body { background: var(--bg); color: var(--text-main); font-family: 'Montserrat', sans-serif; margin: 0; padding: 0; line-height: 1.6; }
 
-body {
-  background-color: var(--bg);
-  color: var(--text-main);
-  font-family: 'Montserrat', sans-serif;
-  margin: 0;
-  padding: 0;
-  line-height: 1.6;
-}
-
-/* --- LOCKED: BRAND HEADER (250px) --- */
 header.site-header {
     height: 250px !important;
     background-image: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(10,10,10,1)), url('/assets/img/lifestyle-bg.jpg');
-    background-position: top;
-    background-size: cover;
-    display: flex; 
-    flex-direction: column;
-    justify-content: center; 
-    align-items: center; 
-    width: 100%; 
-    border-bottom: 1px solid #222;
+    background-position: top; background-size: cover;
+    display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 1px solid #222;
 }
 
-.logo {
-  font-family: 'Libre Baskerville', serif;
-  font-size: 4rem;
-  color: #fff;
-  text-decoration: none;
-  line-height: 0.9;
-  letter-spacing: -2px;
-}
+.logo { font-family: 'Libre Baskerville', serif; font-size: 4rem; text-decoration: none; color: #fff; letter-spacing: -2px; }
 .logo span { color: var(--accent); font-style: italic; }
+.tagline { text-transform: uppercase; letter-spacing: 10px; font-size: 0.7rem; color: var(--gold); font-weight: 600; }
 
-.tagline {
-  text-transform: uppercase;
-  letter-spacing: 10px;
-  font-size: 0.7rem;
-  color: var(--gold);
-  margin-top: 15px;
-  font-weight: 600;
-  text-align: center;
-}
+.rig-strip { background: #000; border-bottom: 2px solid var(--accent); padding: 15px 0; display: flex; justify-content: center; gap: 40px; }
+.rig-strip a { text-decoration: none; font-size: 0.65rem; letter-spacing: 4px; color: #fff; text-transform: uppercase; font-weight: 700; }
+.rig-strip a:hover { color: var(--gold); animation: haptic-shake 0.12s linear infinite; }
 
-/* --- NAVIGATION --- */
-.rig-strip {
-  background: #000;
-  border-bottom: 2px solid var(--accent);
-  padding: 15px 0;
-  display: flex;
-  justify-content: center;
-  gap: 40px;
-}
-.rig-strip a {
-  text-decoration: none;
-  font-size: 0.65rem;
-  letter-spacing: 4px;
-  color: #fff;
-  text-transform: uppercase;
-  font-weight: 700;
-}
-.rig-strip a:hover {
-  color: var(--gold);
-  animation: haptic-shake 0.12s linear infinite;
-}
+@keyframes haptic-shake { 0%, 100% { transform: translate(0,0); } 25% { transform: translate(1px,1px); } 50% { transform: translate(-1px,-1px); } }
 
-@keyframes haptic-shake {
-  0% { transform: translate(0, 0); }
-  25% { transform: translate(1px, 1px); }
-  50% { transform: translate(-1px, -1px); }
-  75% { transform: translate(1px, -1px); }
-  100% { transform: translate(0, 0); }
-}
-
-/* --- ACTION STRIP --- */
-.featured-strip {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1px;
-    background: #222; 
-    border-bottom: 1px solid #222;
-}
-.mini-card {
-    background: var(--bg);
-    padding: 35px 20px;
-    text-decoration: none;
-    text-align: center;
-}
+.featured-strip { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: #222; border-bottom: 1px solid #222; }
+.mini-card { background: var(--bg); padding: 35px 20px; text-decoration: none; text-align: center; }
 .mini-card:hover { background: var(--gold); }
 .mini-label { color: var(--accent); font-size: 0.55rem; text-transform: uppercase; letter-spacing: 3px; display: block; margin-bottom: 10px; font-weight: 900; }
 .mini-title { font-family: 'Libre Baskerville', serif; font-size: 1.15rem; color: #fff; margin: 0; }
-.mini-card:hover .mini-label, .mini-card:hover .mini-title { color: #000; }
+.mini-card:hover * { color: #000; }
 
-/* --- THE THREE-COL GRID (Homepage) --- */
-.feed-container {
-    max-width: 1200px;
-    margin: 60px auto;
-    padding: 0 40px;
-}
+.feed-container { max-width: 1200px; margin: 60px auto; padding: 0 40px; }
+.section-divider { text-transform: uppercase; letter-spacing: 5px; font-size: 0.8rem; color: var(--gold); border-bottom: 1px solid #222; padding-bottom: 10px; margin-bottom: 40px; }
 
-.section-divider {
-    text-transform: uppercase;
-    letter-spacing: 5px;
-    font-size: 0.8rem;
-    color: var(--gold);
-    border-bottom: 1px solid #222;
-    padding-bottom: 10px;
-    margin-bottom: 40px;
-}
-
-.review-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); /* FORCED THREE ACROSS */
-    gap: 30px;
-}
-
-.feed-item {
-    background: var(--card-bg);
-    border: 1px solid #222;
-    transition: transform 0.3s ease, border-color 0.3s ease;
-}
-.feed-item:hover {
-    border-color: var(--gold);
-    transform: translateY(-5px);
-}
+.review-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+.feed-item { background: var(--card-bg); border: 1px solid #222; transition: 0.3s; }
+.feed-item:hover { border-color: var(--gold); transform: translateY(-5px); }
 .feed-item a { text-decoration: none; display: block; }
 
-/* IMAGE DISCIPLINE */
-.image-wrap {
-    width: 100%;
-    aspect-ratio: 1 / 1; /* FORCED SQUARE */
-    overflow: hidden;
-    background: #000;
-}
-.image-wrap img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* CROPS TO FIT SQUARE */
-    filter: grayscale(20%);
-    transition: 0.3s;
-}
+.image-wrap { width: 100%; aspect-ratio: 1 / 1; overflow: hidden; background: #000; }
+.image-wrap img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(20%); }
 .feed-item:hover img { filter: grayscale(0%); }
 
 .item-meta { padding: 25px; }
-.item-meta .artist {
-    display: block;
-    font-size: 0.6rem;
-    text-transform: uppercase;
-    letter-spacing: 3px;
-    color: var(--accent);
-    font-weight: 900;
-    margin-bottom: 8px;
-}
-.item-meta .album {
-    font-family: 'Libre Baskerville', serif;
-    font-size: 1.2rem;
-    color: #fff;
-    margin: 0 0 12px 0;
-}
-.item-meta .excerpt {
-    font-size: 0.8rem;
-    color: #777;
-    line-height: 1.6;
-    margin: 0;
-}
+.item-meta .artist { display: block; font-size: 0.6rem; text-transform: uppercase; letter-spacing: 3px; color: var(--accent); font-weight: 900; margin-bottom: 8px; }
+.item-meta .album { font-family: 'Libre Baskerville', serif; font-size: 1.2rem; color: #fff; margin: 0; }
+.item-meta .excerpt { font-size: 0.8rem; color: #777; margin-top: 10px; }
 
 footer { padding: 80px 0; text-align: center; font-size: 0.6rem; color: #444; letter-spacing: 4px; }
