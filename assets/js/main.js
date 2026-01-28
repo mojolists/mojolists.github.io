@@ -1,4 +1,4 @@
-// --- THE MOJOLISTS SOURCE OF TRUTH ---
+// --- MOJOLISTS DATA SOURCE ---
 const reviews = [
     {
         artist: "The Nightowls",
