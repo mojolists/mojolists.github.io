@@ -2,7 +2,6 @@
 
 :root {
   --bg: #0a0a0a;
-  --card-bg: rgba(18, 18, 18, 0.9);
   --accent: #D32F2F;
   --text-main: #f5f5f5;
   --gold: #C5A059;
@@ -16,10 +15,10 @@ body {
   font-family: 'Montserrat', sans-serif;
   margin: 0;
   padding: 0;
-  line-height: 1.8;
+  line-height: 1.6;
 }
 
-/* --- HEADER (250px) --- */
+/* --- HEADER --- */
 header.site-header {
     height: 250px;
     background-image: linear-gradient(to bottom, rgba(0,0,0,0.4), rgba(10,10,10,1)), url('/assets/img/lifestyle-bg.jpg');
@@ -28,27 +27,23 @@ header.site-header {
     display: flex; 
     justify-content: center; 
     align-items: center; 
-    width: 100%; 
     border-bottom: 1px solid #1a1a1a;
 }
 
 .logo {
   font-family: 'Libre Baskerville', serif;
-  font-size: 4rem;
+  font-size: 3.5rem;
   color: #fff;
   text-decoration: none;
-  line-height: 0.9;
-  letter-spacing: -2px;
+  letter-spacing: -1px;
 }
 .logo span { color: var(--accent); font-style: italic; }
 
 .tagline {
   text-transform: uppercase;
   letter-spacing: 10px;
-  font-size: 0.65rem;
+  font-size: 0.6rem;
   color: var(--gold);
-  margin-top: 15px;
-  font-weight: 600;
   text-align: center;
 }
 
@@ -56,109 +51,88 @@ header.site-header {
 .rig-strip {
   background: #000;
   border-bottom: 2px solid var(--accent);
-  padding: 15px 0;
+  padding: 12px 0;
   display: flex;
   justify-content: center;
-  gap: 40px;
-  position: sticky;
-  top: 0;
-  z-index: 100;
+  gap: 30px;
 }
 .rig-strip a {
   text-decoration: none;
-  font-size: 0.65rem;
-  letter-spacing: 4px;
+  font-size: 0.6rem;
+  letter-spacing: 3px;
   color: #fff;
   text-transform: uppercase;
   font-weight: 700;
 }
 
-/* --- REVIEW PAGE MASTER LAYOUT --- */
+/* --- REVIEW PAGE LAYOUT --- */
 .review-wrapper {
-    max-width: 1200px;
+    max-width: 1100px;
     margin: 0 auto;
-    padding: 40px 40px 100px 40px; /* Reduced top padding from 100px to 40px */
+    padding: 20px 40px; /* Minimal top padding to remove black space */
     display: grid;
-    grid-template-columns: 1fr 380px;
-    gap: 80px;
+    grid-template-columns: 1fr 320px;
+    gap: 60px;
 }
 
 .review-article-header {
     grid-column: 1 / -1;
-    margin-bottom: 40px; /* Tighter gap below the title */
-    border-bottom: 1px solid #222;
-    padding-bottom: 20px;
+    margin-bottom: 20px; /* Minimal gap */
+    padding: 0;
 }
 
 .review-title-xl {
     font-family: 'Libre Baskerville', serif;
-    font-size: 4.5rem; /* Slightly smaller to fit tighter space */
-    line-height: 0.9;
+    font-size: 2.8rem; /* Significant reduction from the clownish size */
     margin: 0;
-    letter-spacing: -2px;
     color: #fff;
 }
 
 .review-artist-sub {
     font-family: 'Libre Baskerville', serif;
-    font-size: 2rem;
+    font-size: 1.4rem;
     font-style: italic;
     color: var(--gold);
+    margin-top: 5px;
 }
 
-/* --- THE IMAGE (25% SMALLER) --- */
+/* --- THE IMAGE (FORCED SHRINK) --- */
 .review-image-frame {
-    margin: 20px 0 40px 0;
-    width: 75%; /* Shrinks the artwork by 25% */
-    border: 1px solid #1a1a1a;
-    box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+    margin: 10px 0; /* Tightened space above/below */
+    max-width: 400px; /* Hard limit to ensure it is 25% smaller than the column */
+    border: 1px solid #222;
 }
 .review-image-frame img { width: 100%; display: block; }
 
 .caption {
-    font-family: 'Montserrat', sans-serif;
     font-size: 0.6rem;
+    color: #555;
     text-transform: uppercase;
     letter-spacing: 2px;
-    color: #444;
-    margin-top: 10px;
-    margin-bottom: 40px;
+    margin-bottom: 30px;
 }
 
-/* --- THE BODY --- */
+/* --- PROSE --- */
 .review-body {
     font-family: 'Libre Baskerville', serif;
-    font-size: 1.25rem;
+    font-size: 1.15rem;
     color: #ccc;
-    max-width: 700px;
 }
 
 .review-body p:first-of-type::first-letter {
-    font-family: 'Montserrat', sans-serif;
     font-weight: 900;
-    font-size: 5rem;
+    font-size: 4rem;
     float: left;
     line-height: 1;
-    margin-right: 15px;
+    margin-right: 10px;
     color: var(--gold);
 }
 
-.review-body h2 {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 0.9rem;
-    text-transform: uppercase;
-    letter-spacing: 4px;
-    color: #fff;
-    margin: 40px 0 20px 0;
-    border-left: 3px solid var(--accent);
-    padding-left: 20px;
-}
-
 /* --- SIDEBAR --- */
-.sidebar-sticky { position: sticky; top: 100px; height: fit-content; }
-.data-block { background: #111; border: 1px solid #222; padding: 30px; margin-bottom: 20px; }
-.data-row { display: flex; justify-content: space-between; font-size: 0.8rem; padding: 10px 0; border-bottom: 1px solid #1a1a1a; }
-.big-mojo-score { background: var(--accent); color: #fff; padding: 30px; text-align: center; }
-.score-val { font-size: 4rem; font-weight: 900; display: block; }
+.sidebar-sticky { position: sticky; top: 40px; height: fit-content; }
+.data-block { background: #111; border: 1px solid #222; padding: 25px; margin-bottom: 15px; }
+.data-row { display: flex; justify-content: space-between; font-size: 0.75rem; padding: 8px 0; border-bottom: 1px solid #1a1a1a; }
+.big-mojo-score { background: var(--accent); color: #fff; padding: 20px; text-align: center; }
+.score-val { font-size: 3.5rem; font-weight: 900; display: block; }
 
-footer { padding: 80px 0; text-align: center; font-size: 0.6rem; color: #444; letter-spacing: 4px; }
+footer { padding: 60px 0; text-align: center; font-size: 0.6rem; color: #444; }
