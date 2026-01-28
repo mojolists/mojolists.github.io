@@ -1,3 +1,4 @@
+/* --- GOOGLE FONTS --- */
 @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;600;900&display=swap');
 
 :root {
@@ -8,6 +9,7 @@
   --gold: #C5A059;
 }
 
+/* --- RESET & BASE --- */
 * { box-sizing: border-box; }
 
 body {
@@ -17,15 +19,17 @@ body {
   margin: 0;
   padding: 0;
   line-height: 1.6;
+  overflow-x: hidden;
 }
 
-/* --- THE LOCKED HEADER (Every Page) --- */
+/* --- LOCKED: SITE HEADER (250px) --- */
 header.site-header {
     height: 250px !important;
     background-image: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(10,10,10,1)), url('/assets/img/lifestyle-bg.jpg');
     background-position: top;
     background-size: cover;
     display: flex; 
+    flex-direction: column;
     justify-content: center; 
     align-items: center; 
     width: 100%; 
@@ -52,7 +56,7 @@ header.site-header {
   text-align: center;
 }
 
-/* --- THE RIG NAV --- */
+/* --- THE RIG-STRIP NAVIGATION --- */
 .rig-strip {
   background: #000;
   border-bottom: 2px solid var(--accent);
@@ -68,6 +72,7 @@ header.site-header {
   color: #fff;
   text-transform: uppercase;
   font-weight: 700;
+  transition: color 0.3s ease;
 }
 .rig-strip a:hover {
   color: var(--gold);
@@ -82,10 +87,43 @@ header.site-header {
   100% { transform: translate(0, 0); }
 }
 
-/* --- THE HOMEPAGE FEED --- */
+/* --- THE ACTION STRIP --- */
+.featured-strip {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: #222; 
+    border-bottom: 1px solid #222;
+}
+.mini-card {
+    background: var(--bg);
+    padding: 35px 20px;
+    text-decoration: none;
+    text-align: center;
+    transition: background 0.3s ease;
+}
+.mini-card:hover { background: var(--gold); }
+.mini-label { 
+    color: var(--accent); 
+    font-size: 0.55rem; 
+    text-transform: uppercase; 
+    letter-spacing: 3px; 
+    font-weight: 900; 
+    display: block; 
+    margin-bottom: 10px; 
+}
+.mini-title { 
+    font-family: 'Libre Baskerville', serif; 
+    font-size: 1.15rem; 
+    color: #fff; 
+    margin: 0; 
+}
+.mini-card:hover .mini-label, .mini-card:hover .mini-title { color: #000; }
+
+/* --- HOME PAGE FEED GRID --- */
 .feed-container {
     max-width: 1200px;
-    margin: 40px auto;
+    margin: 60px auto;
     padding: 0 40px;
 }
 
@@ -105,19 +143,20 @@ header.site-header {
     gap: 40px;
 }
 
-/* THE CARD DESIGN */
 .feed-item {
     background: var(--card-bg);
     border: 1px solid #222;
     transition: transform 0.3s ease, border-color 0.3s ease;
+    overflow: hidden;
 }
 .feed-item:hover {
     border-color: var(--gold);
-    transform: translateY(-5px);
+    transform: translateY(-8px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
 }
 .feed-item a { text-decoration: none; color: inherit; display: block; }
 
-/* THE FIX: Disciplined Album Squares */
+/* DISCIPLINED SQUARE IMAGES */
 .image-wrap {
     width: 100%;
     aspect-ratio: 1 / 1;
@@ -129,15 +168,15 @@ header.site-header {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    filter: grayscale(20%);
-    transition: 0.3s;
+    filter: grayscale(30%);
+    transition: filter 0.4s ease;
 }
 .feed-item:hover img { filter: grayscale(0%); }
 
 .item-meta { padding: 25px; }
 .item-meta .artist {
     display: block;
-    font-size: 0.6rem;
+    font-size: 0.65rem;
     text-transform: uppercase;
     letter-spacing: 3px;
     color: var(--accent);
@@ -146,13 +185,38 @@ header.site-header {
 }
 .item-meta .album {
     font-family: 'Libre Baskerville', serif;
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     color: #fff;
     margin: 0 0 12px 0;
 }
 .item-meta .excerpt {
-    font-size: 0.8rem;
-    color: #777;
+    font-size: 0.85rem;
+    color: #888;
     line-height: 1.6;
     margin: 0;
 }
+
+/* --- REVIEW PAGE LAYOUT (Standardized) --- */
+.review-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px;
+    display: grid;
+    grid-template-columns: 1fr 350px;
+    gap: 60px;
+}
+.review-article-header { grid-column: 1 / -1; margin-bottom: 30px; border-bottom: 1px solid #222; padding-bottom: 20px; }
+.review-title-xl { font-family: 'Libre Baskerville', serif; font-size: 3.5rem; color: #fff; margin: 0; }
+.review-artist-sub { font-family: 'Libre Baskerville', serif; font-size: 1.8rem; font-style: italic; color: var(--gold); }
+
+.review-image-frame { margin-bottom: 30px; max-width: 400px; border: 1px solid #222; }
+.review-image-frame img { width: 100%; display: block; }
+
+.review-body { font-family: 'Libre Baskerville', serif; font-size: 1.25rem; color: #ccc; }
+.review-body p { margin-bottom: 1.8rem; }
+.review-body p:first-of-type::first-letter {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900; font-size: 4.5rem; float: left; line-height: 1; margin-right: 15px; color: var(--gold);
+}
+
+footer { padding: 100px 0; text-align: center; font-size: 0.65rem; color: #444; letter-spacing: 4px; border-top: 1px solid #111; }
