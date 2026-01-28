@@ -1,132 +1,90 @@
-@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;600;900&display=swap');
-
-:root {
-  --bg: #0a0a0a;
-  --card-bg: rgba(18, 18, 18, 0.9);
-  --accent: #D32F2F;
-  --text-main: #f5f5f5;
-  --gold: #C5A059;
-}
-
-* { box-sizing: border-box; }
-
-body {
-  background-color: var(--bg);
-  color: var(--text-main);
-  font-family: 'Montserrat', sans-serif;
-  margin: 0;
-  padding: 0;
-  line-height: 1.6;
-}
-
-/* --- LOCKED: Global Header (250px) --- */
-header.site-header {
-    height: 250px !important;
-    background-image: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(10,10,10,1)), url('/assets/img/lifestyle-bg.jpg');
-    background-position: top !important;
-    background-size: cover !important;
-    display: flex; 
-    justify-content: center; 
-    align-items: center; 
-    width: 100%; 
-    border-bottom: 1px solid #222;
-}
-
-.logo {
-  font-family: 'Libre Baskerville', serif;
-  font-size: 4rem;
-  color: #fff;
-  text-decoration: none;
-  line-height: 0.9;
-  letter-spacing: -2px;
-}
-.logo span { color: var(--accent); font-style: italic; }
-
-.tagline {
-  text-transform: uppercase;
-  letter-spacing: 10px;
-  font-size: 0.7rem;
-  color: var(--gold);
-  margin-top: 15px;
-  font-weight: 600;
-  text-align: center;
-}
-
-/* --- Navigation --- */
-.rig-strip {
-  background: #000;
-  border-bottom: 2px solid var(--accent);
-  padding: 15px 0;
-  display: flex;
-  justify-content: center;
-  gap: 40px;
-}
-.rig-strip a {
-  text-decoration: none;
-  font-size: 0.65rem;
-  letter-spacing: 4px;
-  color: #fff;
-  text-transform: uppercase;
-  font-weight: 700;
-}
-.rig-strip a:hover {
-  color: var(--gold);
-  animation: haptic-shake 0.12s linear infinite;
-}
-
-@keyframes haptic-shake {
-  0% { transform: translate(0, 0); }
-  25% { transform: translate(1px, 1px); }
-  50% { transform: translate(-1px, -1px); }
-  75% { transform: translate(1px, -1px); }
-  100% { transform: translate(0, 0); }
-}
-
-/* --- Action Strip --- */
-.featured-strip {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1px;
-    background: #222; 
-    border-bottom: 1px solid #222;
-}
-.mini-card {
-    background: var(--bg);
-    padding: 35px 20px;
-    text-decoration: none;
-    text-align: center;
-}
-.mini-card:hover { background: var(--gold); }
-.mini-label { color: var(--accent); font-size: 0.55rem; text-transform: uppercase; letter-spacing: 3px; display: block; margin-bottom: 10px; }
-.mini-title { font-family: 'Libre Baskerville', serif; font-size: 1.15rem; color: #fff; margin: 0; }
-.mini-card:hover * { color: #000; }
-
-/* --- Review Layout --- */
-.review-wrapper {
+/* --- THE FEED GRID (Homepage) --- */
+.feed-container {
     max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px 40px 100px 40px;
-    display: grid;
-    grid-template-columns: 1fr 350px;
-    gap: 60px;
+    margin: 40px auto;
+    padding: 0 40px;
 }
 
-.review-article-header {
-    grid-column: 1 / -1;
-    margin-bottom: 20px;
+.section-divider {
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    font-size: 0.8rem;
+    color: var(--gold);
     border-bottom: 1px solid #222;
     padding-bottom: 10px;
+    margin-bottom: 40px;
 }
 
-.review-title-xl { font-family: 'Libre Baskerville', serif; font-size: 3rem; color: #fff; margin: 0; font-style: italic; } /* Italicized Review Titles */
-.review-artist-sub { font-family: 'Libre Baskerville', serif; font-size: 1.6rem; color: var(--gold); }
+.review-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 40px;
+}
 
-/* Artwork at 400px */
-.review-image-frame {
-    margin: 15px 0;
-    max-width: 400px;
+/* --- THE CARD --- */
+.feed-item {
+    background: #111;
     border: 1px solid #222;
+    transition: transform 0.3s ease, border-color 0.3s ease;
 }
-.review-image-frame img { width: 100%; display: block; }
 
-.review-body { font-family: 'Libre Baskerville', serif; font-size: 1.
+.feed-item:hover {
+    border-color: var(--gold);
+    transform: translateY(-5px);
+}
+
+.feed-item a {
+    text-decoration: none; /* Removes the ugly underline */
+    color: inherit;
+    display: block;
+}
+
+/* THE FIX: Forced Aspect Ratio for Album Covers */
+.feed-item .image-wrap {
+    width: 100%;
+    aspect-ratio: 1 / 1; /* Forces a perfect square */
+    overflow: hidden;
+    background: #000;
+}
+
+.feed-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Crops image to fill the square without stretching */
+    filter: grayscale(20%);
+    transition: filter 0.3s;
+}
+
+.feed-item:hover img {
+    filter: grayscale(0%);
+}
+
+/* --- CARD TEXT --- */
+.item-meta {
+    padding: 20px;
+}
+
+.item-meta .artist {
+    display: block;
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: var(--accent); /* Brand Red */
+    margin-bottom: 5px;
+    font-weight: 900;
+}
+
+.item-meta .album {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 1.2rem;
+    color: #fff;
+    margin: 0 0 10px 0;
+    line-height: 1.2;
+}
+
+.item-meta .excerpt {
+    font-size: 0.8rem;
+    color: #888;
+    line-height: 1.5;
+    margin: 0;
+}
