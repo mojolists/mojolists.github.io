@@ -36,7 +36,7 @@ header.site-header {
 .artist-name { color: var(--gold); font-size: 1.5rem; font-weight: 300; margin-bottom: 10px; }
 
 .review-body { font-family: 'Libre Baskerville', serif; font-size: 1.15rem; color: #ccc; max-width: 700px; margin: 0 auto; line-height: 1.8; }
-.dropcap::first-letter { float: left; font-size: 5rem; line-height: 0.8; padding-right: 15px; color: var(--accent); font-weight: 900; }
+.dropcap::first-letter { float: left; font-size: 5rem; line-height: 0.8; padding-right: 15px; color: var(--accent); font-weight: 900; font-family: 'Montserrat'; }
 
 /* Video Wrapper */
 .video-wrapper { width: 100%; max-width: 700px; margin: 40px auto; }
