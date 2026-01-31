@@ -325,10 +325,15 @@ footer {
     width: 100%;
   }
   
-  .review-card-image,
-  .review-card-image img {
+  .review-card-image {
     width: 100%;
     height: auto;
     aspect-ratio: 1/1;
   }
+  
+  .review-card-image img {
+    width: 100%;
+    height: auto;
+  }
 }
+
