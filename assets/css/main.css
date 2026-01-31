@@ -19,9 +19,9 @@ body {
   line-height: 1.8;
 }
 
-/* --- GLOBAL HEADER (250px) --- */
+/* --- GLOBAL HEADER (200px - reduced from 250px) --- */
 header.site-header {
-    height: 250px !important;
+    height: 200px !important;
     background-image: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(10,10,10,1)), url('/assets/img/lifestyle-bg.jpg');
     background-position: top !important;
     background-size: cover !important;
@@ -34,7 +34,7 @@ header.site-header {
 
 .logo {
   font-family: 'Libre Baskerville', serif;
-  font-size: 4rem;
+  font-size: 3rem;
   color: #fff;
   text-decoration: none;
   line-height: 0.9;
@@ -44,10 +44,10 @@ header.site-header {
 
 .tagline {
   text-transform: uppercase;
-  letter-spacing: 10px;
-  font-size: 0.7rem;
+  letter-spacing: 8px;
+  font-size: 0.65rem;
   color: var(--gold);
-  margin-top: 15px;
+  margin-top: 12px;
   font-weight: 600;
   text-align: center;
 }
@@ -85,31 +85,137 @@ header.site-header {
 .review-wrapper {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 80px 40px;
+    padding: 60px 40px;
     display: grid;
-    grid-template-columns: 1fr 350px;
-    gap: 80px;
+    grid-template-columns: 1fr 320px;
+    gap: 60px;
 }
 
-.review-article-header { grid-column: 1 / -1; margin-bottom: 60px; }
-.review-title-xl { font-family: 'Libre Baskerville', serif; font-size: 5rem; line-height: 1; margin: 0; }
-.review-artist-sub { font-family: 'Libre Baskerville', serif; font-size: 2rem; font-style: italic; color: var(--gold); }
+.review-article-header { grid-column: 1 / -1; margin-bottom: 40px; }
+.review-title-xl { 
+    font-family: 'Libre Baskerville', serif; 
+    font-size: 2.5rem; 
+    line-height: 1.2; 
+    margin: 0 0 10px 0; 
+}
+.review-artist-sub { 
+    font-family: 'Libre Baskerville', serif; 
+    font-size: 1.5rem; 
+    font-style: italic; 
+    color: var(--gold); 
+}
 
-.review-body { font-family: 'Libre Baskerville', serif; font-size: 1.25rem; color: #ccc; }
+.review-body { 
+    font-family: 'Libre Baskerville', serif; 
+    font-size: 1.05rem; 
+    color: #ccc; 
+    line-height: 1.8;
+}
+
+.review-body img {
+    max-width: 600px;
+    width: 100%;
+    height: auto;
+    border: 1px solid #222;
+    margin-bottom: 30px;
+    display: block;
+}
+
+.review-body p {
+    margin-bottom: 1.5rem;
+}
+
 .review-body p:first-of-type::first-letter {
     font-family: 'Montserrat', sans-serif;
     font-weight: 900;
-    font-size: 5rem;
+    font-size: 3.5rem;
     float: left;
     line-height: 1;
-    margin-right: 15px;
+    margin-right: 12px;
     color: var(--gold);
 }
 
-.sidebar-sticky { position: sticky; top: 40px; }
-.data-block { background: #111; border: 1px solid #222; padding: 30px; margin-bottom: 20px; }
-.data-row { display: flex; justify-content: space-between; font-size: 0.8rem; padding: 10px 0; border-bottom: 1px solid #1a1a1a; }
-.big-mojo-score { background: var(--accent); color: #fff; padding: 25px; text-align: center; }
-.score-val { font-size: 4rem; font-weight: 900; display: block; }
+.review-body a {
+    color: var(--gold);
+    text-decoration: none;
+    border-bottom: 1px solid var(--gold);
+}
 
-footer { padding: 80px 0; text-align: center; font-size: 0.6rem; color: #444; letter-spacing: 3px; }
+.review-body a:hover {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+}
+
+.review-body iframe {
+    width: 100%;
+    max-width: 600px;
+    height: 340px;
+    margin: 30px 0;
+    border: 1px solid #222;
+}
+
+.sidebar-sticky { position: sticky; top: 40px; height: fit-content; }
+.data-block { background: #111; border: 1px solid #222; padding: 25px; margin-bottom: 20px; }
+.data-row { 
+    display: flex; 
+    justify-content: space-between; 
+    font-size: 0.75rem; 
+    padding: 10px 0; 
+    border-bottom: 1px solid #1a1a1a; 
+}
+.data-row:last-child { border-bottom: none; }
+
+.big-mojo-score { 
+    background: var(--accent); 
+    color: #fff; 
+    padding: 30px; 
+    text-align: center; 
+}
+.score-val { 
+    font-size: 3.5rem; 
+    font-weight: 900; 
+    display: block; 
+    line-height: 1;
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 768px) {
+    .review-wrapper {
+        grid-template-columns: 1fr;
+        padding: 40px 20px;
+        gap: 40px;
+    }
+    
+    .review-title-xl {
+        font-size: 2rem;
+    }
+    
+    .review-artist-sub {
+        font-size: 1.2rem;
+    }
+    
+    .review-body {
+        font-size: 1rem;
+    }
+    
+    .sidebar-sticky {
+        position: relative;
+        top: 0;
+    }
+    
+    .logo {
+        font-size: 2.5rem;
+    }
+    
+    header.site-header {
+        height: 150px !important;
+    }
+}
+
+footer { 
+    padding: 60px 0; 
+    text-align: center; 
+    font-size: 0.6rem; 
+    color: #444; 
+    letter-spacing: 3px; 
+}
