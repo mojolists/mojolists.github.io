@@ -17,14 +17,15 @@ body {
   margin: 0;
   padding: 0;
   line-height: 1.6;
+  font-size: 16px; /* base */
 }
 
-/* --- GLOBAL HEADER --- */
+/* --- GLOBAL HEADER (affects all pages, but kept modest) --- */
 header.site-header {
-    height: 140px !important;
+    height: 110px;
     background-image: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(10,10,10,1)), url('/assets/img/lifestyle-bg.jpg');
-    background-position: top !important;
-    background-size: cover !important;
+    background-position: top;
+    background-size: cover;
     display: flex; 
     justify-content: center; 
     align-items: center; 
@@ -34,75 +35,78 @@ header.site-header {
 
 .logo {
   font-family: 'Libre Baskerville', serif;
-  font-size: 1.6rem;
+  font-size: 1.4rem;   /* not huge */
   color: #fff;
   text-decoration: none;
-  line-height: 0.9;
-  letter-spacing: -1px;
+  line-height: 1;
+  letter-spacing: -0.5px;
 }
 .logo span { color: var(--accent); font-style: italic; }
 
 .tagline {
   text-transform: uppercase;
-  letter-spacing: 4px;
-  font-size: 0.5rem;
+  letter-spacing: 3px;
+  font-size: 0.55rem;
   color: var(--gold);
-  margin-top: 8px;
+  margin-top: 4px;
   font-weight: 600;
   text-align: center;
 }
 
-/* --- NAVIGATION --- */
+/* --- NAVIGATION (global, but small) --- */
 .rig-strip {
   background: #000;
   border-bottom: 2px solid var(--accent);
-  padding: 10px 0;
+  padding: 8px 0;
   display: flex;
   justify-content: center;
-  gap: 30px;
+  gap: 24px;
 }
 .rig-strip a {
   text-decoration: none;
-  font-size: 0.55rem;
+  font-size: 0.65rem;
   letter-spacing: 2px;
   color: #fff;
   text-transform: uppercase;
-  font-weight: 700;
+  font-weight: 600;
 }
 .rig-strip a:hover { color: var(--gold); }
 
-/* --- HOMEPAGE GRID --- */
+/* =========================================================
+   HOMEPAGE LAYOUT ONLY
+   ========================================================= */
 .container { 
-  max-width: 1100px; 
+  max-width: 960px;        /* narrower so content feels tighter */
   margin: 0 auto; 
-  padding: 40px 20px; 
+  padding: 32px 16px; 
 }
 
 .grid { 
   display: grid; 
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); 
-  gap: 30px; 
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); 
+  gap: 24px; 
 }
 
-/* Card as a whole */
+/* Card link */
 .card { 
   text-decoration: none; 
   color: inherit; 
-  transition: transform 0.3s ease; 
+  transition: transform 0.2s ease, box-shadow 0.2s ease; 
 }
-.card:hover { transform: translateY(-5px); }
+.card:hover { 
+  transform: translateY(-3px); 
+  box-shadow: 0 6px 18px rgba(0,0,0,0.5);
+}
 
-/* Force 400x400 card image area */
+/* 400x400 image area centered in card */
 .card-image-wrapper { 
   width: 400px;
   height: 400px;
-  max-width: 100%;
+  max-width: 100%;    /* so it shrinks on small screens */
   margin: 0 auto;
   overflow: hidden; 
   border: 1px solid #222; 
 }
-
-/* Image fills that 400x400 box */
 .card img { 
   width: 100%; 
   height: 100%; 
@@ -110,48 +114,53 @@ header.site-header {
   display: block; 
 }
 
-/* Card text area */
+/* Card body text (title + subtitle) */
 .card-body { 
-  padding: 12px 15px; 
+  padding: 10px 12px; 
   text-align: center; 
   background: var(--card-bg); 
 }
 
-/* Homepage title text – make this small */
+/* Homepage title: smaller than normal h2 */
 .card-title { 
   font-family: 'Libre Baskerville', serif; 
-  font-size: 0.95rem;     /* smaller */
-  margin: 0 0 4px 0; 
+  font-size: 1rem;       /* ~16px, not big */
+  margin: 0 0 3px 0; 
   color: #fff; 
+  font-weight: 700;
 }
 
-/* Subtitle under title on homepage */
+/* Homepage subtitle under title */
 .card-body p {
   margin: 0;
   color: #888; 
-  font-size: 0.7rem;       /* smaller */
+  font-size: 0.8rem;     /* smaller than base text */
+  font-weight: 400;
 }
 
-/* --- REVIEW PAGE LAYOUT --- */
+/* =========================================================
+   REVIEW PAGE LAYOUT
+   (kept restrained but readable)
+   ========================================================= */
 .review-wrapper {
     max-width: 1100px;
     margin: 0 auto;
     padding: 40px 20px;
     display: grid;
-    grid-template-columns: 1.2fr 0.8fr;
-    gap: 50px;
+    grid-template-columns: 1.3fr 0.7fr;
+    gap: 40px;
 }
 
 .review-article-header { 
     grid-column: 1 / -1; 
-    margin-bottom: 30px; 
+    margin-bottom: 24px; 
 }
 
 .review-title-xl { 
     font-family: 'Libre Baskerville', serif; 
-    font-size: 1.7rem; 
+    font-size: 1.8rem; 
     line-height: 1.2; 
-    margin: 0 0 8px 0; 
+    margin: 0 0 6px 0; 
 }
 
 .review-artist-sub { 
@@ -178,13 +187,13 @@ header.site-header {
 }
 
 .review-body p {
-    margin-bottom: 1.2rem;
+    margin-bottom: 1.1rem;
 }
 
 .review-body p:first-of-type::first-letter {
     font-family: 'Montserrat', sans-serif;
     font-weight: 900;
-    font-size: 2.5rem;
+    font-size: 2.4rem;
     float: left;
     line-height: 1;
     margin-right: 8px;
@@ -249,25 +258,25 @@ header.site-header {
 /* --- RESPONSIVE --- */
 @media (max-width: 768px) {
     header.site-header {
-        height: 120px !important;
+        height: 100px;
     }
     
     .logo {
-        font-size: 1.4rem;
+        font-size: 1.2rem;
     }
     
     .tagline {
-        font-size: 0.45rem;
-        letter-spacing: 3px;
+        font-size: 0.5rem;
+        letter-spacing: 2px;
     }
 
     .container {
-        padding: 30px 15px;
+        padding: 24px 12px;
     }
 
     .grid {
         grid-template-columns: 1fr;
-        gap: 25px;
+        gap: 20px;
     }
 
     .card-image-wrapper {
@@ -276,21 +285,21 @@ header.site-header {
     }
 
     .card-title {
-        font-size: 0.9rem;
+        font-size: 0.95rem;
     }
 
     .card-body p {
-        font-size: 0.65rem;
+        font-size: 0.75rem;
     }
 
     .review-wrapper {
         grid-template-columns: 1fr;
         padding: 30px 15px;
-        gap: 30px;
+        gap: 28px;
     }
     
     .review-title-xl {
-        font-size: 1.5rem;
+        font-size: 1.6rem;
     }
     
     .review-artist-sub {
@@ -298,7 +307,7 @@ header.site-header {
     }
     
     .review-body {
-        font-size: 0.92rem;
+        font-size: 0.9rem;
     }
     
     .sidebar-sticky {
@@ -308,10 +317,9 @@ header.site-header {
 }
 
 footer { 
-    padding: 40px 0; 
+    padding: 32px 0; 
     text-align: center; 
     font-size: 0.55rem; 
     color: #444; 
     letter-spacing: 2px; 
 }
-
