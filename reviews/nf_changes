@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neal Francis: Changes | MojoLists Review</title>
+    <link rel="stylesheet" href="/assets/css/main.css">
+</head>
+<body>
+
+<header class="site-header">
+    <div class="header-content">
+        <a href="/" class="logo">Mojo<span>Lists</span></a>
+        <div class="tagline">The Soul Of The Sound</div>
+    </div>
+</header>
+
+<nav class="rig-strip">
+    <a href="/">The Feed</a>
+    <a href="/hardware.html">Hardware</a>
+    <a href="/vinyl.html">Vinyl</a>
+</nav>
+
+<main class="review-wrapper">
+    <article class="review-article-header">
+        <h1 class="review-title-xl">Changes</h1>
+        <h2 class="review-artist-sub">Neal Francis</h2>
+    </article>
+
+    <section class="review-body">
+        <img src="/assets/img/NealFrancis.jpg" alt="Neal Francis - Changes">
+        
+        <p>
+            Neal Francis arrived on the scene like a ghost from a 1970s session at Muscle Shoals. 
+            His debut album, *Changes*, is a masterclass in analog soul and funk, blending 
+            honky-tonk piano with a rhythmic tightness that feels both vintage and vital.
+        </p>
+
+        <p>
+            Recorded to tape, the warmth of the production is immediate. From the opening 
+            stabs of the title track, you're transported to a world of Wurlitzers and 
+            gritty basslines. It's the kind of record that demands to be heard on vinyl, 
+            through a pair of honest speakers.
+        </p>
+
+        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
+        
+        <p>
+            Ultimately, Francis isn't just mimicking the greats; he's adding to the lineage. 
+            *Changes* is a bold statement of intent from an artist who clearly knows 
+            where the soul is buried.
+        </p>
+    </section>
+
+    <aside class="sidebar-sticky">
+        <div class="big-mojo-score">
+            <span class="score-label">MOJO SCORE</span>
+            <span class="score-val">8.5</span>
+        </div>
+
+        <div class="data-block">
+            <div class="data-row">
+                <strong>Label</strong>
+                <span>Karma Chief</span>
+            </div>
+            <div class="data-row">
+                <strong>Released</strong>
+                <span>2019</span>
+            </div>
+            <div class="data-row">
+                <strong>Genre</strong>
+                <span>Soul / Funk</span>
+            </div>
+            <div class="data-row">
+                <strong>Format</strong>
+                <span>LP, Digital</span>
+            </div>
+        </div>
+    </aside>
+</main>
+
+<footer>&copy; 2026 MOJOLISTS</footer>
+
+</body>
+</html>
