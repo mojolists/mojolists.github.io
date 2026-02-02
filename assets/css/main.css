@@ -84,17 +84,17 @@ body {
 }
 
 .homepage-container {
-  max-width: 1300px; /* Fits 3 columns of 400px + gaps */
+  max-width: 1300px;
   margin: 0 auto;
   padding: 50px 20px;
 }
 
-/* REFINED AUTO-ADAPTING GRID */
+/* THE CHROME-PROOF GRID */
 .reviews-grid {
   display: grid;
-  /* This creates 400px columns that wrap automatically when space runs out */
-  grid-template-columns: repeat(auto-fit, 400px);
-  gap: 25px;
+  /* Automatically fits as many 400px columns as possible, then fills remaining space */
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 400px), 1fr));
+  gap: 20px;
   justify-content: center;
 }
 
@@ -102,9 +102,9 @@ body {
   display: block;
   text-decoration: none;
   color: inherit;
-  width: 400px;
+  /* Critical for Chrome: prevents the card from expanding past the grid track */
+  min-width: 0; 
   transition: transform 0.3s ease;
-  min-width: 0; /* Prevents grid items from overflowing in Chrome */
 }
 
 .review-card:hover {
@@ -112,8 +112,10 @@ body {
 }
 
 .review-card img {
-  width: 400px;
-  height: 400px;
+  width: 100%;
+  max-width: 400px;
+  height: 400px; /* Locked height */
+  aspect-ratio: 1 / 1; /* Locked ratio */
   object-fit: cover;
   display: block;
   border: 1px solid #333;
@@ -123,6 +125,7 @@ body {
   background: var(--card-bg);
   padding: 15px;
   text-align: center;
+  max-width: 400px; /* Matches the image width */
 }
 
 .review-info h2 {
@@ -138,6 +141,7 @@ body {
   color: #888;
 }
 
+/* ARTICLE / REVIEW PAGE STYLES */
 .review-wrapper {
   max-width: 1100px;
   margin: 0 auto;
@@ -260,16 +264,4 @@ footer {
   font-size: 0.6rem;
   color: #444;
   letter-spacing: 3px;
-}
-
-/* MOBILE FALLBACK: Ensures cards don't exceed screen width on small phones */
-@media (max-width: 440px) {
-  .reviews-grid {
-    grid-template-columns: 1fr;
-  }
-  .review-card, .review-card img {
-    width: 100%;
-    height: auto;
-    aspect-ratio: 1 / 1;
-  }
 }
