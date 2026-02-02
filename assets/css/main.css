@@ -38,227 +38,111 @@ body {
 }
 
 .logo {
-  font-family: 'Libre Baskerville', serif;
-  font-size: 1.5rem;
+  font-size: 2.5rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 4px;
   color: #fff;
   text-decoration: none;
-  display: block;
-  letter-spacing: -1px;
 }
 
 .logo span {
-  color: var(--accent);
-  font-style: italic;
+  color: var(--gold);
 }
 
 .tagline {
+  font-size: 0.8rem;
+  letter-spacing: 3px;
+  color: #888;
+  margin-top: 5px;
   text-transform: uppercase;
-  letter-spacing: 4px;
-  font-size: 0.6rem;
-  color: var(--gold);
-  margin-top: 6px;
-  font-weight: 600;
 }
 
 .rig-strip {
-  background: #000;
-  border-bottom: 2px solid var(--accent);
-  padding: 10px 0;
+  background: #111;
+  padding: 15px 0;
   display: flex;
   justify-content: center;
-  gap: 30px;
+  gap: 40px;
+  border-bottom: 1px solid #222;
   position: sticky;
   top: 0;
-  z-index: 1000;
+  z-index: 100;
 }
 
 .rig-strip a {
+  color: #aaa;
   text-decoration: none;
-  font-size: 0.65rem;
-  letter-spacing: 3px;
-  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 600;
   text-transform: uppercase;
-  font-weight: 700;
-  transition: color 0.3s ease;
+  transition: color 0.3s;
 }
 
 .rig-strip a:hover {
   color: var(--gold);
 }
 
+/* THE FIX: Forcing 400px columns that Chrome can't ignore */
 .homepage-container {
-  max-width: 1300px; /* Limits container to exactly 3 columns + gaps */
-  margin: 0 auto;
-  padding: 50px 20px;
+  max-width: 1300px; /* 3 cards (400px) + 2 gaps (25px) + padding */
+  margin: 40px auto;
+  padding: 0 20px;
 }
 
-/* THE CHROME FIX: FLEX-WRAP INSTEAD OF GRID */
 .reviews-grid {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center; /* Keeps columns centered if there are only 1 or 2 */
-  gap: 30px;
-  width: 100%;
+  justify-content: center;
+  gap: 25px;
 }
 
 .review-card {
   display: block;
   text-decoration: none;
   color: inherit;
-  flex: 0 0 400px; /* DO NOT GROW, DO NOT SHRINK, STAY 400px */
-  width: 400px;
+  width: 400px; /* STRICT WIDTH */
+  background: var(--card-bg);
   transition: transform 0.3s ease;
+  border: 1px solid #222;
 }
 
 .review-card:hover {
   transform: translateY(-5px);
+  border-color: var(--gold);
 }
 
 .review-card img {
-  width: 400px;
-  height: 400px;
+  width: 400px; /* STRICT WIDTH */
+  height: 400px; /* STRICT HEIGHT */
   object-fit: cover;
   display: block;
-  border: 1px solid #333;
 }
 
 .review-info {
-  background: var(--card-bg);
   padding: 20px;
   text-align: center;
-  border: 1px solid #222;
-  border-top: none;
 }
 
 .review-info h2 {
   font-family: 'Libre Baskerville', serif;
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: #fff;
+  font-size: 1.2rem;
   margin-bottom: 5px;
 }
 
 .review-info p {
-  font-size: 0.85rem;
   color: var(--gold);
+  font-weight: 600;
+  font-size: 0.85rem;
   text-transform: uppercase;
   letter-spacing: 1px;
 }
 
-/* ARTICLE / REVIEW PAGE STYLES */
-.review-wrapper {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 50px 20px;
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  gap: 50px;
-}
-
-.review-article-header {
-  grid-column: 1 / -1;
-  margin-bottom: 30px;
-}
-
-.review-title-xl {
-  font-family: 'Libre Baskerville', serif;
-  font-size: 3rem;
-  line-height: 1.1;
-  margin-bottom: 10px;
-}
-
-.review-artist-sub {
-  font-family: 'Libre Baskerville', serif;
-  font-size: 1.5rem;
-  font-style: italic;
-  color: var(--gold);
-}
-
-.review-body {
-  font-family: 'Libre Baskerville', serif;
-  font-size: 1.1rem;
-  color: #ccc;
-  line-height: 1.8;
-}
-
-.review-body img {
-  max-width: 100%;
-  height: auto;
-  border: 1px solid #333;
-  margin-bottom: 25px;
-}
-
-.review-body p {
-  margin-bottom: 1.5rem;
-}
-
-.review-body p:first-of-type::first-letter {
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 900;
-  font-size: 3.5rem;
-  float: left;
-  line-height: 0.8;
-  margin-right: 12px;
-  color: var(--gold);
-}
-
-.review-body a {
-  color: var(--gold);
-  text-decoration: none;
-  border-bottom: 1px solid var(--gold);
-}
-
-.sidebar-sticky {
-  position: sticky;
-  top: 30px;
-  height: fit-content;
-}
-
-.data-block {
-  background: #111;
-  border: 1px solid #333;
-  padding: 20px;
-  margin-bottom: 20px;
-}
-
-.data-row {
-  display: flex;
-  justify-content: space-between;
-  font-size: 0.75rem;
-  padding: 10px 0;
-  border-bottom: 1px solid #1a1a1a;
-}
-
-.big-mojo-score {
-  background: var(--accent);
-  color: #fff;
-  padding: 30px;
-  text-align: center;
-}
-
-.score-val {
-  font-size: 3.5rem;
-  font-weight: 900;
-  display: block;
-}
-
-footer {
-  padding: 80px 0;
-  text-align: center;
-  font-size: 0.7rem;
-  color: #444;
-  letter-spacing: 3px;
-}
-
-/* SMARTPHONE ADAPTATION */
-@media (max-width: 450px) {
-  .review-card {
-    flex: 0 0 100%;
-    width: 100%;
-  }
-  .review-card img {
+/* MOBILE ADAPTATION */
+@media (max-width: 440px) {
+  .review-card, .review-card img {
     width: 100%;
     height: auto;
-    aspect-ratio: 1/1;
+    aspect-ratio: 1 / 1;
   }
 }
