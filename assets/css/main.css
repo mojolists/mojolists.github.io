@@ -1,69 +1,80 @@
-/* MojoLists Core Styles */
+/* MojoLists Redesign 2026 */
 :root {
-    --text-color: #222;
-    --meta-color: #888;
-    --link-color: #d32f2f;
-    --bg-color: #fff;
+    --primary-red: #d32f2f;
+    --dark-bg: #1a1a1a;
+    --light-gray: #f4f4f4;
+    --text-main: #222;
+    --max-width: 900px;
 }
 
 body {
-    font-family: Georgia, serif; /* Matches the classic review site feel */
-    line-height: 1.7;
-    color: var(--text-color);
-    background-color: var(--bg-color);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     margin: 0;
-    padding: 0;
+    line-height: 1.6;
+    color: var(--text-main);
+    background-color: var(--light-gray);
 }
 
-.container, .site-header {
-    max-width: 720px; /* Tight, readable column */
+/* Navigation */
+.main-nav {
+    background: var(--dark-bg);
+    padding: 1rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.nav-container {
+    max-width: var(--max-width);
     margin: 0 auto;
-    padding: 40px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
 }
 
-.site-header {
-    text-align: center;
-    border-bottom: 1px solid #eee;
-}
-
-h1 {
-    font-size: 2.8rem;
-    margin: 0;
+.nav-logo a {
+    color: white;
     font-weight: 900;
-}
-
-.entry-list {
-    list-style: none;
-    padding: 0;
-    margin-top: 40px;
-}
-
-.entry-list li {
-    margin-bottom: 50px;
-}
-
-.meta {
-    display: block;
-    font-family: sans-serif;
-    font-size: 0.8rem;
-    color: var(--meta-color);
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-bottom: 5px;
-}
-
-.entry-list a {
     font-size: 1.5rem;
-    color: var(--link-color);
     text-decoration: none;
-    font-weight: bold;
+    letter-spacing: -1px;
 }
 
-.entry-list a:hover {
-    text-decoration: underline;
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+    margin: 0;
 }
 
-.entry-list p {
-    margin-top: 10px;
-    color: #444;
+.nav-links a {
+    color: #ccc;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: color 0.2s;
+}
+
+.nav-links a:hover { color: white; }
+
+/* Layout Shell */
+.site-wrapper {
+    max-width: var(--max-width);
+    margin: 40px auto;
+    background: white;
+    padding: 60px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+
+/* Typography for the Redesign */
+h1 { font-size: 3rem; margin-bottom: 0.5rem; letter-spacing: -1.5px; }
+h2 { font-size: 1.8rem; border-bottom: 2px solid var(--primary-red); display: inline-block; padding-bottom: 5px; }
+
+/* Image handling */
+.featured-image {
+    width: 100%;
+    height: auto;
+    margin-bottom: 30px;
+    border-radius: 4px;
 }
