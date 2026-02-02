@@ -1,124 +1,251 @@
-/* Reset and Base Styles */
+/* style.css */
+
+/* --- 1. Global Styles & Variables --- */
+:root {
+    --font-heading: 'Playfair Display', serif;
+    --font-body: 'Lato', sans-serif;
+    --color-text: #222222;
+    --color-background: #ffffff;
+    --color-primary: #a02c2c; /* A classic, deep red accent */
+    --color-light-gray: #f4f4f4;
+    --container-width: 1100px;
+}
+
+/* A little reset and base setup */
 * {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
 }
 
 body {
-    font-family: Arial, sans-serif;
-    line-height: 1.6;
-    color: #333;
+    font-family: var(--font-body);
+    line-height: 1.7;
+    color: var(--color-text);
+    background-color: var(--color-background);
 }
 
-/* Navigation Styles */
-nav {
-    background-color: #2c3e50;
-    padding: 1rem 0;
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 1rem;
 }
 
-nav ul {
-    list-style: none;
-    display: flex;
-    justify-content: center;
-    gap: 2rem;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 2rem;
+p {
+    margin-bottom: 1rem;
 }
 
-nav a {
-    color: #ecf0f1;
+a {
+    color: var(--color-primary);
     text-decoration: none;
-    font-weight: 500;
     transition: color 0.3s ease;
 }
 
-nav a:hover {
-    color: #3498db;
+a:hover {
+    color: var(--color-text);
 }
 
-/* Main Content */
-main {
-    max-width: 1200px;
+img {
+    max-width: 100%;
+    display: block;
+}
+
+.container {
+    max-width: var(--container-width);
     margin: 0 auto;
-    padding: 2rem;
+    padding: 0 20px;
 }
 
-/* Teaser Container - FIXED FOR CHROME */
-.teaser-container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+/* --- 2. Header & Navigation --- */
+.site-header {
+    background: var(--color-background);
+    padding: 1.5rem 0;
+    border-bottom: 1px solid var(--color-light-gray);
+}
+
+.site-header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.site-logo a {
+    font-family: var(--font-heading);
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: var(--color-text);
+    letter-spacing: -1px;
+}
+
+.main-nav ul {
+    list-style: none;
+    display: flex;
     gap: 2rem;
-    width: 100%;
 }
 
-/* Individual Teaser Styles */
-.teaser {
-    background: #fff;
-    border: 1px solid #ddd;
-    border-radius: 8px;
+.main-nav a {
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--color-text);
+    padding-bottom: 5px;
+    border-bottom: 2px solid transparent;
+    transition: border-color 0.3s ease;
+}
+
+.main-nav a:hover,
+.main-nav .active {
+    color: var(--color-primary);
+    border-bottom-color: var(--color-primary);
+}
+
+
+/* --- 3. Hero Section (Homepage) --- */
+.hero {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 60vh;
+    min-height: 400px;
+    color: white;
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../images/header-bg.jpg') no-repeat center center/cover;
+    padding: 20px;
+}
+
+.hero h1 {
+    font-size: 3.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    max-width: 600px;
+}
+
+/* --- 4. Main Content & Review Cards --- */
+main {
+    padding: 4rem 0;
+}
+
+.page-title {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+}
+
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+}
+
+.card {
+    background: var(--color-background);
+    border-radius: 5px;
     overflow: hidden;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     display: flex;
     flex-direction: column;
 }
 
-.teaser:hover {
+.card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.12);
 }
 
-.teaser img {
+.card-image img {
     width: 100%;
-    height: 200px;
+    height: 220px;
     object-fit: cover;
-    display: block;
 }
 
-.teaser h2 {
-    padding: 1rem 1rem 0.5rem;
-    font-size: 1.25rem;
-    color: #2c3e50;
+.card-content {
+    padding: 1.5rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
 }
 
-.teaser p {
-    padding: 0 1rem 1rem;
-    color: #555;
+.card-content h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.card-content h3 a:hover {
+    color: var(--color-primary);
+}
+
+.card-meta {
+    font-size: 0.9rem;
+    color: #777;
+    margin-bottom: 1rem;
+}
+
+.card-excerpt {
     flex-grow: 1;
 }
 
-.teaser .read-more {
+.read-more {
     display: inline-block;
-    margin: 0 1rem 1rem;
-    padding: 0.5rem 1rem;
-    background-color: #3498db;
-    color: white;
-    text-decoration: none;
-    border-radius: 4px;
-    transition: background-color 0.3s ease;
+    margin-top: 1rem;
+    font-weight: 700;
 }
 
-.teaser .read-more:hover {
-    background-color: #2980b9;
+/* --- 5. About Page Specifics --- */
+.about-content {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
 }
 
-/* Responsive Design */
-@media (max-width: 900px) {
-    .teaser-container {
-        grid-template-columns: repeat(2, 1fr);
-    }
+.about-content img.profile-pic {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 0 auto 2rem;
+    border: 5px solid var(--color-light-gray);
 }
 
-@media (max-width: 600px) {
-    .teaser-container {
-        grid-template-columns: 1fr;
-    }
-    
-    nav ul {
+/* --- 6. Footer --- */
+.site-footer {
+    background: var(--color-text);
+    color: var(--color-light-gray);
+    text-align: center;
+    padding: 2rem 0;
+    margin-top: 2rem;
+}
+
+.site-footer p {
+    margin: 0;
+}
+
+/* --- 7. Responsive Design --- */
+@media (max-width: 768px) {
+    .site-header .container {
         flex-direction: column;
-        gap: 0.5rem;
-        text-align: center;
+        gap: 1rem;
+    }
+
+    .main-nav ul {
+        gap: 1.5rem;
+    }
+
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+
+    main {
+        padding: 2rem 0;
     }
 }
