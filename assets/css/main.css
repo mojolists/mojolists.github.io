@@ -67,6 +67,9 @@ body {
   display: flex;
   justify-content: center;
   gap: 30px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
 
 .rig-strip a {
@@ -84,26 +87,26 @@ body {
 }
 
 .homepage-container {
-  max-width: 1300px;
+  max-width: 1300px; /* Limits container to exactly 3 columns + gaps */
   margin: 0 auto;
   padding: 50px 20px;
 }
 
-/* THE CHROME-PROOF GRID */
+/* THE CHROME FIX: FLEX-WRAP INSTEAD OF GRID */
 .reviews-grid {
-  display: grid;
-  /* Automatically fits as many 400px columns as possible, then fills remaining space */
-  grid-template-columns: repeat(auto-fill, minmax(min(100%, 400px), 1fr));
-  gap: 20px;
-  justify-content: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* Keeps columns centered if there are only 1 or 2 */
+  gap: 30px;
+  width: 100%;
 }
 
 .review-card {
   display: block;
   text-decoration: none;
   color: inherit;
-  /* Critical for Chrome: prevents the card from expanding past the grid track */
-  min-width: 0; 
+  flex: 0 0 400px; /* DO NOT GROW, DO NOT SHRINK, STAY 400px */
+  width: 400px;
   transition: transform 0.3s ease;
 }
 
@@ -112,10 +115,8 @@ body {
 }
 
 .review-card img {
-  width: 100%;
-  max-width: 400px;
-  height: 400px; /* Locked height */
-  aspect-ratio: 1 / 1; /* Locked ratio */
+  width: 400px;
+  height: 400px;
   object-fit: cover;
   display: block;
   border: 1px solid #333;
@@ -123,14 +124,15 @@ body {
 
 .review-info {
   background: var(--card-bg);
-  padding: 15px;
+  padding: 20px;
   text-align: center;
-  max-width: 400px; /* Matches the image width */
+  border: 1px solid #222;
+  border-top: none;
 }
 
 .review-info h2 {
   font-family: 'Libre Baskerville', serif;
-  font-size: 1rem;
+  font-size: 1.1rem;
   font-weight: 700;
   color: #fff;
   margin-bottom: 5px;
@@ -138,7 +140,9 @@ body {
 
 .review-info p {
   font-size: 0.85rem;
-  color: #888;
+  color: var(--gold);
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 /* ARTICLE / REVIEW PAGE STYLES */
@@ -158,28 +162,27 @@ body {
 
 .review-title-xl {
   font-family: 'Libre Baskerville', serif;
-  font-size: 2rem;
-  line-height: 1.2;
+  font-size: 3rem;
+  line-height: 1.1;
   margin-bottom: 10px;
 }
 
 .review-artist-sub {
   font-family: 'Libre Baskerville', serif;
-  font-size: 1.3rem;
+  font-size: 1.5rem;
   font-style: italic;
   color: var(--gold);
 }
 
 .review-body {
   font-family: 'Libre Baskerville', serif;
-  font-size: 1rem;
+  font-size: 1.1rem;
   color: #ccc;
   line-height: 1.8;
 }
 
 .review-body img {
-  max-width: 400px;
-  width: 100%;
+  max-width: 100%;
   height: auto;
   border: 1px solid #333;
   margin-bottom: 25px;
@@ -192,10 +195,10 @@ body {
 .review-body p:first-of-type::first-letter {
   font-family: 'Montserrat', sans-serif;
   font-weight: 900;
-  font-size: 3rem;
+  font-size: 3.5rem;
   float: left;
-  line-height: 0.9;
-  margin-right: 10px;
+  line-height: 0.8;
+  margin-right: 12px;
   color: var(--gold);
 }
 
@@ -203,20 +206,6 @@ body {
   color: var(--gold);
   text-decoration: none;
   border-bottom: 1px solid var(--gold);
-  transition: all 0.3s ease;
-}
-
-.review-body a:hover {
-  color: var(--accent);
-  border-bottom-color: var(--accent);
-}
-
-.review-body iframe {
-  width: 100%;
-  max-width: 560px;
-  height: 315px;
-  margin: 25px 0;
-  border: 1px solid #333;
 }
 
 .sidebar-sticky {
@@ -240,10 +229,6 @@ body {
   border-bottom: 1px solid #1a1a1a;
 }
 
-.data-row:last-child {
-  border-bottom: none;
-}
-
 .big-mojo-score {
   background: var(--accent);
   color: #fff;
@@ -255,13 +240,25 @@ body {
   font-size: 3.5rem;
   font-weight: 900;
   display: block;
-  line-height: 1;
 }
 
 footer {
-  padding: 50px 0;
+  padding: 80px 0;
   text-align: center;
-  font-size: 0.6rem;
+  font-size: 0.7rem;
   color: #444;
   letter-spacing: 3px;
+}
+
+/* SMARTPHONE ADAPTATION */
+@media (max-width: 450px) {
+  .review-card {
+    flex: 0 0 100%;
+    width: 100%;
+  }
+  .review-card img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1/1;
+  }
 }
