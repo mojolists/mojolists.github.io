@@ -1,44 +1,108 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MojoLists | High-Fidelity Audio & Reviews</title>
-    <link rel="stylesheet" href="assets/css/main.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MOJOLISTS — Vinyl, Music & Listening</title>
+
+  <!-- Fonts: mid‑century friendly, modern readable -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="assets/css/main.css" />
 </head>
 <body>
 
-    <nav class="main-nav">
-        <div class="nav-container">
-            <div class="nav-logo"><a href="index.html">MOJOLISTS</a></div>
-            <ul class="nav-links">
-                <li><a href="index.html">Reviews</a></li>
-                <li><a href="hardware.html">Hardware</a></li>
-                <li><a href="about.html">About</a></li>
-            </ul>
-        </div>
-    </nav>
+  <!-- Header / Nav -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand">
+        <h1>MOJOLISTS</h1>
+        <span class="tagline">Listening notes, not hot takes</span>
+      </div>
 
-    <div class="site-wrapper">
-        <header>
-            <h1>Reviews</h1>
-            <p>Critical listening, technical analysis, and the music that matters.</p>
-        </header>
-
-        <section class="feed">
-            <article class="feed-item">
-                <span class="meta">SEP 21, 2013 — 3 MIN READ</span>
-                <h3><a href="2013-09-21-say-that-to-say-this.html" style="text-decoration:none; color:inherit;">Trombone Shorty – Say That To Say This</a></h3>
-                <p>An analysis of recording quality, dynamic range, and the maturation of Troy Andrews.</p>
-            </article>
-
-            <article class="feed-item" style="margin-top: 40px; opacity: 0.6;">
-                <span class="meta">FEB 02, 2026 — 5 MIN READ</span>
-                <h3>Changes in Music Listening Habits</h3>
-                <p>Redesign in progress: Reconstructing original essay content...</p>
-            </article>
-        </section>
+      <nav class="main-nav">
+        <a href="index.html" class="active">Home</a>
+        <a href="#">Reviews</a>
+        <a href="about.html">About</a>
+      </nav>
     </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container hero-inner">
+      <div class="hero-text">
+        <h2>Music sounds better when you slow down.</h2>
+        <p>
+          MOJOLISTS is a laid‑back space for vinyl‑centric listening notes,
+          long‑form reviews, and reflections on records that reward attention.
+        </p>
+        <a href="#" class="button">Browse Reviews</a>
+      </div>
+
+      <div class="hero-image">
+        <!-- Replace with an actual image from assets/img -->
+        <img src="assets/img/hero-turntable.jpg" alt="Turntable spinning a vinyl record" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Reviews -->
+  <main class="content">
+    <section class="featured">
+      <div class="container">
+        <h3 class="section-title">Recent Reviews</h3>
+
+        <div class="review-grid">
+          <article class="review-card">
+            <img src="assets/img/review-1.jpg" alt="Album cover" />
+            <div class="review-meta">
+              <h4>Trombone Shorty — <em>Say That To Say This</em></h4>
+              <p>
+                A warm, analog‑leaning listen that feels equally at home on
+                late‑night speakers or early‑morning headphones.
+              </p>
+              <a href="#">Read more →</a>
+            </div>
+          </article>
+
+          <article class="review-card">
+            <img src="assets/img/review-2.jpg" alt="Album cover" />
+            <div class="review-meta">
+              <h4>Changes in Music Listening Habits</h4>
+              <p>
+                From playlists to full‑side listening — how vinyl subtly
+                reshapes the way we engage with music.
+              </p>
+              <a href="#">Read more →</a>
+            </div>
+          </article>
+
+          <article class="review-card">
+            <img src="assets/img/review-3.jpg" alt="Album cover" />
+            <div class="review-meta">
+              <h4>Why Some Records Age Better Than Others</h4>
+              <p>
+                A reflection on production, restraint, and why certain albums
+                never seem to sound dated.
+              </p>
+              <a href="#">Read more →</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>© 2026 MOJOLISTS</p>
+      <p class="footer-note">Built for people who still flip the record.</p>
+    </div>
+  </footer>
 
 </body>
 </html>
