@@ -1,80 +1,69 @@
-/* Global Reset & Base Styles */
-* {
-    box-sizing: border-box;
+/* MojoLists Core Styles */
+:root {
+    --text-color: #222;
+    --meta-color: #888;
+    --link-color: #d32f2f;
+    --bg-color: #fff;
 }
 
 body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    line-height: 1.6;
-    color: #333;
-    background-color: #f9f9f9;
+    font-family: Georgia, serif; /* Matches the classic review site feel */
+    line-height: 1.7;
+    color: var(--text-color);
+    background-color: var(--bg-color);
     margin: 0;
     padding: 0;
 }
 
-/* Container for Index and Articles */
-header, main, footer, article {
-    max-width: 800px;
+.container, .site-header {
+    max-width: 720px; /* Tight, readable column */
     margin: 0 auto;
-    padding: 20px;
-    background: #ffffff;
+    padding: 40px 20px;
 }
 
-header {
-    border-bottom: 2px solid #eee;
-    margin-top: 40px;
+.site-header {
+    text-align: center;
+    border-bottom: 1px solid #eee;
 }
 
 h1 {
-    font-size: 2.2rem;
-    color: #111;
-    margin-bottom: 0.5rem;
+    font-size: 2.8rem;
+    margin: 0;
+    font-weight: 900;
 }
 
-/* Review List Styling */
-.review-list ul {
+.entry-list {
     list-style: none;
     padding: 0;
+    margin-top: 40px;
 }
 
-.review-list li {
-    margin-bottom: 25px;
-    padding: 15px;
-    border-left: 4px solid #007bff;
-    background: #f0f7ff;
+.entry-list li {
+    margin-bottom: 50px;
 }
 
-.review-list a {
+.meta {
+    display: block;
+    font-family: sans-serif;
+    font-size: 0.8rem;
+    color: var(--meta-color);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+}
+
+.entry-list a {
+    font-size: 1.5rem;
+    color: var(--link-color);
     text-decoration: none;
-    color: #007bff;
-    font-size: 1.2rem;
+    font-weight: bold;
 }
 
-.review-list a:hover {
+.entry-list a:hover {
     text-decoration: underline;
 }
 
-/* Video Responsiveness */
-.video-container {
-    position: relative;
-    padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
-    height: 0;
-    overflow: hidden;
-    margin: 30px 0;
-}
-
-.video-container iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border: 0;
-}
-
-footer {
-    text-align: center;
-    font-size: 0.9rem;
-    color: #777;
-    margin-bottom: 40px;
+.entry-list p {
+    margin-top: 10px;
+    color: #444;
 }
