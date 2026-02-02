@@ -84,17 +84,17 @@ body {
 }
 
 .homepage-container {
-  max-width: 1300px;
+  max-width: 1300px; /* Fits 3 columns of 400px + gaps */
   margin: 0 auto;
   padding: 50px 20px;
 }
 
-/* RESPONSIVE GRID SETTINGS */
+/* REFINED AUTO-ADAPTING GRID */
 .reviews-grid {
   display: grid;
-  /* Three columns by default, max-width of 400px per column */
-  grid-template-columns: repeat(3, minmax(0, 400px));
-  gap: 20px;
+  /* This creates 400px columns that wrap automatically when space runs out */
+  grid-template-columns: repeat(auto-fit, 400px);
+  gap: 25px;
   justify-content: center;
 }
 
@@ -102,8 +102,9 @@ body {
   display: block;
   text-decoration: none;
   color: inherit;
-  width: 100%; /* Takes up full width of the grid column */
+  width: 400px;
   transition: transform 0.3s ease;
+  min-width: 0; /* Prevents grid items from overflowing in Chrome */
 }
 
 .review-card:hover {
@@ -111,9 +112,8 @@ body {
 }
 
 .review-card img {
-  width: 100%;
-  height: auto;
-  aspect-ratio: 1 / 1; /* Ensures the 400x400 square look is maintained */
+  width: 400px;
+  height: 400px;
   object-fit: cover;
   display: block;
   border: 1px solid #333;
@@ -138,7 +138,6 @@ body {
   color: #888;
 }
 
-/* ARTICLE / REVIEW PAGE STYLES */
 .review-wrapper {
   max-width: 1100px;
   margin: 0 auto;
@@ -263,19 +262,14 @@ footer {
   letter-spacing: 3px;
 }
 
-/* MEDIA QUERIES FOR ADAPTIVE COLUMNS */
-@media (max-width: 1250px) {
+/* MOBILE FALLBACK: Ensures cards don't exceed screen width on small phones */
+@media (max-width: 440px) {
   .reviews-grid {
-    grid-template-columns: repeat(2, minmax(0, 400px)); /* Switches to 2 columns */
+    grid-template-columns: 1fr;
   }
-}
-
-@media (max-width: 850px) {
-  .reviews-grid {
-    grid-template-columns: repeat(1, minmax(0, 400px)); /* Switches to 1 column */
-  }
-  
-  .review-wrapper {
-    grid-template-columns: 1fr; /* Review page sidebar drops below content */
+  .review-card, .review-card img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1 / 1;
   }
 }
