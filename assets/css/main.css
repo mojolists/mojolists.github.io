@@ -12,13 +12,12 @@ body {
     margin: 0;
 }
 
-/* 25% Shorter Header Fix */
 .hero-bg {
     position: relative;
     background-image: url('../img/lifestyle-bg.jpg');
     background-size: cover;
-    background-position: center;
-    min-height: 300px; /* Reduced from 400px */
+    background-position: top center;
+    min-height: 300px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -30,9 +29,9 @@ body {
     content: "";
     position: absolute;
     inset: 0;
-    background: linear-gradient(to bottom, rgba(15, 23, 42, 0.5), rgba(15, 23, 42, 0.9));
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
+    background: linear-gradient(to bottom, rgba(15, 23, 42, 0.4), rgba(15, 23, 42, 0.9));
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
     z-index: 1;
 }
 
@@ -42,58 +41,49 @@ body {
     width: 100%;
 }
 
-/* Stylish, Italic Logo */
+/* Thinner, Elegant Logo */
 .logo {
     font-family: 'Playfair Display', serif;
-    font-style: italic; /* Added Italic */
-    font-weight: 400;
+    font-style: normal;
+    font-weight: 300; /* Thinner weight */
     font-size: clamp(2.5rem, 8vw, 4.5rem); 
-    letter-spacing: -1px;
+    letter-spacing: 0.02em; /* Added slight space for thin font clarity */
     color: #ffffff;
     line-height: 1;
 }
 
-/* Full word "Lists" in Red */
 .logo-lists {
     color: #ef4444;
-    margin-left: -2px; /* Pulls the red text closer for a tighter fit */
+    font-weight: 400; /* Keeping 'Lists' slightly bolder so the red carries weight */
 }
 
 .tagline {
     font-family: 'Inter', sans-serif;
-    font-size: 0.75rem;
-    font-style: normal; /* Keep tagline clean/straight for contrast */
+    font-size: 0.7rem;
     text-transform: uppercase;
-    letter-spacing: 0.5em;
+    letter-spacing: 0.6em; /* Spread this out more to match thin logo */
     color: #94a3b8;
-    margin: 1rem 0 2rem 0;
-}
-
-/* Navigation */
-.hero-nav {
-    display: flex;
-    justify-content: center;
-    gap: 2.5rem;
+    margin: 1.2rem 0 2rem 0;
 }
 
 .hero-nav a {
     color: #ffffff;
     text-decoration: none;
-    font-size: 0.65rem;
-    font-weight: 700;
-    letter-spacing: 0.15em;
-    transition: all 0.3s ease;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    margin: 0 1.25rem;
+    transition: color 0.3s ease;
 }
 
 .hero-nav a:hover {
     color: #fbbf24;
-    transform: translateY(-1px);
 }
 
-/* Review Cards */
+/* Card Styles */
 .review-card {
     background-color: #1e293b; 
     border: 1px solid #334155; 
-    border-radius: 2px; /* Sharper corners for a pro look */
+    border-radius: 4px;
     transition: all 0.3s ease;
 }
