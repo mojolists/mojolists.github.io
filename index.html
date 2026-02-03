@@ -1,40 +1,95 @@
-/* assets/css/main.css */
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MojoLists | The Soul Of The Sound</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body class="min-h-screen">
 
-/* Custom Typography & Colors */
-body { 
-    font-family: 'Inter', sans-serif; 
-    background-color: #0f172a; 
-    color: #f8fafc; 
-}
+    <nav class="border-b border-slate-800 bg-slate-900/50 backdrop-blur-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <div class="flex items-center">
+                    <span class="text-3xl font-bold tracking-tighter">MOJO<span class="accent-gold">LISTS</span></span>
+                </div>
+                <div class="hidden md:flex space-x-8 text-sm font-medium tracking-wide">
+                    <a href="#" class="nav-link transition uppercase">The Feed</a>
+                    <a href="#" class="nav-link transition uppercase">Hardware</a>
+                    <a href="#" class="nav-link transition uppercase">Vinyl</a>
+                    <a href="#" class="nav-link transition uppercase">About</a>
+                </div>
+                <div class="md:hidden text-2xl">☰</div>
+            </div>
+        </div>
+    </nav>
 
-h1, h2, h3, h4 { 
-    font-family: 'Playfair Display', serif; 
-}
+    <header class="relative py-24 bg-gradient-to-b from-slate-900 to-slate-950 border-b border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-5xl md:text-7xl font-bold mb-4 italic leading-tight">The Soul Of The <span class="accent-gold">Sound.</span></h2>
+            <p class="text-slate-400 text-xl max-w-2xl mx-auto font-light leading-relaxed">
+                Expert deep-dives into the grooves of vinyl and the circuits of high-fidelity hardware.
+            </p>
+        </div>
+    </header>
 
-.accent-gold { 
-    color: #fbbf24; 
-}
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        
+        <div class="flex items-center justify-between mb-12 border-b border-slate-800 pb-4">
+            <h3 class="text-3xl font-bold italic">Latest <span class="accent-gold">Reviews</span></h3>
+        </div>
 
-.bg-card { 
-    background-color: #1e293b; 
-    border: 1px solid #334155; 
-}
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            
+            <article class="review-card bg-card p-6 rounded-xl flex flex-col h-full">
+                <div class="mb-4 aspect-square bg-slate-800 rounded-lg overflow-hidden relative">
+                    <span class="absolute top-3 left-3 badge-vinyl text-[10px] font-bold px-2 py-1 rounded uppercase tracking-widest">Vinyl</span>
+                    <img src="assets/img/neal-francis.jpg" alt="Neal Francis Changes" class="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity">
+                </div>
+                <h4 class="text-2xl font-bold mb-2">Neal Francis: Changes</h4>
+                <p class="text-slate-400 text-sm mb-6 flex-grow leading-relaxed">A roadmap back from the dark sweetness of addiction, fueled by New Orleans funk superpowers.</p>
+                <a href="/reviews/neal-francis-changes.html" class="text-yellow-400 text-sm font-bold uppercase tracking-widest flex items-center hover:underline">
+                    Read Review <span class="ml-2">→</span>
+                </a>
+            </article>
 
-/* Interaction Effects */
-.review-card {
-    transition: all 0.3s ease;
-}
+            <article class="review-card bg-card p-6 rounded-xl flex flex-col h-full">
+                <div class="mb-4 aspect-square bg-slate-800 rounded-lg overflow-hidden relative">
+                    <span class="absolute top-3 left-3 badge-vinyl text-[10px] font-bold px-2 py-1 rounded uppercase tracking-widest">Vinyl</span>
+                    <img src="assets/img/james-hunter.jpg" alt="James Hunter Six" class="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity">
+                </div>
+                <h4 class="text-2xl font-bold mb-2">James Hunter Six: Nick Of Time</h4>
+                <p class="text-slate-400 text-sm mb-6 flex-grow leading-relaxed">Sublime rhythm and blues that feels like it was unearthed from a 1964 time capsule.</p>
+                <a href="/reviews/james-hunter.html" class="text-yellow-400 text-sm font-bold uppercase tracking-widest flex items-center hover:underline">
+                    Read Review <span class="ml-2">→</span>
+                </a>
+            </article>
 
-.review-card:hover { 
-    transform: translateY(-4px); 
-    border-color: #fbbf24; 
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
-}
+            <article class="review-card bg-card p-6 rounded-xl flex flex-col h-full">
+                <div class="mb-4 aspect-square bg-slate-800 rounded-lg overflow-hidden relative">
+                    <span class="absolute top-3 left-3 badge-vinyl text-[10px] font-bold px-2 py-1 rounded uppercase tracking-widest">Vinyl</span>
+                    <img src="assets/img/monophonics.jpg" alt="Monophonics" class="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity">
+                </div>
+                <h4 class="text-2xl font-bold mb-2">The Monophonics: It's Only Us</h4>
+                <p class="text-slate-400 text-sm mb-6 flex-grow leading-relaxed">Lush psychedelic soul that provides a heavy soundtrack for the modern era.</p>
+                <a href="/reviews/monophonics.html" class="text-yellow-400 text-sm font-bold uppercase tracking-widest flex items-center hover:underline">
+                    Read Review <span class="ml-2">→</span>
+                </a>
+            </article>
 
-.nav-link:hover {
-    color: #fbbf24;
-}
+        </div>
+    </main>
 
-/* Custom Utilities for Review Badges */
-.badge-vinyl { background-color: #fbbf24; color: #000; }
-.badge-hardware { background-color: #3b82f6; color: #fff; }
+    <footer class="bg-slate-950 border-t border-slate-900 py-12 mt-20">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <p class="text-slate-500 text-sm tracking-widest">© 2026 MOJOLISTS | AUSTIN, TEXAS</p>
+        </div>
+    </footer>
+
+</body>
+</html>
