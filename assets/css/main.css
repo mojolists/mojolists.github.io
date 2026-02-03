@@ -1,74 +1,56 @@
 /* assets/css/main.css */
 
-/* Base Reset for Chrome */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+/* Force Chrome to stop auto-scaling text based on OS settings */
+html { 
+    font-size: 16px !important; 
+    -webkit-text-size-adjust: 100%;
 }
 
 body { 
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
+    font-family: 'Inter', sans-serif; 
     background-color: #0f172a; 
     color: #f8fafc;
-    line-height: 1.5;
-    -webkit-font-smoothing: antialiased;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* Prevent horizontal scrolling */
 }
 
-h1, h2, h3, h4 { 
-    font-family: 'Playfair Display', serif; 
-    color: #ffffff;
-}
-
-.accent-gold { 
-    color: #fbbf24; 
-}
-
-/* Card Styling */
-.bg-card { 
+/* Hard constraint on Card size so they don't look "huge" */
+.review-card {
+    max-width: 400px; /* Prevents cards from becoming giant on wide screens */
+    margin: 0 auto;
     background-color: #1e293b; 
     border: 1px solid #334155; 
-    border-radius: 0.75rem;
-    overflow: hidden;
-}
-
-.review-card {
-    transition: transform 0.2s ease-in-out, border-color 0.2s ease-in-out;
-    display: flex;
-    flex-direction: column;
+    border-radius: 12px;
+    transition: transform 0.2s ease;
 }
 
 .review-card:hover { 
-    transform: translateY(-4px); 
+    transform: translateY(-5px); 
     border-color: #fbbf24; 
 }
 
-/* Badge System */
+/* Typography Scale Fixes */
+h1 { font-size: 3.5rem; line-height: 1.1; }
+h2 { font-size: 2rem; }
+h4 { font-size: 1.25rem; }
+
+.accent-gold { color: #fbbf24; }
 .badge-vinyl { 
     background-color: #fbbf24; 
     color: #000; 
-    font-size: 10px;
-    font-weight: 800;
-    padding: 4px 8px;
-    border-radius: 4px;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
+    font-size: 0.7rem; 
+    font-weight: 800; 
+    padding: 4px 10px; 
+    border-radius: 4px; 
 }
 
-/* Ensure images don't overflow */
-img {
-    max-width: 100%;
-    height: auto;
-    display: block;
-}
-
+/* Nav links */
 .nav-link {
     color: #94a3b8;
     text-decoration: none;
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
     font-weight: 600;
-    font-size: 0.875rem;
 }
-
-.nav-link:hover {
-    color: #fbbf24;
-}
+.nav-link:hover { color: #fbbf24; }
