@@ -1,81 +1,99 @@
 /* assets/css/main.css */
 
-/* Chrome Height Fix */
 html, body {
     height: 100%;
     -webkit-text-size-adjust: 100%;
 }
 
+body { 
+    font-family: 'Inter', sans-serif; 
+    background-color: #0f172a; 
+    color: #f8fafc;
+    margin: 0;
+}
+
+/* 25% Shorter Header Fix */
 .hero-bg {
     position: relative;
     background-image: url('../img/lifestyle-bg.jpg');
     background-size: cover;
     background-position: center;
-    /* Forces Chrome to respect a minimum vertical space */
-    min-height: 400px; 
+    min-height: 300px; /* Reduced from 400px */
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
+    padding: 2rem 0;
 }
 
-/* The Chrome-Friendly Blur Layer */
 .hero-bg::before {
     content: "";
     position: absolute;
-    inset: 0; /* fills the whole header */
-    background: linear-gradient(to bottom, rgba(15, 23, 42, 0.4), rgba(15, 23, 42, 0.9));
-    /* Moving blur here prevents Chrome from collapsing the parent height */
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(15, 23, 42, 0.5), rgba(15, 23, 42, 0.9));
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
     z-index: 1;
 }
 
 .hero-content {
     position: relative;
-    z-index: 10; /* Keeps text above the blur layer */
+    z-index: 10;
     width: 100%;
 }
 
-/* Stylish Logo - Stylish and refined */
+/* Stylish, Italic Logo */
 .logo {
     font-family: 'Playfair Display', serif;
+    font-style: italic; /* Added Italic */
     font-weight: 400;
-    font-size: clamp(3rem, 10vw, 5rem); /* Responsive size that won't break */
-    letter-spacing: -2px;
+    font-size: clamp(2.5rem, 8vw, 4.5rem); 
+    letter-spacing: -1px;
     color: #ffffff;
     line-height: 1;
 }
 
-.accent-red { color: #ef4444; }
+/* Full word "Lists" in Red */
+.logo-lists {
+    color: #ef4444;
+    margin-left: -2px; /* Pulls the red text closer for a tighter fit */
+}
 
 .tagline {
     font-family: 'Inter', sans-serif;
-    font-size: 0.8rem;
+    font-size: 0.75rem;
+    font-style: normal; /* Keep tagline clean/straight for contrast */
     text-transform: uppercase;
     letter-spacing: 0.5em;
     color: #94a3b8;
-    margin: 1.5rem 0 2.5rem 0;
+    margin: 1rem 0 2rem 0;
 }
 
-/* Navigation inside the Hero */
+/* Navigation */
 .hero-nav {
     display: flex;
     justify-content: center;
-    gap: 2rem;
+    gap: 2.5rem;
 }
 
 .hero-nav a {
     color: #ffffff;
     text-decoration: none;
-    font-size: 0.7rem;
-    font-weight: 600;
-    letter-spacing: 0.2em;
-    transition: color 0.3s ease;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    transition: all 0.3s ease;
 }
 
 .hero-nav a:hover {
-    color: #fbbf24; /* Gold Hover */
+    color: #fbbf24;
+    transform: translateY(-1px);
 }
 
-/* ... keep your card styles from before ... */
+/* Review Cards */
+.review-card {
+    background-color: #1e293b; 
+    border: 1px solid #334155; 
+    border-radius: 2px; /* Sharper corners for a pro look */
+    transition: all 0.3s ease;
+}
