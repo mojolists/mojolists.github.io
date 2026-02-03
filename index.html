@@ -1,109 +1,40 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MojoLists | The Soul Of The Sound</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-    <style>
-        body { font-family: 'Inter', sans-serif; background-color: #0f172a; color: #f8fafc; }
-        h1, h2, h3 { font-family: 'Playfair Display', serif; }
-        .accent-gold { color: #fbbf24; }
-        .bg-card { background-color: #1e293b; border: 1px solid #334155; }
-        .review-card:hover { transform: translateY(-4px); transition: all 0.3s ease; border-color: #fbbf24; }
-    </style>
-</head>
-<body class="min-h-screen">
+/* assets/css/main.css */
 
-    <nav class="border-b border-slate-800 bg-slate-900/50 backdrop-blur-md sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-20 items-center">
-                <div class="flex items-center">
-                    <span class="text-3xl font-bold tracking-tighter">MOJO<span class="accent-gold">LISTS</span></span>
-                </div>
-                <div class="hidden md:flex space-x-8 text-sm font-medium tracking-wide">
-                    <a href="#" class="hover:text-yellow-400 transition">THE FEED</a>
-                    <a href="#" class="hover:text-yellow-400 transition">HARDWARE</a>
-                    <a href="#" class="hover:text-yellow-400 transition">VINYL</a>
-                    <a href="#" class="hover:text-yellow-400 transition">ABOUT</a>
-                </div>
-                <div class="md:hidden text-2xl">☰</div>
-            </div>
-        </div>
-    </nav>
+/* Custom Typography & Colors */
+body { 
+    font-family: 'Inter', sans-serif; 
+    background-color: #0f172a; 
+    color: #f8fafc; 
+}
 
-    <header class="relative py-20 bg-gradient-to-b from-slate-900 to-slate-950 border-b border-slate-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 class="text-5xl md:text-7xl font-bold mb-4 italic leading-tight">The Soul Of The <span class="accent-gold">Sound.</span></h2>
-            <p class="text-slate-400 text-xl max-w-2xl mx-auto font-light leading-relaxed">
-                Expert deep-dives into the grooves of vinyl and the circuits of high-fidelity hardware.
-            </p>
-        </div>
-    </header>
+h1, h2, h3, h4 { 
+    font-family: 'Playfair Display', serif; 
+}
 
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        
-        <div class="flex items-center justify-between mb-12 border-b border-slate-800 pb-4">
-            <h3 class="text-3xl font-bold">Latest <span class="accent-gold">Reviews</span></h3>
-            <div class="flex space-x-2">
-                <span class="px-3 py-1 bg-slate-800 rounded-full text-xs cursor-pointer hover:bg-yellow-500/20">All</span>
-                <span class="px-3 py-1 bg-slate-800 rounded-full text-xs cursor-pointer hover:bg-yellow-500/20">Vinyl</span>
-                <span class="px-3 py-1 bg-slate-800 rounded-full text-xs cursor-pointer hover:bg-yellow-500/20">Hardware</span>
-            </div>
-        </div>
+.accent-gold { 
+    color: #fbbf24; 
+}
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            
-            <article class="review-card bg-card p-6 rounded-xl flex flex-col h-full">
-                <div class="mb-4 aspect-square bg-slate-700 rounded-lg overflow-hidden relative">
-                    <span class="absolute top-3 left-3 bg-yellow-500 text-black text-[10px] font-bold px-2 py-1 rounded uppercase tracking-widest">Vinyl</span>
-                    <div class="w-full h-full flex items-center justify-center text-slate-500 italic">Neal Francis Art</div>
-                </div>
-                <h4 class="text-2xl font-bold mb-2">Neal Francis: Changes</h4>
-                <p class="text-slate-400 text-sm mb-6 flex-grow">A roadmap back from the dark sweetness of addiction, fueled by New Orleans funk superpowers.</p>
-                <a href="/neal-francis-changes/" class="text-yellow-400 text-sm font-bold uppercase tracking-widest flex items-center hover:underline">
-                    Read Review <span class="ml-2">→</span>
-                </a>
-            </article>
+.bg-card { 
+    background-color: #1e293b; 
+    border: 1px solid #334155; 
+}
 
-            <article class="review-card bg-card p-6 rounded-xl flex flex-col h-full">
-                <div class="mb-4 aspect-square bg-slate-700 rounded-lg overflow-hidden relative">
-                    <span class="absolute top-3 left-3 bg-blue-500 text-white text-[10px] font-bold px-2 py-1 rounded uppercase tracking-widest">Hardware</span>
-                    <div class="w-full h-full flex items-center justify-center text-slate-500 italic">Hardware Image</div>
-                </div>
-                <h4 class="text-2xl font-bold mb-2">The James Hunter Six: Nick Of Time</h4>
-                <p class="text-slate-400 text-sm mb-6 flex-grow">Sublime rhythm and blues that feels like it was unearthed from a 1964 time capsule.</p>
-                <a href="#" class="text-yellow-400 text-sm font-bold uppercase tracking-widest flex items-center hover:underline">
-                    Read Review <span class="ml-2">→</span>
-                </a>
-            </article>
+/* Interaction Effects */
+.review-card {
+    transition: all 0.3s ease;
+}
 
-            <article class="review-card bg-card p-6 rounded-xl flex flex-col h-full">
-                <div class="mb-4 aspect-square bg-slate-700 rounded-lg overflow-hidden relative">
-                    <span class="absolute top-3 left-3 bg-yellow-500 text-black text-[10px] font-bold px-2 py-1 rounded uppercase tracking-widest">Vinyl</span>
-                    <div class="w-full h-full flex items-center justify-center text-slate-500 italic">Monophonics Art</div>
-                </div>
-                <h4 class="text-2xl font-bold mb-2">The Monophonics: It's Only Us</h4>
-                <p class="text-slate-400 text-sm mb-6 flex-grow">Lush psychedelic soul that provides a heavy soundtrack for the modern era.</p>
-                <a href="#" class="text-yellow-400 text-sm font-bold uppercase tracking-widest flex items-center hover:underline">
-                    Read Review <span class="ml-2">→</span>
-                </a>
-            </article>
+.review-card:hover { 
+    transform: translateY(-4px); 
+    border-color: #fbbf24; 
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+}
 
-        </div>
-    </main>
+.nav-link:hover {
+    color: #fbbf24;
+}
 
-    <footer class="bg-slate-950 border-t border-slate-900 py-12 mt-20">
-        <div class="max-w-7xl mx-auto px-4 text-center">
-            <p class="text-slate-500 text-sm">© 2026 MOJOLISTS | AUSTIN, TEXAS</p>
-            <div class="flex justify-center space-x-6 mt-4 text-slate-400">
-                <a href="#" class="hover:text-yellow-400">Twitter</a>
-                <a href="#" class="hover:text-yellow-400">Instagram</a>
-                <a href="#" class="hover:text-yellow-400">Contact</a>
-            </div>
-        </div>
-    </footer>
-
-</body>
-</html>
+/* Custom Utilities for Review Badges */
+.badge-vinyl { background-color: #fbbf24; color: #000; }
+.badge-hardware { background-color: #3b82f6; color: #fff; }
