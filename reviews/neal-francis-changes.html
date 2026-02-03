@@ -8,46 +8,53 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="../assets/css/main.css">
     <style>
-        /* CRITICAL READABILITY FIXES */
-        .article-body p { 
-            margin-bottom: 1.75rem; 
-            font-size: 1.15rem; /* Slightly larger */
-            line-height: 1.85; /* More space between lines */
-            color: #f1f5f9; /* Much brighter off-white (Slate 100) */
-            font-weight: 400;
-        }
+        .article-body p { margin-bottom: 1.75rem; font-size: 1.15rem; line-height: 1.85; color: #f1f5f9; }
+        .article-body em { font-family: 'Playfair Display', serif; font-style: italic; color: #ef4444; }
         
-        /* Highlighting album names/italics in red to match your style */
-        .article-body em { 
-            font-family: 'Playfair Display', serif; 
-            font-style: italic; 
-            color: #ef4444; 
-            font-weight: 400;
-        }
-
         .dropcap::first-letter {
             font-family: 'Playfair Display', serif;
-            float: left;
-            font-size: 5.5rem;
-            line-height: 0.8;
-            padding-top: 4px;
-            padding-right: 0.85rem;
-            color: #ef4444;
-            font-weight: 300;
+            float: left; font-size: 5.5rem; line-height: 0.8;
+            padding-top: 4px; padding-right: 0.85rem;
+            color: #ef4444; font-weight: 300;
         }
 
-        /* Sidebar clarity */
-        .spec-label { color: #94a3b8; font-weight: 800; }
-        .spec-value { color: #ffffff; }
+        /* FIXED SIDE NAV ARROWS */
+        .nav-arrow {
+            position: fixed;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 50;
+            color: rgba(255, 255, 255, 0.2);
+            font-size: 3rem;
+            transition: all 0.3s ease;
+            padding: 20px;
+            text-decoration: none;
+            font-family: 'Inter', sans-serif;
+            font-weight: 100;
+        }
+        .nav-arrow:hover { color: #ef4444; background: rgba(30, 41, 59, 0.4); }
+        .nav-left { left: 0; }
+        .nav-right { right: 0; }
+
+        @media (max-width: 1024px) { .nav-arrow { display: none; } }
     </style>
 </head>
 <body class="bg-[#0f172a]">
+
+    <a href="#" class="nav-arrow nav-left" title="Previous Review">‹</a>
+    <a href="tommy-castro-devil-you-know.html" class="nav-arrow nav-right" title="Next Review">›</a>
 
     <section class="relative h-[65vh] flex items-end pb-16 overflow-hidden">
         <img src="../assets/img/NealFrancis.jpg" class="absolute inset-0 w-full h-full object-cover opacity-30">
         <div class="absolute inset-0 bg-gradient-to-t from-[#0f172a] via-[#0f172a]/40 to-transparent"></div>
         
         <div class="relative z-10 max-w-5xl mx-auto px-6 w-full">
+            <nav class="mb-8">
+                <a href="../index.html" class="text-[10px] font-black tracking-[0.4em] text-slate-400 hover:text-red-500 transition-colors uppercase">
+                    ← Home / The Feed
+                </a>
+            </nav>
+
             <span class="text-red-500 font-black tracking-[0.4em] text-[10px] uppercase">Artist Spotlight</span>
             <h1 class="card-title text-6xl md:text-8xl mt-4 mb-2">Neal Francis</h1>
             <p class="text-xl md:text-3xl text-slate-300 font-light italic">Changes (2020)</p>
@@ -64,46 +71,35 @@
 
                 <p>For Neal, this album is his own road back, from a life left behind for the dark sweetness of addiction and all the humbling horror it creates around you and for the ones you love. <em>How have I lived</em> comes across as a cry to a higher power and the rest of the album is an illustration of regret, anger and eventually rising above.</p>
 
-                <p>Focusing his New Orleans gained superpowers to create flourishes of Dr. John, Allen Toussaint and Leon Russell, Neal creates a solid funk and soul album that is as danceable as it is thought provoking. It is a journey, with <em>Lauren</em> being a literal trip you can follow on a map that includes a cruise up I-35 from San Antonio to Austin.</p>
-
                 <div class="my-14 p-1 bg-slate-800 rounded-sm">
                     <div class="aspect-video bg-black">
                         <iframe class="w-full h-full" src="https://www.youtube.com/embed/L3gJHWpd9n0" frameborder="0" allowfullscreen></iframe>
                     </div>
                 </div>
 
-                <p>Neal has serious keyboard skills and a rare gift for crafting earworm hooks. At one time or another I have had every damn song stuck in my head for at least a day. From the hopeful promise of <em>This Time</em> to the gospel lyrics of <em>Put It in his Hands</em> you can share the energy Neal feels with his reborn life.</p>
+                <p>Neal has serious keyboard skills and a rare gift for crafting earworm hooks. At one time or another I have had every damn song stuck in my head for at least a day.</p>
                 
-                <p>It took me six months to finally begin rebuilding my love affair with sharing my musical thoughts again. Give <em>Changes</em> a spin and see if it doesn’t help you resurrect an old passion.</p>
+                <div class="mt-20 pt-10 border-t border-slate-800 flex justify-between items-center">
+                    <a href="#" class="text-[10px] font-bold tracking-widest text-slate-500 hover:text-red-500 uppercase">← Previous Review</a>
+                    <a href="tommy-castro-devil-you-know.html" class="text-[10px] font-bold tracking-widest text-slate-500 hover:text-red-500 uppercase">Next Review →</a>
+                </div>
             </div>
 
             <aside class="lg:w-1/3">
                 <div class="sticky top-12 space-y-10">
                     <div class="bg-slate-900 border border-slate-800 p-6 shadow-xl">
                         <img src="../assets/img/NealFrancis.jpg" class="w-full mb-8 border border-slate-700 shadow-2xl">
-                        
                         <div class="space-y-6">
                             <div>
-                                <h5 class="spec-label text-[10px] uppercase tracking-widest mb-1">Label</h5>
-                                <p class="spec-value text-base">Karma Chief Records</p>
+                                <h5 class="text-[10px] text-slate-500 uppercase tracking-widest mb-1">Label</h5>
+                                <p class="text-white">Karma Chief Records</p>
                             </div>
                             <div>
-                                <h5 class="spec-label text-[10px] uppercase tracking-widest mb-1">Format</h5>
-                                <p class="spec-value text-base">Translucent Orange Vinyl</p>
+                                <h5 class="text-[10px] text-slate-500 uppercase tracking-widest mb-1">Format</h5>
+                                <p class="text-white">Translucent Orange Vinyl</p>
                             </div>
-                            <div>
-                                <h5 class="spec-label text-[10px] uppercase tracking-widest mb-1">Genre</h5>
-                                <p class="spec-value text-base">NOLA Funk / Soul</p>
-                            </div>
-                            
                             <a href="https://amzn.to/34j9rBg" target="_blank" class="block text-center bg-red-600 hover:bg-red-700 text-white text-xs font-black py-4 tracking-[0.2em] transition-all uppercase">Get the Wax</a>
                         </div>
-                    </div>
-
-                    <div class="border-t border-slate-800 pt-8">
-                        <a href="../index.html" class="group text-[10px] text-slate-500 hover:text-red-500 font-black tracking-[0.3em] uppercase transition-colors">
-                            <span class="inline-block transition-transform group-hover:-translate-x-1">←</span> Back to Home
-                        </a>
                     </div>
                 </div>
             </aside>
