@@ -8,34 +8,54 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="../assets/css/main.css">
     <style>
-        .article-body p { margin-bottom: 1.5rem; font-size: 1.1rem; line-height: 1.8; color: #cbd5e1; }
-        .article-body em { font-family: 'Playfair Display', serif; font-style: italic; color: #ef4444; }
+        /* CRITICAL READABILITY FIXES */
+        .article-body p { 
+            margin-bottom: 1.75rem; 
+            font-size: 1.15rem; /* Slightly larger */
+            line-height: 1.85; /* More space between lines */
+            color: #f1f5f9; /* Much brighter off-white (Slate 100) */
+            font-weight: 400;
+        }
+        
+        /* Highlighting album names/italics in red to match your style */
+        .article-body em { 
+            font-family: 'Playfair Display', serif; 
+            font-style: italic; 
+            color: #ef4444; 
+            font-weight: 400;
+        }
+
         .dropcap::first-letter {
             font-family: 'Playfair Display', serif;
             float: left;
-            font-size: 5rem;
-            line-height: 1;
-            padding-right: 0.75rem;
+            font-size: 5.5rem;
+            line-height: 0.8;
+            padding-top: 4px;
+            padding-right: 0.85rem;
             color: #ef4444;
             font-weight: 300;
         }
+
+        /* Sidebar clarity */
+        .spec-label { color: #94a3b8; font-weight: 800; }
+        .spec-value { color: #ffffff; }
     </style>
 </head>
 <body class="bg-[#0f172a]">
 
-    <section class="relative h-[60vh] flex items-end pb-12 overflow-hidden">
-        <img src="../assets/img/NealFrancis.jpg" class="absolute inset-0 w-full h-full object-cover opacity-30 blur-sm">
-        <div class="absolute inset-0 bg-gradient-to-t from-[#0f172a] via-transparent to-transparent"></div>
+    <section class="relative h-[65vh] flex items-end pb-16 overflow-hidden">
+        <img src="../assets/img/NealFrancis.jpg" class="absolute inset-0 w-full h-full object-cover opacity-30">
+        <div class="absolute inset-0 bg-gradient-to-t from-[#0f172a] via-[#0f172a]/40 to-transparent"></div>
         
         <div class="relative z-10 max-w-5xl mx-auto px-6 w-full">
-            <span class="text-red-500 font-black tracking-[0.3em] text-xs uppercase">Music Review</span>
-            <h1 class="card-title text-5xl md:text-7xl mt-4 mb-2">Neal Francis</h1>
-            <p class="text-xl md:text-2xl text-slate-400 font-light italic">Changes (2020)</p>
+            <span class="text-red-500 font-black tracking-[0.4em] text-[10px] uppercase">Artist Spotlight</span>
+            <h1 class="card-title text-6xl md:text-8xl mt-4 mb-2">Neal Francis</h1>
+            <p class="text-xl md:text-3xl text-slate-300 font-light italic">Changes (2020)</p>
         </div>
     </section>
 
-    <main class="max-w-5xl mx-auto px-6 py-12">
-        <div class="flex flex-col lg:flex-row gap-16">
+    <main class="max-w-5xl mx-auto px-6 py-16">
+        <div class="flex flex-col lg:flex-row gap-20">
             
             <div class="lg:w-2/3 article-body">
                 <p class="dropcap">Over the last few years, I slowly stopped writing and reviewing. I let the site go down and kept my thoughts to myself. I couldn’t get over the hump, I just couldn’t fight off whatever demons held me back from what I love.</p>
@@ -44,32 +64,46 @@
 
                 <p>For Neal, this album is his own road back, from a life left behind for the dark sweetness of addiction and all the humbling horror it creates around you and for the ones you love. <em>How have I lived</em> comes across as a cry to a higher power and the rest of the album is an illustration of regret, anger and eventually rising above.</p>
 
-                <div class="my-12 aspect-video bg-black border border-slate-800">
-                    <iframe class="w-full h-full" src="https://www.youtube.com/embed/L3gJHWpd9n0" frameborder="0" allowfullscreen></iframe>
+                <p>Focusing his New Orleans gained superpowers to create flourishes of Dr. John, Allen Toussaint and Leon Russell, Neal creates a solid funk and soul album that is as danceable as it is thought provoking. It is a journey, with <em>Lauren</em> being a literal trip you can follow on a map that includes a cruise up I-35 from San Antonio to Austin.</p>
+
+                <div class="my-14 p-1 bg-slate-800 rounded-sm">
+                    <div class="aspect-video bg-black">
+                        <iframe class="w-full h-full" src="https://www.youtube.com/embed/L3gJHWpd9n0" frameborder="0" allowfullscreen></iframe>
+                    </div>
                 </div>
 
                 <p>Neal has serious keyboard skills and a rare gift for crafting earworm hooks. At one time or another I have had every damn song stuck in my head for at least a day. From the hopeful promise of <em>This Time</em> to the gospel lyrics of <em>Put It in his Hands</em> you can share the energy Neal feels with his reborn life.</p>
+                
+                <p>It took me six months to finally begin rebuilding my love affair with sharing my musical thoughts again. Give <em>Changes</em> a spin and see if it doesn’t help you resurrect an old passion.</p>
             </div>
 
             <aside class="lg:w-1/3">
-                <div class="sticky top-12 space-y-8">
-                    <div class="bg-slate-900 border border-slate-800 p-4">
-                        <img src="../assets/img/NealFrancis.jpg" class="w-full mb-6 shadow-2xl">
-                        <div class="space-y-4">
+                <div class="sticky top-12 space-y-10">
+                    <div class="bg-slate-900 border border-slate-800 p-6 shadow-xl">
+                        <img src="../assets/img/NealFrancis.jpg" class="w-full mb-8 border border-slate-700 shadow-2xl">
+                        
+                        <div class="space-y-6">
                             <div>
-                                <h5 class="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Label</h5>
-                                <p class="text-sm text-white">Karma Chief Records</p>
+                                <h5 class="spec-label text-[10px] uppercase tracking-widest mb-1">Label</h5>
+                                <p class="spec-value text-base">Karma Chief Records</p>
                             </div>
                             <div>
-                                <h5 class="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Format Reviewed</h5>
-                                <p class="text-sm text-white">Digital / Vinyl</p>
+                                <h5 class="spec-label text-[10px] uppercase tracking-widest mb-1">Format</h5>
+                                <p class="spec-value text-base">Translucent Orange Vinyl</p>
                             </div>
-                            <a href="https://amzn.to/34j9rBg" target="_blank" class="block text-center bg-red-600 hover:bg-red-700 text-white text-[10px] font-black py-3 tracking-[0.2em] transition">BUY ALBUM</a>
+                            <div>
+                                <h5 class="spec-label text-[10px] uppercase tracking-widest mb-1">Genre</h5>
+                                <p class="spec-value text-base">NOLA Funk / Soul</p>
+                            </div>
+                            
+                            <a href="https://amzn.to/34j9rBg" target="_blank" class="block text-center bg-red-600 hover:bg-red-700 text-white text-xs font-black py-4 tracking-[0.2em] transition-all uppercase">Get the Wax</a>
                         </div>
                     </div>
 
-                    <div class="border-t border-slate-800 pt-6">
-                        <a href="../index.html" class="text-xs text-slate-500 hover:text-red-500 font-bold tracking-widest uppercase">← Back to The Feed</a>
+                    <div class="border-t border-slate-800 pt-8">
+                        <a href="../index.html" class="group text-[10px] text-slate-500 hover:text-red-500 font-black tracking-[0.3em] uppercase transition-colors">
+                            <span class="inline-block transition-transform group-hover:-translate-x-1">←</span> Back to Home
+                        </a>
                     </div>
                 </div>
             </aside>
