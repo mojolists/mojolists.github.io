@@ -1,220 +1,40 @@
-/* =========================
-   MOJOLISTS – Main Styles
-   ========================= */
+/* assets/css/main.css */
 
-/* CSS Reset (lightweight) */
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
+/* Custom Typography & Colors */
+body { 
+    font-family: 'Inter', sans-serif; 
+    background-color: #0f172a; 
+    color: #f8fafc; 
 }
 
-body {
-  margin: 0;
-  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-  background-color: #f7f5f2;
-  color: #2b2b2b;
-  line-height: 1.6;
+h1, h2, h3, h4 { 
+    font-family: 'Playfair Display', serif; 
 }
 
-/* Global */
-img {
-  max-width: 100%;
-  display: block;
+.accent-gold { 
+    color: #fbbf24; 
 }
 
-a {
-  color: #2b2b2b;
-  text-decoration: none;
+.bg-card { 
+    background-color: #1e293b; 
+    border: 1px solid #334155; 
 }
 
-a:hover {
-  text-decoration: underline;
-}
-
-.container {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 0 1.25rem;
-}
-
-/* =========================
-   Header
-   ========================= */
-
-.site-header {
-  background: #f7f5f2;
-  border-bottom: 1px solid #e2ded8;
-}
-
-.header-inner {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  padding: 1.5rem 0;
-}
-
-.brand h1 {
-  margin: 0;
-  font-family: 'Libre Baskerville', serif;
-  font-size: 1.75rem;
-  letter-spacing: 0.08em;
-}
-
-.tagline {
-  display: block;
-  font-size: 0.8rem;
-  color: #6f6a63;
-  margin-top: 0.25rem;
-}
-
-.main-nav a {
-  margin-left: 1.5rem;
-  font-size: 0.9rem;
-  letter-spacing: 0.05em;
-}
-
-.main-nav a.active {
-  text-decoration: underline;
-}
-
-/* =========================
-   Hero
-   ========================= */
-
-.hero {
-  padding: 4rem 0;
-}
-
-.hero-inner {
-  display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
-  gap: 3rem;
-  align-items: center;
-}
-
-.hero-text h2 {
-  font-family: 'Libre Baskerville', serif;
-  font-size: 2.25rem;
-  margin-bottom: 1rem;
-}
-
-.hero-text p {
-  max-width: 480px;
-  font-size: 1rem;
-  color: #444;
-}
-
-.button {
-  display: inline-block;
-  margin-top: 1.5rem;
-  padding: 0.6rem 1.4rem;
-  border: 1px solid #2b2b2b;
-  font-size: 0.85rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-}
-
-.button:hover {
-  background: #2b2b2b;
-  color: #f7f5f2;
-  text-decoration: none;
-}
-
-/* =========================
-   Featured Reviews
-   ========================= */
-
-.content {
-  padding-bottom: 4rem;
-}
-
-.section-title {
-  font-family: 'Libre Baskerville', serif;
-  font-size: 1.6rem;
-  margin-bottom: 2rem;
-}
-
-.review-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 2rem;
-}
-
+/* Interaction Effects */
 .review-card {
-  background: #ffffff;
-  border: 1px solid #e2ded8;
-  transition: transform 0.2s ease;
+    transition: all 0.3s ease;
 }
 
-.review-card:hover {
-  transform: translateY(-3px);
+.review-card:hover { 
+    transform: translateY(-4px); 
+    border-color: #fbbf24; 
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
 }
 
-.review-meta {
-  padding: 1.25rem;
+.nav-link:hover {
+    color: #fbbf24;
 }
 
-.review-meta h4 {
-  font-family: 'Libre Baskerville', serif;
-  font-size: 1.05rem;
-  margin: 0 0 0.5rem;
-}
-
-.review-meta p {
-  font-size: 0.9rem;
-  color: #555;
-}
-
-.review-meta a {
-  display: inline-block;
-  margin-top: 0.75rem;
-  font-size: 0.8rem;
-  letter-spacing: 0.08em;
-}
-
-/* =========================
-   Footer
-   ========================= */
-
-.site-footer {
-  border-top: 1px solid #e2ded8;
-  padding: 2rem 0;
-  font-size: 0.8rem;
-  color: #6f6a63;
-}
-
-.footer-inner {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.footer-note {
-  font-style: italic;
-}
-
-/* =========================
-   Responsive
-   ========================= */
-
-@media (max-width: 768px) {
-  .hero-inner {
-    grid-template-columns: 1fr;
-  }
-
-  .header-inner {
-    flex-direction: column;
-    gap: 1rem;
-  }
-
-  .main-nav a {
-    margin-left: 0;
-    margin-right: 1rem;
-  }
-
-  .footer-inner {
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-}
+/* Custom Utilities for Review Badges */
+.badge-vinyl { background-color: #fbbf24; color: #000; }
+.badge-hardware { background-color: #3b82f6; color: #fff; }
