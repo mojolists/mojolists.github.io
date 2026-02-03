@@ -1,108 +1,160 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>MOJOLISTS — Vinyl, Music & Listening</title>
-
-  <!-- Fonts: mid‑century friendly, modern readable -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-
-  <link rel="stylesheet" href="assets/css/main.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mojolists</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #000;
+            color: #fff;
+        }
+        
+        .header {
+            position: relative;
+            height: 500px;
+            background-image: url('img/lifestyle-bd.jpg');
+            background-size: cover;
+            background-position: center;
+            filter: blur(1px); /* Slightly unfocused as requested */
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .logo-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+        
+        .logo {
+            font-family: 'Impact', 'Arial Black', sans-serif;
+            font-size: 4rem;
+            letter-spacing: 3px;
+        }
+        
+        .logo span:nth-child(1) {
+            color: white;
+        }
+        
+        .logo span:nth-child(2) {
+            color: #ff0000;
+        }
+        
+        .nav {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 15px 0;
+            text-align: center;
+        }
+        
+        .nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 20px;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+        
+        .nav a:hover {
+            color: gold;
+        }
+        
+        .content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        .teaser-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .teaser {
+            background: #1a1a1a;
+            border: 1px solid #ff0000;
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .teaser:hover {
+            transform: translateY(-5px);
+            border-color: gold;
+        }
+        
+        .teaser img {
+            width: 300px;
+            height: 300px;
+            object-fit: cover;
+            border: 2px solid #ff0000;
+        }
+        
+        .teaser h3 {
+            color: gold;
+            margin: 15px 0;
+        }
+        
+        .teaser p {
+            color: #ccc;
+            font-size: 0.9rem;
+        }
+        
+        .accent-red {
+            color: #ff0000;
+        }
+        
+        .accent-gold {
+            color: gold;
+        }
+    </style>
 </head>
 <body>
-
-  <!-- Header / Nav -->
-  <header class="site-header">
-    <div class="container header-inner">
-      <div class="brand">
-        <h1>MOJOLISTS</h1>
-        <span class="tagline">Listening notes, not hot takes</span>
-      </div>
-
-      <nav class="main-nav">
-        <a href="index.html" class="active">Home</a>
-        <a href="#">Reviews</a>
-        <a href="about.html">About</a>
-      </nav>
-    </div>
-  </header>
-
-  <!-- Hero -->
-  <section class="hero">
-    <div class="container hero-inner">
-      <div class="hero-text">
-        <h2>Music sounds better when you slow down.</h2>
-        <p>
-          MOJOLISTS is a laid‑back space for vinyl‑centric listening notes,
-          long‑form reviews, and reflections on records that reward attention.
-        </p>
-        <a href="#" class="button">Browse Reviews</a>
-      </div>
-
-      <div class="hero-image">
-        <!-- Replace with an actual image from assets/img -->
-        <img src="assets/img/hero-turntable.jpg" alt="Turntable spinning a vinyl record" />
-      </div>
-    </div>
-  </section>
-
-  <!-- Featured Reviews -->
-  <main class="content">
-    <section class="featured">
-      <div class="container">
-        <h3 class="section-title">Recent Reviews</h3>
-
-        <div class="review-grid">
-          <article class="review-card">
-            <img src="assets/img/review-1.jpg" alt="Album cover" />
-            <div class="review-meta">
-              <h4>Trombone Shorty — <em>Say That To Say This</em></h4>
-              <p>
-                A warm, analog‑leaning listen that feels equally at home on
-                late‑night speakers or early‑morning headphones.
-              </p>
-              <a href="#">Read more →</a>
-            </div>
-          </article>
-
-          <article class="review-card">
-            <img src="assets/img/review-2.jpg" alt="Album cover" />
-            <div class="review-meta">
-              <h4>Changes in Music Listening Habits</h4>
-              <p>
-                From playlists to full‑side listening — how vinyl subtly
-                reshapes the way we engage with music.
-              </p>
-              <a href="#">Read more →</a>
-            </div>
-          </article>
-
-          <article class="review-card">
-            <img src="assets/img/review-3.jpg" alt="Album cover" />
-            <div class="review-meta">
-              <h4>Why Some Records Age Better Than Others</h4>
-              <p>
-                A reflection on production, restraint, and why certain albums
-                never seem to sound dated.
-              </p>
-              <a href="#">Read more →</a>
-            </div>
-          </article>
+    <div class="header">
+        <div class="logo-container">
+            <h1 class="logo">
+                <span>MOJO</span>
+                <span>LISTS</span>
+            </h1>
         </div>
-      </div>
-    </section>
-  </main>
-
-  <!-- Footer -->
-  <footer class="site-footer">
-    <div class="container footer-inner">
-      <p>© 2026 MOJOLISTS</p>
-      <p class="footer-note">Built for people who still fuck the record.</p>
+        <div class="nav">
+            <a href="#reviews">Reviews</a>
+            <a href="#hardware">Hardware</a>
+        </div>
     </div>
-  </footer>
-
+    
+    <div class="content">
+        <div class="teaser-grid">
+            <div class="teaser">
+                <img src="img/review1.jpg" alt="Review Teaser 1">
+                <h3>Review Title 1</h3>
+                <p>Short description of the review content.</p>
+            </div>
+            <div class="teaser">
+                <img src="img/review2.jpg" alt="Review Teaser 2">
+                <h3>Review Title 2</h3>
+                <p>Short description of the review content.</p>
+            </div>
+            <div class="teaser">
+                <img src="img/review3.jpg" alt="Review Teaser 3">
+                <h3>Review Title 3</h3>
+                <p>Short description of the review content.</p>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
