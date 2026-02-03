@@ -1,94 +1,81 @@
 /* assets/css/main.css */
 
-html { 
-    font-size: 16px !important; 
+/* Chrome Height Fix */
+html, body {
+    height: 100%;
     -webkit-text-size-adjust: 100%;
 }
 
-body { 
-    font-family: 'Inter', sans-serif; 
-    background-color: #0f172a; 
-    color: #f8fafc;
-    margin: 0;
-}
-
-/* Header & Logo Styles */
 .hero-bg {
     position: relative;
     background-image: url('../img/lifestyle-bg.jpg');
     background-size: cover;
     background-position: center;
-    padding: 6rem 0; /* Taller header feel without top bar */
+    /* Forces Chrome to respect a minimum vertical space */
+    min-height: 400px; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
 }
 
+/* The Chrome-Friendly Blur Layer */
 .hero-bg::before {
     content: "";
     position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
+    inset: 0; /* fills the whole header */
     background: linear-gradient(to bottom, rgba(15, 23, 42, 0.4), rgba(15, 23, 42, 0.9));
-    backdrop-filter: blur(3px);
-    -webkit-backdrop-filter: blur(3px);
+    /* Moving blur here prevents Chrome from collapsing the parent height */
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    z-index: 1;
 }
 
 .hero-content {
     position: relative;
-    z-index: 10;
+    z-index: 10; /* Keeps text above the blur layer */
+    width: 100%;
 }
 
-/* Stylish, Less Bold Logo */
+/* Stylish Logo - Stylish and refined */
 .logo {
     font-family: 'Playfair Display', serif;
-    font-weight: 400; /* Lighter weight for style */
-    font-size: 5rem;
-    letter-spacing: -1px;
+    font-weight: 400;
+    font-size: clamp(3rem, 10vw, 5rem); /* Responsive size that won't break */
+    letter-spacing: -2px;
     color: #ffffff;
+    line-height: 1;
 }
 
 .accent-red { color: #ef4444; }
 
 .tagline {
     font-family: 'Inter', sans-serif;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     text-transform: uppercase;
-    letter-spacing: 0.4em;
+    letter-spacing: 0.5em;
     color: #94a3b8;
-    margin-top: 1rem;
-    margin-bottom: 2rem;
+    margin: 1.5rem 0 2.5rem 0;
 }
 
-/* Integrated Navigation Links */
+/* Navigation inside the Hero */
+.hero-nav {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+}
+
 .hero-nav a {
-    color: #f8fafc;
+    color: #ffffff;
     text-decoration: none;
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     font-weight: 600;
     letter-spacing: 0.2em;
-    margin: 0 1.5rem;
     transition: color 0.3s ease;
 }
 
 .hero-nav a:hover {
-    color: #fbbf24; /* Gold on hover */
+    color: #fbbf24; /* Gold Hover */
 }
 
-/* Cards & Badges */
-.review-card {
-    background-color: #1e293b; 
-    border: 1px solid #334155; 
-    border-radius: 4px;
-    transition: all 0.4s ease;
-}
-
-.review-card:hover { 
-    border-color: #ef4444; 
-    box-shadow: 0 15px 30px -10px rgba(0, 0, 0, 0.5);
-}
-
-.badge-red { 
-    background-color: #ef4444; 
-    color: #fff; 
-    font-size: 0.65rem; 
-    font-weight: 800; 
-    padding: 3px 8px; 
-    text-transform: uppercase;
-}
+/* ... keep your card styles from before ... */
