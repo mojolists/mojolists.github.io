@@ -11,13 +11,13 @@ body {
     color: #f8fafc;
 }
 
-/* HIGH-CONTRAST HEADER */
+/* REINFORCED HEADER: Bold and High Contrast */
 .hero-bg {
     position: relative;
     background-image: url('../img/lifestyle-bg.jpg');
     background-size: cover;
     background-position: center;
-    min-height: 350px;
+    min-height: 380px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -28,8 +28,8 @@ body {
     content: "";
     position: absolute;
     inset: 0;
-    background: rgba(15, 23, 42, 0.85); /* Heavy overlay for text clarity */
-    backdrop-filter: blur(10px);
+    background: rgba(15, 23, 42, 0.88); /* Deep dark overlay for clarity */
+    backdrop-filter: blur(12px);
     z-index: 1;
 }
 
@@ -38,7 +38,7 @@ body {
 .logo {
     font-family: 'Playfair Display', serif;
     font-weight: 300;
-    font-size: clamp(3rem, 10vw, 5rem); 
+    font-size: clamp(3rem, 10vw, 5.5rem); 
     letter-spacing: -0.02em;
     color: #ffffff;
 }
@@ -46,26 +46,26 @@ body {
 .logo-lists { color: #ef4444; font-weight: 400; }
 
 .tagline {
-    font-size: 0.75rem;
+    font-size: 0.8rem;
     text-transform: uppercase;
-    letter-spacing: 0.6em;
-    color: #ffffff; /* Bright white */
-    font-weight: 700;
+    letter-spacing: 0.65em;
+    color: #ffffff; /* Maximum visibility */
+    font-weight: 800;
     margin: 1.5rem 0 2.5rem 0;
 }
 
 .hero-nav a {
     color: #ffffff;
     text-decoration: none;
-    font-size: 0.75rem;
-    font-weight: 700;
-    letter-spacing: 0.2em;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.25em;
     margin: 0 1.5rem;
 }
 
 .hero-nav a:hover { color: #ef4444; }
 
-/* TEASER CARDS: OPTION 3 + RED HIGHLIGHTS */
+/* TEASER CARDS: THE COMPLETE GRID */
 .review-card {
     background-color: #1e293b; 
     border: 1px solid #334155; 
@@ -74,7 +74,7 @@ body {
     flex-direction: column;
 }
 
-.review-card:hover { border-color: #ef4444; }
+.review-card:hover { border-color: #ef4444; transform: translateY(-2px); }
 
 .card-img {
     width: 100%;
@@ -82,21 +82,21 @@ body {
     object-fit: cover;
 }
 
-/* Light Serif Title */
+/* Light Serif Title (Your Pick) */
 .card-title {
     font-family: 'Playfair Display', serif;
     font-weight: 300; 
-    font-size: 1.85rem;
-    letter-spacing: 0.02em;
+    font-size: 1.9rem;
+    letter-spacing: 0.01em;
     color: #ffffff;
-    margin-bottom: 0.25rem;
+    margin-bottom: 0.2rem;
 }
 
-/* Red Highlighted Subtitle */
+/* Red Album/Artist Subtitle */
 .card-subtitle {
     color: #ef4444;
-    font-size: 0.7rem;
-    font-weight: 800;
+    font-size: 0.75rem;
+    font-weight: 900;
     text-transform: uppercase;
     letter-spacing: 0.2em;
     margin-bottom: 1.25rem;
@@ -105,7 +105,7 @@ body {
 .card-excerpt {
     color: #94a3b8;
     font-size: 0.9rem;
-    line-height: 1.6;
+    line-height: 1.65;
     margin-bottom: 2rem;
 }
 
