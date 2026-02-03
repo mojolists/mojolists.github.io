@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Neal Francis: Changes | MojoLists</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,300;0,700;1,300&family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,300;0,400;0,700;1,300&family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="../assets/css/main.css">
     <style>
@@ -18,43 +18,32 @@
             color: #ef4444; font-weight: 300;
         }
 
-        /* FIXED SIDE NAV ARROWS */
+        .brand-home { font-family: 'Playfair Display', serif; font-weight: 300; font-size: 1.75rem; color: #ffffff; }
+        .brand-home span { color: #ef4444; font-weight: 400; }
+
         .nav-arrow {
-            position: fixed;
-            top: 50%;
-            transform: translateY(-50%);
-            z-index: 50;
-            color: rgba(255, 255, 255, 0.2);
-            font-size: 3rem;
-            transition: all 0.3s ease;
-            padding: 20px;
-            text-decoration: none;
-            font-family: 'Inter', sans-serif;
-            font-weight: 100;
+            position: fixed; top: 50%; transform: translateY(-50%); z-index: 50;
+            color: rgba(255, 255, 255, 0.15); font-size: 3.5rem; transition: all 0.3s ease;
+            padding: 30px; font-family: 'Inter', sans-serif; font-weight: 100;
         }
         .nav-arrow:hover { color: #ef4444; background: rgba(30, 41, 59, 0.4); }
         .nav-left { left: 0; }
         .nav-right { right: 0; }
-
-        @media (max-width: 1024px) { .nav-arrow { display: none; } }
     </style>
 </head>
 <body class="bg-[#0f172a]">
 
-    <a href="#" class="nav-arrow nav-left" title="Previous Review">‹</a>
-    <a href="tommy-castro-devil-you-know.html" class="nav-arrow nav-right" title="Next Review">›</a>
+    <a href="#" class="nav-arrow nav-left">‹</a>
+    <a href="tommy-castro-devil-you-know.html" class="nav-arrow nav-right">›</a>
 
     <section class="relative h-[65vh] flex items-end pb-16 overflow-hidden">
         <img src="../assets/img/NealFrancis.jpg" class="absolute inset-0 w-full h-full object-cover opacity-30">
         <div class="absolute inset-0 bg-gradient-to-t from-[#0f172a] via-[#0f172a]/40 to-transparent"></div>
         
         <div class="relative z-10 max-w-5xl mx-auto px-6 w-full">
-            <nav class="mb-8">
-                <a href="../index.html" class="text-[10px] font-black tracking-[0.4em] text-slate-400 hover:text-red-500 transition-colors uppercase">
-                    ← Home / The Feed
-                </a>
+            <nav class="mb-12">
+                <a href="../index.html" class="brand-home">Mojo<span>Lists</span></a>
             </nav>
-
             <span class="text-red-500 font-black tracking-[0.4em] text-[10px] uppercase">Artist Spotlight</span>
             <h1 class="card-title text-6xl md:text-8xl mt-4 mb-2">Neal Francis</h1>
             <p class="text-xl md:text-3xl text-slate-300 font-light italic">Changes (2020)</p>
@@ -63,30 +52,24 @@
 
     <main class="max-w-5xl mx-auto px-6 py-16">
         <div class="flex flex-col lg:flex-row gap-20">
-            
             <div class="lg:w-2/3 article-body">
                 <p class="dropcap">Over the last few years, I slowly stopped writing and reviewing. I let the site go down and kept my thoughts to myself. I couldn’t get over the hump, I just couldn’t fight off whatever demons held me back from what I love.</p>
+                <p>Neal Francis’s new album <em>Changes</em> touched me, it was a hand reaching down into the murky depths of my malaise and giving me something I really wanted to share.</p>
                 
-                <p>Neal Francis’s new album <em>Changes</em> touched me, it was a hand reaching down into the murky depths of my malaise and giving me something I really wanted to share, something I wanted everyone to hear.</p>
-
-                <p>For Neal, this album is his own road back, from a life left behind for the dark sweetness of addiction and all the humbling horror it creates around you and for the ones you love. <em>How have I lived</em> comes across as a cry to a higher power and the rest of the album is an illustration of regret, anger and eventually rising above.</p>
-
                 <div class="my-14 p-1 bg-slate-800 rounded-sm">
                     <div class="aspect-video bg-black">
                         <iframe class="w-full h-full" src="https://www.youtube.com/embed/L3gJHWpd9n0" frameborder="0" allowfullscreen></iframe>
                     </div>
                 </div>
 
-                <p>Neal has serious keyboard skills and a rare gift for crafting earworm hooks. At one time or another I have had every damn song stuck in my head for at least a day.</p>
-                
                 <div class="mt-20 pt-10 border-t border-slate-800 flex justify-between items-center">
-                    <a href="#" class="text-[10px] font-bold tracking-widest text-slate-500 hover:text-red-500 uppercase">← Previous Review</a>
-                    <a href="tommy-castro-devil-you-know.html" class="text-[10px] font-bold tracking-widest text-slate-500 hover:text-red-500 uppercase">Next Review →</a>
+                    <a href="#" class="text-[10px] font-bold tracking-widest text-slate-500 hover:text-red-500 uppercase transition-colors">← Previous</a>
+                    <a href="tommy-castro-devil-you-know.html" class="text-[10px] font-bold tracking-widest text-slate-500 hover:text-red-500 uppercase transition-colors">Next Review →</a>
                 </div>
             </div>
 
             <aside class="lg:w-1/3">
-                <div class="sticky top-12 space-y-10">
+                <div class="sticky top-12">
                     <div class="bg-slate-900 border border-slate-800 p-6 shadow-xl">
                         <img src="../assets/img/NealFrancis.jpg" class="w-full mb-8 border border-slate-700 shadow-2xl">
                         <div class="space-y-6">
@@ -105,10 +88,5 @@
             </aside>
         </div>
     </main>
-
-    <footer class="py-20 bg-slate-950 border-t border-slate-900 text-center">
-        <p class="text-slate-600 text-[10px] tracking-[0.5em] uppercase">© 2026 MOJOLISTS | THE SOUL OF THE SOUND</p>
-    </footer>
-
 </body>
 </html>
