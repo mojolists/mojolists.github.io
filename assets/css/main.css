@@ -41,27 +41,24 @@ body {
     width: 100%;
 }
 
-/* Thinner, Elegant Logo */
 .logo {
     font-family: 'Playfair Display', serif;
-    font-style: normal;
-    font-weight: 300; /* Thinner weight */
+    font-weight: 300;
     font-size: clamp(2.5rem, 8vw, 4.5rem); 
-    letter-spacing: 0.02em; /* Added slight space for thin font clarity */
+    letter-spacing: 0.02em;
     color: #ffffff;
     line-height: 1;
 }
 
 .logo-lists {
     color: #ef4444;
-    font-weight: 400; /* Keeping 'Lists' slightly bolder so the red carries weight */
 }
 
 .tagline {
     font-family: 'Inter', sans-serif;
     font-size: 0.7rem;
     text-transform: uppercase;
-    letter-spacing: 0.6em; /* Spread this out more to match thin logo */
+    letter-spacing: 0.6em;
     color: #94a3b8;
     margin: 1.2rem 0 2rem 0;
 }
@@ -76,14 +73,19 @@ body {
     transition: color 0.3s ease;
 }
 
+/* Deeper, Darker Elegant Gold */
 .hero-nav a:hover {
-    color: #fbbf24;
+    color: #b8860b; 
 }
 
-/* Card Styles */
+/* Review Cards */
 .review-card {
     background-color: #1e293b; 
     border: 1px solid #334155; 
-    border-radius: 4px;
+    border-radius: 2px;
     transition: all 0.3s ease;
+}
+
+.review-card:hover {
+    border-color: #ef4444;
 }
