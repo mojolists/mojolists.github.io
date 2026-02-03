@@ -1,40 +1,74 @@
 /* assets/css/main.css */
 
-/* Custom Typography & Colors */
+/* Base Reset for Chrome */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body { 
-    font-family: 'Inter', sans-serif; 
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
     background-color: #0f172a; 
-    color: #f8fafc; 
+    color: #f8fafc;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
 }
 
 h1, h2, h3, h4 { 
     font-family: 'Playfair Display', serif; 
+    color: #ffffff;
 }
 
 .accent-gold { 
     color: #fbbf24; 
 }
 
+/* Card Styling */
 .bg-card { 
     background-color: #1e293b; 
     border: 1px solid #334155; 
+    border-radius: 0.75rem;
+    overflow: hidden;
 }
 
-/* Interaction Effects */
 .review-card {
-    transition: all 0.3s ease;
+    transition: transform 0.2s ease-in-out, border-color 0.2s ease-in-out;
+    display: flex;
+    flex-direction: column;
 }
 
 .review-card:hover { 
     transform: translateY(-4px); 
     border-color: #fbbf24; 
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+}
+
+/* Badge System */
+.badge-vinyl { 
+    background-color: #fbbf24; 
+    color: #000; 
+    font-size: 10px;
+    font-weight: 800;
+    padding: 4px 8px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+/* Ensure images don't overflow */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+.nav-link {
+    color: #94a3b8;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.875rem;
 }
 
 .nav-link:hover {
     color: #fbbf24;
 }
-
-/* Custom Utilities for Review Badges */
-.badge-vinyl { background-color: #fbbf24; color: #000; }
-.badge-hardware { background-color: #3b82f6; color: #fff; }
