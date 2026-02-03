@@ -12,7 +12,7 @@ body {
     color: #f8fafc;
 }
 
-/* Fixed Header: Higher contrast for readability */
+/* Header - High Contrast & Clear */
 .hero-bg {
     position: relative;
     background-image: url('../img/lifestyle-bg.jpg');
@@ -23,15 +23,13 @@ body {
     align-items: center;
     justify-content: center;
     padding: 2rem 0;
-    border-bottom: 1px solid #1e293b;
 }
 
-/* Darker overlay to make the white text pop */
 .hero-bg::before {
     content: "";
     position: absolute;
     inset: 0;
-    background: rgba(15, 23, 42, 0.75); 
+    background: rgba(15, 23, 42, 0.85); /* Darker for text clarity */
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
     z-index: 1;
@@ -51,34 +49,35 @@ body {
     line-height: 1;
 }
 
-.logo-lists { color: #ef4444; font-weight: 500; }
+.logo-lists { color: #ef4444; font-weight: 400; }
 
 .tagline {
     font-size: 0.75rem;
     text-transform: uppercase;
-    letter-spacing: 0.5em;
-    color: #cbd5e1; /* Lightened from slate-400 for visibility */
-    font-weight: 600;
+    letter-spacing: 0.6em;
+    color: #ffffff; /* Pure white for maximum visibility */
+    font-weight: 700;
     margin: 1.5rem 0 2.5rem 0;
+    opacity: 0.9;
 }
 
 .hero-nav a {
     color: #ffffff;
     text-decoration: none;
-    font-size: 0.7rem;
+    font-size: 0.75rem;
     font-weight: 700;
     letter-spacing: 0.2em;
     margin: 0 1.5rem;
     transition: color 0.3s ease;
 }
 
-.hero-nav a:hover { color: #b8860b; }
+.hero-nav a:hover { color: #ef4444; }
 
-/* REVIEWS GRID - "Option 3" Artistic Style */
+/* REVIEWS GRID */
 .review-card {
     background-color: #1e293b; 
     border: 1px solid #334155; 
-    transition: all 0.4s ease;
+    transition: all 0.3s ease;
     display: flex;
     flex-direction: column;
 }
@@ -91,36 +90,32 @@ body {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.8s cubic-bezier(0.2, 1, 0.3, 1);
 }
 
-.review-card:hover .card-img {
-    transform: scale(1.08);
-}
-
-/* Typography: Option 3 (Light Artistic Serif) */
+/* Typography Choice: Option 3 (Light Artistic Serif) */
 .card-title {
     font-family: 'Playfair Display', serif;
-    font-weight: 300;
-    font-size: 1.75rem;
-    letter-spacing: 0.03em;
+    font-weight: 300; /* This is the light look from Option 3 */
+    font-size: 1.85rem;
+    letter-spacing: 0.02em;
     color: #ffffff;
-    line-height: 1.2;
+    margin-bottom: 0.25rem;
 }
 
+/* Restored Red Highlights */
 .card-subtitle {
     color: #ef4444;
-    font-size: 0.65rem;
+    font-size: 0.7rem;
     font-weight: 800;
     text-transform: uppercase;
-    letter-spacing: 0.25em;
-    margin-bottom: 1rem;
+    letter-spacing: 0.2em;
+    margin-bottom: 1.25rem;
 }
 
 .card-excerpt {
     color: #94a3b8;
-    font-size: 0.875rem;
-    line-height: 1.7;
+    font-size: 0.9rem;
+    line-height: 1.6;
     margin-bottom: 2rem;
 }
 
