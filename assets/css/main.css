@@ -12,11 +12,12 @@ body {
     margin: 0;
 }
 
+/* Header - 25% Shorter & Top-Aligned */
 .hero-bg {
     position: relative;
     background-image: url('../img/lifestyle-bg.jpg');
     background-size: cover;
-    background-position: top center;
+    background-position: top center; /* Prevents chopping heads */
     min-height: 300px;
     display: flex;
     align-items: center;
@@ -41,6 +42,7 @@ body {
     width: 100%;
 }
 
+/* Elegant Thin Logo */
 .logo {
     font-family: 'Playfair Display', serif;
     font-weight: 300;
@@ -50,9 +52,7 @@ body {
     line-height: 1;
 }
 
-.logo-lists {
-    color: #ef4444;
-}
+.logo-lists { color: #ef4444; font-weight: 400; }
 
 .tagline {
     font-family: 'Inter', sans-serif;
@@ -60,9 +60,10 @@ body {
     text-transform: uppercase;
     letter-spacing: 0.6em;
     color: #94a3b8;
-    margin: 1.2rem 0 2rem 0;
+    margin: 1.2rem 0 2.5rem 0;
 }
 
+/* Nav with Dark Gold Hover */
 .hero-nav a {
     color: #ffffff;
     text-decoration: none;
@@ -73,19 +74,21 @@ body {
     transition: color 0.3s ease;
 }
 
-/* Deeper, Darker Elegant Gold */
 .hero-nav a:hover {
     color: #b8860b; 
 }
 
-/* Review Cards */
+/* Grid & Cards */
 .review-card {
     background-color: #1e293b; 
     border: 1px solid #334155; 
     border-radius: 2px;
-    transition: all 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    flex-direction: column;
 }
 
 .review-card:hover {
     border-color: #ef4444;
+    transform: translateY(-4px);
 }
