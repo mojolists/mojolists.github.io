@@ -1,6 +1,5 @@
 /* assets/css/main.css */
 
-/* Force Chrome to stop auto-scaling text based on OS settings */
 html { 
     font-size: 16px !important; 
     -webkit-text-size-adjust: 100%;
@@ -11,41 +10,72 @@ body {
     background-color: #0f172a; 
     color: #f8fafc;
     margin: 0;
-    padding: 0;
-    overflow-x: hidden; /* Prevent horizontal scrolling */
 }
 
-/* Hard constraint on Card size so they don't look "huge" */
+/* Header & Logo Styles */
+.logo-container {
+    padding: 2rem 0;
+}
+
+.tagline {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    letter-spacing: 0.15em;
+    color: #94a3b8;
+    margin-top: -0.5rem;
+}
+
+/* Red Accents */
+.accent-red { color: #ef4444; }
+.badge-red { 
+    background-color: #ef4444; 
+    color: #fff; 
+    font-size: 0.7rem; 
+    font-weight: 800; 
+    padding: 4px 10px; 
+    border-radius: 2px; 
+}
+
+/* Hero Background with Blur */
+.hero-bg {
+    position: relative;
+    background-image: url('../img/lifestyle-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+}
+
+/* This creates the "slightly unfocused" look without ruining the text clarity */
+.hero-bg::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(15, 23, 42, 0.7); /* Dark overlay to keep text readable */
+    backdrop-filter: blur(4px); /* The "unfocus" effect */
+    -webkit-backdrop-filter: blur(4px);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 10;
+}
+
+/* Cards */
 .review-card {
-    max-width: 400px; /* Prevents cards from becoming giant on wide screens */
+    max-width: 400px;
     margin: 0 auto;
     background-color: #1e293b; 
     border: 1px solid #334155; 
-    border-radius: 12px;
-    transition: transform 0.2s ease;
+    border-radius: 8px;
+    transition: all 0.3s ease;
 }
 
 .review-card:hover { 
     transform: translateY(-5px); 
-    border-color: #fbbf24; 
+    border-color: #ef4444; 
+    box-shadow: 0 10px 20px -10px rgba(239, 68, 68, 0.3);
 }
 
-/* Typography Scale Fixes */
-h1 { font-size: 3.5rem; line-height: 1.1; }
-h2 { font-size: 2rem; }
-h4 { font-size: 1.25rem; }
-
-.accent-gold { color: #fbbf24; }
-.badge-vinyl { 
-    background-color: #fbbf24; 
-    color: #000; 
-    font-size: 0.7rem; 
-    font-weight: 800; 
-    padding: 4px 10px; 
-    border-radius: 4px; 
-}
-
-/* Nav links */
 .nav-link {
     color: #94a3b8;
     text-decoration: none;
@@ -53,4 +83,4 @@ h4 { font-size: 1.25rem; }
     letter-spacing: 0.1em;
     font-weight: 600;
 }
-.nav-link:hover { color: #fbbf24; }
+.nav-link:hover { color: #ef4444; }
