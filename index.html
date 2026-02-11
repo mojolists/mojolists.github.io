@@ -4,22 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MojoLists | The Soul Of The Sound</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=Playfair+Display:wght@400;700&family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body { font-family: 'Inter', sans-serif; background-color: #0b1120; }
         .serif { font-family: 'Playfair Display', serif; }
+        .logo-font { font-family: 'Cormorant Garamond', serif; }
         
-        /* Matching the "Boxy" Card Style */
-        .review-card {
-            background-color: #161e2e;
-            border: 1px solid #1e293b; /* Slightly softer border for the wider layout */
-            transition: transform 0.2s ease-in-out;
+        /* The "Rich Gold" Color */
+        :root {
+            --mojo-gold: #c5a059;
+            --mojo-red: #ef4444;
         }
 
-        .review-card:hover {
-            border-color: #ef4444;
+        /* Nav Link Hover */
+        .nav-link { transition: color 0.3s ease; }
+        .nav-link:hover { color: var(--mojo-gold) !cimportant; }
+
+        /* Card Hover Logic */
+        .review-card {
+            background-color: #161e2e;
+            border: 1px solid #1e293b;
+            transition: all 0.3s ease;
+            cursor: pointer;
         }
+
+        /* When the card is hovered, change the specific text elements inside */
+        .review-card:hover .artist-title { color: var(--mojo-gold); }
+        .review-card:hover .album-subtitle { color: var(--mojo-gold); }
+        .review-card:hover { border-color: rgba(197, 160, 89, 0.3); }
 
         .img-container {
             background-color: #0f172a;
@@ -28,19 +41,23 @@
             align-items: center;
             justify-content: center;
             overflow: hidden;
+            border: 1px solid #1e293b;
         }
 
         .card-img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            transition: transform 0.5s ease;
         }
+        
+        .review-card:hover .card-img { transform: scale(1.05); }
     </style>
 </head>
 <body class="text-slate-400">
 
     <header class="pt-10 pb-6 text-center bg-[#0b1120]">
-        <h1 class="serif text-7xl text-white font-normal tracking-tight">
+        <h1 class="logo-font text-8xl text-white font-light tracking-tight">
             Mojo<span class="text-[#ef4444]">Lists</span>
         </h1>
         <p class="text-[10px] tracking-[0.7em] uppercase mt-2 text-slate-400 font-bold">
@@ -48,64 +65,63 @@
         </p>
         
         <nav class="flex justify-center gap-12 mt-8 text-[11px] font-black tracking-[0.25em] text-slate-500">
-            <a href="#" class="text-white hover:text-red-500 transition">THE FEED</a>
-            <a href="#" class="hover:text-white transition">HARDWARE</a>
-            <a href="#" class="hover:text-white transition">VINYL</a>
-            <a href="#" class="hover:text-white transition">ABOUT</a>
+            <a href="#" class="nav-link text-white">THE FEED</a>
+            <a href="#" class="nav-link uppercase">HARDWARE</a>
+            <a href="#" class="nav-link uppercase">VINYL</a>
+            <a href="#" class="nav-link uppercase">ABOUT</a>
         </nav>
     </header>
 
     <main class="max-w-[1400px] mx-auto px-8 py-10">
         
-        <div class="border-b border-slate-800/60 mb-10 flex items-center justify-between pb-2">
+        <div class="border-b border-slate-800/60 mb-10 pb-2">
             <h2 class="text-[10px] font-black uppercase tracking-[0.5em]">
                 Latest <span class="text-red-500">Reviews</span>
             </h2>
-            <div class="text-[9px] text-slate-600 font-bold uppercase tracking-widest">Sort: Recent</div>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
             
             <article class="review-card p-6">
-                <div class="img-container mb-6 border border-slate-800">
+                <div class="img-container mb-6">
                     <img src="./assets/img/neal-francis.jpg" alt="Neal Francis" class="card-img">
                 </div>
-                <h3 class="serif text-3xl text-white mb-1">Neal Francis</h3>
-                <p class="text-[10px] font-extrabold text-red-500 uppercase tracking-widest mb-4 italic">Changes</p>
-                <p class="text-sm leading-relaxed text-slate-400 mb-10 line-clamp-3">
+                <h3 class="serif text-3xl text-white mb-1 transition-colors duration-300 artist-title">Neal Francis</h3>
+                <p class="text-[10px] font-extrabold text-red-500 uppercase tracking-widest mb-4 italic transition-colors duration-300 album-subtitle">Changes</p>
+                <p class="text-sm leading-relaxed text-slate-400 mb-10">
                     Neal creates a solid funk and soul album that is as danceable as it is thought provoking.
                 </p>
-                <a href="#" class="text-[10px] font-black uppercase tracking-widest text-white border-b border-red-500/0 hover:border-red-500 transition pb-1">
+                <span class="text-[10px] font-black uppercase tracking-widest text-white border-b border-transparent hover:border-red-500 transition pb-1">
                     Read Review →
-                </a>
+                </span>
             </article>
 
             <article class="review-card p-6">
-                <div class="img-container mb-6 border border-slate-800">
+                <div class="img-container mb-6">
                     <img src="./assets/img/tdyk.jpg" alt="Tommy Castro" class="card-img">
                 </div>
-                <h3 class="serif text-3xl text-white mb-1">Tommy Castro</h3>
-                <p class="text-[10px] font-extrabold text-red-500 uppercase tracking-widest mb-4 italic">The Devil You Know</p>
-                <p class="text-sm leading-relaxed text-slate-400 mb-10 line-clamp-3">
+                <h3 class="serif text-3xl text-white mb-1 transition-colors duration-300 artist-title">Tommy Castro</h3>
+                <p class="text-[10px] font-extrabold text-red-500 uppercase tracking-widest mb-4 italic transition-colors duration-300 album-subtitle">The Devil You Know</p>
+                <p class="text-sm leading-relaxed text-slate-400 mb-10">
                     Tommy leaves no doubt that he belongs among the greatest bluesmen in the modern scene.
                 </p>
-                <a href="#" class="text-[10px] font-black uppercase tracking-widest text-white border-b border-red-500/0 hover:border-red-500 transition pb-1">
+                <span class="text-[10px] font-black uppercase tracking-widest text-white border-b border-transparent hover:border-red-500 transition pb-1">
                     Read Review →
-                </a>
+                </span>
             </article>
 
             <article class="review-card p-6">
-                <div class="img-container mb-6 border border-slate-800">
+                <div class="img-container mb-6">
                     <img src="./assets/img/nickoftime.jpg" alt="James Hunter" class="card-img">
                 </div>
-                <h3 class="serif text-3xl text-white mb-1">James Hunter Six</h3>
-                <p class="text-[10px] font-extrabold text-red-500 uppercase tracking-widest mb-4 italic">Nick Of Time</p>
-                <p class="text-sm leading-relaxed text-slate-400 mb-10 line-clamp-3">
+                <h3 class="serif text-3xl text-white mb-1 transition-colors duration-300 artist-title">James Hunter Six</h3>
+                <p class="text-[10px] font-extrabold text-red-500 uppercase tracking-widest mb-4 italic transition-colors duration-300 album-subtitle">Nick Of Time</p>
+                <p class="text-sm leading-relaxed text-slate-400 mb-10">
                     James immediately gained the super ability to take any retro soul sound and improve it.
                 </p>
-                <a href="#" class="text-[10px] font-black uppercase tracking-widest text-white border-b border-red-500/0 hover:border-red-500 transition pb-1">
+                <span class="text-[10px] font-black uppercase tracking-widest text-white border-b border-transparent hover:border-red-500 transition pb-1">
                     Read Review →
-                </a>
+                </span>
             </article>
 
         </div>
