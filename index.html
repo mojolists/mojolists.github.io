@@ -3,118 +3,109 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MojoLists Mockup</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <title>MojoLists | The Soul Of The Sound</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        body { font-family: 'Inter', sans-serif; background-color: #020617; }
+        body { font-family: 'Inter', sans-serif; background-color: #0b1120; }
         .serif { font-family: 'Playfair Display', serif; }
         
-        /* Smooth image zoom effect */
-        .card-zoom:hover img { transform: scale(1.08); }
-        
-        /* Custom underline animation for links */
-        .nav-link {
-            position: relative;
-            transition: color 0.3s;
+        /* Matching your card style from the screenshot */
+        .review-card {
+            background-color: #161e2e;
+            border: 1px solid #2d3748;
         }
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            width: 0; height: 1px;
-            bottom: -4px; left: 0;
-            background-color: #ef4444;
-            transition: width 0.3s;
+
+        .img-container {
+            background-color: #0f172a;
+            aspect-ratio: 1 / 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
         }
-        .nav-link:hover::after { width: 100%; }
-        
-        /* Subtle glow for the brand */
-        .logo-text {
-            letter-spacing: -0.05em;
-            background: linear-gradient(to bottom, #fff 40%, #94a3b8);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+
+        .card-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
     </style>
 </head>
-<body class="text-slate-300">
+<body class="text-slate-400">
 
-    <nav class="flex items-center justify-between px-8 py-6 border-b border-slate-900">
-        <div class="text-2xl font-black uppercase tracking-tighter text-white">
-            Mojo<span class="text-red-600">Lists</span>
-        </div>
-        <div class="hidden md:flex gap-8 text-[10px] font-bold tracking-[0.3em] text-slate-500">
-            <a href="#" class="nav-link text-white">THE FEED</a>
-            <a href="#" class="nav-link">HARDWARE</a>
-            <a href="#" class="nav-link">VINYL</a>
-            <a href="#" class="nav-link">ABOUT</a>
-        </div>
-        <button class="text-xs font-bold border border-slate-700 px-4 py-2 hover:bg-white hover:text-black transition">
-            SUBSCRIBE
-        </button>
-    </nav>
-
-    <section class="max-w-7xl mx-auto px-6 py-24 text-center">
-        <h2 class="text-slate-500 text-xs font-black uppercase tracking-[0.8em] mb-4">Established 2026</h2>
-        <h1 class="serif text-6xl md:text-8xl text-white italic mb-6">The Soul of the Sound.</h1>
-        <p class="max-w-2xl mx-auto text-slate-400 leading-relaxed text-lg font-light">
-            Curated reviews and deep dives into the gear and the grooves that define the analog experience.
+    <header class="pt-12 pb-8 text-center bg-[#0b1120]">
+        <h1 class="serif text-6xl text-white font-normal tracking-tight">
+            Mojo<span class="text-[#ef4444]">Lists</span>
+        </h1>
+        <p class="text-[10px] tracking-[0.6em] uppercase mt-3 text-slate-300 font-bold">
+            The Soul Of The Sound
         </p>
-    </section>
+        
+        <nav class="flex justify-center gap-10 mt-8 text-[11px] font-bold tracking-[0.2em] text-slate-400">
+            <a href="#" class="text-white hover:text-red-500 transition">THE FEED</a>
+            <a href="#" class="hover:text-white transition">HARDWARE</a>
+            <a href="#" class="hover:text-white transition">VINYL</a>
+            <a href="#" class="hover:text-white transition">ABOUT</a>
+        </nav>
+    </header>
 
-    <main class="max-w-7xl mx-auto px-6 pb-32">
-        <div class="flex items-center justify-between mb-12 border-b border-slate-800 pb-4">
-            <h3 class="text-xs font-bold text-red-500 uppercase tracking-widest">Featured Reviews</h3>
-            <span class="text-[10px] text-slate-600 uppercase tracking-widest">3 Articles</span>
+    <main class="max-w-6xl mx-auto px-6 py-12">
+        <div class="border-b border-slate-800 mb-10 pb-2">
+            <h2 class="text-[10px] font-black uppercase tracking-[0.4em]">
+                Latest <span class="text-red-500">Reviews</span>
+            </h2>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-16">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
             
-            <article class="group cursor-pointer">
-                <div class="card-zoom relative aspect-[4/5] overflow-hidden bg-slate-900 mb-6">
-                    <img src="https://images.unsplash.com/photo-1614613535308-eb5fbd3d2c17?auto=format&fit=crop&q=80&w=1000" 
-                         class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-all duration-700">
-                    <div class="absolute top-4 left-4 bg-red-600 text-white text-[9px] font-black px-2 py-1 tracking-tighter">
-                        SOUL / FUNK
-                    </div>
+            <article class="review-card p-5">
+                <div class="img-container mb-6">
+                    <img src="./assets/img/neal-francis.jpg" alt="Neal Francis" class="card-img">
                 </div>
-                <h4 class="serif text-3xl text-white mb-2 group-hover:text-red-500 transition">Neal Francis</h4>
-                <p class="text-slate-500 text-sm font-bold uppercase tracking-widest mb-4">Changes (2021)</p>
-                <p class="text-slate-400 text-sm leading-relaxed">A masterclass in modern funk and soul that feels unearthed from 1972. The analog warmth here is undeniable.</p>
+                <h3 class="serif text-2xl text-white mb-1">Neal Francis</h3>
+                <p class="text-[10px] font-bold text-red-500 uppercase tracking-widest mb-4">Changes</p>
+                <p class="text-xs leading-relaxed text-slate-400 mb-8">
+                    Neal creates a solid funk and soul album that is as danceable as it is thought provoking.
+                </p>
+                <a href="#" class="text-[9px] font-black uppercase tracking-widest text-white hover:text-red-500 transition">
+                    Read Review →
+                </a>
             </article>
 
-            <article class="group cursor-pointer">
-                <div class="card-zoom relative aspect-[4/5] overflow-hidden bg-slate-900 mb-6">
-                    <img src="https://images.unsplash.com/photo-1539375665275-f9ad415bd9ac?auto=format&fit=crop&q=80&w=1000" 
-                         class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-all duration-700">
-                    <div class="absolute top-4 left-4 bg-slate-800 text-white text-[9px] font-black px-2 py-1 tracking-tighter">
-                        BLUES
-                    </div>
+            <article class="review-card p-5">
+                <div class="img-container mb-6">
+                    <img src="./assets/img/tdyk.jpg" alt="Tommy Castro" class="card-img">
                 </div>
-                <h4 class="serif text-3xl text-white mb-2 group-hover:text-red-500 transition">Tommy Castro</h4>
-                <p class="text-slate-500 text-sm font-bold uppercase tracking-widest mb-4">The Devil You Know</p>
-                <p class="text-slate-400 text-sm leading-relaxed">Hard-hitting blues with a gritty edge. Castro's guitar work remains as sharp as ever on this standout record.</p>
+                <h3 class="serif text-2xl text-white mb-1">Tommy Castro</h3>
+                <p class="text-[10px] font-bold text-red-500 uppercase tracking-widest mb-4">The Devil You Know</p>
+                <p class="text-xs leading-relaxed text-slate-400 mb-8">
+                    Tommy leaves no doubt that he belongs among the greatest bluesmen.
+                </p>
+                <a href="#" class="text-[9px] font-black uppercase tracking-widest text-white hover:text-red-500 transition">
+                    Read Review →
+                </a>
             </article>
 
-            <article class="group cursor-pointer">
-                <div class="card-zoom relative aspect-[4/5] overflow-hidden bg-slate-900 mb-6">
-                    <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&q=80&w=1000" 
-                         class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-all duration-700">
-                    <div class="absolute top-4 left-4 bg-slate-800 text-white text-[9px] font-black px-2 py-1 tracking-tighter">
-                        RETRO SOUL
-                    </div>
+            <article class="review-card p-5">
+                <div class="img-container mb-6">
+                    <img src="./assets/img/nickoftime.jpg" alt="James Hunter" class="card-img">
                 </div>
-                <h4 class="serif text-3xl text-white mb-2 group-hover:text-red-500 transition">James Hunter Six</h4>
-                <p class="text-slate-500 text-sm font-bold uppercase tracking-widest mb-4">Nick of Time</p>
-                <p class="text-slate-400 text-sm leading-relaxed">Smooth, rhythmic, and undeniably British. Hunter captures the essence of early 60s R&B flawlessly.</p>
+                <h3 class="serif text-2xl text-white mb-1">James Hunter Six</h3>
+                <p class="text-[10px] font-bold text-red-500 uppercase tracking-widest mb-4">Nick Of Time</p>
+                <p class="text-xs leading-relaxed text-slate-400 mb-8">
+                    James immediately gained the super ability to take any retro soul sound and improve it.
+                </p>
+                <a href="#" class="text-[9px] font-black uppercase tracking-widest text-white hover:text-red-500 transition">
+                    Read Review →
+                </a>
             </article>
 
         </div>
     </main>
 
-    <footer class="py-20 border-t border-slate-900 text-center">
-        <div class="text-xl font-black uppercase tracking-tighter text-white mb-4">MojoLists</div>
-        <p class="text-slate-600 text-[10px] tracking-[0.5em] uppercase">© 2026 THE SOUL OF THE SOUND</p>
+    <footer class="py-16 text-center border-t border-slate-900 mt-20">
+        <p class="text-[9px] tracking-[0.5em] text-slate-600 uppercase">© 2026 MOJOLISTS | THE SOUL OF THE SOUND</p>
     </footer>
 
 </body>
