@@ -11,17 +11,27 @@
         .serif { font-family: 'Playfair Display', serif; }
         .logo-font { font-family: 'Cormorant Garamond', serif; }
         
-        /* The "Rich Gold" Color */
         :root {
             --mojo-gold: #c5a059;
             --mojo-red: #ef4444;
         }
 
-        /* Nav Link Hover */
-        .nav-link { transition: color 0.3s ease; }
-        .nav-link:hover { color: var(--mojo-gold) !cimportant; }
+        /* 1. FIXED NAV HOVER: Specifically targeting the links to turn Gold */
+        .nav-link { 
+            transition: color 0.4s ease; 
+            color: #94a3b8; /* Default slate-400 color */
+        }
+        
+        .nav-link:hover { 
+            color: var(--mojo-gold) !important; 
+        }
 
-        /* Card Hover Logic */
+        /* Active state for "THE FEED" */
+        .nav-active {
+            color: #ffffff;
+        }
+
+        /* Card Hover Styles */
         .review-card {
             background-color: #161e2e;
             border: 1px solid #1e293b;
@@ -29,10 +39,9 @@
             cursor: pointer;
         }
 
-        /* When the card is hovered, change the specific text elements inside */
         .review-card:hover .artist-title { color: var(--mojo-gold); }
         .review-card:hover .album-subtitle { color: var(--mojo-gold); }
-        .review-card:hover { border-color: rgba(197, 160, 89, 0.3); }
+        .review-card:hover { border-color: rgba(197, 160, 89, 0.4); }
 
         .img-container {
             background-color: #0f172a;
@@ -48,10 +57,10 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.5s ease;
+            transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
         }
         
-        .review-card:hover .card-img { transform: scale(1.05); }
+        .review-card:hover .card-img { transform: scale(1.08); }
     </style>
 </head>
 <body class="text-slate-400">
@@ -64,11 +73,11 @@
             The Soul Of The Sound
         </p>
         
-        <nav class="flex justify-center gap-12 mt-8 text-[11px] font-black tracking-[0.25em] text-slate-500">
-            <a href="#" class="nav-link text-white">THE FEED</a>
-            <a href="#" class="nav-link uppercase">HARDWARE</a>
-            <a href="#" class="nav-link uppercase">VINYL</a>
-            <a href="#" class="nav-link uppercase">ABOUT</a>
+        <nav class="flex justify-center gap-12 mt-8 text-[11px] font-black tracking-[0.25em]">
+            <a href="#" class="nav-link nav-active">THE FEED</a>
+            <a href="#" class="nav-link">HARDWARE</a>
+            <a href="#" class="nav-link">VINYL</a>
+            <a href="#" class="nav-link">ABOUT</a>
         </nav>
     </header>
 
