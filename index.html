@@ -16,22 +16,10 @@
             --mojo-red: #ef4444;
         }
 
-        /* 1. FIXED NAV HOVER: Specifically targeting the links to turn Gold */
-        .nav-link { 
-            transition: color 0.4s ease; 
-            color: #94a3b8; /* Default slate-400 color */
-        }
-        
-        .nav-link:hover { 
-            color: var(--mojo-gold) !important; 
-        }
+        .nav-link { transition: color 0.4s ease; color: #94a3b8; }
+        .nav-link:hover { color: var(--mojo-gold) !important; }
+        .nav-active { color: #ffffff; }
 
-        /* Active state for "THE FEED" */
-        .nav-active {
-            color: #ffffff;
-        }
-
-        /* Card Hover Styles */
         .review-card {
             background-color: #161e2e;
             border: 1px solid #1e293b;
@@ -61,6 +49,17 @@
         }
         
         .review-card:hover .card-img { transform: scale(1.08); }
+
+        /* Label styling for the top row */
+        .row-label {
+            font-size: 10px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0.3em;
+            color: var(--mojo-red);
+            margin-bottom: 12px;
+            display: block;
+        }
     </style>
 </head>
 <body class="text-slate-400">
@@ -85,60 +84,15 @@
         
         <div class="border-b border-slate-800/60 mb-10 pb-2">
             <h2 class="text-[10px] font-black uppercase tracking-[0.5em]">
-                Latest <span class="text-red-500">Reviews</span>
+                The <span class="text-red-500">Collection</span>
             </h2>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-x-8 gap-y-16">
             
-            <article class="review-card p-6">
-                <div class="img-container mb-6">
-                    <img src="./assets/img/neal-francis.jpg" alt="Neal Francis" class="card-img">
-                </div>
-                <h3 class="serif text-3xl text-white mb-1 transition-colors duration-300 artist-title">Neal Francis</h3>
-                <p class="text-[10px] font-extrabold text-red-500 uppercase tracking-widest mb-4 italic transition-colors duration-300 album-subtitle">Changes</p>
-                <p class="text-sm leading-relaxed text-slate-400 mb-10">
-                    Neal creates a solid funk and soul album that is as danceable as it is thought provoking.
-                </p>
-                <span class="text-[10px] font-black uppercase tracking-widest text-white border-b border-transparent hover:border-red-500 transition pb-1">
-                    Read Review →
-                </span>
-            </article>
-
-            <article class="review-card p-6">
-                <div class="img-container mb-6">
-                    <img src="./assets/img/tdyk.jpg" alt="Tommy Castro" class="card-img">
-                </div>
-                <h3 class="serif text-3xl text-white mb-1 transition-colors duration-300 artist-title">Tommy Castro</h3>
-                <p class="text-[10px] font-extrabold text-red-500 uppercase tracking-widest mb-4 italic transition-colors duration-300 album-subtitle">The Devil You Know</p>
-                <p class="text-sm leading-relaxed text-slate-400 mb-10">
-                    Tommy leaves no doubt that he belongs among the greatest bluesmen in the modern scene.
-                </p>
-                <span class="text-[10px] font-black uppercase tracking-widest text-white border-b border-transparent hover:border-red-500 transition pb-1">
-                    Read Review →
-                </span>
-            </article>
-
-            <article class="review-card p-6">
-                <div class="img-container mb-6">
-                    <img src="./assets/img/nickoftime.jpg" alt="James Hunter" class="card-img">
-                </div>
-                <h3 class="serif text-3xl text-white mb-1 transition-colors duration-300 artist-title">James Hunter Six</h3>
-                <p class="text-[10px] font-extrabold text-red-500 uppercase tracking-widest mb-4 italic transition-colors duration-300 album-subtitle">Nick Of Time</p>
-                <p class="text-sm leading-relaxed text-slate-400 mb-10">
-                    James immediately gained the super ability to take any retro soul sound and improve it.
-                </p>
-                <span class="text-[10px] font-black uppercase tracking-widest text-white border-b border-transparent hover:border-red-500 transition pb-1">
-                    Read Review →
-                </span>
-            </article>
-
-        </div>
-    </main>
-
-    <footer class="py-20 text-center border-t border-slate-900 mt-20">
-        <p class="text-[9px] tracking-[0.6em] text-slate-700 uppercase font-bold">© 2026 MOJOLISTS | THE SOUL OF THE SOUND</p>
-    </footer>
-
-</body>
-</html>
+            <div>
+                <span class="row-label">Latest Review</span>
+                <article class="review-card p-6">
+                    <div class="img-container mb-6"><img src="./assets/img/neal-francis.jpg" class="card-img"></div>
+                    <h3 class="serif text-3xl text-white mb-1 transition-colors artist-title">Neal Francis</h3>
+                    <p class="text-[10px] font-extrabold text-red-500 uppercase tracking-wid
