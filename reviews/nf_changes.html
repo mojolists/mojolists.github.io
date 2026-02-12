@@ -16,6 +16,22 @@
             --mojo-red: #ef4444;
         }
 
+        /* Full Screen Background - No Header Obstruction */
+        .hero-bg-zoom {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-image: url('../assets/img/nfchanges.jpg');
+            background-size: 120%; /* Extra Zoom */
+            background-position: center 10%;
+            background-repeat: no-repeat;
+            filter: blur(10px);
+            opacity: 0.35;
+            z-index: -1;
+        }
+
         .review-content p {
             margin-bottom: 1.8rem;
             line-height: 1.9;
@@ -40,58 +56,60 @@
             color: white;
         }
 
-        .back-link:hover { color: var(--mojo-gold); transition: color 0.3s ease; }
-
-        /* Full Screen Zoomed Background */
-        .hero-bg-zoom {
-            position: fixed; /* Free to expand as wide/tall as the viewport */
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background-image: url('../assets/img/nfchanges.jpg');
-            background-size: 115%; /* Zoomed in */
-            background-position: center 20%;
-            background-repeat: no-repeat;
-            filter: blur(12px);
-            opacity: 0.4;
-            z-index: -1; /* Placed behind everything */
-            pointer-events: none;
+        /* Sidebar Artist Navigation */
+        .nav-artist {
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+            position: fixed;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 10px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0.3em;
+            color: var(--mojo-red);
+            transition: color 0.3s ease;
+            z-index: 100;
         }
-        
-        /* Fixed 400x400 Album Art */
+        .nav-artist:hover { color: var(--mojo-gold); }
+
+        .nav-prev { left: 2rem; transform: translateY(-50%) rotate(180deg); }
+        .nav-next { right: 2rem; }
+
         .album-art-container {
             width: 400px;
             height: 400px;
             overflow: hidden;
-            border: 1px solid #1e293b;
+            border: 1px solid rgba(255,255,255,0.1);
             padding: 12px;
-            background-color: #161e2e;
+            background-color: rgba(22, 30, 46, 0.8);
         }
-        .album-art-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
+        .album-art-container img { width: 100%; height: 100%; object-fit: cover; }
     </style>
 </head>
 <body>
 
     <div class="hero-bg-zoom"></div>
 
-    <nav class="flex justify-between items-center px-8 py-6 border-b border-slate-900 bg-[#0b1120]/90 backdrop-blur-md sticky top-0 z-50">
-        <a href="../index.html" class="logo-font text-3xl text-white font-light tracking-tight">
+    <div class="absolute top-0 left-0 w-full p-8 z-50 flex justify-between items-center pointer-events-none">
+        <a href="../index.html" class="logo-font text-4xl text-white font-light tracking-tight pointer-events-auto">
             Mojo<span class="text-[#ef4444]">Lists</span>
         </a>
-        <a href="../index.html" class="back-link text-[10px] font-black tracking-widest text-white uppercase">
-            ← Back to the Feed
+        <a href="../index.html" class="pointer-events-auto text-[10px] font-black tracking-widest text-white uppercase hover:text-[#c5a059] transition-colors">
+            Close Review ×
         </a>
-    </nav>
+    </div>
 
-    <main class="max-w-[1400px] mx-auto px-8 py-16 relative z-10">
+    <a href="jonny_lang.html" class="nav-artist nav-prev">
+        ← Previous: Jonny Lang
+    </a>
+    <a href="trombone_shorty.html" class="nav-artist nav-next">
+        Next: Trombone Shorty →
+    </a>
+
+    <main class="max-w-[1400px] mx-auto px-8 pt-48 pb-16 relative z-10">
         
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 mb-24 items-start">
-            
             <div class="lg:col-span-6 flex justify-center lg:justify-start">
                 <div class="album-art-container shadow-2xl">
                     <img src="../assets/img/nfchanges.jpg" alt="Neal Francis - Changes">
@@ -103,7 +121,7 @@
                 <h1 class="serif text-7xl text-white leading-tight mb-2">Neal Francis: Changes</h1>
                 <p class="serif italic text-4xl text-slate-400 mb-12">By The Collector</p>
                 
-                <div class="grid grid-cols-2 gap-y-10 gap-x-6 border-t border-slate-800 pt-10">
+                <div class="grid grid-cols-2 gap-y-10 gap-x-6 border-t border-white/10 pt-10">
                     <div>
                         <span class="spec-label">Published</span>
                         <p class="text-white text-sm font-bold mt-1 uppercase">April 7, 2020</p>
@@ -117,7 +135,7 @@
         </div>
 
         <div class="max-w-3xl mx-auto">
-            <article class="review-content text-slate-300">
+            <article class="review-content text-slate-100">
                 <p class="dropcap">
                     Over the last few years, I slowly stopped writing and reviewing. I let the site go down and kept my thoughts to myself. I couldn’t get over the hump, I just couldn’t fight off whatever demons held me back from what I love. Neal Francis’s new album “Changes” touched me, it was a hand reaching down into the murky depths of my malaise and giving me something I really wanted to share, something I wanted everyone to hear.
                 </p>
@@ -134,7 +152,7 @@
                     Focusing his New Orleans gained superpowers to create flourishes of Dr. John, Allen Toussaint and Leon Russell, Neal creates a solid funk and soul album that is as danceable as it is thought provoking. It is a journey, with <i>Lauren</i> being a literal trip you can follow on a map that includes a cruise up I-35 from San Antonio to Austin. The bopping rhythm carries you along while hiding the darkness within the lyrics.
                 </p>
 
-                <div class="my-16 aspect-video bg-black flex items-center justify-center border border-slate-800 shadow-xl">
+                <div class="my-16 aspect-video bg-black flex items-center justify-center border border-white/10 shadow-xl">
                     <iframe width="100%" height="100%" src="https://www.youtube.com/embed/L3gJHWpd9n0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
 
@@ -150,8 +168,8 @@
 
     </main>
 
-    <footer class="py-24 text-center border-t border-slate-900 mt-24 relative z-10">
-        <p class="text-[10px] tracking-[0.6em] text-slate-700 uppercase font-bold">© 2026 MOJOLISTS | THE SOUL OF THE SOUND</p>
+    <footer class="py-24 text-center border-t border-white/10 mt-24 relative z-10">
+        <p class="text-[10px] tracking-[0.6em] text-slate-500 uppercase font-bold">© 2026 MOJOLISTS | THE SOUL OF THE SOUND</p>
     </footer>
 
 </body>
