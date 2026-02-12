@@ -3,74 +3,134 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Review: Neal Francis | MojoLists</title>
-    <link rel="stylesheet" href="/assets/css/main.css">
-<script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
+    <title>Review: Neal Francis - Changes | MojoLists</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #0b1120; color: #94a3b8; }
+        .serif { font-family: 'Playfair Display', serif; }
+        .logo-font { font-family: 'Cormorant Garamond', serif; }
+        
+        :root {
+            --mojo-gold: #c5a059;
+            --mojo-red: #ef4444;
+        }
+
+        .review-content p {
+            margin-bottom: 1.8rem;
+            line-height: 1.9;
+            font-size: 1.125rem;
+        }
+
+        .spec-label {
+            font-size: 10px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0.25em;
+            color: var(--mojo-gold);
+        }
+
+        .dropcap::first-letter {
+            font-family: 'Playfair Display', serif;
+            float: left;
+            font-size: 5.5rem;
+            line-height: 0.7;
+            padding-top: 8px;
+            padding-right: 12px;
+            color: white;
+        }
+
+        /* Gold hover for back link */
+        .back-link:hover { color: var(--mojo-gold); }
+    </style>
 </head>
 <body>
 
-<header class="site-header">
-    <div class="header-content">
-        <a href="/" class="logo">Mojo<span>Lists</span></a>
-        <div class="tagline">The Soul Of The Sound</div>
-    </div>
-</header>
+    <nav class="flex justify-between items-center px-8 py-6 border-b border-slate-900 bg-[#0b1120] sticky top-0 z-50">
+        <a href="index.html" class="logo-font text-3xl text-white font-light tracking-tight">
+            Mojo<span class="text-[#ef4444]">Lists</span>
+        </a>
+        <a href="index.html" class="back-link text-[10px] font-black tracking-widest text-white transition-colors duration-300 uppercase">
+            ← Back to the Feed
+        </a>
+    </nav>
 
-<nav class="rig-strip">
-    <a href="/">The Feed</a>
-    <a href="/hardware.html">Hardware</a>
-    <a href="/vinyl.html">Vinyl</a>
-</nav>
+    <main class="max-w-[1400px] mx-auto px-8 py-16">
+        
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 mb-24 items-start">
+            
+            <div class="lg:col-span-7">
+                <div class="border border-slate-800 p-3 bg-[#161e2e] shadow-2xl">
+                    <img src="./assets/img/NealFrancis.jpg" alt="Neal Francis - Changes" class="w-full h-auto">
+                </div>
+            </div>
 
-<main class="review-wrapper">
-    <header class="review-article-header">
-        <span class="review-meta">Music Review // Funk & Soul</span>
-        <h1>Changes</h1>
-        <p style="font-style: italic; color: #888; font-size: 1.2rem;">Neal Francis</p>
-    </header>
-
-    <section class="review-body">
-        <div class="main-review-image" style="margin-bottom: 40px; border: 1px solid #222; line-height: 0;">
-            <img src="/assets/img/NealFrancis.jpg" alt="Neal Francis - Changes" style="width: 100%; height: auto;">
+            <div class="lg:col-span-5 pt-4">
+                <h2 class="text-red-500 font-black uppercase tracking-[0.5em] text-[10px] mb-6">Review Entry #001</h2>
+                <h1 class="serif text-7xl text-white leading-tight mb-2">Changes</h1>
+                <p class="serif italic text-4xl text-slate-400 mb-12">Neal Francis</p>
+                
+                <div class="grid grid-cols-2 gap-y-10 gap-x-6 border-t border-slate-800 pt-10">
+                    <div>
+                        <span class="spec-label">The Pressing</span>
+                        <p class="text-white text-sm font-bold mt-1 uppercase">180g Black Vinyl</p>
+                    </div>
+                    <div>
+                        <span class="spec-label">Label</span>
+                        <p class="text-white text-sm font-bold mt-1 uppercase">Karma Chief</p>
+                    </div>
+                    <div>
+                        <span class="spec-label">Reference Gear</span>
+                        <p class="text-slate-300 text-xs leading-relaxed mt-2">
+                            Technics SL-1200MK7<br>
+                            Ortofon 2M Blue<br>
+                            Yamaha A-S801
+                        </p>
+                    </div>
+                    <div>
+                        <span class="spec-label">Key Tracks</span>
+                        <p class="text-white text-xs font-bold mt-2">
+                            1. Changes<br>
+                            2. She's a Winner<br>
+                            3. Problems
+                        </p>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <p>Over the last few years, I slowly stopped writing and reviewing. I let the site go down and kept my thoughts to myself. I couldn't get over the hump, I just couldn't fight off whatever demons held me back from what I love. Neal Francis's new album "Changes" touched me, it was a hand reaching down into the murky depths of my malaise and giving me something I really wanted to share, something I wanted everyone to hear.</p>
+        <div class="max-w-3xl mx-auto">
+            <article class="review-content text-slate-300">
+                <p class="dropcap">
+                    Neal Francis creates a solid funk and soul album that is as danceable as it is thought provoking. From the moment the needle drops on the title track, you are transported to a world where the Wurlitzer is king and the groove is the only law. 
+                </p>
+                
+                <p>
+                    The recording quality on *Changes* is remarkably consistent. Unlike many modern "throwback" records that lean too heavily on artificial lo-fi effects, Francis and his team at Colemine Records have captured a genuine sense of space and analog saturation. The drums snap with a dry, 1970s studio crispness, while the bass sits deep and round in the mix.
+                </p>
 
-        <h2>The Journey Back</h2>
-        <p>For Neal, this album is his own road back, from a life left behind for the dark sweetness of addiction and all the humbling horror it creates around you and for the ones you love. "How have I lived" comes across as a cry to a higher power and the rest of the album is an illustration of regret, anger and eventually rising above.</p>
+                <blockquote class="serif italic text-3xl text-white border-l-4 border-red-500 pl-8 my-16 py-2">
+                    "A masterclass in analog warmth that proves the soul of the sound is alive and well in the 21st century."
+                </blockquote>
 
-        <h2>New Orleans Influence</h2>
-        <p>Focusing his New Orleans gained superpowers to create flourishes of Dr. John, Allen Toussaint and Leon Russell, Neal creates a solid funk and soul album that is as danceable as it is thought provoking. It is a journey, with "Lauren" being a literal trip you can follow on a map that includes a cruise up I-35 from San Antonio to Austin. The bopping rhythm carries you along while hiding the darkness within the lyrics.</p>
+                <p>
+                    On the B-side, the record slows down just enough to let the songwriting breathe. Tracks like "Problems" showcase a vulnerability that balances out the high-energy funk of the opening. For the audiophile, this pressing is impressively quiet, allowing the subtle nuances of the keyboard textures to shine through during the quieter passages.
+                </p>
 
-        <h2>The Musicianship</h2>
-        <p>Neal has serious keyboard skills and a rare gift for crafting earworm hooks. At one time or another I have had every damn song stuck in my head for at least a day. From the hopeful promise of "This Time" to the gospel lyrics of "Put It in his Hands" you can share the energy Neal feels with his reborn life and the steady ground of each moment's sober success under his feet. The success of simply moving forward in a life, with his gift still intact.</p>
-
-        <h2>A Personal Impact</h2>
-        <p>It took me six months to finally begin rebuilding my love affair with sharing my musical thoughts, finds and ideas with the world again. It is in no small part due to the overpowering desire to try and share this masterpiece with everyone who would listen. Give "Changes" a spin and see if it doesn't help you resurrect an old passion. Just make sure you have that New Orleans funk as the soundtrack for whatever you do next.</p>
-    </section>
-
-    <aside class="sidebar-sticky">
-        <div class="spec-card">
-            <h3>Record Specs</h3>
-            <div class="spec-row"><span class="spec-label">Artist</span><span class="spec-value">Neal Francis</span></div>
-            <div class="spec-row"><span class="spec-label">Label</span><span class="spec-value">Colemine</span></div>
-            <div class="spec-row"><span class="spec-label">Year</span><span class="spec-value">2019</span></div>
+                <div class="mt-24 p-12 bg-[#161e2e] border border-slate-800 text-center rounded-sm">
+                    <span class="spec-label text-red-500">Mojo Verdict</span>
+                    <h3 class="serif text-5xl text-white mt-6 mb-4">Essential</h3>
+                    <div class="h-[1px] w-24 bg-slate-700 mx-auto mb-6"></div>
+                    <p class="text-white font-black tracking-[0.3em] text-sm uppercase">Score: 9.2 / 10</p>
+                </div>
+            </article>
         </div>
 
-        <div class="spec-card">
-            <h3>Test Rig</h3>
-            <div class="spec-row"><span class="spec-label">Deck</span><span class="spec-value">Technics SL-1200</span></div>
-            <div class="spec-row"><span class="spec-label">Cart</span><span class="spec-value">Ortofon Blue</span></div>
-            <div class="spec-row"><span class="spec-label">Amps</span><span class="spec-value">PrimaLuna Evo</span></div>
-        </div>
+    </main>
 
-        <div class="mojo-score">
-            <div class="score-label">Mojo Rating</div>
-            <div class="score-number">9.3</div>
-        </div>
-    </aside>
-</main>
+    <footer class="py-24 text-center border-t border-slate-900 mt-24">
+        <p class="text-[10px] tracking-[0.6em] text-slate-700 uppercase font-bold">© 2026 MOJOLISTS | THE SOUL OF THE SOUND</p>
+    </footer>
 
-<footer>&copy; 2026 MOJOLISTS</footer>
 </body>
 </html>
