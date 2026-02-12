@@ -22,12 +22,13 @@
             font-size: 1.125rem;
         }
 
+        /* Fixed Red for labels - Gold is hover only */
         .spec-label {
             font-size: 10px;
             font-weight: 900;
             text-transform: uppercase;
             letter-spacing: 0.25em;
-            color: var(--mojo-gold);
+            color: var(--mojo-red);
         }
 
         .dropcap::first-letter {
@@ -40,14 +41,8 @@
             color: white;
         }
 
-        .back-link:hover { color: var(--mojo-gold); }
-
-        /* Fix for Hero Image positioning */
-        .hero-image-container {
-            background-size: cover;
-            background-position: center;
-            border: 1px solid #1e293b;
-        }
+        /* Gold mouse-over strictly */
+        .back-link:hover { color: var(--mojo-gold); transition: color 0.3s ease; }
     </style>
 </head>
 <body>
@@ -56,7 +51,7 @@
         <a href="index.html" class="logo-font text-3xl text-white font-light tracking-tight">
             Mojo<span class="text-[#ef4444]">Lists</span>
         </a>
-        <a href="index.html" class="back-link text-[10px] font-black tracking-widest text-white transition-colors duration-300 uppercase">
+        <a href="index.html" class="back-link text-[10px] font-black tracking-widest text-white uppercase">
             ← Back to the Feed
         </a>
     </nav>
@@ -66,8 +61,9 @@
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 mb-24 items-start">
             
             <div class="lg:col-span-7">
-                <div class="hero-image-container p-3 bg-[#161e2e] shadow-2xl min-h-[500px]" 
-                     style="background-image: url('./assets/img/changes.jpg');">
+                <div class="border border-slate-800 p-3 bg-[#161e2e] shadow-2xl relative overflow-hidden">
+                    <img src="./assets/img/nealfrancis.jpg" alt="Neal Francis - Changes" class="w-full h-auto relative z-10">
+                    <div class="absolute inset-0 opacity-10 scale-150 blur-2xl" style="background: url('./assets/img/nealfrancis.jpg') center/cover;"></div>
                 </div>
             </div>
 
@@ -108,20 +104,20 @@
                 </p>
 
                 <p>
-                    This brings me to the changes that I, as a collector can no longer dismiss or ignore. Physical media is going the way of the horse and cart. With the exception of vinyl, which is enjoying a splendid resurgence, movies and music will soon only be available as a computer file. On one hand, I do enjoy the seemingly limitless tagging options digital files provide my OCD brain but, I can’t touch it, I can’t read the liner notes, or place them in a great line on a wall so all that see it are in awe.
-                </p>
-
-                <p>
-                    In truth I adjusted to digital long ago, in fact way ahead of most folks, but where I differ is in how I went digital. I still buy a CD when it is available because it just feels right. Then I rip it with Exact Audio Copy (EAC) into FLAC format for my home systems and then a second MP3 copy for iPod use in our cars. The physical disc goes onto a shelf where it will reside for the rest of its life.
+                    This brings me to the changes that I, as a collector can no longer dismiss or ignore. Physical media is going the way of the horse and cart. With the exception of vinyl, which is enjoying a splendid resurgence, movies and music will soon only be available as a computer file.
                 </p>
 
                 <blockquote class="serif italic text-3xl text-white border-l-4 border-red-500 pl-8 my-16 py-2">
                     "I don’t see the death of vinyl any time soon and it will be the last physical format for music in the future."
                 </blockquote>
 
-                <div class="my-16 aspect-video bg-black flex items-center justify-center border border-slate-800">
+                <div class="my-16 aspect-video bg-black flex items-center justify-center border border-slate-800 shadow-xl">
                     <iframe width="100%" height="100%" src="https://www.youtube.com/embed/mtM5WyCavd8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
+
+                <p>
+                    In truth I adjusted to digital long ago, in fact way ahead of most folks, but where I differ is in how I went digital. I still buy a CD when it is available because it just feels right. Then I rip it with Exact Audio Copy (EAC) into FLAC format for my home systems and then a second MP3 copy for iPod use in our cars. The physical disc goes onto a shelf where it will reside for the rest of its life.
+                </p>
 
                 <p>
                     On rare occasions, I do pull them down and flip through the liner notes again but in truth, I have moved fully into the digital age. It is convenient and I believe when proper care in selecting and setting up equipment is taken, it sounds as good or better than CD for a long list of reasons I will have to save for another time. FLAC is my chosen lossless format and it seems to be the closest to becoming the standard.
@@ -132,7 +128,7 @@
                 </p>
 
                 <p>
-                    I do have an extensive SACD and DVD-Audio collection as well but have not ripped the hi-res content to digital, I actually drop them into the OPPO when I want to hear them. These formats are on their last legs and have been for years. The advent of Hi-Res audio downloads from places like HDTracks.com has caught my attention but the selection is just too slim right now. It is making headway though and I have found myself purchasing more all the time.
+                    I do have an extensive SACD and DVD-Audio collection as well but have not ripped the hi-res content to digital, I actually drop them into the OPPO when I want to hear them. These formats are on their last legs and have been for years. The advent of Hi-Res audio downloads from places like HDTracks.com has caught my attention but the selection is just too slim right now.
                 </p>
 
                 <p>
