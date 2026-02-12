@@ -24,7 +24,7 @@
             width: 100vw;
             height: 100vh;
             background-image: url('../assets/img/nfchanges.jpg');
-            background-size: 130%; 
+            background-size: 135%; 
             background-position: center 15%;
             background-repeat: no-repeat;
             filter: blur(10px);
@@ -63,7 +63,7 @@
             position: fixed;
             top: 50%;
             transform: translateY(-50%);
-            font-size: 14px; /* Increased from 11px */
+            font-size: 18px; /* Larger as requested */
             font-weight: 900;
             text-transform: uppercase;
             letter-spacing: 0.35em;
@@ -76,6 +76,7 @@
         .nav-prev { left: 1.5rem; transform: translateY(-50%) rotate(180deg); }
         .nav-next { right: 1.5rem; }
 
+        /* Fixed 400x400 Album Art */
         .album-art-container {
             width: 400px;
             height: 400px;
@@ -101,29 +102,30 @@
     </div>
 
     <a href="fight-for-your-soul.html" class="nav-artist nav-prev">
-        ← Previous: Jonny Lang
+        ← Jonny Lang
     </a>
     <a href="say-that-to-say-this.html" class="nav-artist nav-next">
-        Next: Trombone Shorty →
+        Trombone Shorty →
     </a>
 
-    <main class="max-w-[1400px] mx-auto px-8 pt-56 pb-16 relative z-10">
+    <main class="max-w-[1200px] mx-auto px-8 pt-56 pb-16 relative z-10">
         
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 mb-24 items-start">
-            <div class="lg:col-span-6 flex justify-center lg:justify-start">
+        <div class="flex flex-col lg:flex-row gap-8 mb-24 items-start justify-center lg:justify-start">
+            
+            <div class="flex-shrink-0">
                 <div class="album-art-container shadow-2xl">
                     <img src="../assets/img/nfchanges.jpg" alt="Neal Francis - Changes">
                 </div>
             </div>
 
-            <div class="lg:col-span-6 pt-4">
-                <h2 class="text-white font-black uppercase tracking-[0.5em] text-[10px] mb-6 opacity-60">Music Review</h2>
+            <div class="pt-4 max-w-xl">
+                <h2 class="text-white font-black uppercase tracking-[0.5em] text-[10px] mb-4 opacity-60">Music Review</h2>
                 
                 <h1 class="serif text-7xl text-white leading-tight mb-8">
-                    Neal Francis: <span class="text-[#ef4444]">Changes</span>
+                    Neal Francis: <br><span class="text-[#ef4444]">Changes</span>
                 </h1>
                 
-                <div class="grid grid-cols-2 gap-y-10 gap-x-6 border-t border-white/10 pt-10">
+                <div class="grid grid-cols-2 gap-y-10 gap-x-12 border-t border-white/10 pt-10">
                     <div>
                         <span class="spec-label">Published</span>
                         <p class="text-white text-sm font-bold mt-1 uppercase">April 7, 2020</p>
@@ -157,3 +159,22 @@
                 <div class="my-16 aspect-video bg-black flex items-center justify-center border border-white/10 shadow-xl">
                     <iframe width="100%" height="100%" src="https://www.youtube.com/embed/L3gJHWpd9n0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
+
+                <p>
+                    Neal has serious keyboard skills and a rare gift for crafting earworm hooks. At one time or another I have had every damn song stuck in my head for at least a day. From the hopeful promise of <i>This Time</i> to the gospel lyrics of <i>Put It in his Hands</i> you can share the energy Neal feels with his reborn life and the steady ground of each moment’s sober success under his feet. The success of simply moving forward in a life, with his gift still intact.
+                </p>
+
+                <p>
+                    It took me six months to finally begin rebuilding my love affair with sharing my musical thoughts, finds and ideas with the world again. It is in no small part due to the overpowering desire to try and share this masterpiece with everyone who would listen. Give “Changes” a spin and see if it doesn’t help you resurrect an old passion. Just make sure you have that New Orleans funk as the soundtrack for whatever you do next.
+                </p>
+            </article>
+        </div>
+
+    </main>
+
+    <footer class="py-24 text-center border-t border-white/10 mt-24 relative z-10">
+        <p class="text-[10px] tracking-[0.6em] text-slate-500 uppercase font-bold">© 2026 MOJOLISTS | THE SOUL OF THE SOUND</p>
+    </footer>
+
+</body>
+</html>
