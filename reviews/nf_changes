@@ -3,83 +3,166 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Neal Francis: Changes | MojoLists Review</title>
-    <link rel="stylesheet" href="/assets/css/main.css">
+    <title>Review: Changes In Collecting Media | MojoLists</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #0b1120; color: #94a3b8; margin: 0; padding: 0; }
+        .serif { font-family: 'Playfair Display', serif; }
+        .logo-font { font-family: 'Cormorant Garamond', serif; }
+        
+        :root {
+            --mojo-gold: #c5a059;
+            --mojo-red: #ef4444;
+        }
+
+        .review-content p {
+            margin-bottom: 1.8rem;
+            line-height: 1.9;
+            font-size: 1.125rem;
+        }
+
+        .spec-label {
+            font-size: 10px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0.25em;
+            color: var(--mojo-red);
+        }
+
+        .dropcap::first-letter {
+            font-family: 'Playfair Display', serif;
+            float: left;
+            font-size: 5.5rem;
+            line-height: 0.7;
+            padding-top: 8px;
+            padding-right: 12px;
+            color: white;
+        }
+
+        .back-link:hover { color: var(--mojo-gold); transition: color 0.3s ease; }
+
+        .bg-blur-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('./assets/img/nfchanges.jpg');
+            background-size: cover;
+            background-position: center;
+            filter: blur(60px);
+            opacity: 0.15;
+            z-index: 0;
+        }
+    </style>
 </head>
 <body>
 
-<header class="site-header">
-    <div class="header-content">
-        <a href="/" class="logo">Mojo<span>Lists</span></a>
-        <div class="tagline">The Soul Of The Sound</div>
-    </div>
-</header>
+    <nav class="flex justify-between items-center px-8 py-6 border-b border-slate-900 bg-[#0b1120] sticky top-0 z-50">
+        <a href="index.html" class="logo-font text-3xl text-white font-light tracking-tight">
+            Mojo<span class="text-[#ef4444]">Lists</span>
+        </a>
+        <a href="index.html" class="back-link text-[10px] font-black tracking-widest text-white uppercase">
+            ← Back to the Feed
+        </a>
+    </nav>
 
-<nav class="rig-strip">
-    <a href="/">The Feed</a>
-    <a href="/hardware.html">Hardware</a>
-    <a href="/vinyl.html">Vinyl</a>
-</nav>
-
-<main class="review-wrapper">
-    <article class="review-article-header">
-        <h1 class="review-title-xl">Changes</h1>
-        <h2 class="review-artist-sub">Neal Francis</h2>
-    </article>
-
-    <section class="review-body">
-        <img src="/assets/img/NealFrancis.jpg" alt="Neal Francis - Changes">
+    <main class="max-w-[1400px] mx-auto px-8 py-16 relative">
         
-        <p>
-            Neal Francis arrived on the scene like a ghost from a 1970s session at Muscle Shoals. 
-            His debut album, *Changes*, is a masterclass in analog soul and funk, blending 
-            honky-tonk piano with a rhythmic tightness that feels both vintage and vital.
-        </p>
+        <div class="bg-blur-container"></div>
 
-        <p>
-            Recorded to tape, the warmth of the production is immediate. From the opening 
-            stabs of the title track, you're transported to a world of Wurlitzers and 
-            gritty basslines. It's the kind of record that demands to be heard on vinyl, 
-            through a pair of honest speakers.
-        </p>
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 mb-24 items-start relative z-10">
+            
+            <div class="lg:col-span-7">
+                <div class="border border-slate-800 p-3 bg-[#161e2e] shadow-2xl">
+                    <img src="./assets/img/nfchanges.jpg" alt="Neal Francis - Changes" class="w-full h-auto block">
+                </div>
+            </div>
 
-        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
-        
-        <p>
-            Ultimately, Francis isn't just mimicking the greats; he's adding to the lineage. 
-            *Changes* is a bold statement of intent from an artist who clearly knows 
-            where the soul is buried.
-        </p>
-    </section>
-
-    <aside class="sidebar-sticky">
-        <div class="big-mojo-score">
-            <span class="score-label">MOJO SCORE</span>
-            <span class="score-val">8.5</span>
+            <div class="lg:col-span-5 pt-4">
+                <h2 class="text-red-500 font-black uppercase tracking-[0.5em] text-[10px] mb-6">Editorial #001</h2>
+                <h1 class="serif text-7xl text-white leading-tight mb-2">Changes In Collecting Media</h1>
+                <p class="serif italic text-4xl text-slate-400 mb-12">By The Collector</p>
+                
+                <div class="grid grid-cols-2 gap-y-10 gap-x-6 border-t border-slate-800 pt-10">
+                    <div>
+                        <span class="spec-label">Published</span>
+                        <p class="text-white text-sm font-bold mt-1 uppercase">Sept 19, 2013</p>
+                    </div>
+                    <div>
+                        <span class="spec-label">Category</span>
+                        <p class="text-white text-sm font-bold mt-1 uppercase">Music Reviews</p>
+                    </div>
+                    <div>
+                        <span class="spec-label">Reference Formats</span>
+                        <p class="text-slate-300 text-xs leading-relaxed mt-2 uppercase">
+                            Vinyl<br>
+                            CD (FLAC / EAC)<br>
+                            Hi-Res Audio
+                        </p>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <div class="data-block">
-            <div class="data-row">
-                <strong>Label</strong>
-                <span>Karma Chief</span>
-            </div>
-            <div class="data-row">
-                <strong>Released</strong>
-                <span>2019</span>
-            </div>
-            <div class="data-row">
-                <strong>Genre</strong>
-                <span>Soul / Funk</span>
-            </div>
-            <div class="data-row">
-                <strong>Format</strong>
-                <span>LP, Digital</span>
-            </div>
-        </div>
-    </aside>
-</main>
+        <div class="max-w-3xl mx-auto relative z-10">
+            <article class="review-content text-slate-300">
+                <p class="dropcap">
+                    I am a collector of media, I love arranging it in whatever form it takes.  I plan occasional weekends around pulling my movie or music collection down and performing the collector’s ritual.  I dust each case off carefully, verify it indeed holds a disc, that it is the correct disc, that all potential disc are there and that they are safe in their plastic confines.  I then check the computer database to verify everything is in order and continue to the next disc.  I do this over and over again, sometimes thousands of times before I begin placing them back into the order I have deemed appropriate this time around.  
+                </p>
 
-<footer>&copy; 2026 MOJOLISTS</footer>
+                <p>
+                    The act of holding, cataloging, and organizing media is an important part of my world, it relaxes me, it is one part of my life that I alone control.  This brings me to the changes that I, as a collector can no longer dismiss or ignore.  Physical media is going the way of the horse and cart.  With the exception of vinyl, which is enjoying a splendid resurgence, movies and music will soon only be available as a computer file.  On one hand, I do enjoy the seemingly limitless tagging options digital files provide my OCD brain but, I can’t touch it, I can’t read the liner notes, or place them in a great line on a wall so all that see it are in awe. 
+                </p>
+
+                <blockquote class="serif italic text-3xl text-white border-l-4 border-red-500 pl-8 my-16 py-2">
+                    "I don’t see the death of vinyl any time soon and it will be the last physical format for music in the future." 
+                </blockquote>
+
+                <div class="my-16 aspect-video bg-black flex items-center justify-center border border-slate-800 shadow-xl">
+                    <iframe width="100%" height="100%" src="https://www.youtube.com/embed/mtM5WyCavd8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+
+                <p>
+                    In truth I adjusted to digital long ago, in fact way ahead of most folks, but where I differ is in how I went digital.  I still buy a CD when it is available because it just feels right.  Then I rip it with Exact Audio Copy (EAC) into FLAC format for my home systems and then a second MP3 copy for iPod use in our cars.  The physical disc goes onto a shelf where it will reside for the rest of its life. 
+                </p>
+
+                <p>
+                    On rare occasions, I do pull them down and flip through the liner notes again but in truth, I have moved fully into the digital age.  It is convenient and I believe when proper care in selecting and setting up equipment is taken, it sounds as good or better than CD for a long list of reasons I will have to save for another time.  FLAC is my chosen lossless format and it seems to be the closest to becoming the standard. 
+                </p>
+
+                <p>
+                    The limited capability MP3 provides has been the biggest reason I haven’t just moved to downloading everything.  I find it fine for my car or background listening but it falls apart in critical listening situations.  The exception to this is any current pop music or massively over compressed rock being perpetrated on the public today. 
+                </p>
+
+                <p>
+                    I do have an extensive SACD and DVD-Audio collection as well but have not ripped the hi-res content to digital, I actually drop them into the OPPO when I want to hear them.  These formats are on their last legs and have been for years.  The advent of Hi-Res audio downloads from places like HDTracks.com has caught my attention but the selection is just too slim right now.  It is making headway though and I have found myself purchasing more all the time. 
+                </p>
+
+                <p>
+                    One thing I dislike about HDTracks however is their lack of a coming soon database.  I order my music online so I pre-order many discs only to find it available on HDTracks the same day.  They lost the sale and I feel cheated, implement a full releasing soon list HDTracks! 
+                </p>
+
+                <p>
+                    One last word on Hi-Res, I do hear a difference on my main systems and I don’t care if you do or not.  That said, I can only pray that the musicians going back to the superior, old analog recording methods have an impact on the people who buy music.  I know caring about sound quality places me in a small group of people but the huge gains made around vinyl give me hope. 
+                </p>
+
+                <p>
+                    The same can be said of the tremendous growth in the high-end headphone market, someone cares and I hope the labels are listening.  There is money to be made in high quality recordings and with no media format wars to dilute sales it seems like a no brainer. 
+                </p>
+
+                <p>
+                    Perhaps I will be saved from the future by a technology almost as old as recorded sound itself.  How has digital music changed your music habits? 
+                </p>
+            </article>
+        </div>
+
+    </main>
+
+    <footer class="py-24 text-center border-t border-slate-900 mt-24">
+        <p class="text-[10px] tracking-[0.6em] text-slate-700 uppercase font-bold">© 2026 MOJOLISTS | THE SOUL OF THE SOUND</p>
+    </footer>
 
 </body>
 </html>
