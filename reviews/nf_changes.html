@@ -54,12 +54,83 @@
             height: 400px !important;
             object-fit: cover;
         }
+
+        /* SIDE NAVIGATION */
+        .side-nav {
+            position: fixed;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 100;
+            color: var(--mojo-red);
+            text-decoration: none;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0.4em;
+            font-size: 0.7rem;
+            writing-mode: vertical-rl;
+            transition: color 0.3s ease;
+        }
+
+        .side-nav:hover { color: var(--mojo-gold); }
+        .nav-left { left: 2rem; }
+        .nav-right { right: 2rem; }
+
+        /* ALL-GOLD ACTION BUTTONS */
+        .btn-container {
+            text-align: center;
+            margin: 3rem 0;
+            width: 100%;
+        }
+
+        .action-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            max-width: 420px;
+            padding: 1.25rem;
+            background-color: transparent;
+            color: var(--mojo-gold);
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0.25em;
+            font-size: 0.75rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            border: 1px solid var(--mojo-gold);
+        }
+
+        .action-btn:hover {
+            background-color: var(--mojo-gold);
+            color: #0b1120;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px -10px rgba(197, 160, 89, 0.5);
+        }
+
+        /* MOJO RATING: Border Removed */
+        .mojo-rating-box {
+            width: 100%;
+            padding: 1rem 0;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
     </style>
 </head>
 <body>
 
     <div class="hero-bg-zoom"></div>
     <div class="overlay-gradient"></div>
+
+    <a href="jonny-lang-fight-for-my-soul.html" class="side-nav nav-left">
+        JONNY LANG <span class="inline-block mt-4 text-lg">↓</span>
+    </a>
+
+    <a href="say-that-to-say-this.html" class="side-nav nav-right">
+        TROMBONE SHORTY <span class="inline-block mt-4 text-lg">↑</span>
+    </a>
 
     <nav class="relative z-50 px-8 py-8 flex justify-between items-center max-w-7xl mx-auto">
         <a href="index.html" class="logo-font text-3xl tracking-tighter text-white font-light">MOJO<span class="text-red-500 font-normal">LISTS</span></a>
@@ -87,11 +158,11 @@
                             <div class="space-y-3">
                                 <div class="flex justify-between text-xs">
                                     <span class="text-slate-400">Label</span>
-                                    <span class="text-white">ATO Records</span>
+                                    <span class="text-white">Karma Chief / Colemine</span>
                                 </div>
                                 <div class="flex justify-between text-xs">
                                     <span class="text-slate-400">Released</span>
-                                    <span class="text-white">2021</span>
+                                    <span class="text-white">2019</span>
                                 </div>
                                 <div class="flex justify-between text-xs">
                                     <span class="text-slate-400">Format</span>
@@ -99,7 +170,11 @@
                                 </div>
                             </div>
                         </div>
-                        <a href="#" class="block w-full py-4 bg-red-600 hover:bg-red-700 text-white text-center text-[10px] font-black uppercase tracking-[0.2em] transition-all">Get The Wax</a>
+                        
+                        <div class="mojo-rating-box">
+                            <span class="text-[9px] font-bold text-slate-500 uppercase tracking-widest mb-1">Mojo Rating</span>
+                            <span class="text-3xl font-black text-white italic serif">9.5<span class="text-base text-slate-600 not-italic font-normal"> / 10</span></span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -108,27 +183,36 @@
         <div class="max-w-5xl mx-auto px-6 py-16">
             <article class="article-content lg:ml-12 lg:pr-24">
                 <p>Over the last few years, I slowly stopped writing and reviewing. I let the site go down and kept my thoughts to myself. I couldn’t get over the hump, I just couldn’t fight off whatever demons held me back from what I love. Neal Francis’s new album “Changes” touched me, it was a hand reaching down into the murky depths of my malaise and giving me something I really wanted to share, something I wanted everyone to hear.</p>
-                
-                <p>For Neal, this album is his own road back, from a life left behind for the dark sweetness of addiction and all the humbling horror it creates around you and for the ones you love. <i>How have I lived</i> comes across as a cry to a higher power and the rest of the album is an illustration of regret, anger and eventually rising above.</p>
-                
-                <p>Focusing his New Orleans gained superpowers to create flourishes of Dr. John, Allen Toussaint and Leon Russell, Neal creates a solid funk and soul album that is as danceable as it is thought provoking. It is a journey, with <i>Lauren</i> being a literal trip you can follow on a map that includes a cruise up I-35 from San Antonio to Austin. The bopping rhythm carries you along while hiding the darkness within the lyrics.</p>
 
                 <p class="text-2xl text-white font-light italic serif leading-relaxed mb-12 border-l-4 border-red-500 pl-8">
                     "Neal Francis has serious keyboard skills and a rare gift for crafting earworm hooks. He has resurrected a classic sound for a new era."
                 </p>
-                
+
+                <p>For Neal, this album is his own road back, from a life left behind for the dark sweetness of addiction and all the humbling horror it creates around you and for the ones you love. <i>How have I lived</i> comes across as a cry to a higher power and the rest of the album is an illustration of regret, anger and eventually rising above.</p>
+
+                <div class="btn-container">
+                    <a href="https://nealfrancis.bandcamp.com/album/changes-2" target="_blank" class="action-btn">
+                        Buy Full Album on Bandcamp
+                    </a>
+                </div>
+
+                <p>Focusing his New Orleans gained superpowers to create flourishes of Dr. John, Allen Toussaint and Leon Russell, Neal creates a solid funk and soul album that is as danceable as it is thought provoking. It is a journey, with <i>Lauren</i> being a literal trip you can follow on a map that includes a cruise up I-35 from San Antonio to Austin. The bopping rhythm carries you along while hiding the darkness within the lyrics.</p>
+
+                <div class="btn-container">
+                    <a href="https://music.apple.com/us/album/changes/1471193295" target="_blank" class="action-btn">
+                        Stream Full Album on Apple Music
+                    </a>
+                </div>
+
                 <p>Neal has serious keyboard skills and a rare gift for crafting earworm hooks. At one time or another I have had every damn song stuck in my head for at least a day. From the hopeful promise of <i>This Time</i> to the gospel lyrics of <i>Put It in his Hands</i> you can share the energy Neal feels with his reborn life and the steady ground of each moment’s sober success under his feet. The success of simply moving forward in a life, with his gift still intact.</p>
 
-                <div class="my-16 aspect-video glass-card p-1">
-                    <iframe class="w-full h-full" src="https://www.youtube.com/embed/L3gJHWpd9n0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <div class="btn-container">
+                    <a href="https://www.youtube.com/watch?v=hf4kC90iUao" target="_blank" class="action-btn">
+                        Watch Official Title Video
+                    </a>
                 </div>
 
                 <p>It took me six months to finally begin rebuilding my love affair with sharing my musical thoughts, finds and ideas with the world again. It is in no small part due to the overpowering desire to try and share this masterpiece with everyone who would listen. Give “Changes” a spin and see if it doesn’t help you resurrect an old passion. Just make sure you have that New Orleans funk as the soundtrack for whatever you do next.</p>
-
-                <div class="mt-24 pt-12 border-t border-white/10 flex justify-between items-center">
-                    <a href="sharon-jones-gtpwtw.html" class="text-[10px] font-bold tracking-[0.3em] text-slate-500 hover:text-white transition-colors uppercase">← Previous Review</a>
-                    <a href="say-that-to-say-this.html" class="text-[10px] font-bold tracking-[0.3em] text-slate-500 hover:text-white transition-colors uppercase">Next Review →</a>
-                </div>
             </article>
         </div>
     </main>
