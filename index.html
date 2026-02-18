@@ -17,12 +17,20 @@
         .motto-text { font-family: 'Cormorant Garamond', serif; font-style: italic; }
         .text-mojo-red { color: #e11d48; }
         .gold-accent { color: #d4af37; }
+        .nav-link { font-size: 10px; text-transform: uppercase; letter-spacing: 0.2em; font-weight: 600; color: #94a3b8; transition: color 0.3s ease; }
+        .nav-link:hover { color: #d4af37; }
     </style>
 </head>
 <body class="antialiased">
 
     <header class="py-16 text-center">
-        <h1 class="serif text-7xl tracking-widest uppercase mb-4">MojoLists</h1>
+        <nav class="mb-8 space-x-8">
+            <a href="/" class="nav-link">The Reviews</a>
+            <a href="/about" class="nav-link">About</a>
+        </nav>
+        <a href="/" class="inline-block hover:opacity-90 transition-opacity">
+            <h1 class="serif text-7xl tracking-widest uppercase mb-4">MojoLists</h1>
+        </a>
         <p class="motto-text text-2xl">
             <span class="text-white">The Favored Home of Crate Diggers,</span> 
             <span class="text-mojo-red">Vinyl Flippers and Music Lovers</span>
