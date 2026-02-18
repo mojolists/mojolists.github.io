@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MojoLists Automation Engine</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;1,600&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body { background-color: #0b1120; color: #f8fafc; font-family: 'Inter', sans-serif; }
+        .serif { font-family: 'Cormorant Garamond', serif; }
+        .glass-panel { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; }
+        input, textarea { background: #1e293b !important; border: 1px solid #334155 !important; color: white !important; border-radius: 4px; padding: 10px; width: 100%; outline: none; }
+        input:focus, textarea:focus { border-color: #d4af37 !important; }
+        .gold-accent { color: #d4af37; }
+        .slider { -webkit-appearance: none; width: 100%; height: 6px; background: #334155; outline: none; border-radius: 5px; margin: 15px 0; }
+        .slider::-webkit-slider-thumb { -webkit-appearance: none; width: 20px; height: 20px; background: #d4af37; cursor: pointer; border-radius: 50%; box-shadow: 0 0 10px rgba(212, 175, 55, 0.5); }
+    </style>
+</head>
+<body class="p-8 lg:p-16">
+
+    <div class="max-w-5xl mx-auto">
+        <header class="mb-12 border-b border-slate-800 pb-8 text-center">
+            <h1 class="serif text-5xl gold-accent italic">MojoLists Automation</h1>
+            <p class="text-slate-400 mt-2 uppercase tracking-[0.2em] text-xs">Content Deployment & Grid Cascade Tool</p>
+        </header>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+            <div class="glass-panel p-8 space-y-5">
+                <h3 class="serif text-2xl border-b border-slate-800 pb-2 mb-4">1. Album Content</h3>
+                <div>
+                    <label class="text-[10px] uppercase tracking-widest text-slate-500 font-bold">Artist Name</label>
+                    <input type="text" id="artist" placeholder="e.g. Gil Scott-Heron">
+                </div>
+                <div>
+                    <label class="text-[10px] uppercase tracking-widest text-slate-500 font-bold">Album Title</label>
+                    <input type="text" id="album" placeholder="e.g. Winter in America">
+                </div>
+                <div>
+                    <label class="text-[10px] uppercase tracking-widest text-slate-500 font-bold">Review Body Content</label>
+                    <textarea id="reviewText" rows="8" placeholder="Paste your pre-written review here..."></textarea>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="text-[10px] uppercase tracking-widest text-slate-500 font-bold">Album Art URL</label>
+                        <input type="text" id="artUrl" placeholder="images/cover.jpg">
+                    </div>
+                    <div>
+                        <label class="text-[10px] uppercase tracking-widest text-slate-500 font-bold">YouTube ID</label>
+                        <input type="text" id="ytId" placeholder="dQw4w9WgXcQ">
+                    </div>
+                </div>
+            </div>
+
+            <div class="glass-panel p-8 space-y-6">
+                <h3 class="serif text-2xl border-b border-slate-800 pb-2 mb-4">2. Mojo Calculator</h3>
+                
+                <div class="space-y-2">
+                    <div class="flex justify-between items-end">
+                        <label class="text-[10px] uppercase tracking-widest text-slate-500 font-bold">Sound Quality</label>
+                        <span id="vSQ" class="text-xl serif gold-accent">50</span>
+                    </div>
+                    <input type="range" class="slider" id="soundQuality" min="1" max="100" value="50" oninput="calculateMojo()">
+                </div>
+
+                <div class="space-y-2">
+                    <div class="flex justify-between items-end">
+                        <label class="text-[10px] uppercase tracking-widest text-slate-500 font-bold">Overall Album Score</label>
+                        <span id="vOA" class="text-xl serif gold-accent">50</span>
+                    </div>
+                    <input type="range" class="slider" id="overallAlbum" min="1" max="100" value="50" oninput="calculateMojo()">
+                </div>
+
+                <div class="space-y-2">
+                    <div class="flex justify-between items-end">
+                        <label class="text-[10px] uppercase tracking-widest text-slate-500 font-bold">Boogie Level</label>
+                        <span id="vBL" class="text-xl serif gold-accent">50</span>
+                    </div>
+                    <input type="range" class="slider" id="boogieLevel" min="1" max="100" value="50" oninput="calculateMojo()">
+                </div>
+
+                <div class="bg-black/40 p-6 rounded-lg text-center border border-slate-800">
+                    <span class="text-[10px] uppercase tracking-widest text-slate-500 block mb-1">Final Mojo Rating</span>
+                    <span id="finalScore" class="serif text-6xl font-bold text-white">50%</span>
+                </div>
+
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="text-[10px] uppercase tracking-widest text-slate-500 font-bold">Streaming Link</label>
+                        <input type="text" id="streamLink">
+                    </div>
+                    <div>
+                        <label class="text-[10px] uppercase tracking-widest text-slate-500 font-bold">Buy Link</label>
+                        <input type="text" id="buyLink">
+                    </div>
+                </div>
+
+                <button onclick="generateReview()" class="w-full bg-[#d4af37] hover:bg-[#b8962e] text-[#0b1120] font-bold py-4 rounded uppercase tracking-widest transition shadow-lg">Generate Website Package</button>
+            </div>
+        </div>
+
+        <div id="outputArea" class="mt-12 hidden space-y-8 pb-20">
+            <div class="glass-panel p-8">
+                <h4 class="serif text-2xl gold-accent mb-4">Generated Review Page Content</h4>
+                <p class="text-xs text-slate-500 mb-4 uppercase">Replace the placeholders in your template_review.html with this:</p>
+                <textarea id="pageOutput" rows="12" class="font-mono text-sm bg-black/50"></textarea>
+            </div>
+
+            <div class="glass-panel p-8">
+                <h4 class="serif text-2xl gold-accent mb-4">Generated Index Grid Card</h4>
+                <p class="text-xs text-slate-500 mb-4 uppercase">Paste this into Slot 1 of your index.html grid:</p>
+                <textarea id="gridOutput" rows="8" class="font-mono text-sm bg-black/50"></textarea>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function calculateMojo() {
+            const sq = parseInt(document.getElementById('soundQuality').value);
+            const oa = parseInt(document.getElementById('overallAlbum').value);
+            const bl = parseInt(document.getElementById('boogieLevel').value);
+            
+            document.getElementById('vSQ').innerText = sq;
+            document.getElementById('vOA').innerText = oa;
+            document.getElementById('vBL').innerText = bl;
+            
+            const total = Math.round((sq + oa + bl) / 3);
+            document.getElementById('finalScore').innerText = total + "%";
+        }
+
+        function generateReview() {
+            const artist = document.getElementById('artist').value;
+            const album = document.getElementById('album').value;
+            const score = document.getElementById('finalScore').innerText;
+            const review = document.getElementById('reviewText').value;
+            const art = document.getElementById('artUrl').value;
+            const yt = document.getElementById('ytId').value;
+            const stream = document.getElementById('streamLink').value;
+            const buy = document.getElementById('buyLink').value;
+
+            // Generate content for the review page
+            const pageHtml = `<div class="review-header mb-8">
+    <h2 class="serif text-5xl mb-2">${artist}</h2>
+    <h3 class="text-2xl text-slate-400 font-light italic">${album}</h3>
+</div>
+<div class="mojo-rating-box mb-8">
+    <div class="text-7xl font-bold serif text-white">${score}</div>
+</div>
+<div class="prose prose-invert max-w-none text-slate-300 leading-relaxed text-lg mb-12">
+    ${review.replace(/\n/g, '<br>')}
+</div>`;
+
+            // Generate card for index.html
+            const gridHtml = `<div class="glass-card p-6 flex flex-col h-full">
+    <div class="relative mb-6">
+        <img src="${art}" alt="${album}" class="w-full rounded shadow-xl">
+        <div class="absolute bottom-2 right-2 bg-black/80 px-2 py-1 text-[10px] serif italic gold-accent">Mojo: ${score}</div>
+    </div>
+    <h4 class="serif text-2xl mb-1">${artist}</h4>
+    <p class="text-slate-400 text-sm italic mb-6">${album}</p>
+    <a href="reviews/${artist.toLowerCase().replace(/ /g, '-')}-${album.toLowerCase().replace(/ /g, '-')}.html" class="mt-auto gold-button py-2 text-center rounded-sm uppercase text-[10px] tracking-widest font-bold">Read Review</a>
+</div>`;
+
+            document.getElementById('pageOutput').value = pageHtml;
+            document.getElementById('gridOutput').value = gridHtml;
+            document.getElementById('outputArea').classList.remove('hidden');
+            window.scrollTo({ top: document.getElementById('outputArea').offsetTop, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>

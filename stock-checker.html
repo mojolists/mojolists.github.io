@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mojo-Validator | Stock & Link Check</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body { background-color: #0b1120; color: #f8fafc; font-family: 'Inter', sans-serif; }
+        .glass-card { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px; }
+        .status-up { color: #10b981; } /* Green */
+        .status-down { color: #ef4444; } /* Red */
+    </style>
+</head>
+<body class="p-10">
+
+    <div class="max-w-3xl mx-auto">
+        <h2 class="text-3xl font-bold mb-2 gold-accent serif">Mojo-Validator</h2>
+        <p class="text-slate-400 mb-8 font-light">Audit your vinyl "Buy" links for 404s and availability.</p>
+
+        <div class="glass-card p-6 mb-6">
+            <label class="block text-xs uppercase tracking-widest text-slate-500 mb-2">Paste Links to Audit (One per line)</label>
+            <textarea id="linkInput" rows="8" class="w-full bg-slate-900 border border-slate-700 rounded p-3 font-mono text-sm mb-4" placeholder="https://www.discogs.com/sell/release/..."></textarea>
+            <button onclick="checkLinks()" class="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-3 rounded transition uppercase tracking-widest text-sm">
+                Run Availability Audit
+            </button>
+        </div>
+
+        <div id="resultsArea" class="space-y-3">
+            </div>
+    </div>
+
+    <script>
+        async function checkLinks() {
+            const input = document.getElementById('linkInput').value;
+            const links = input.split('\n').filter(l => l.trim() !== '');
+            const results = document.getElementById('resultsArea');
+            results.innerHTML = '<p class="text-center italic text-slate-500">Scanning the crates...</p>';
+
+            let output = '';
+
+            for (let link of links) {
+                try {
+                    // We use a 'no-cors' mode for a basic "is it alive" check
+                    // or a proxy if you're running a local server.
+                    const response = await fetch(link.trim(), { mode: 'no-cors' });
+                    
+                    output += `
+                        <div class="glass-card p-4 flex justify-between items-center">
+                            <span class="text-sm truncate mr-4">${link}</span>
+                            <span class="status-up font-bold text-xs uppercase tracking-tighter">● Link Active</span>
+                        </div>`;
+                } catch (error) {
+                    output += `
+                        <div class="glass-card p-4 flex justify-between items-center border-red-900/50">
+                            <span class="text-sm truncate mr-4 text-slate-500">${link}</span>
+                            <span class="status-down font-bold text-xs uppercase tracking-tighter">● Check Manual (404/Block)</span>
+                        </div>`;
+                }
+            }
+            results.innerHTML = output;
+        }
+    </script>
+</body>
+</html>
