@@ -1,0 +1,7 @@
+{
+  "name": "mojolists",
+  "version": "1.0.0",
+  "dependencies": {
+    "@11ty/eleventy": "^2.0.1"
+  }
+}

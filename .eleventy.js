@@ -1,12 +1,16 @@
 module.exports = function(eleventyConfig) {
-    // This tells the system to include your images
     eleventyConfig.addPassthroughCopy("assets/img");
 
-    // This creates the automated feed of reviews
     eleventyConfig.addCollection("reviews", function(collectionApi) {
         return collectionApi.getFilteredByGlob("reviews/*.md").sort((a, b) => {
             return b.date - a.date;
         });
+    });
+
+    eleventyConfig.addFilter("calculateMojo", function(mojo) {
+        if (!mojo) return 0;
+        const score = Math.round(((mojo.soundQuality + mojo.music + mojo.boogieLevel) / 30) * 100);
+        return score;
     });
 
     return {

@@ -28,12 +28,12 @@
                 <div class="w-full lg:w-[450px]">
                     <div class="glass-card p-10 h-[400px] flex flex-col justify-between">
                         <div>
-                            <h1 class="serif text-5xl text-white mb-2">{{ artist }}</h1>
-                            <p class="text-lg text-red-500 font-extrabold uppercase italic mb-8">{{ title }}</p>
+                            <h1 class="serif text-5xl text-white mb-2 leading-tight">{{ artist }}</h1>
+                            <p class="text-lg text-red-500 font-extrabold uppercase tracking-widest italic mb-8">{{ title }}</p>
                         </div>
                         <div class="mojo-rating-box">
                             <span class="text-3xl font-black text-white italic serif">
-                                {{ (mojo.soundQuality + mojo.music + mojo.boogieLevel) / 3 | round(1) }} <span class="text-base text-slate-600">/ 10</span>
+                                {{ mojo.mojoScore }}%
                             </span>
                         </div>
                     </div>
