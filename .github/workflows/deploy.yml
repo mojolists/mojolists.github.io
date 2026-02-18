@@ -12,8 +12,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
-      - run: npm install @11ty/eleventy
-      - run: npx @11ty/eleventy
+        with:
+          node-version: '20'
+      - name: Install and Build
+        run: |
+          npm install @11ty/eleventy
+          npx @11ty/eleventy
       - uses: actions/upload-pages-artifact@v3
         with:
           path: _site
@@ -22,5 +26,4 @@ jobs:
     runs-on: ubuntu-latest
     environment: github-pages
     steps:
-      - id: deployment
-        uses: actions/deploy-pages@v4
+      - uses: actions/deploy-pages@v4
