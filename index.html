@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ artist }} - {{ album }} | MojoLists</title>
+    <title>MojoLists | The Home of Crate Diggers</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
@@ -14,57 +14,52 @@
         .gold-button:hover { background: #d4af37; color: #0b1120; }
         .motto-text { font-family: 'Cormorant Garamond', serif; font-style: italic; }
         .text-mojo-red { color: #e11d48; }
-        .mojo-rating-box { background: transparent; }
+        .gold-accent { color: #d4af37; }
     </style>
 </head>
 <body class="antialiased">
 
-    <header class="py-12 text-center">
+    <header class="py-16 text-center">
         <a href="/" class="hover:opacity-80 transition-opacity">
-            <h1 class="serif text-6xl tracking-widest uppercase mb-4">MojoLists</h1>
+            <h1 class="serif text-7xl tracking-widest uppercase mb-4">MojoLists</h1>
         </a>
-        <p class="motto-text text-xl">
+        <p class="motto-text text-2xl">
             <span class="text-white">The Favored Home of Crate Diggers,</span> 
             <span class="text-mojo-red">Vinyl Flippers and Music Lovers</span>
         </p>
     </header>
 
-    <main class="max-w-6xl mx-auto px-6 pb-24">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+    <main class="max-w-7xl mx-auto px-6 pb-24">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             
-            <div class="lg:col-span-5 space-y-8">
-                <div class="glass-card p-2">
-                    <img src="/reviews/{{ art }}" alt="{{ album }}" class="w-full rounded-lg shadow-2xl">
+            {% for review in collections.reviews | reverse | limit(6) %}
+            <div class="glass-card p-6 flex flex-col h-full">
+                <div class="relative mb-6">
+                    <img src="/reviews/{{ review.data.art }}" alt="{{ review.data.album }}" class="w-full rounded shadow-xl aspect-square object-cover">
+                    <div class="absolute bottom-2 right-2 bg-black/80 px-2 py-1 text-[10px] serif italic gold-accent">Mojo: {{ review.data.mojo }}%</div>
                 </div>
-                
-                <div class="mojo-rating-box p-6 text-center">
-                    <h3 class="serif text-2xl uppercase tracking-tighter mb-2">Mojo Rating</h3>
-                    <div class="text-7xl font-bold serif text-white">{{ mojo }}%</div>
-                </div>
+                <h4 class="serif text-2xl mb-1">{{ review.data.artist }}</h4>
+                <p class="text-slate-400 text-sm italic mb-6">{{ review.data.album }}</p>
+                <a href="{{ review.url }}" class="mt-auto gold-button py-2 text-center rounded-sm uppercase text-[10px] tracking-widest font-bold">Read Review</a>
+            </div>
+            {% endfor %}
 
-                <div class="grid grid-cols-2 gap-4">
-                    <a href="{{ stream }}" class="gold-button py-3 text-center rounded-sm uppercase text-sm tracking-widest font-semibold">Listen</a>
-                    <a href="{{ buy }}" class="gold-button py-3 text-center rounded-sm uppercase text-sm tracking-widest font-semibold">Buy Vinyl</a>
-                </div>
+            <div class="glass-card p-8 flex flex-col justify-center border-dashed border-slate-700">
+                <h4 class="serif text-3xl mb-4 gold-accent">The Toolkit</h4>
+                <p class="text-slate-400 text-sm leading-relaxed mb-6">Essential gear for the modern analog enthusiast. From carbon-fiber brushes to preamp calibrations.</p>
+                <a href="/toolkit" class="gold-accent uppercase text-[10px] tracking-widest font-bold hover:underline">View Guides →</a>
             </div>
 
-            <div class="lg:col-span-7">
-                <div class="mb-8">
-                    <h2 class="serif text-5xl mb-2">{{ artist }}</h2>
-                    <h3 class="text-2xl text-slate-400 font-light italic">{{ album }}</h3>
-                </div>
+            <div class="glass-card p-8 flex flex-col justify-center bg-[#e11d48]/5 border-[#e11d48]/20">
+                <h4 class="serif text-3xl mb-4 text-white">Label Focus</h4>
+                <p class="text-slate-400 text-sm leading-relaxed mb-6">Deep dives into the catalogs of Colemine, Daptone, and the titans of modern funk.</p>
+                <a href="/labels" class="text-white uppercase text-[10px] tracking-widest font-bold hover:underline">Explore Labels →</a>
+            </div>
 
-                <div class="prose prose-invert max-w-none text-slate-300 leading-relaxed text-lg">
-                    {{ content | safe }}
-                </div>
-
-                {% if youtube %}
-                <div class="mt-12 glass-card p-4">
-                    <div class="aspect-w-16 aspect-h-9">
-                        <iframe src="https://www.youtube.com/embed/{{ youtube }}" class="w-full h-80 rounded-md" frameborder="0" allowfullscreen></iframe>
-                    </div>
-                </div>
-                {% endif %}
+            <div class="glass-card p-8 flex flex-col justify-center">
+                <h4 class="serif text-3xl mb-4 gold-accent italic">The Vault</h4>
+                <p class="text-slate-400 text-sm leading-relaxed mb-6">Every review we've ever written, archived and searchable by genre, year, and Mojo rating.</p>
+                <a href="/vault" class="gold-accent uppercase text-[10px] tracking-widest font-bold hover:underline">Enter the Vault →</a>
             </div>
 
         </div>
