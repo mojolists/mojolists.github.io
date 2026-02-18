@@ -1,5 +1,3 @@
----
----
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,9 +18,6 @@
             backdrop-filter: blur(10px); 
             border: 1px solid rgba(255, 255, 255, 0.05); 
             border-radius: 12px; 
-        }
-        .mojo-rating-box {
-            background: transparent;
         }
         .gold-button { 
             border: 1px solid #d4af37; 
@@ -54,17 +49,15 @@
     <main class="max-w-7xl mx-auto px-6 pb-24">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             
-            {% for review in collections.reviews | reverse | limit(6) %}
             <div class="glass-card p-6 flex flex-col h-full">
                 <div class="relative mb-6">
-                    <img src="/reviews/{{ review.data.art }}" alt="{{ review.data.album }}" class="w-full rounded shadow-xl aspect-square object-cover">
-                    <div class="absolute bottom-2 right-2 bg-black/80 px-2 py-1 text-[10px] serif italic gold-accent">Mojo: {{ review.data.mojo }}%</div>
+                    <img src="reviews/cover1.jpg" alt="Album Cover" class="w-full rounded shadow-xl">
+                    <div class="absolute bottom-2 right-2 bg-black/80 px-2 py-1 text-[10px] serif italic gold-accent">Mojo: 95%</div>
                 </div>
-                <h4 class="serif text-2xl mb-1">{{ review.data.artist }}</h4>
-                <p class="text-slate-400 text-sm italic mb-6">{{ review.data.album }}</p>
-                <a href="{{ review.url }}" class="mt-auto gold-button py-2 text-center rounded-sm uppercase text-[10px] tracking-widest font-bold">Read Review</a>
+                <h4 class="serif text-2xl mb-1">Artist Name</h4>
+                <p class="text-slate-400 text-sm italic mb-6">Album Title</p>
+                <a href="reviews/review-page.html" class="mt-auto gold-button py-2 text-center rounded-sm uppercase text-[10px] tracking-widest font-bold">Read Review</a>
             </div>
-            {% endfor %}
 
             <div class="glass-card p-8 flex flex-col justify-center border-dashed border-slate-700">
                 <h4 class="serif text-3xl mb-4 gold-accent">The Toolkit</h4>
