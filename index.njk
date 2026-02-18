@@ -43,6 +43,8 @@
 
     <main class="max-w-[1400px] mx-auto px-8 py-10">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-x-8 gap-y-12">
+            
+            {# THIS AUTOMATICALLY FILLS THE 6 SLOTS #}
             {% for review in collections.reviews | limit(6) %}
             <div>
                 {% if loop.index == 1 %}<span class="row-label">Latest Review</span>
@@ -60,7 +62,7 @@
             </div>
             {% endfor %}
 
-            {# Static Cards (Toolkit, Label Focus, Vault) #}
+            {# TOOLKIT CARD #}
             <div>
                 <span class="row-label">The Toolkit</span>
                 <article class="review-card p-8 bg-slate-900/40">

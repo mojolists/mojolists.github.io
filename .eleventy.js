@@ -1,16 +1,12 @@
 module.exports = function(eleventyConfig) {
+    // Keeps your images where they belong
     eleventyConfig.addPassthroughCopy("assets/img");
 
+    // Automatically sorts reviews by date (newest first)
     eleventyConfig.addCollection("reviews", function(collectionApi) {
         return collectionApi.getFilteredByGlob("reviews/*.md").sort((a, b) => {
             return b.date - a.date;
         });
-    });
-
-    eleventyConfig.addFilter("calculateMojo", function(mojo) {
-        if (!mojo) return 0;
-        const score = Math.round(((mojo.soundQuality + mojo.music + mojo.boogieLevel) / 30) * 100);
-        return score;
     });
 
     return {
