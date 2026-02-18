@@ -7,22 +7,41 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
-        body { background-color: #0b1120; font-family: 'Inter', sans-serif; color: #f8fafc; }
+        body { 
+            background-color: #0b1120; 
+            font-family: 'Inter', sans-serif; 
+            color: #f8fafc; 
+        }
         .serif { font-family: 'Cormorant Garamond', serif; }
-        .glass-card { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 12px; }
-        .gold-button { border: 1px solid #d4af37; color: #d4af37; transition: all 0.3s ease; }
-        .gold-button:hover { background: #d4af37; color: #0b1120; }
-        .motto-text { font-family: 'Cormorant Garamond', serif; font-style: italic; }
+        .glass-card { 
+            background: rgba(255, 255, 255, 0.03); 
+            backdrop-filter: blur(10px); 
+            border: 1px solid rgba(255, 255, 255, 0.05); 
+            border-radius: 12px; 
+        }
+        .mojo-rating-box {
+            background: transparent;
+        }
+        .gold-button { 
+            border: 1px solid #d4af37; 
+            color: #d4af37; 
+            transition: all 0.3s ease; 
+        }
+        .gold-button:hover { 
+            background: #d4af37; 
+            color: #0b1120; 
+        }
+        .motto-text { 
+            font-family: 'Cormorant Garamond', serif; 
+            font-style: italic; 
+        }
         .text-mojo-red { color: #e11d48; }
-        .mojo-rating-box { background: transparent; }
     </style>
 </head>
 <body class="antialiased">
 
     <header class="py-12 text-center">
-        <a href="/" class="hover:opacity-80 transition-opacity">
-            <h1 class="serif text-6xl tracking-widest uppercase mb-4">MojoLists</h1>
-        </a>
+        <h1 class="serif text-6xl tracking-widest uppercase mb-4">MojoLists</h1>
         <p class="motto-text text-xl">
             <span class="text-white">The Favored Home of Crate Diggers,</span> 
             <span class="text-mojo-red">Vinyl Flippers and Music Lovers</span>
