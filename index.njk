@@ -36,33 +36,26 @@
             <div class="h-[1px] w-12 bg-white/10"></div>
         </div>
         <nav class="flex justify-center gap-16 mt-12 text-[14px] font-medium tracking-[0.15em] uppercase">
-            <a href="/" class="nav-link">Reviews</a>
+            <a href="index.html" class="nav-link">Reviews</a>
             <a href="#" class="nav-link">About</a>
         </nav>
     </header>
 
     <main class="max-w-[1400px] mx-auto px-8 py-10">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-x-8 gap-y-12">
-            
-            {# THIS AUTOMATICALLY FILLS THE 6 SLOTS #}
             {% for review in collections.reviews | limit(6) %}
             <div>
-                {% if loop.index == 1 %}<span class="row-label">Latest Review</span>
-                {% elif loop.index == 2 %}<span class="row-label">Most Popular</span>
-                {% elif loop.index == 3 %}<span class="row-label">Explore</span>{% endif %}
+                <span class="row-label">{% if loop.index == 1 %}Latest Review{% elif loop.index == 2 %}Most Popular{% else %}Explore{% endif %}</span>
                 <article class="review-card p-6">
                     <div class="img-container mb-6"><img src="{{ review.data.coverImage }}" class="card-img"></div>
                     <h3 class="serif text-3xl text-white mb-1">{{ review.data.artist }}</h3>
                     <p class="text-[10px] font-bold text-red-500 uppercase tracking-widest mb-4 italic">{{ review.data.title }}</p>
-                    <p class="text-sm leading-relaxed mb-10 text-slate-300">
-                        {{ review.templateContent | striptags | truncate(80) }}
-                    </p>
-                    <a href="{{ review.url }}" class="mt-auto text-[10px] font-bold uppercase tracking-widest text-white border-b border-white/20 w-max pb-1">Read Review →</a>
+                    <p class="text-sm leading-relaxed mb-10 text-slate-300">{{ review.templateContent | striptags | truncate(80) }}</p>
+                    <a href="{{ review.url }}" class="mt-auto text-[10px] font-bold uppercase tracking-widest text-white border-b border-white/20 w-max pb-1 hover:border-red-500 transition-colors">Read Review →</a>
                 </article>
             </div>
             {% endfor %}
 
-            {# TOOLKIT CARD #}
             <div>
                 <span class="row-label">The Toolkit</span>
                 <article class="review-card p-8 bg-slate-900/40">
@@ -75,8 +68,14 @@
                     <span class="mt-auto text-[10px] font-bold uppercase tracking-widest pt-6" style="color: var(--mojo-gold);">Hardware Guide →</span>
                 </article>
             </div>
-            {# ... (Include Label Focus and Vault cards exactly as you provided) #}
         </div>
     </main>
+    <footer class="py-20 text-center border-t border-slate-900 mt-20">
+        <p class="text-[11px] motto-font text-center">
+            <span class="text-white/50">© 2026 MOJOLISTS |</span> 
+            <span class="text-white/80">The Favored Home of Crate Diggers,</span> 
+            <span class="text-[#ef4444]">Vinyl Flippers and Music Lovers</span>
+        </p>
+    </footer>
 </body>
 </html>

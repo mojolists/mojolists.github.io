@@ -12,7 +12,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
-      - run: npm install @11ty/eleventy
+      - run: npm install
       - run: npx @11ty/eleventy
       - uses: actions/upload-pages-artifact@v3
         with:
