@@ -45,17 +45,30 @@
         <div class="grid grid-cols-1 md:grid-cols-3 gap-x-8 gap-y-12">
             {% for review in collections.reviews | limit(6) %}
             <div>
-                <span class="row-label">{% if loop.index == 1 %}Latest Review{% elif loop.index == 2 %}Most Popular{% else %}Explore{% endif %}</span>
+                {% if loop.index == 1 %}<span class="row-label">Latest Review</span>
+                {% elif loop.index == 2 %}<span class="row-label">Most Popular</span>
+                {% elif loop.index == 3 %}<span class="row-label">Explore</span>{% endif %}
                 <article class="review-card p-6">
                     <div class="img-container mb-6"><img src="{{ review.data.coverImage }}" class="card-img"></div>
-                    <h3 class="serif text-3xl text-white mb-1 artist-title">{{ review.data.artist }}</h3>
-                    <p class="text-[10px] font-bold text-red-500 uppercase tracking-widest mb-4 italic album-subtitle">{{ review.data.title }}</p>
+                    <h3 class="serif text-3xl text-white mb-1">{{ review.data.artist }}</h3>
+                    <p class="text-[10px] font-bold text-red-500 uppercase tracking-widest mb-4 italic">{{ review.data.title }}</p>
                     <p class="text-sm leading-relaxed mb-10 text-slate-300">{{ review.templateContent | striptags | truncate(80) }}</p>
                     <a href="{{ review.url }}" class="mt-auto text-[10px] font-bold uppercase tracking-widest text-white border-b border-white/20 w-max pb-1">Read Review →</a>
                 </article>
             </div>
             {% endfor %}
-            {# Include your Toolkit, Label Focus, and Vault cards here exactly as they were #}
+            <div>
+                <span class="row-label">The Toolkit</span>
+                <article class="review-card p-8 bg-slate-900/40">
+                    <h3 class="serif text-2xl text-white mb-4">Listening Rig</h3>
+                    <div class="space-y-4 text-xs tracking-wide">
+                        <div><p class="text-slate-500 uppercase font-bold text-[9px] mb-1">Turntable</p><p class="text-white">Technics SL-1200MK7</p></div>
+                        <div><p class="text-slate-500 uppercase font-bold text-[9px] mb-1">Cartridge</p><p class="text-white">Ortofon 2M Blue</p></div>
+                        <div><p class="text-slate-500 uppercase font-bold text-[9px] mb-1">Pre-Amp</p><p class="text-white">Schiit Mani 2</p></div>
+                    </div>
+                    <span class="mt-auto text-[10px] font-bold uppercase tracking-widest pt-6" style="color: var(--mojo-gold);">Hardware Guide →</span>
+                </article>
+            </div>
         </div>
     </main>
     <footer class="py-20 text-center border-t border-slate-900 mt-20">
