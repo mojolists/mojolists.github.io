@@ -84,10 +84,10 @@
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-x-8 gap-y-12">
             
-            {# Loop through the newest 6 reviews #}
+            {# 1. AUTOMATION LOOP: Fills the first 6 slots with your newest reviews #}
             {% for review in collections.reviews | limit(6) %}
             
-                {# For items 1, 2, and 3, use the wrapper div and labels #}
+                {# For items 1, 2, and 3, we add the labels #}
                 {% if loop.index <= 3 %}
                 <div>
                     {% if loop.index == 1 %}<span class="row-label">Latest Review</span>{% endif %}
@@ -98,7 +98,6 @@
                         <div class="img-container mb-6"><img src="{{ review.data.coverImage }}" class="card-img"></div>
                         <h3 class="serif text-3xl text-white mb-1 artist-title">{{ review.data.artist }}</h3>
                         <p class="text-[10px] font-extrabold text-red-500 uppercase tracking-widest mb-4 italic album-subtitle">{{ review.data.title }}</p>
-                        {# Use snippet if available, otherwise truncate content #}
                         <p class="text-sm leading-relaxed mb-10">
                             {% if review.data.snippet %}{{ review.data.snippet }}
                             {% else %}{{ review.templateContent | striptags | truncate(60) }}
@@ -108,7 +107,7 @@
                     </article>
                 </div>
 
-                {# For items 4, 5, and 6, use the direct article tag (no wrapper) to match your layout #}
+                {# For items 4, 5, and 6, we just show the card #}
                 {% else %}
                 <article class="review-card p-6">
                     <div class="img-container mb-6"><img src="{{ review.data.coverImage }}" class="card-img"></div>
@@ -124,6 +123,8 @@
                 {% endif %}
 
             {% endfor %}
+
+            {# 2. STATIC CARDS: These remain exactly as they were in your original file #}
 
             <div>
                 <span class="row-label">The Toolkit</span>
