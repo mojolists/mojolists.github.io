@@ -1,9 +1,8 @@
 module.exports = function(eleventyConfig) {
-    // Pass through assets so your images don't break
-    eleventyConfig.addPassthroughCopy("assets");
-    eleventyConfig.addPassthroughCopy("reviews/*.jpg");
+    // This tells the system to include your images
+    eleventyConfig.addPassthroughCopy("assets/img");
 
-    // Create the reviews collection sorted by date (newest first)
+    // This creates the automated feed of reviews
     eleventyConfig.addCollection("reviews", function(collectionApi) {
         return collectionApi.getFilteredByGlob("reviews/*.md").sort((a, b) => {
             return b.date - a.date;
