@@ -1,20 +1,20 @@
 module.exports = function(eleventyConfig) {
-    // Ensure CSS and Images are copied to the final build
+    // Pass through assets so your images don't break
     eleventyConfig.addPassthroughCopy("assets");
     eleventyConfig.addPassthroughCopy("reviews/*.jpg");
-    eleventyConfig.addPassthroughCopy("reviews/*.png");
-    eleventyConfig.addPassthroughCopy("reviews/*.jpeg");
 
-    // Filter to limit the number of items in the grid loop
-    eleventyConfig.addFilter("limit", function(array, limit) {
-        return array.slice(0, limit);
+    // Create the reviews collection sorted by date (newest first)
+    eleventyConfig.addCollection("reviews", function(collectionApi) {
+        return collectionApi.getFilteredByGlob("reviews/*.md").sort((a, b) => {
+            return b.date - a.date;
+        });
     });
 
     return {
         dir: {
             input: ".",
-            includes: "_includes",
-            output: "_site"
+            output: "_site",
+            includes: "_includes"
         }
     };
 };
