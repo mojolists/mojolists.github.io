@@ -114,46 +114,35 @@
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-x-8 gap-y-12">
             
-            {# AUTOMATION LOOP START #}
+            {# Automation Loop #}
             {% for review in collections.reviews | limit(6) %}
-
-                {# Logic for Top 3 Cards (With Labels) #}
                 {% if loop.index <= 3 %}
                 <div>
                     {% if loop.index == 1 %}<span class="row-label">Latest Review</span>{% endif %}
                     {% if loop.index == 2 %}<span class="row-label">Most Popular</span>{% endif %}
                     {% if loop.index == 3 %}<span class="row-label">Explore</span>{% endif %}
-                    
                     <article class="review-card p-6">
                         <div class="img-container mb-6"><img src="{{ review.data.coverImage }}" class="card-img"></div>
                         <h3 class="serif text-3xl text-white mb-1 artist-title">{{ review.data.artist }}</h3>
                         <p class="text-[10px] font-bold text-red-500 uppercase tracking-widest mb-4 italic album-subtitle">{{ review.data.title }}</p>
                         <p class="text-sm leading-relaxed mb-10 text-slate-300">
-                            {% if review.data.snippet %}{{ review.data.snippet }}
-                            {% else %}{{ review.templateContent | striptags | truncate(60) }}
-                            {% endif %}
+                            {% if review.data.snippet %}{{ review.data.snippet }}{% else %}{{ review.templateContent | striptags | truncate(60) }}{% endif %}
                         </p>
                         <a href="{{ review.url }}" class="mt-auto text-[10px] font-bold uppercase tracking-widest text-white border-b border-white/20 w-max pb-1 hover:border-red-500 transition-colors">Read Review →</a>
                     </article>
                 </div>
-
-                {# Logic for Bottom 3 Cards (No Labels) #}
                 {% else %}
                 <article class="review-card p-6">
                     <div class="img-container mb-6"><img src="{{ review.data.coverImage }}" class="card-img"></div>
                     <h3 class="serif text-3xl text-white mb-1 artist-title">{{ review.data.artist }}</h3>
                     <p class="text-[10px] font-bold text-red-500 uppercase tracking-widest mb-4 italic album-subtitle">{{ review.data.title }}</p>
                     <p class="text-sm leading-relaxed mb-10 text-slate-300">
-                        {% if review.data.snippet %}{{ review.data.snippet }}
-                        {% else %}{{ review.templateContent | striptags | truncate(60) }}
-                        {% endif %}
+                        {% if review.data.snippet %}{{ review.data.snippet }}{% else %}{{ review.templateContent | striptags | truncate(60) }}{% endif %}
                     </p>
-                    <span class="mt-auto text-[10px] font-bold uppercase tracking-widest text-white border-b border-white/20 w-max pb-1">Read Review →</span>
+                    <a href="{{ review.url }}" class="mt-auto text-[10px] font-bold uppercase tracking-widest text-white border-b border-white/20 w-max pb-1">Read Review →</a>
                 </article>
                 {% endif %}
-
             {% endfor %}
-            {# AUTOMATION LOOP END #}
 
             <div>
                 <span class="row-label">The Toolkit</span>
