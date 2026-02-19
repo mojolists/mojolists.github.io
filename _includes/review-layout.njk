@@ -4,26 +4,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Review: {{ artist }} - {{ title }} | MojoLists</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body { font-family: 'Inter', sans-serif; background-color: #0b1120; color: #94a3b8; margin: 0; padding: 0; }
         .serif { font-family: 'Playfair Display', serif; }
         .logo-font { font-family: 'Cormorant Garamond', serif; }
         :root { --mojo-gold: #c5a059; --mojo-red: #ef4444; }
+        
         .hero-bg-zoom { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-image: url('{{ coverImage }}'); background-size: cover; background-position: center; filter: brightness(0.25) saturate(1.2); z-index: -1; }
         .overlay-gradient { position: fixed; inset: 0; background: linear-gradient(to bottom, rgba(11, 17, 32, 0.4) 0%, rgba(11, 17, 32, 0.95) 100%); z-index: -1; }
         .glass-card { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.1); }
+        
+        /* Typography for the content */
         .article-content p { margin-bottom: 2rem; font-size: 1.125rem; line-height: 1.8; color: #e2e8f0; }
+        
+        /* The Mojo Quote Style */
+        .mojo-quote { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: white; font-style: italic; border-left: 4px solid var(--mojo-red); padding-left: 2rem; margin: 3rem 0; line-height: 1.6; }
+        
+        /* The Gold Action Buttons */
+        .btn-container { margin: 3rem 0; display: flex; flex-direction: column; gap: 1rem; }
         .action-btn { 
             display: inline-flex; align-items: center; justify-content: center; width: 100%; max-width: 420px; 
             padding: 1.25rem; background-color: transparent; color: var(--mojo-gold); 
             font-weight: 900; text-transform: uppercase; letter-spacing: 0.25em; font-size: 0.75rem; 
             transition: all 0.3s ease; text-decoration: none; border: 1px solid var(--mojo-gold); 
-            margin-bottom: 1rem;
         }
         .action-btn:hover { background-color: var(--mojo-gold); color: #0b1120; }
+        
+        /* The Glass Card Info */
         .mojo-rating-box { width: 100%; padding: 1rem 0; text-align: center; }
+        .info-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.2em; color: #64748b; margin-bottom: 2px; }
+        .info-value { font-size: 14px; color: white; font-weight: 400; margin-bottom: 16px; }
     </style>
 </head>
 <body>
@@ -32,6 +44,7 @@
     <nav class="relative z-50 px-8 py-8 flex justify-between items-center max-w-7xl mx-auto">
         <a href="/" class="logo-font text-3xl tracking-tighter text-white font-light">MOJO<span class="text-red-500 font-normal">LISTS</span></a>
     </nav>
+
     <main class="relative z-10">
         <header class="pt-24 pb-12 max-w-5xl mx-auto px-6">
             <div class="flex flex-col lg:flex-row gap-8 items-end lg:ml-12">
@@ -41,6 +54,13 @@
                         <div>
                             <h1 class="serif text-5xl text-white mb-2 leading-tight">{{ artist }}</h1>
                             <p class="text-lg text-red-500 font-extrabold uppercase tracking-widest italic mb-8">{{ title }}</p>
+                            
+                            <div class="mt-4">
+                                <p class="info-label">Label</p>
+                                <p class="info-value">{{ label }}</p>
+                                <p class="info-label">Released</p>
+                                <p class="info-value">{{ year }}</p>
+                            </div>
                         </div>
                         <div class="mojo-rating-box">
                             <span class="text-3xl font-black text-white italic serif">{{ mojoScore }}% <span class="text-base text-slate-600 font-normal">Mojo Rating</span></span>
@@ -49,15 +69,10 @@
                 </div>
             </div>
         </header>
+
         <div class="max-w-5xl mx-auto px-6 py-16">
             <article class="article-content lg:ml-12 lg:pr-24">
                 {{ content | safe }}
-
-                <div class="mt-16 flex flex-col gap-4">
-                    {% if buyUrl %}<a href="{{ buyUrl }}" target="_blank" class="action-btn">Buy Here</a>{% endif %}
-                    {% if listenUrl %}<a href="{{ listenUrl }}" target="_blank" class="action-btn">Listen Here</a>{% endif %}
-                    {% if videoUrl %}<a href="{{ videoUrl }}" target="_blank" class="action-btn">Video</a>{% endif %}
-                </div>
             </article>
         </div>
     </main>
