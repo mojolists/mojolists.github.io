@@ -5,7 +5,7 @@ title: "Electric Slave"
 label: "Vagrant Records"
 year: 2013
 mojoScore: 80
-coverImage: "/assets/img/black-joe-lewis.jpg"
+coverImage: "/assets/img/black_joe_lewis.jpg"
 date: 2026-02-19
 ---
 
