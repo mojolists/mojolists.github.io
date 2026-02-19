@@ -16,14 +16,12 @@
         .overlay-gradient { position: fixed; inset: 0; background: linear-gradient(to bottom, rgba(11, 17, 32, 0.4) 0%, rgba(11, 17, 32, 0.95) 100%); z-index: -1; }
         .glass-card { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.1); }
         
-        /* Typography for the content */
         .article-content p { margin-bottom: 2rem; font-size: 1.125rem; line-height: 1.8; color: #e2e8f0; }
         
-        /* The Mojo Quote Style */
         .mojo-quote { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: white; font-style: italic; border-left: 4px solid var(--mojo-red); padding-left: 2rem; margin: 3rem 0; line-height: 1.6; }
         
-        /* The Gold Action Buttons */
-        .btn-container { margin: 3rem 0; display: flex; flex-direction: column; gap: 1rem; }
+        /* Centered Button Styling */
+        .btn-container { margin: 3rem 0; display: flex; flex-direction: column; align-items: center; gap: 1rem; width: 100%; }
         .action-btn { 
             display: inline-flex; align-items: center; justify-content: center; width: 100%; max-width: 420px; 
             padding: 1.25rem; background-color: transparent; color: var(--mojo-gold); 
@@ -32,8 +30,7 @@
         }
         .action-btn:hover { background-color: var(--mojo-gold); color: #0b1120; }
         
-        /* The Glass Card Info */
-        .mojo-rating-box { width: 100%; padding: 1rem 0; text-align: center; }
+        .mojo-rating-box { width: 100%; padding: 1rem 0; text-align: center; background: transparent; }
         .info-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.2em; color: #64748b; margin-bottom: 2px; }
         .info-value { font-size: 14px; color: white; font-weight: 400; margin-bottom: 16px; }
     </style>
@@ -41,6 +38,7 @@
 <body>
     <div class="hero-bg-zoom"></div>
     <div class="overlay-gradient"></div>
+    
     <nav class="relative z-50 px-8 py-8 flex justify-between items-center max-w-7xl mx-auto">
         <a href="/" class="logo-font text-3xl tracking-tighter text-white font-light">MOJO<span class="text-red-500 font-normal">LISTS</span></a>
     </nav>
@@ -48,7 +46,9 @@
     <main class="relative z-10">
         <header class="pt-24 pb-12 max-w-5xl mx-auto px-6">
             <div class="flex flex-col lg:flex-row gap-8 items-end lg:ml-12">
-                <div class="flex-shrink-0"><img src="{{ coverImage }}" class="w-[400px] h-[400px] object-cover border border-white/10 rounded-sm"></div>
+                <div class="flex-shrink-0">
+                    <img src="{{ coverImage }}" class="w-[400px] h-[400px] object-cover border border-white/10 rounded-sm">
+                </div>
                 <div class="w-full lg:w-[450px]">
                     <div class="glass-card p-10 h-[400px] flex flex-col justify-between">
                         <div>
@@ -63,7 +63,9 @@
                             </div>
                         </div>
                         <div class="mojo-rating-box">
-                            <span class="text-3xl font-black text-white italic serif">{{ mojoScore }}% <span class="text-base text-slate-600 font-normal">Mojo Rating</span></span>
+                            <span class="text-3xl font-black text-white italic serif">
+                                {{ mojoScore }}% <span class="text-base text-slate-600 font-normal">Mojo Rating</span>
+                            </span>
                         </div>
                     </div>
                 </div>
