@@ -15,10 +15,15 @@
         .overlay-gradient { position: fixed; inset: 0; background: linear-gradient(to bottom, rgba(11, 17, 32, 0.4) 0%, rgba(11, 17, 32, 0.95) 100%); z-index: -1; }
         .glass-card { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.1); }
         .article-content p { margin-bottom: 2rem; font-size: 1.125rem; line-height: 1.8; color: #e2e8f0; }
-        .album-art-fixed { width: 400px !important; height: 400px !important; object-fit: cover; }
-        .action-btn { display: inline-flex; align-items: center; justify-content: center; width: 100%; max-width: 420px; padding: 1.25rem; background-color: transparent; color: var(--mojo-gold); font-weight: 900; text-transform: uppercase; letter-spacing: 0.25em; font-size: 0.75rem; transition: all 0.3s ease; text-decoration: none; border: 1px solid var(--mojo-gold); }
-        .action-btn:hover { background-color: var(--mojo-gold); color: #0b1120; transform: translateY(-2px); box-shadow: 0 10px 20px -10px rgba(197, 160, 89, 0.5); }
-        .mojo-rating-box { width: 100%; padding: 1rem 0; text-align: center; display: flex; flex-direction: column; justify-content: center; align-items: center; }
+        .action-btn { 
+            display: inline-flex; align-items: center; justify-content: center; width: 100%; max-width: 420px; 
+            padding: 1.25rem; background-color: transparent; color: var(--mojo-gold); 
+            font-weight: 900; text-transform: uppercase; letter-spacing: 0.25em; font-size: 0.75rem; 
+            transition: all 0.3s ease; text-decoration: none; border: 1px solid var(--mojo-gold); 
+            margin-bottom: 1rem;
+        }
+        .action-btn:hover { background-color: var(--mojo-gold); color: #0b1120; }
+        .mojo-rating-box { width: 100%; padding: 1rem 0; text-align: center; }
     </style>
 </head>
 <body>
@@ -30,20 +35,15 @@
     <main class="relative z-10">
         <header class="pt-24 pb-12 max-w-5xl mx-auto px-6">
             <div class="flex flex-col lg:flex-row gap-8 items-end lg:ml-12">
-                <div class="flex-shrink-0"><img src="{{ coverImage }}" class="album-art-fixed shadow-2xl border border-white/10 rounded-sm"></div>
+                <div class="flex-shrink-0"><img src="{{ coverImage }}" class="w-[400px] h-[400px] object-cover border border-white/10 rounded-sm"></div>
                 <div class="w-full lg:w-[450px]">
-                    <div class="glass-card p-10 rounded-sm h-[400px] flex flex-col justify-between">
+                    <div class="glass-card p-10 h-[400px] flex flex-col justify-between">
                         <div>
                             <h1 class="serif text-5xl text-white mb-2 leading-tight">{{ artist }}</h1>
                             <p class="text-lg text-red-500 font-extrabold uppercase tracking-widest italic mb-8">{{ title }}</p>
-                            <div class="space-y-3">
-                                <div class="flex justify-between text-xs"><span class="text-slate-400">Label</span><span class="text-white">{{ label }}</span></div>
-                                <div class="flex justify-between text-xs"><span class="text-slate-400">Released</span><span class="text-white">{{ year }}</span></div>
-                            </div>
                         </div>
                         <div class="mojo-rating-box">
-                            <span class="text-[9px] font-bold text-slate-500 uppercase tracking-widest mb-1">Mojo Rating</span>
-                            <span class="text-3xl font-black text-white italic serif">{{ mojoScore }}%</span>
+                            <span class="text-3xl font-black text-white italic serif">{{ mojoScore }}% <span class="text-base text-slate-600 font-normal">Mojo Rating</span></span>
                         </div>
                     </div>
                 </div>
@@ -52,6 +52,12 @@
         <div class="max-w-5xl mx-auto px-6 py-16">
             <article class="article-content lg:ml-12 lg:pr-24">
                 {{ content | safe }}
+
+                <div class="mt-16 flex flex-col gap-4">
+                    {% if buyUrl %}<a href="{{ buyUrl }}" target="_blank" class="action-btn">Buy Vinyl</a>{% endif %}
+                    {% if listenUrl %}<a href="{{ listenUrl }}" target="_blank" class="action-btn">Listen Here</a>{% endif %}
+                    {% if videoUrl %}<a href="{{ videoUrl }}" target="_blank" class="action-btn">Watch Video</a>{% endif %}
+                </div>
             </article>
         </div>
     </main>
