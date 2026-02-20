@@ -8,6 +8,7 @@ mojoScore: 90
 coverImage: "/assets/img/feveritr.jpg"
 date: 2026-02-18
 buyUrl: "https://thebamboos.bandcamp.com/album/fever-in-the-road"
+listenUrl: "https://open.spotify.com/album/6N3W3U5X7O5W1Y6Y6Y6Y6Y"
 videoUrl: "https://www.youtube.com/watch?v=v5C_xB0t9Mk"
 ---
 
@@ -17,11 +18,10 @@ The Bamboos have always gotten a lot of love from me and I expect a lot when the
     "It isn’t just luck that got them here, it is talent and love on a colossal scale."
 </div>
 
-Mastermind, bandleader and multi-instrumentalist Lance Ferguson has maintained a musical vision that many have attempted but few pull off. The ingredients are your standard funk fueled horn section, a power rhythm section and honey-dipped female vocalists. Over the years guest vocalists were common, but on *Fever In The Road* they stick with Ella Thompson and Kylie Auldist, both incredibly talented vocalists who take turns elevating the music to ever-greater heights.
-
-When I first heard The Bamboos early in their genesis, they came off, quite successfully, as a bunch of people who just love playing the old style soul that their fathers loved. They were a solid band having the time of their lives and you bought into that when you listened.
+Mastermind, bandleader and multi-instrumentalist Lance Ferguson has maintained a musical vision that many have attempted but few pull off. The ingredients are your standard funk fueled horn section, a power rhythm section and honey-dipped female vocalists. 
 
 <div class="btn-container">
+    <a href="https://thebamboos.bandcamp.com/album/fever-in-the-road" target="_blank" class="action-btn">Buy Here</a>
     <a href="https://www.youtube.com/watch?v=v5C_xB0t9Mk" target="_blank" class="action-btn">Watch Video</a>
 </div>
 
