@@ -9,7 +9,7 @@ mojoScore: 90
 youtubeId: "B4mOG4XiF2E"
 featuredQuote: "Each song on Vicious Things belongs there; it is a single complete work, a story told to various blues rhythms."
 buyLink: "http://voodavis.com/vicious-things-cd/"
-listenLink: "https://open.spotify.com/album/0A1B2C3D4E5F6G7H8I9J0K"
+listenLink: "https://open.spotify.com/album/5R9M...8"
 ---
 
 *Vicious Things* is a wonder of balance and growth. Everything about this record showcases Voo mastering his craft, from the polished songwriting down to one of the best blues mixes I have heard. The guitar work is extraordinary, as is the rest of the band. In particular, Calvin Conway's harp playing is outstanding.
