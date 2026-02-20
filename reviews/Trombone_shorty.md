@@ -20,4 +20,4 @@ My favorite track, Fire and Brimstone, a steady rock jam with backing horns and 
 
 I have already listened to the album multiple times. *Say That To Say This* was recorded with great care for the sound quality and it pays off on spades. The dynamics are as good or better than any recent recordings I have heard. There is no hint of listening fatigue with this album, it isn’t over compressed or clipping. This is how a recording is meant to be presented.
 
-I highly recommend getting this album on High-Def digital or vinyl, at the very least CD. It is well worth listening to more than just the great music with this recording. remove me
+I highly recommend getting this album on High-Def digital or vinyl, at the very least CD. It is well worth listening to more than just the great music with this recording.
