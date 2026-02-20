@@ -5,7 +5,7 @@ title: "The Devil You Know"
 label: "Alligator Records"
 year: 2014
 mojoScore: 79
-coverImage: "/assets/img/tommy_castro.jpg"
+coverImage: "/assets/img/tdyk.jpg"
 date: 2026-02-20
 ---
 
