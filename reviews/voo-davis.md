@@ -8,11 +8,11 @@ label: "Independent"
 year: "2015"
 youtubeId: "B4mOG4XiF2E"
 featuredQuote: "Vicious Things opens up with what I have begun to call the 'Wall of Voo' sound."
-buyLink: "http://voodavis.com/vicious-things-cd/"
-listenLink: "https://open.spotify.com/album/4mUv9n3U1v3"
+buyLink: "https://amzn.to/3pAn9R3"
+listenLink: "https://open.spotify.com/album/3B6eE9eW8z5N4z6P9Q7R8S73"
 ---
 
-GGTTRREEDDDSSSSSSVicious Things opens up with what I have begun to call the “Wall of Voo” sound. 
+Vicious Things opens up with what I have begun to call the “Wall of Voo” sound. 
 
 I have been anxiously awaiting the arrival of the new Voo Davis album since I listened to his first one, A Place for Secrets. His initial offering showed a talent that was on the verge of full bloom. The recording was raw, the song writing strong but still somewhat unpolished. It was filled with promises.
 
