@@ -1,23 +1,23 @@
 ---
 layout: base.njk
 ---
-<article class="max-w-4xl mx-auto my-12 p-8 bg-white bg-opacity-10 backdrop-blur-md rounded-xl shadow-2xl border border-white border-opacity-20 glass-card">
-  <div class="flex flex-col md:flex-row gap-8 items-start mb-12">
+<article class="max-w-4xl mx-auto my-12 p-8 glass-card rounded-xl shadow-2xl border border-white border-opacity-10">
+  <div class="flex flex-col md:flex-row gap-10 items-start mb-12">
     <div class="w-full md:w-1/3">
-      <img src="{{ coverImage }}" alt="{{ artist }} - {{ title }}" class="w-full rounded-lg shadow-lg">
+      <img src="{{ coverImage }}" alt="{{ artist }} - {{ title }}" class="w-full rounded-lg shadow-2xl border border-white border-opacity-10">
       
       <div class="mt-6 bg-black bg-opacity-40 p-4 text-center rounded-lg">
         <span class="text-5xl font-black text-white">{{ mojoScore }}%</span>
-        <p class="text-xs uppercase tracking-widest text-gray-400 mt-1 font-bold">Mojo Rating</p>
+        <p class="text-[10px] uppercase tracking-[0.3em] text-gray-400 mt-2 font-bold">Mojo Rating</p>
       </div>
     </div>
 
     <div class="w-full md:w-2/3">
       <h1 class="text-5xl font-black text-white leading-tight mb-2">{{ title }}</h1>
-      <h2 class="text-2xl text-yellow-500 font-bold mb-4">{{ artist }}</h2>
-      <div class="flex gap-4 text-sm text-gray-400 uppercase tracking-widest font-bold mb-6">
+      <h2 class="text-2xl text-yellow-500 font-bold mb-4 uppercase tracking-wider">{{ artist }}</h2>
+      <div class="flex gap-4 text-[10px] text-gray-500 uppercase tracking-[0.2em] font-bold mb-8">
         <span>{{ label }}</span>
-        <span>&bull;</span>
+        <span>•</span>
         <span>{{ year }}</span>
       </div>
       <p class="text-xl text-gray-200 italic leading-relaxed border-l-4 border-red-600 pl-6 py-2">
@@ -26,7 +26,7 @@ layout: base.njk
     </div>
   </div>
 
-  <div class="prose prose-invert prose-lg max-w-none text-gray-200 leading-relaxed mb-12">
+  <div class="prose prose-invert prose-lg max-w-none text-gray-300 leading-relaxed mb-12">
     {{ content | safe }}
   </div>
 
@@ -38,11 +38,11 @@ layout: base.njk
   </div>
   {% endif %}
 
-  <div class="flex flex-col md:flex-row gap-6 justify-center mt-12 pt-8 border-t border-white border-opacity-10">
-    <a href="{{ buyLink }}" target="_blank" class="px-8 py-4 border-2 border-yellow-600 text-yellow-500 font-black uppercase tracking-widest rounded-md hover:bg-yellow-600 hover:text-black transition-all duration-300 text-center">
+  <div class="flex flex-col md:flex-row gap-6 justify-center mt-12 pt-10 border-t border-white border-opacity-10">
+    <a href="{{ buyLink }}" target="_blank" class="px-10 py-4 border-2 border-yellow-600 text-yellow-500 font-black uppercase tracking-[0.2em] text-xs rounded-sm hover:bg-yellow-600 hover:text-black transition-all duration-300 text-center">
       Buy Album
     </a>
-    <a href="{{ listenLink }}" target="_blank" class="px-8 py-4 border-2 border-yellow-600 text-yellow-500 font-black uppercase tracking-widest rounded-md hover:bg-yellow-600 hover:text-black transition-all duration-300 text-center">
+    <a href="{{ listenLink }}" target="_blank" class="px-10 py-4 border-2 border-yellow-600 text-yellow-500 font-black uppercase tracking-[0.2em] text-xs rounded-sm hover:bg-yellow-600 hover:text-black transition-all duration-300 text-center">
       Listen on Spotify
     </a>
   </div>
