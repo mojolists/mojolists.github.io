@@ -1,13 +1,17 @@
 ---
 layout: review-layout.njk
-artist: "Trombone Shorty"
-title: "Say That To Say This"
-label: "Vagrant Records"
-year: 2013
-mojoScore: 84
-coverImage: "/assets/img/ts.jpg"
-date: 2026-02-19
+artist: Trombone Shorty
+title: Lifted
+label: Blue Note Records
+year: 2022
+coverImage: /assets/img/trombone-shorty-lifted.jpg
+mojoScore: 88
+featuredQuote: "A high-octane blend of funk, soul, and brass that feels like a New Orleans block party."
+buyLink: "https://example.com/buy"
+listenLink: "https://open.spotify.com/..."
+videoLink: "https://youtube.com/..."
 ---
+
 
 The story of Troy ‘Trombone Shorty’ Andrews career, which started at the age of four, when he and his chosen instrument, which was twice as tall as he, stood on stage with Bo Diddly. The crowd and Mr. Diddley were blown away all those years ago and Trombone Shorty has never looked back. NOLA has never forgotten this treasure and Trombone Shorty has never forgotten from whence he came.
 
