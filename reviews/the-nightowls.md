@@ -9,7 +9,7 @@ year: "2013"
 youtubeId: "LHIzh2U_I3U"
 featuredQuote: "Austin band, The Nightowls began their soul journey around 2011 and recently released their first album, *Good As Gold*, a catchy series of funk infused soul syrup too sweet to resist."
 buyLink: "https://www.wearethenightowls.com/shop/good-as-gold-vinyl-physical-copy"
-listenLink: "https://open.spotify.com/album/4vM6M6M6M6M6M6M6M6M6M6"
+listenLink: "https://open.spotify.com/album/2y9n3U1v3"
 ---
 
 If you hang around Mojolists at all, you know that soul and funk are enjoying a huge revival. You also know that we support every damn last one the folks who bring that horny goodness into our lives. Austin band, The Nightowls began their soul journey around 2011 and recently released their first album, *Good As Gold*, a catchy series of funk infused soul syrup too sweet to resist.

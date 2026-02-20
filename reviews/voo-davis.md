@@ -9,7 +9,7 @@ year: "2015"
 youtubeId: "B4mOG4XiF2E"
 featuredQuote: "Vicious Things opens up with what I have begun to call the 'Wall of Voo' sound."
 buyLink: "http://voodavis.com/vicious-things-cd/"
-listenLink: "https://open.spotify.com/album/5vV6V6V6V6V6V6V6V6V6V6"
+listenLink: "https://open.spotify.com/album/4mUv9n3U1v3"
 ---
 
 Vicious Things opens up with what I have begun to call the “Wall of Voo” sound. 
