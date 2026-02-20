@@ -1,83 +1,90 @@
-<!DOCTYPE html><html lang="en"><head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Review: The Monophonics - It&#39;s Only Us | MojoLists</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <title>It&#39;s Only Us | MojoLists</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/assets/css/styles.css">
     <style>
-        body { font-family: 'Inter', sans-serif; background-color: #0b1120; color: #94a3b8; margin: 0; padding: 0; }
-        .serif { font-family: 'Playfair Display', serif; }
-        .logo-font { font-family: 'Cormorant Garamond', serif; }
-        :root { --mojo-gold: #c5a059; --mojo-red: #ef4444; }
-        .hero-bg-zoom { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-image: url('/assets/img/monophonics.jpg'); background-size: cover; background-position: center; filter: brightness(0.25) saturate(1.2); z-index: -1; }
-        .overlay-gradient { position: fixed; inset: 0; background: linear-gradient(to bottom, rgba(11, 17, 32, 0.4) 0%, rgba(11, 17, 32, 0.95) 100%); z-index: -1; }
-        .glass-card { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.1); }
-        .article-content p { margin-bottom: 2rem; font-size: 1.125rem; line-height: 1.8; color: #e2e8f0; }
-        .mojo-quote { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: white; font-style: italic; border-left: 4px solid var(--mojo-red); padding-left: 2rem; margin: 3rem 0; line-height: 1.6; }
-        .btn-container { margin: 3rem 0; display: flex; flex-direction: row; flex-wrap: wrap; justify-content: center; gap: 1.5rem; width: 100%; }
-        .action-btn { display: inline-flex; align-items: center; justify-content: center; width: 100%; max-width: 320px; padding: 1.25rem; background-color: transparent; color: var(--mojo-gold); font-weight: 900; text-transform: uppercase; letter-spacing: 0.25em; font-size: 0.75rem; transition: all 0.3s ease; text-decoration: none; border: 1px solid var(--mojo-gold); }
-        .action-btn:hover { background-color: var(--mojo-gold); color: #0b1120; }
-        .info-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.2em; color: #64748b; margin-bottom: 2px; }
-        .info-value { font-size: 14px; color: white; font-weight: 400; margin-bottom: 16px; }
-        .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; background: #000; border: 1px solid rgba(255,255,255,0.1); }
-        .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
-    </style></head><body>
-    <div class="hero-bg-zoom"></div>
-    <div class="overlay-gradient"></div>
-    <nav class="relative z-50 px-8 py-8 flex justify-between items-center max-w-7xl mx-auto">
-        <a href="/" class="logo-font text-3xl tracking-tighter text-white font-light">MOJO<span class="text-red-500 font-normal">LISTS</span></a>
-        <div class="flex gap-8 text-[11px] font-bold uppercase tracking-[0.2em]">
-            <a href="/reviews/" class="text-slate-400 hover:text-[#c5a059] transition-colors">The Archive</a>
-            <a href="/" class="text-slate-400 hover:text-[#c5a059] transition-colors">Home</a>
-        </div>
-    </nav>
-    <main class="relative z-10">
-        <header class="pt-24 pb-12 max-w-5xl mx-auto px-6">
-            <div class="flex flex-col lg:flex-row gap-8 items-end lg:ml-12">
-                <div class="flex-shrink-0"><img src="/assets/img/monophonics.jpg" class="w-[400px] h-[400px] object-cover border border-white/10 rounded-sm"></div>
-                <div class="w-full lg:w-[450px]">
-                    <div class="glass-card p-10 h-[400px] flex flex-col justify-between">
-                        <div>
-                            <h1 class="serif text-5xl text-white mb-2 leading-tight">The Monophonics</h1>
-                            <p class="text-lg text-red-500 font-extrabold uppercase tracking-widest italic mb-8">It&#39;s Only Us</p>
-                            <div class="mt-4">
-                                <p class="info-label">Label</p><p class="info-value">Colemine Records</p>
-                                <p class="info-label">Released</p><p class="info-value">2020</p>
-                            </div>
-                        </div>
-                        <div class="mojo-rating-box">
-                            <span class="text-3xl font-black text-white italic serif">90% <span class="text-base text-slate-600 font-normal">Mojo Rating</span></span>
-                        </div>
-                    </div>
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+    </style>
+</head>
+<body class="bg-black text-white min-h-screen font-sans selection:bg-yellow-500 selection:text-black">
+    <div class="min-h-screen flex flex-col">
+        <nav class="border-b border-white border-opacity-10 px-6 py-6">
+            <div class="max-w-7xl mx-auto flex justify-between items-center">
+                <a href="/" class="text-3xl font-black tracking-tighter hover:text-yellow-500 transition-all">MOJOLISTS</a>
+                <div class="hidden md:flex space-x-12 text-sm font-bold uppercase tracking-[0.2em] text-gray-400">
+                    <a href="/" class="hover:text-white transition">Reviews</a>
+                    <a href="/archives" class="hover:text-white transition">Archives</a>
+                    <a href="/about" class="hover:text-white transition">About</a>
                 </div>
             </div>
-        </header>
-        <div class="max-w-5xl mx-auto px-6 py-16">
-            <article class="article-content lg:ml-12 lg:pr-24">
-                
-                    <blockquote class="mojo-quote">It feels like the soundtrack to a lost 1970s film set in the Bay Area.</blockquote>
-                
-                
-                <p><em>It's Only Us</em> is a deep dive into the psychedelic soul sound that The Monophonics have spent years perfecting. From the opening title track, the production—led by Kelly Finnigan—is lush, fuzzy, and cinematic. It feels like the soundtrack to a lost 1970s film set in the Bay Area.</p>
+        </nav>
+
+        <main class="flex-grow">
+            <article class="max-w-4xl mx-auto my-12 p-8 glass-card rounded-xl shadow-2xl border border-white border-opacity-10">
+  <div class="flex flex-col md:flex-row gap-10 items-start mb-12">
+    <div class="w-full md:w-1/3">
+      <img src="/assets/img/monophonics.jpg" alt="The Monophonics - It&#39;s Only Us" class="w-full rounded-lg shadow-2xl border border-white border-opacity-10">
+      
+      <div class="mt-6 bg-black bg-opacity-40 p-4 text-center rounded-lg">
+        <span class="text-5xl font-black text-white">90%</span>
+        <p class="text-[10px] uppercase tracking-[0.3em] text-gray-400 mt-2 font-bold">Mojo Rating</p>
+      </div>
+    </div>
+
+    <div class="w-full md:w-2/3">
+      <h1 class="text-5xl font-black text-white leading-tight mb-2">It&#39;s Only Us</h1>
+      <h2 class="text-2xl text-yellow-500 font-bold mb-4 uppercase tracking-wider">The Monophonics</h2>
+      <div class="flex gap-4 text-[10px] text-gray-500 uppercase tracking-[0.2em] font-bold mb-8">
+        <span>Colemine Records</span>
+        <span>•</span>
+        <span>2020</span>
+      </div>
+      <p class="text-xl text-gray-200 italic leading-relaxed border-l-4 border-red-600 pl-6 py-2">
+        "It feels like the soundtrack to a lost 1970s film set in the Bay Area."
+      </p>
+    </div>
+  </div>
+
+  <div class="prose prose-invert prose-lg max-w-none text-gray-300 leading-relaxed mb-12">
+    <p><em>It's Only Us</em> is a deep dive into the psychedelic soul sound that The Monophonics have spent years perfecting. From the opening title track, the production—led by Kelly Finnigan—is lush, fuzzy, and cinematic. It feels like the soundtrack to a lost 1970s film set in the Bay Area.</p>
 <p>What sets this record apart is the songwriting. While the grooves are impeccable, the lyrics touch on reflection and connection in a way that feels modern despite the vintage gear used to record it. The horns are warm, the backing vocals are haunting, and Finnigan’s soulful delivery ties the whole project together. It’s a standout release for Colemine Records and a must-listen for anyone into the &quot;Sagan soul&quot; movement.</p>
 
+  </div>
 
-                
-                <div class="my-12">
-                    <p class="info-label mb-4">Featured Video</p>
-                    <div class="video-wrapper rounded-sm shadow-2xl">
-                        <iframe src="https://www.youtube.com/embed/jX3iL_idAnf0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-                    </div>
-                </div>
-                
+  
+  <div class="my-12 rounded-xl overflow-hidden shadow-2xl border border-white border-opacity-10">
+    <div class="aspect-video">
+      <iframe class="w-full h-full" src="https://www.youtube.com/embed/jX3iL_idAnf0" frameborder="0" allowfullscreen></iframe>
+    </div>
+  </div>
+  
 
-                
-                <div class="btn-container">
-                    <a href="https://www.coleminerecords.com/products/monophonics-its-only-us-release-date-4-23-21" class="action-btn" target="_blank">Buy Album</a>
-                    <a href="https://open.spotify.com/album/6fLfLfLfLfLfLfLfLfLfLf" class="action-btn" target="_blank">Listen Now</a>
-                    
-                </div>
-                
-            </article>
-        </div>
-    </main></body></html>
+  <div class="flex flex-col md:flex-row gap-6 justify-center mt-12 pt-10 border-t border-white border-opacity-10">
+    <a href="https://www.coleminerecords.com/products/monophonics-its-only-us-release-date-4-23-21" target="_blank" class="px-10 py-4 border-2 border-yellow-600 text-yellow-500 font-black uppercase tracking-[0.2em] text-xs rounded-sm hover:bg-yellow-600 hover:text-black transition-all duration-300 text-center">
+      Buy Album
+    </a>
+    <a href="https://open.spotify.com/album/6fLfLfLfLfLfLfLfLfLfLf" target="_blank" class="px-10 py-4 border-2 border-yellow-600 text-yellow-500 font-black uppercase tracking-[0.2em] text-xs rounded-sm hover:bg-yellow-600 hover:text-black transition-all duration-300 text-center">
+      Listen on Spotify
+    </a>
+  </div>
+</article>
+        </main>
+
+        <footer class="border-t border-white border-opacity-10 py-12 mt-20">
+            <div class="max-w-7xl mx-auto px-6 text-center">
+                <p class="text-gray-500 text-[10px] font-bold uppercase tracking-[0.4em]">
+                    © 2026 MojoLists • High-Fidelity Reviews
+                </p>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
