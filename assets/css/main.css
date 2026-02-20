@@ -1,0 +1,107 @@
+/* assets/css/main.css */
+
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+body { 
+    font-family: 'Inter', sans-serif; 
+    background-color: #0f172a; 
+    color: #f8fafc;
+}
+
+/* HIGH-CONTRAST HEADER */
+.hero-bg {
+    position: relative;
+    background-image: url('../img/lifestyle-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    min-height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-bg::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.88); 
+    backdrop-filter: blur(12px);
+    z-index: 1;
+}
+
+.hero-content { position: relative; z-index: 10; }
+
+.logo {
+    font-family: 'Playfair Display', serif;
+    font-weight: 300;
+    font-size: clamp(3rem, 10vw, 5.5rem); 
+    letter-spacing: -0.02em;
+    color: #ffffff;
+}
+
+.logo-lists { color: #ef4444; font-weight: 400; }
+
+.tagline {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.65em;
+    color: #ffffff; 
+    font-weight: 900;
+    margin: 1.5rem 0 2.5rem 0;
+}
+
+.hero-nav a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.25em;
+    margin: 0 1.5rem;
+    transition: color 0.3s;
+}
+
+.hero-nav a:hover { color: #ef4444; }
+
+/* TEASER CARDS: OPTION 3 LIGHT SERIF */
+.review-card {
+    background-color: #1e293b; 
+    border: 1px solid #334155; 
+    transition: all 0.3s ease;
+}
+
+.review-card:hover { border-color: #ef4444; transform: translateY(-4px); }
+
+.card-title {
+    font-family: 'Playfair Display', serif;
+    font-weight: 300; 
+    font-size: 1.9rem;
+    color: #ffffff;
+    margin-bottom: 0.2rem;
+}
+
+/* RED HIGHLIGHTS */
+.card-subtitle {
+    color: #ef4444;
+    font-size: 0.75rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    margin-bottom: 1.25rem;
+}
+
+.card-excerpt {
+    color: #94a3b8;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+}
+
+.line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;  
+    overflow: hidden;
+}
