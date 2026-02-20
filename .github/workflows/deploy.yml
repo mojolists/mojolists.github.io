@@ -2,7 +2,7 @@ name: Deploy MojoLists
 
 on:
   push:
-    branches: [main] # Verify if your main branch is named 'main' or 'master'
+    branches: ["*"] # This triggers on every single push to any branch
 
 jobs:
   build-and-deploy:
@@ -15,13 +15,12 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-          cache: 'npm'
 
       - name: Install Dependencies
         run: npm install
 
       - name: Build Eleventy Site
-        run: npm run build
+        run: npx @11ty/eleventy
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
