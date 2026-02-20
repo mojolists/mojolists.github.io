@@ -19,6 +19,8 @@
         .action-btn:hover { background-color: var(--mojo-gold); color: #0b1120; }
         .info-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.2em; color: #64748b; margin-bottom: 2px; }
         .info-value { font-size: 14px; color: white; font-weight: 400; margin-bottom: 16px; }
+        .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; background: #000; border: 1px solid rgba(255,255,255,0.1); }
+        .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
     </style></head><body>
     <div class="hero-bg-zoom"></div>
     <div class="overlay-gradient"></div>
@@ -58,11 +60,20 @@
                 
                 {{ content | safe }}
 
+                {% if youtubeId %}
+                <div class="my-12">
+                    <p class="info-label mb-4">Featured Video</p>
+                    <div class="video-wrapper rounded-sm shadow-2xl">
+                        <iframe src="https://www.youtube.com/embed/{{ youtubeId }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    </div>
+                </div>
+                {% endif %}
+
                 {% if buyLink or listenLink or videoLink %}
                 <div class="btn-container">
                     {% if buyLink %}<a href="{{ buyLink }}" class="action-btn" target="_blank">Buy Album</a>{% endif %}
                     {% if listenLink %}<a href="{{ listenLink }}" class="action-btn" target="_blank">Listen Now</a>{% endif %}
-                    {% if videoLink %}<a href="{{ videoLink }}" class="action-btn" target="_blank">Watch Video</a>{% endif %}
+                    {% if videoLink %}<a href="{{ videoLink }}" class="action-btn" target="_blank">Watch on YT</a>{% endif %}
                 </div>
                 {% endif %}
             </article>
