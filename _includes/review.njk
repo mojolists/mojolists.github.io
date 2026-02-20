@@ -1,6 +1,10 @@
 ---
 layout: base.njk
 ---
+eleventyConfig.setFrontMatterParsingOptions({
+  excerpt: true,
+  excerpt_separator: ""
+});
 <article class="max-w-4xl mx-auto my-12 p-8 glass-card rounded-xl shadow-2xl border border-white border-opacity-10">
   <div class="flex flex-col md:flex-row gap-10 items-start mb-12">
     <div class="w-full md:w-1/3">
