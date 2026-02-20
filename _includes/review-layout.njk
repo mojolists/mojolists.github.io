@@ -20,14 +20,34 @@
         
         .mojo-quote { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: white; font-style: italic; border-left: 4px solid var(--mojo-red); padding-left: 2rem; margin: 3rem 0; line-height: 1.6; }
         
-        /* Centered Button Styling */
-        .btn-container { margin: 3rem 0; display: flex; flex-direction: column; align-items: center; gap: 1rem; width: 100%; }
-        .action-btn { 
-            display: inline-flex; align-items: center; justify-content: center; width: 100%; max-width: 420px; 
-            padding: 1.25rem; background-color: transparent; color: var(--mojo-gold); 
-            font-weight: 900; text-transform: uppercase; letter-spacing: 0.25em; font-size: 0.75rem; 
-            transition: all 0.3s ease; text-decoration: none; border: 1px solid var(--mojo-gold); 
-        }
+       /* Centered & Side-by-Side Button Styling */
+.btn-container { 
+    margin: 3rem 0; 
+    display: flex; 
+    flex-direction: row; /* Changed to row */
+    flex-wrap: wrap;    /* Allows wrapping on small screens */
+    justify-content: center; 
+    gap: 1.5rem; 
+    width: 100%; 
+}
+
+.action-btn { 
+    display: inline-flex; 
+    align-items: center; 
+    justify-content: center; 
+    width: 100%; 
+    max-width: 300px; /* Slightly smaller to fit side-by-side */
+    padding: 1.1rem; 
+    background-color: transparent; 
+    color: var(--mojo-gold); 
+    font-weight: 900; 
+    text-transform: uppercase; 
+    letter-spacing: 0.25em; 
+    font-size: 0.7rem; 
+    transition: all 0.3s ease; 
+    text-decoration: none; 
+    border: 1px solid var(--mojo-gold); 
+}
         .action-btn:hover { background-color: var(--mojo-gold); color: #0b1120; }
         
         .mojo-rating-box { width: 100%; padding: 1rem 0; text-align: center; background: transparent; }

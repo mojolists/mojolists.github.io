@@ -7,6 +7,8 @@ year: 2013
 mojoScore: 80
 coverImage: "/assets/img/ffys.jpg"
 date: 2026-02-16
+buyUrl: "https://amzn.to/3vM5Q6L"
+listenUrl: "https://open.spotify.com/album/4kY7vR9z2K6L8M1pL5O4Xk"
 videoUrl: "https://www.youtube.com/watch?v=3aOVqqcfn_U"
 ---
 
@@ -19,7 +21,8 @@ When you are gifted with the guitar playing abilities and natural blues voice of
 This album feels like it is his own, where his heart really belongs. The playing is solid and his guitar skills are evident but not pushed forward like in his previous work. These songs all have a solo, as opposed to much of Lang’s early work, where a song seemed to be built around the solo. 
 
 <div class="btn-container">
+    <a href="https://amzn.to/3vM5Q6L" target="_blank" class="action-btn">Buy Here</a>
     <a href="https://www.youtube.com/watch?v=3aOVqqcfn_U" target="_blank" class="action-btn">Watch Video</a>
 </div>
 
-The music is more melodic and the layers of voices, guitars, and backing instruments create a wave that propels the music forward before crashing against a rocky shore. For fans who enjoy Lang’s music for his writing style over his guitar virtuosity there is a lot to like here.
+The music is more melodic and the layers of voices, guitars, and backing instruments create a wave that propels the music forward before crashing against a rocky shore. *Fight For My Soul* is well recorded, with no artifacts from dynamic compression, and is easy to listen to multiple times without any ear fatigue.

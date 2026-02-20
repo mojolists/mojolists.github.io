@@ -7,6 +7,7 @@ year: 2013
 mojoScore: 90
 coverImage: "/assets/img/noshowponies.jpg"
 date: 2026-02-11
+buyUrl: "https://amzn.to/3pAn9R3"
 videoUrl: "https://www.youtube.com/watch?v=vr_WEnW7Gf4"
 ---
 
@@ -19,6 +20,7 @@ No Show Ponies are one of a thousand Austin bands trying to find their place and
 I should say now, that I have met the brothers Brown, Jeff and Ben. Jeff and I sat close to each other at one of those jobs you try to forget, the kind that sucks a bit of your soul every single time you step through the entrance. 
 
 <div class="btn-container">
+    <a href="https://amzn.to/3pAn9R3" target="_blank" class="action-btn">Buy Here</a>
     <a href="https://www.youtube.com/watch?v=vr_WEnW7Gf4" target="_blank" class="action-btn">Watch Video</a>
 </div>
 
