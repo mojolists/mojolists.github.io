@@ -1,12 +1,9 @@
 ---
 layout: false
 ---
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    ...
-</head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MojoLists | The Favored Home of Crate Diggers, Vinyl Flippers and Music Lovers</title>
@@ -41,7 +38,7 @@ layout: false
             <div class="h-[1px] w-12 bg-white/10"></div>
         </div>
         <nav class="flex justify-center gap-16 mt-12 text-[14px] font-medium tracking-[0.15em] uppercase">
-            <a href="/" class="nav-link">Reviews</a>
+            <a href="/reviews/" class="nav-link">Reviews</a>
             <a href="#" class="nav-link">About</a>
         </nav>
     </header>
@@ -49,7 +46,6 @@ layout: false
     <main class="max-w-[1400px] mx-auto px-8 py-10">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-x-8 gap-y-12">
             
-            {# This section handles your automated reviews #}
             {% for review in collections.reviews | limit(6) %}
             <div>
                 <span class="row-label">
@@ -67,7 +63,6 @@ layout: false
             </div>
             {% endfor %}
 
-            {# Static Toolkit Card #}
             <div>
                 <span class="row-label">The Toolkit</span>
                 <article class="review-card p-8 bg-slate-900/40">
@@ -81,7 +76,6 @@ layout: false
                 </article>
             </div>
 
-            {# Static Library Stats Card #}
             <div>
                 <span class="row-label">Library Stats</span>
                 <article class="review-card p-8">

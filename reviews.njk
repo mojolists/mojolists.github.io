@@ -15,7 +15,6 @@ layout: false
         .serif { font-family: 'Playfair Display', serif; }
         .logo-font { font-family: 'Cormorant Garamond', serif; }
         
-        /* Compact Card Styling */
         .quick-card { 
             background: rgba(30, 41, 59, 0.5); 
             border: 1px solid rgba(255, 255, 255, 0.05);
@@ -39,7 +38,10 @@ layout: false
 <body class="min-h-screen">
 
     <nav class="p-8 max-w-7xl mx-auto flex justify-between items-center">
-        <a href="/" class="logo-font text-3xl text-white">MOJO<span class="text-red-500">LISTS</span></a>
+        <div class="flex items-center gap-8">
+            <a href="/" class="logo-font text-3xl text-white">MOJO<span class="text-red-500">LISTS</span></a>
+            <a href="/" class="text-[10px] font-bold uppercase tracking-widest text-slate-500 hover:text-white transition-colors">← Back Home</a>
+        </div>
         <div class="relative w-full max-w-xs">
             <input type="text" id="reviewSearch" placeholder="Search artist, album, or article..." 
                    class="search-input w-full px-4 py-2 rounded-sm text-sm">
@@ -116,6 +118,5 @@ layout: false
             }
         });
     </script>
-
 </body>
 </html>
