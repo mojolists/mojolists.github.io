@@ -21,8 +21,11 @@ The Bamboos have always gotten a lot of love from me and I expect a lot when the
 Mastermind, bandleader and multi-instrumentalist Lance Ferguson has maintained a musical vision that many have attempted but few pull off. The ingredients are your standard funk fueled horn section, a power rhythm section and honey-dipped female vocalists. 
 
 <div class="btn-container">
-    <a href="https://thebamboos.bandcamp.com/album/fever-in-the-road" target="_blank" class="action-btn">Buy Here</a>
-    <a href="https://www.youtube.com/watch?v=v5C_xB0t9Mk" target="_blank" class="action-btn">Watch Video</a>
+      <a href="https://www.youtube.com/watch?v=v5C_xB0t9Mk" target="_blank" class="action-btn">Watch Video</a>
 </div>
 
 You want to get up and dance, you have to. If you are breathing, *Fever In The Road* is going to move you. It is a more polished, mature sound that still manages to keep the raw energy that made them famous.
+
+<div class="btn-container">
+    <a href="https://thebamboos.bandcamp.com/album/fever-in-the-road" target="_blank" class="action-btn">Buy Here</a>
+	</div>
