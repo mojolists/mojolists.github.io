@@ -22,4 +22,4 @@ The sound quality of this record is top notch. Voo takes musical equipment and t
     <a href="https://www.youtube.com/watch?v=B4mOG4XiF2E" target="_blank" class="action-btn">Video</a>
 </div>
 
-According to the liner notes, the bulk of the album was recorded using tube amps and vintage analog gear. Each song on *Vicious Things* belongs there; it is a single complete work, a story told to various blues rhythms.
+According to the liner notes, the bulk of the album was recorded using tube amps and vintage analog gear. Each song on *Vicious Things* belongs there; it is a single complete work, a story told to various blues rhythms. 
