@@ -1,22 +1,24 @@
 ---
-layout: review-layout.njk
+layout: review.njk
 artist: "Voo Davis"
-title: "Vicious Things"
-label: ""
-year: "2011"
-coverImage: "/assets/img/voo-davis.jpg"
-mojoScore: 90
+album: "Vicious Things"
+image: "voo-davis.jpg"
+score: 9
+label: "Independent"
+year: "2015"
 youtubeId: "B4mOG4XiF2E"
-featuredQuote: "*Vicious Things* opens up with what I have begun to call the “Wall of Voo” sound. After a slow build, "One for the habit, One for the Road," turns into a runaway train "
-buyLink: "http://www.amazon.com/gp/product/B00DNN9Z0C/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B00DNN9Z0C&linkCode=as2&tag=mojolists-20"
-listenLink: ""
+featuredQuote: "Vicious Things opens up with what I have begun to call the 'Wall of Voo' sound."
+buyLink: "http://voodavis.com/vicious-things-cd/"
+listenLink: "https://open.spotify.com/album/5vV6V6V6V6V6V6V6V6V6V6"
 ---
+
+Vicious Things opens up with what I have begun to call the “Wall of Voo” sound. 
 
 I have been anxiously awaiting the arrival of the new Voo Davis album since I listened to his first one, A Place for Secrets. His initial offering showed a talent that was on the verge of full bloom. The recording was raw, the song writing strong but still somewhat unpolished. It was filled with promises.
 
 Since I first started following Voo he has been spending a lot of time on the road, he has been more focused on his music and as a proud new father, his family. He has managed to juggle his priorities and keep them in balance. *Vicious Things* is itself a wonder of balance and growth. Everything about *Vicious Things* showcases Voo mastering his craft, from the polished songwriting down to one of the best blues mixes I have heard. The guitar work is extraordinary, as is the rest of the band. In particular, I found Calvin Conway’s harp playing outstanding, as I would expect from my favorite blues harmonica player.
 
-The sound quality of this record is top notch, something not often found in blues recordings. Voo takes musical equipment and technology seriously. He understands why analog is better than digital, he knows that you can create more emotion and have greater impact by leaving the natural dynamics intact and avoiding the dreaded dynamic compression that crushes the life out of so many recordings these days. He doesn’t need a computer to cover up bad playing.
+The sound quality of this record is top notch, something not often found in blues recordings. Voo takes musical equipment and technology seriously. He understands why analog is better than digital, he knows that you can create more emotion and have greater impact by leaving the natural dynamics intact and avoiding the dreaded dynamic compression that crushes the life out of so many recordings these days. He doesn't need a computer to cover up bad playing.
 
 According to the liner notes, the bulk of the album was recorded in a pair of historic Louisiana studios, using tube amps and vintage analog gear. My main system is a fairly high-end rig that is detailed and revealing to a point that poorly mixed albums are unlistenable, a plague taking over pop and rock recordings. *Vicious Things* revealed the artful use of equipment long dismissed by less caring artists. It is a rare recording that lets you into the recording environment these days and *Vicious Things* successfully puts you in the studio with the band. Each artist retains a solid, focused position within the wide soundstage. The only hint of digital edge is a product of the media, the CD itself being the link between today and yesteryear.
 
