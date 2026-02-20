@@ -1,0 +1,14 @@
+{
+  "name": "mojolists",
+  "version": "1.0.0",
+  "description": "MojoLists Review Automation Machine",
+  "scripts": {
+    "build": "npx @11ty/eleventy",
+    "serve": "npx @11ty/eleventy --serve",
+    "debug": "DEBUG=Eleventy* npx @11ty/eleventy"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^3.0.0",
+    "@11ty/eleventy-img": "^5.0.0"
+  }
+}
