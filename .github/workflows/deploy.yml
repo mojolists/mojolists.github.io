@@ -1,8 +1,8 @@
-name: Deploy MojoLists to GitHub Pages
+name: Deploy MojoLists
 
 on:
   push:
-    branches: [main] # Or "master" depending on your repo
+    branches: [main] # Verify if your main branch is named 'main' or 'master'
 
 jobs:
   build-and-deploy:
@@ -18,7 +18,7 @@ jobs:
           cache: 'npm'
 
       - name: Install Dependencies
-        run: npm install # This installs @11ty/eleventy-img
+        run: npm install
 
       - name: Build Eleventy Site
         run: npm run build

@@ -2,11 +2,19 @@
   "name": "mojolists",
   "version": "1.0.0",
   "description": "MojoLists Review Automation Machine",
+  "main": ".eleventy.js",
   "scripts": {
     "build": "npx @11ty/eleventy",
-    "serve": "npx @11ty/eleventy --serve",
+    "start": "npx @11ty/eleventy --serve",
     "debug": "DEBUG=Eleventy* npx @11ty/eleventy"
   },
+  "keywords": [
+    "eleventy",
+    "tailwind",
+    "music-reviews"
+  ],
+  "author": "MojoLists",
+  "license": "ISC",
   "devDependencies": {
     "@11ty/eleventy": "^3.0.0",
     "@11ty/eleventy-img": "^5.0.0"
