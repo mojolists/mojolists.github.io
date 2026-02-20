@@ -3,10 +3,13 @@ layout: review-layout.njk
 artist: "Black Joe Lewis"
 title: "Electric Slave"
 label: "Vagrant Records"
-year: 2013
+year: "2013"
+coverImage: "/assets/img/black-joe-lewis.jpg"
 mojoScore: 80
-coverImage: "/assets/img/black_joe_lewis.jpg"
-date: 2026-02-19
+youtubeId: "Wp8oK6o_B6Y"
+featuredQuote: "It’s gritty, it’s angry, and it’s exactly what the modern blues scene needs."
+buyLink: "https://blackjoelewis.com/collections/music/products/electric-slave-lp"
+listenLink: "https://open.spotify.com/album/3B6eE9eW8z5N4z6P9Q7R8S3"
 ---
 
 Austin’s Black Joe Lewis has always been a bit of a sonic chameleon, but on *Electric Slave*, he leans hard into a fuzzy, distorted garage-blues sound that feels significantly more dangerous than his earlier "Honeybears" era work. Gone are the clean James Brown comparisons; in their place is a raw, screaming energy that sounds like soul music at 4 AM in a basement bar.
