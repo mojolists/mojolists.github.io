@@ -29,6 +29,9 @@ module.exports = function(eleventyConfig) {
     // Image and Asset Passthrough
     eleventyConfig.addPassthroughCopy("assets/img");
     eleventyConfig.addPassthroughCopy("assets/css");
+    
+    // Critical fix to preserve the custom domain during GitHub Actions deployment
+    eleventyConfig.addPassthroughCopy("CNAME");
 
     // Filters
     eleventyConfig.addFilter("limit", function(array, limit) {
