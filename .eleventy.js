@@ -24,6 +24,32 @@ async function imageShortcode(src, alt, sizes = "100vw") {
 
   return Image.generateHTML(metadata, imageAttributes);
 }
+const Image = require("@11ty/eleventy-img");
+const path = require("path");
+
+async function imageShortcode(src, alt, sizes = "100vw") {
+  let metadata = await Image(src, {
+    widths: [400, 800, 1200],
+    formats: ["webp", "jpeg"],
+    outputDir: "./_site/img/",
+    urlPath: "/img/",
+    filenameFormat: function (id, src, width, format, options) {
+      const extension = path.extname(src);
+      const name = path.basename(src, extension);
+      return `${name}-${width}w.${format}`;
+    }
+  });
+
+  let imageAttributes = {
+    alt,
+    sizes,
+    loading: "lazy",
+    decoding: "async",
+    class: "w-full h-full object-cover", // Keeps your current styling
+  };
+
+  return Image.generateHTML(metadata, imageAttributes);
+}
 
 module.exports = function(eleventyConfig) {
     // Image and Asset Passthrough
@@ -50,6 +76,8 @@ module.exports = function(eleventyConfig) {
             input: ".",
             includes: "_includes",
             output: "_site"
-        }
+        },
+        markdownTemplateEngine: "njk",
+        htmlTemplateEngine: "njk"
     };
 };

@@ -1,4 +1,5 @@
 ---
+layout: review.njk
 title: Voo Davis
 artist: Voo Davis
 album: Vicious Things
@@ -11,6 +12,7 @@ buyLink:
 listenLink: 
 tags: reviews
 date: 2026-02-21
+templateEngineOverride: njk, md
 ---
 I have been anxiously awaiting the arrival of the new Voo Davis album since I listened to his first one, A Place for Secrets. His initial offering showed a talent that was on the verge of full bloom. The recording was raw, the song writing strong but still somewhat unpolished. It was filled with promises.
 
