@@ -4,7 +4,7 @@ artist: "The Monophonics"
 title: "It's Only Us"
 label: "Colemine Records"
 year: "2020"
-coverImage: "/assets/img/monophonics.jpg"
+coverImage: "/assets/img/itsonlyus.jpg"
 mojoScore: 90
 youtubeId: "jX3iL_idAnf0"
 featuredQuote: "It feels like the soundtrack to a lost 1970s film set in the Bay Area."

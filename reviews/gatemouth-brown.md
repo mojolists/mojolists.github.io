@@ -4,7 +4,7 @@ artist: "Clarence Gatemouth Brown"
 title: "San Antonio Ballbuster"
 label: "Red Lightnin'"
 year: "1974"
-coverImage: "/assets/img/gatemouth-brown.jpg"
+coverImage: "/assets/img/gatemouth.jpg"
 mojoScore: 90
 youtubeId: "kLidS8Y8_j8"
 featuredQuote: "The tracks are lean, mean, and perfectly represent the post-war Texas blues sound."

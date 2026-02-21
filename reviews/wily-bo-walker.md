@@ -4,7 +4,7 @@ artist: "Wily Bo Walker"
 title: "Wily Bo Walker & The Danny Flam Big Band"
 label: "Mescal Canyon Records"
 year: "2015"
-coverImage: "/assets/img/wily-bo-walker.jpg"
+coverImage: "/assets/img/wilybo.jpg"
 mojoScore: 80
 youtubeId: "vB-Bw_6u_B4"
 featuredQuote: "Walker’s bourbon-soaked voice paired with massive brass creates something truly cinematic."

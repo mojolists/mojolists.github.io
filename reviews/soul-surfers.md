@@ -4,7 +4,7 @@ artist: "The Soul Surfers"
 title: "Soul Rock!"
 label: "Ubiquity Records"
 year: "2015"
-coverImage: "/assets/img/soul-surfers.jpg"
+coverImage: "/assets/img/soulsurfers.jpg"
 mojoScore: 80
 youtubeId: "k-fA_uF924E"
 featuredQuote: "Hailing from Nizhny Novgorod, Russia, The Soul Surfers managed to capture a sound that many American bands spend decades chasing."

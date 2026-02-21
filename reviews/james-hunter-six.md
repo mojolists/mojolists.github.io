@@ -4,7 +4,7 @@ artist: "The James Hunter Six"
 title: "Nick Of Time"
 label: "Daptone Records"
 year: "2020"
-coverImage: "/assets/img/james-hunter.jpg"
+coverImage: "/assets/img/nick-of-time.jpg"
 mojoScore: 90
 youtubeId: "T8GRSU2t73o"
 featuredQuote: "What I love about this record is the production; it’s warm and immediate, sounding exactly like a band playing together in a room."
