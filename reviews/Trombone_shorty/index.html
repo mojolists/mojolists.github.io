@@ -29,33 +29,49 @@
 
         <main class="flex-grow">
             <article class="max-w-5xl mx-auto px-6 py-16">
-    <header class="flex flex-col lg:flex-row gap-8 items-end mb-12">
-        <img src="/assets/img/saythattosaythis.jpg" class="w-[400px] h-[400px] object-cover border border-white/10 rounded-sm">
+    <header class="flex flex-col lg:flex-row gap-8 items-stretch mb-12">
+        <div class="w-full lg:w-1/2">
+            <img src="/assets/img/saythattosaythis.jpg" alt="Trombone Shorty - Say That To Say This" class="w-full aspect-square object-cover border border-white/10 rounded-sm shadow-2xl">
+        </div>
         
-        <div class="glass-card p-10 h-[400px] flex flex-col justify-between w-full lg:w-[450px]">
+        <div class="glass-card p-10 flex flex-col justify-between w-full lg:w-1/2">
             <div>
-                <h1 class="text-white mb-2 leading-tight break-words" style="font-size: clamp(1.5rem, 5vw, 3rem); font-weight: 900;">
+                <span class="text-[#c5a059] uppercase tracking-[0.4em] text-[10px] font-black mb-4 block">Verve Records // 2013</span>
+                
+                <h1 class="text-white font-black uppercase tracking-tighter leading-[0.85] mb-4 break-words" 
+                    style="font-size: clamp(2rem, 6vw, 4.5rem);">
                     Trombone Shorty
                 </h1>
                 
-                <p class="text-lg text-red-500 font-extrabold uppercase italic">Say That To Say This</p>
-                <div class="mt-4">
-                    <p class="text-[10px] uppercase text-slate-500 font-bold">Label: <span class="text-white font-normal">Verve Records</span></p>
-                    <p class="text-[10px] uppercase text-slate-500 font-bold">Released: <span class="text-white font-normal">2013</span></p>
-                </div>
+                <h2 class="text-gray-400 text-xl font-light italic uppercase tracking-wide">
+                    Say That To Say This
+                </h2>
             </div>
-            
-            <div class="text-center border-t border-white/10 pt-4">
-                <span class="text-3xl font-black text-white italic">
-                    90% 
-                    <span class="text-base text-slate-600 font-normal ml-2">Mojo Rating</span>
-                </span>
+
+            <div class="pt-8 flex items-end justify-between bg-transparent">
+                <div class="flex flex-col">
+                    <span class="text-[#c5a059] uppercase text-[9px] tracking-[0.4em] mb-1 font-bold">Mojo Confidence</span>
+                    <div class="flex items-baseline">
+                        <span class="text-7xl font-black text-white leading-none tracking-tighter">90</span>
+                        <span class="text-2xl font-bold text-[#c5a059] ml-1">%</span>
+                    </div>
+                </div>
+                
+                <div class="pb-2">
+                    <div class="px-6 py-2 border border-[#c5a059] text-[#c5a059] text-[10px] uppercase tracking-widest font-black hover:bg-[#c5a059] hover:text-black transition-all cursor-pointer">
+                        Album Review
+                    </div>
+                </div>
             </div>
         </div>
     </header>
 
-    <div class="prose prose-invert prose-lg max-w-none text-slate-200 leading-relaxed mb-12">
-        <p>The story of Troy ‘Trombone Shorty’ Andrews career, which started at the age of four, when he and his chosen instrument, which was twice as tall as he, stood on stage with Bo Diddly. The crowd and Mr. Diddley were blown away all those years ago and Trombone Shorty has never looked back. NOLA has never forgotten this treasure and Trombone Shorty has never forgotten from whence he came.</p>
+    <div class="max-w-3xl mx-auto">
+        <div class="prose prose-invert prose-red 
+            prose-p:text-gray-300 prose-p:leading-relaxed prose-p:text-lg
+            prose-strong:text-white prose-strong:font-bold
+            prose-a:text-[#c5a059] prose-a:no-underline hover:prose-a:text-white transition-colors">
+            <p>The story of Troy ‘Trombone Shorty’ Andrews career, which started at the age of four, when he and his chosen instrument, which was twice as tall as he, stood on stage with Bo Diddly. The crowd and Mr. Diddley were blown away all those years ago and Trombone Shorty has never looked back. NOLA has never forgotten this treasure and Trombone Shorty has never forgotten from whence he came.</p>
 <p class="text-xl text-gray-200 italic leading-relaxed border-l-4 border-red-600 pl-6 py-2 my-8">
   "Say That To Say This is the maturation of an artist mastering his craft."
 </p>
@@ -69,9 +85,8 @@
 <div class="my-12 aspect-video border border-white/10 rounded-sm overflow-hidden shadow-2xl">
     <iframe class="w-full h-full" src="https://www.youtube.com/embed/yLfsLx04GjE" frameborder="0" allowfullscreen></iframe>
 </div>
+        </div>
     </div>
-
-    
 </article>
         </main>
 
