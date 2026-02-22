@@ -3,32 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> | MojoLists</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="/assets/css/styles.css">
+    <title> | Mojolists</title>
+    <link rel="stylesheet" href="/assets/css/main.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=Inter:wght@400;700&family=Montserrat:wght@900&display=swap" rel="stylesheet">
     <style>
-        .glass-card {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-        }
+        .logo-font { font-family: 'Cormorant Garamond', serif; }
+        body { font-family: 'Inter', sans-serif; background-color: #121212; color: white; margin: 0; padding: 0; }
     </style>
 </head>
-<body class="bg-black text-white min-h-screen font-sans selection:bg-yellow-500 selection:text-black">
-    <div class="min-h-screen flex flex-col">
-        <nav class="border-b border-white border-opacity-10 px-6 py-6">
-            <div class="max-w-7xl mx-auto flex justify-between items-center">
-                <a href="/" class="text-3xl font-black tracking-tighter hover:text-yellow-500 transition-all">MOJOLISTS</a>
-                <div class="hidden md:flex space-x-12 text-sm font-bold uppercase tracking-[0.2em] text-gray-400">
-                    <a href="/" class="hover:text-white transition">Reviews</a>
-                    <a href="/archives" class="hover:text-white transition">Archives</a>
-                    <a href="/about" class="hover:text-white transition">About</a>
-                </div>
-            </div>
-        </nav>
-
-        <main class="flex-grow">
-            
+<body>
+    <div style="max-width: 1100px; margin: 0 auto; padding: 20px;">
+        
 <div class="max-w-7xl mx-auto px-6 py-12">
     <nav class="flex flex-col md:flex-row items-center justify-between gap-8 mb-16 border-b border-white/10 pb-12">
         <a href="/" class="text-white text-2xl font-black italic tracking-tighter uppercase">
@@ -456,15 +441,6 @@
         });
     });
 </script>
-        </main>
-
-        <footer class="border-t border-white border-opacity-10 py-12 mt-20">
-            <div class="max-w-7xl mx-auto px-6 text-center">
-                <p class="text-gray-500 text-[10px] font-bold uppercase tracking-[0.4em]">
-                    © 2026 MojoLists • High-Fidelity Reviews
-                </p>
-            </div>
-        </footer>
     </div>
 </body>
 </html>
