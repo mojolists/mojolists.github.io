@@ -5,7 +5,7 @@ artist: "Jonny Lang"
 album: "Fight For My Soul"
 label: "Concord Records"
 year: "2013"
-image: "jonny-lang.jpg"
+image: "ffys.jpg"
 score: 80
 tags: reviews
 date: 2013-09-26
