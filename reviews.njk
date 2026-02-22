@@ -20,65 +20,52 @@ layout: false
             border: 1px solid rgba(255, 255, 255, 0.05);
             transition: all 0.2s ease;
         }
-        .quick-card:hover { 
+        .quick-card:hover {
+            background: rgba(30, 41, 59, 0.8);
             border-color: #c5a059;
             transform: translateY(-2px);
         }
-        .search-input {
-            background: #161e2e;
-            border: 1px solid #1e293b;
-            color: white;
-        }
-        .search-input:focus {
-            border-color: #c5a059;
-            outline: none;
-        }
     </style>
 </head>
-<body class="min-h-screen">
-
-    <nav class="p-8 max-w-7xl mx-auto flex justify-between items-center">
-        <div class="flex items-center gap-8">
-            <a href="/" class="logo-font text-3xl text-white">MOJO<span class="text-red-500">LISTS</span></a>
-            <a href="/" class="text-[10px] font-bold uppercase tracking-widest text-slate-500 hover:text-white transition-colors">← Back Home</a>
-        </div>
-        <div class="relative w-full max-w-xs">
-            <input type="text" id="reviewSearch" placeholder="Search artist, album, or article..." 
-                   class="search-input w-full px-4 py-2 rounded-sm text-sm">
-        </div>
+<body class="min-h-screen pb-20">
+    <nav class="p-8 mb-12 flex justify-between items-center max-w-7xl mx-auto">
+        <a href="/" class="logo-font text-3xl text-white font-light tracking-widest uppercase">MojoLists</a>
+        <a href="/" class="text-xs uppercase tracking-[0.4em] text-slate-500 hover:text-[#c5a059] transition-colors font-bold">Back Home</a>
     </nav>
 
-    <main class="max-w-7xl mx-auto px-8 py-12">
-        <header class="mb-12">
-            <h1 class="serif text-4xl text-white mb-2">The Archive</h1>
-            <p class="text-sm uppercase tracking-widest text-red-500 font-bold">Quick Access Library</p>
+    <main class="max-w-5xl mx-auto px-6">
+        <header class="mb-16">
+            <h1 class="serif text-6xl text-white mb-6">The Archive</h1>
+            <div class="max-w-xl relative">
+                <input type="text" id="reviewSearch" 
+                       placeholder="Search artist or album..." 
+                       class="w-full bg-slate-900/50 border border-white/10 rounded-sm py-4 px-6 text-white focus:outline-none focus:border-[#c5a059] transition-colors italic">
+            </div>
         </header>
 
-        <div id="cardGrid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
-            {% for item in collections.all | reverse %}
-                {% if item.data.artist or item.data.title %}
-                <div class="review-card-item h-full" 
-                     data-title="{{ item.data.title }}" 
-                     data-artist="{{ item.data.artist }}">
-                    <a href="{{ item.url }}" class="quick-card flex flex-col h-full p-3 rounded-sm">
-                        <div class="aspect-square mb-3 overflow-hidden bg-slate-900">
-                            {% if item.data.coverImage %}
-                            <img src="{{ item.data.coverImage }}" alt="{{ item.data.title }}" class="w-full h-full object-cover opacity-80">
-                            {% endif %}
-                        </div>
-                        <div class="flex-grow">
-                            <h3 class="text-white text-xs font-bold leading-tight mb-1">{{ item.data.artist }}</h3>
-                            <p class="text-[10px] text-slate-500 italic truncate">{{ item.data.title }}</p>
-                        </div>
-                        {% if item.data.mojoScore %}
-                        <div class="mt-2 pt-2 border-t border-white/5 flex justify-between items-center">
-                            <span class="text-[10px] font-bold text-red-500">{{ item.data.mojoScore }}%</span>
-                            <span class="text-[8px] text-slate-600 uppercase font-black">Mojo</span>
-                        </div>
-                        {% endif %}
-                    </a>
+        <div id="cardGrid" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {% for review in collections.reviews | reverse %}
+            {% if not review.data.featured %}
+            <a href="{{ review.url }}" 
+               class="review-card-item block group" 
+               data-title="{{ review.data.album or review.data.title }}" 
+               data-artist="{{ review.data.artist }}">
+                <div class="quick-card p-4 rounded-sm flex gap-6 items-center">
+                    <div class="w-16 h-16 flex-shrink-0 overflow-hidden rounded-sm border border-white/5">
+                        <img src="/assets/img/{{ review.data.image or review.data.img }}" 
+                             alt="{{ review.data.artist }}" 
+                             class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity">
+                    </div>
+                    <div class="flex-grow min-w-0">
+                        <h3 class="text-white font-bold truncate group-hover:text-[#c5a059] transition-colors">{{ review.data.album or review.data.title }}</h3>
+                        <p class="text-[10px] uppercase tracking-[0.2em] text-slate-500 font-bold mt-1">{{ review.data.artist }}</p>
+                    </div>
+                    <div class="text-[#c5a059] font-black italic serif text-xl pr-2">
+                        {{ review.data.score or review.data.mojoScore or 0 }}%
+                    </div>
                 </div>
-                {% endif %}
+            </a>
+            {% endif %}
             {% endfor %}
         </div>
 
