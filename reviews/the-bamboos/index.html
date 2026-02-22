@@ -3,89 +3,106 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fever In The Road | MojoLists</title>
+    <title>Review: The Bamboos - Fever In The Road | MojoLists</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="/assets/css/styles.css">
     <style>
-        .glass-card {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-        }
+        body { font-family: 'Inter', sans-serif; background-color: #0b1120; color: #94a3b8; margin: 0; padding: 0; }
+        .serif { font-family: 'Playfair Display', serif; }
+        .logo-font { font-family: 'Cormorant Garamond', serif; }
+        :root { --mojo-gold: #c5a059; --mojo-red: #ef4444; }
+        
+        .hero-bg-zoom { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-image: url('/assets/img/feveritr.jpg'); background-size: cover; background-position: center; filter: brightness(0.25) saturate(1.2); z-index: -1; }
+        .overlay-gradient { position: fixed; inset: 0; background: linear-gradient(to bottom, rgba(11, 17, 32, 0.4) 0%, rgba(11, 17, 32, 0.95) 100%); z-index: -1; }
+        .glass-card { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.1); }
+        
+        /* content rendering - ensures all markdown text is visible */
+        .article-content p { margin-bottom: 2rem; font-size: 1.125rem; line-height: 1.8; color: #e2e8f0; }
+        .article-content em { color: white; font-style: italic; }
+        
+        .mojo-quote { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: white; font-style: italic; border-left: 4px solid var(--mojo-red); padding-left: 2rem; margin: 3rem 0; line-height: 1.6; }
+        
+        .btn-container { margin: 3rem 0; display: flex; flex-direction: row; flex-wrap: wrap; justify-content: center; gap: 1.5rem; width: 100%; }
+        .action-btn { display: inline-flex; align-items: center; justify-content: center; width: 100%; max-width: 320px; padding: 1.25rem; background-color: transparent; color: var(--mojo-gold); font-weight: 900; text-transform: uppercase; letter-spacing: 0.25em; font-size: 0.75rem; transition: all 0.3s ease; text-decoration: none; border: 1px solid var(--mojo-gold); }
+        .action-btn:hover { background-color: var(--mojo-gold); color: #0b1120; }
+        
+        .info-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.2em; color: #64748b; margin-bottom: 2px; }
+        .info-value { font-size: 14px; color: white; font-weight: 400; margin-bottom: 16px; }
     </style>
 </head>
-<body class="bg-black text-white min-h-screen font-sans selection:bg-yellow-500 selection:text-black">
-    <div class="min-h-screen flex flex-col">
-        <nav class="border-b border-white border-opacity-10 px-6 py-6">
-            <div class="max-w-7xl mx-auto flex justify-between items-center">
-                <a href="/" class="text-3xl font-black tracking-tighter hover:text-yellow-500 transition-all">MOJOLISTS</a>
-                <div class="hidden md:flex space-x-12 text-sm font-bold uppercase tracking-[0.2em] text-gray-400">
-                    <a href="/" class="hover:text-white transition">Reviews</a>
-                    <a href="/archives" class="hover:text-white transition">Archives</a>
-                    <a href="/about" class="hover:text-white transition">About</a>
+<body>
+    <div class="hero-bg-zoom"></div>
+    <div class="overlay-gradient"></div>
+
+    <nav class="relative z-50 px-8 py-8 flex justify-between items-center max-w-7xl mx-auto">
+        <a href="/" class="logo-font text-3xl tracking-tighter text-white font-light">MOJO<span class="text-red-500 font-normal">LISTS</span></a>
+        <div class="flex gap-8 text-[11px] font-bold uppercase tracking-[0.2em]">
+            <a href="/reviews/" class="text-slate-400 hover:text-[#c5a059] transition-colors">The Archive</a>
+            <a href="/" class="text-slate-400 hover:text-[#c5a059] transition-colors">Home</a>
+        </div>
+    </nav>
+
+    <main class="relative z-10">
+        <header class="pt-24 pb-12 max-w-5xl mx-auto px-6">
+            <div class="flex flex-col lg:flex-row gap-8 items-end lg:ml-12">
+                <div class="flex-shrink-0">
+                    <img src="/assets/img/feveritr.jpg" class="w-[400px] h-[400px] object-cover border border-white/10 rounded-sm shadow-2xl">
+                </div>
+                <div class="w-full lg:w-[450px]">
+                    <div class="glass-card p-10 h-[400px] flex flex-col justify-between">
+                        <div>
+                            <h1 class="serif text-5xl text-white mb-2 leading-tight">The Bamboos</h1>
+                            <p class="text-lg text-red-500 font-extrabold uppercase tracking-widest italic mb-8">Fever In The Road</p>
+                            <div class="mt-4">
+                                <p class="info-label">Label</p>
+                                <p class="info-value">Pacific Theatre</p>
+                                <p class="info-label">Released</p>
+                                <p class="info-value">2013</p>
+                            </div>
+                        </div>
+                        <div class="mojo-rating-box w-full text-center">
+                            <span class="text-3xl font-black text-white italic serif">
+                                90% <span class="text-base text-slate-600 font-normal">Mojo Rating</span>
+                            </span>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </nav>
+        </header>
 
-        <main class="flex-grow">
-            <article class="max-w-4xl mx-auto my-12 p-8 glass-card rounded-xl shadow-2xl border border-white border-opacity-10">
-  <div class="flex flex-col md:flex-row gap-10 items-start mb-12">
-    <div class="w-full md:w-1/3">
-      <img src="/assets/img/feveritr.jpg" alt="The Bamboos - Fever In The Road" class="w-full rounded-lg shadow-2xl border border-white border-opacity-10">
-      
-      <div class="mt-6 bg-black bg-opacity-40 p-4 text-center rounded-lg">
-        <span class="text-5xl font-black text-white">90%</span>
-        <p class="text-[10px] uppercase tracking-[0.3em] text-gray-400 mt-2 font-bold">Mojo Rating</p>
-      </div>
-    </div>
+        <div class="max-w-5xl mx-auto px-6 py-16">
+            <article class="article-content lg:ml-12 lg:pr-24">
+                
 
-    <div class="w-full md:w-2/3">
-      <h1 class="text-5xl font-black text-white leading-tight mb-2">Fever In The Road</h1>
-      <h2 class="text-2xl text-yellow-500 font-bold mb-4 uppercase tracking-wider">The Bamboos</h2>
-      <div class="flex gap-4 text-[10px] text-gray-500 uppercase tracking-[0.2em] font-bold mb-8">
-        <span>Pacific Theatre</span>
-        <span>•</span>
-        <span>2013</span>
-      </div>
-      <p class="text-xl text-gray-200 italic leading-relaxed border-l-4 border-red-600 pl-6 py-2">
-        "It isn’t just luck that got them here, it is talent and love on a colossal scale."
-      </p>
-    </div>
-  </div>
+                <p>The Bamboos have always gotten a lot of love from me and I expect a lot when they have a new release. [cite_start]<em>Fever In The Road</em> hits on all cylinders and for those new to The Bamboos, they are an Australian funk/soul band that has miraculously managed to do more than simply survive, they have thrived doing what they love[cite: 24]. [cite_start]Even with the resurgence in the genre, it is impressive to release a sixth full-length album[cite: 25]. [cite_start]It isn’t just luck that got them here, it is talent and love on a colossal scale[cite: 26].</p>
+<p class="text-xl text-gray-200 italic leading-relaxed border-l-4 border-red-600 pl-6 py-2 my-8">
+  "It isn’t just luck that got them here, it is talent and love on a colossal scale."
+</p>
+<p>[cite_start]Mastermind, bandleader and multi-instrumentalist Lance Ferguson has maintained a musical vision that many have attempted but few pull off[cite: 27]. [cite_start]The ingredients are your standard funk fueled horn section, a power rhythm section and honey-dipped female vocalists[cite: 28]. [cite_start]Over the years guest vocalists were common, but on <em>Fever In The Road</em> they stick with Ella Thompson and Kylie Auldist, both incredibly talented vocalists who take turns elevating the music to ever-greater heights[cite: 29].</p>
+<div class="flex flex-col md:flex-row gap-6 justify-center my-10">
+    <a href="https://thebamboos.bandcamp.com/album/fever-in-the-road" target="_blank" class="px-12 py-4 border border-[#c5a059] text-[#c5a059] font-black uppercase tracking-widest text-xs hover:bg-[#c5a059] hover:text-black transition-all">Buy Album</a>
+    <a href="https://open.spotify.com/album/4T9k...2" target="_blank" class="px-12 py-4 border border-[#c5a059] text-[#c5a059] font-black uppercase tracking-widest text-xs hover:bg-[#c5a059] hover:text-black transition-all">Listen on Spotify</a>
+</div>
+<p>[cite_start]When I first heard The Bamboos early in their genesis, they came off, quite successfully, as a bunch of people who just love playing the old style soul that their fathers loved[cite: 30]. [cite_start]They were a solid band having the time of their lives and you bought into that when you listened[cite: 31].</p>
+<p>[cite_start]You want to get up and dance, you have to smile[cite: 32]. [cite_start]I figured they had two albums in them before people got tired of paying for basically the same album, a common problem for bands[cite: 33]. [cite_start]The Bamboos never settled into that place however, they kept moving forward, powered by the vision of Ferguson[cite: 34]. [cite_start]Each album further removed the band and its music from the ”just having fun” feeling, and I don’t mean that in a bad way, the music matured organically[cite: 35].</p>
+<div class="my-12 aspect-video border border-white/10 rounded-sm overflow-hidden shadow-2xl">
+    <iframe class="w-full h-full" src="https://www.youtube.com/embed/v5C_xB0t9Mk" frameborder="0" allowfullscreen></iframe>
+</div>
+<p>[cite_start]<em>Fever In The Road</em> is a near perfect dance/soul/pop melding with infectious tracks that make it impossible not to dance[cite: 36]. [cite_start]It is fantastic music, which makes you feel fantastic[cite: 37].</p>
+<p>[cite_start]Avenger is the first single and it is wonderfully catchy and poppy with a driving rhythm that propels it forward[cite: 38]. [cite_start]Helpless Blues is bounced along by a mean bass line and Rats carries you away on a barrage of funky horn blats[cite: 38].</p>
+<p>[cite_start]The album flows seamlessly to its conclusion with Looking West, a dreamy slow grind that bops along on its organ beat and backing horns[cite: 39]. [cite_start]I am pleased to say The Bamboos are heavy supporters of vinyl and I happily gave the double LP a spin[cite: 40]. [cite_start]The small price to step up to the vinyl was well worth it and includes a downloadable MP3 copy[cite: 41]. [cite_start]The recording is spacious with instruments and vocal placement well defined in the soundstage[cite: 42].</p>
+<p>[cite_start]Backing instruments and percussion swirl around the melody playfully on the LP but were less focused and sometimes lost on the MP3[cite: 43]. [cite_start]If you are anything less than an OCD controlled audiophile, the digital version will have you bopping along just fine[cite: 44].</p>
+<p>[cite_start]If it isn’t clear, I have a major crush on this band and their album 4 has been among my most played albums ever[cite: 45]. [cite_start]<em>Fever In The Road</em> is now going to be getting that rotation when I need the funky dance bop to get me through the day[cite: 46]. [cite_start]<em>Fever In The Road</em> is currently not available from any US retailers but you can order it directly from the Bamboos website as I did[cite: 47]. [cite_start]If you must wait, they promise not only an American release late fall 13 or early 14 but also a US tour[cite: 48]. [cite_start]If they come anywhere near Austin I will be at the stage[cite: 49]. [cite_start]Do yourself a favor and grab <em>Fever In The Road</em> as soon as possible, I promise it will make you feel better no matter what ails you[cite: 50].</p>
 
-  <div class="prose prose-invert prose-lg max-w-none text-gray-300 leading-relaxed mb-12">
-    <p>The Bamboos have always gotten a lot of love from me and I expect a lot when they have a new release. <em>Fever In The Road</em> hits on all cylinders and for those new to The Bamboos, they are an Australian funk/soul band that has miraculously managed to do more than simply survive, they have thrived doing what they love. Even with the resurgence in the genre, it is impressive to release a sixth full-length album.</p>
-<p>Mastermind, bandleader and multi-instrumentalist Lance Ferguson has maintained a musical vision that many have attempted but few pull off. The ingredients are your standard funk fueled horn section, a power rhythm section and honey-dipped female vocalists.</p>
-<p>When I first heard The Bamboos early in their genesis, they came off, quite successfully, as a bunch of people who just love playing the old style soul that their fathers loved. They were a solid band having the time of their lives and you bought into that when you listened.</p>
 
-  </div>
+                
 
-  
-  <div class="my-12 rounded-xl overflow-hidden shadow-2xl border border-white border-opacity-10">
-    <div class="aspect-video">
-      <iframe class="w-full h-full" src="https://www.youtube.com/embed/v5C_xB0t9Mk" frameborder="0" allowfullscreen></iframe>
-    </div>
-  </div>
-  
-
-  <div class="flex flex-col md:flex-row gap-6 justify-center mt-12 pt-10 border-t border-white border-opacity-10">
-    <a href="https://thebamboos.bandcamp.com/album/fever-in-the-road" target="_blank" class="px-10 py-4 border-2 border-yellow-600 text-yellow-500 font-black uppercase tracking-[0.2em] text-xs rounded-sm hover:bg-yellow-600 hover:text-black transition-all duration-300 text-center">
-      Buy Album
-    </a>
-    <a href="https://open.spotify.com/album/4T9k...2" target="_blank" class="px-10 py-4 border-2 border-yellow-600 text-yellow-500 font-black uppercase tracking-[0.2em] text-xs rounded-sm hover:bg-yellow-600 hover:text-black transition-all duration-300 text-center">
-      Listen on Spotify
-    </a>
-  </div>
-</article>
-        </main>
-
-        <footer class="border-t border-white border-opacity-10 py-12 mt-20">
-            <div class="max-w-7xl mx-auto px-6 text-center">
-                <p class="text-gray-500 text-[10px] font-bold uppercase tracking-[0.4em]">
-                    © 2026 MojoLists • High-Fidelity Reviews
-                </p>
-            </div>
-        </footer>
-    </div>
+                <div class="btn-container">
+                    
+                    
+                </div>
+            </article>
+        </div>
+    </main>
 </body>
 </html>
