@@ -1,76 +1,118 @@
 ---
-layout: base.njk
 permalink: /reviews/index.html
+layout: false
 ---
-
-<div class="max-w-7xl mx-auto px-6 py-12">
-    <nav class="flex flex-col md:flex-row items-center justify-between gap-8 mb-16 border-b border-white/10 pb-12">
-        <a href="/" class="text-white text-2xl font-black italic tracking-tighter uppercase">
-            MOJO<span class="text-red-500">LISTS</span>
-        </a>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Archive | MojoLists</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #0b1120; color: #94a3b8; }
+        .serif { font-family: 'Playfair Display', serif; }
+        .logo-font { font-family: 'Cormorant Garamond', serif; }
         
-        <div class="relative w-full md:w-96">
-            <input type="text" id="reviewSearch" placeholder="SEARCH THE ARCHIVE..." 
-                class="w-full bg-white/5 border border-white/10 rounded-sm px-6 py-3 text-white text-xs font-black tracking-[0.2em] focus:outline-none focus:border-[#c5a059] transition-colors uppercase">
-            <span class="absolute right-4 top-1/2 -translate-y-1/2 text-white/20">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                </svg>
-            </span>
-        </div>
+        .glass-card {
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.2s ease;
+        }
+        .glass-card:hover {
+            border-color: #c5a059;
+            background: rgba(255, 255, 255, 0.05);
+            transform: scale(1.02);
+        }
+        .line-clamp-1 {
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;  
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body class="min-h-screen pb-20">
+    <nav class="p-6 mb-8 flex justify-between items-center max-w-[1600px] mx-auto">
+        <a href="/" class="logo-font text-2xl text-white font-light tracking-widest uppercase">MojoLists</a>
+        <a href="/" class="text-[10px] uppercase tracking-[0.4em] text-slate-500 hover:text-[#c5a059] transition-colors font-bold">Home</a>
     </nav>
 
-    <header class="text-center mb-20">
-        <h1 class="text-white text-7xl md:text-8xl font-black uppercase tracking-tighter leading-none mb-4">THE ARCHIVE</h1>
-        <p class="text-[#c5a059] uppercase tracking-[0.5em] text-[10px] font-black">Quick Access Library // Total Reviews: {{ collections.all | length }}</p>
-    </header>
-
-    <div id="reviewGrid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
-        {%- for post in collections.all | reverse -%}
-        {% if post.data.artist or post.data.title %}
-        <a href="{{ post.url }}" class="review-card group relative aspect-square overflow-hidden bg-black border border-white/5 rounded-sm" 
-           data-artist="{{ post.data.artist | lower }}" 
-           data-album="{{ post.data.album | lower }}" 
-           data-title="{{ post.data.title | lower }}">
-            
-            {% set imgSrc = post.data.image %}
-            {% if imgSrc and not imgSrc.startsWith('/') and not imgSrc.startsWith('http') %}
-                {% set imgSrc = "/assets/img/" + imgSrc %}
-            {% endif %}
-
-            <img src="{{ imgSrc }}" alt="{{ post.data.artist }}" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-all duration-500 group-hover:scale-110">
-            
-            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent p-4 flex flex-col justify-end">
-                <span class="text-[#c5a059] text-[8px] font-black uppercase tracking-widest mb-1">{{ post.data.label }}</span>
-                <h3 class="text-white text-xs font-black uppercase tracking-tighter leading-none mb-1">{{ post.data.artist }}</h3>
-                <p class="text-white/40 text-[9px] uppercase italic truncate">{{ post.data.album }}</p>
-                
-                <div class="absolute top-2 right-2 flex items-baseline bg-black/80 px-2 py-1 backdrop-blur-sm">
-                    <span class="text-white font-black text-xs italic">{{ post.data.score }}</span>
-                    <span class="text-[#c5a059] font-bold text-[8px] ml-0.5">%</span>
-                </div>
+    <main class="max-w-[1600px] mx-auto px-6">
+        <header class="mb-12">
+            <h1 class="serif text-4xl text-white mb-4">The Archive</h1>
+            <div class="max-w-xs relative">
+                <input type="text" id="reviewSearch" 
+                       placeholder="Filter collection..." 
+                       class="w-full bg-slate-900/50 border border-white/10 rounded-sm py-2 px-4 text-xs text-white focus:outline-none focus:border-[#c5a059] transition-colors italic">
             </div>
-        </a>
-        {% endif %}
-        {%- endfor -%}
-    </div>
-</div>
+        </header>
 
-<script>
-    document.getElementById('reviewSearch').addEventListener('input', function(e) {
-        const searchTerm = e.target.value.toLowerCase();
-        const cards = document.querySelectorAll('.review-card');
-        
-        cards.forEach(card => {
-            const artist = card.getAttribute('data-artist') || '';
-            const album = card.getAttribute('data-album') || '';
-            const title = card.getAttribute('data-title') || '';
-            
-            if (artist.includes(searchTerm) || album.includes(searchTerm) || title.includes(searchTerm)) {
-                card.style.display = 'block';
-            } else {
-                card.style.display = 'none';
-            }
+        <div id="cardGrid" class="grid grid-cols-3 sm:grid-cols-5 md:grid-cols-7 lg:grid-cols-10 gap-3">
+            {% for review in collections.all | reverse %}
+                {% if review.data.artist or review.data.album or review.data.title %}
+                <a href="{{ review.url }}" 
+                   class="review-card-item block group" 
+                   data-title="{{ review.data.album or review.data.title }}" 
+                   data-artist="{{ review.data.artist }}">
+                    <div class="glass-card p-2 rounded-sm h-full flex flex-col">
+                        <div class="aspect-square mb-2 overflow-hidden rounded-sm bg-slate-900/50 border border-white/5">
+                            {% set imgPath = review.data.image or review.data.img or review.data.coverImage %}
+                            <img src="{% if '/assets/img/' in imgPath %}{{ imgPath }}{% else %}/assets/img/{{ imgPath }}{% endif %}" 
+                                 alt="{{ review.data.artist }}" 
+                                 class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity">
+                        </div>
+                        <div class="flex-grow">
+                            <h3 class="text-white font-bold text-[9px] leading-tight group-hover:text-[#c5a059] transition-colors line-clamp-1">
+                                {{ review.data.album or review.data.title }}
+                            </h3>
+                            <p class="text-[7px] uppercase tracking-wider text-slate-600 font-bold mt-1">
+                                {{ review.data.artist }}
+                            </p>
+                        </div>
+                        <div class="mt-2 pt-1 border-t border-white/5 flex justify-between items-center">
+                            <span class="text-[#c5a059] font-black italic serif text-sm">
+                                {{ review.data.score or review.data.mojoScore or 0 }}%
+                            </span>
+                        </div>
+                    </div>
+                </a>
+                {% endif %}
+            {% endfor %}
+        </div>
+
+        <div id="noResults" class="hidden py-20 text-center">
+            <p class="serif text-xl text-slate-600 italic">No matches found.</p>
+        </div>
+    </main>
+
+    <script>
+        const searchInput = document.getElementById('reviewSearch');
+        const cards = document.querySelectorAll('.review-card-item');
+        const grid = document.getElementById('cardGrid');
+        const noResults = document.getElementById('noResults');
+
+        searchInput.addEventListener('input', (e) => {
+            const term = e.target.value.toLowerCase();
+            let hasResults = false;
+
+            cards.forEach(card => {
+                const title = (card.getAttribute('data-title') || "").toLowerCase();
+                const artist = (card.getAttribute('data-artist') || "").toLowerCase();
+
+                if (title.includes(term) || artist.includes(term)) {
+                    card.style.display = 'block';
+                    hasResults = true;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            noResults.classList.toggle('hidden', hasResults);
+            grid.classList.toggle('hidden', !hasResults);
         });
-    });
-</script>
+    </script>
+</body>
+</html>
