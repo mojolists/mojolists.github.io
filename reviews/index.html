@@ -3,444 +3,551 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> | Mojolists</title>
-    <link rel="stylesheet" href="/assets/css/main.css">
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=Inter:wght@400;700&family=Montserrat:wght@900&display=swap" rel="stylesheet">
+    <title>The Archive | MojoLists</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
+        body { font-family: 'Inter', sans-serif; background-color: #0b1120; color: #94a3b8; }
+        .serif { font-family: 'Playfair Display', serif; }
         .logo-font { font-family: 'Cormorant Garamond', serif; }
-        body { font-family: 'Inter', sans-serif; background-color: #121212; color: white; margin: 0; padding: 0; }
+        
+        .glass-card {
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.2s ease;
+        }
+        .glass-card:hover {
+            border-color: #c5a059;
+            background: rgba(255, 255, 255, 0.05);
+            transform: scale(1.02);
+        }
+        .line-clamp-1 {
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;  
+            overflow: hidden;
+        }
     </style>
 </head>
-<body>
-    <div style="max-width: 1100px; margin: 0 auto; padding: 20px;">
-        
-<div class="max-w-7xl mx-auto px-6 py-12">
-    <nav class="flex flex-col md:flex-row items-center justify-between gap-8 mb-16 border-b border-white/10 pb-12">
-        <a href="/" class="text-white text-2xl font-black italic tracking-tighter uppercase">
-            MOJO<span class="text-red-500">LISTS</span>
-        </a>
-        
-        <div class="relative w-full md:w-96">
-            <input type="text" id="reviewSearch" placeholder="SEARCH THE ARCHIVE..." 
-                class="w-full bg-white/5 border border-white/10 rounded-sm px-6 py-3 text-white text-xs font-black tracking-[0.2em] focus:outline-none focus:border-[#c5a059] transition-colors uppercase">
-            <span class="absolute right-4 top-1/2 -translate-y-1/2 text-white/20">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                </svg>
-            </span>
-        </div>
+<body class="min-h-screen pb-20">
+    <nav class="p-6 mb-8 flex justify-between items-center max-w-[1600px] mx-auto">
+        <a href="/" class="logo-font text-2xl text-white font-light tracking-widest uppercase">MojoLists</a>
+        <a href="/" class="text-[10px] uppercase tracking-[0.4em] text-slate-500 hover:text-[#c5a059] transition-colors font-bold">Home</a>
     </nav>
 
-    <header class="text-center mb-20">
-        <h1 class="text-white text-7xl md:text-8xl font-black uppercase tracking-tighter leading-none mb-4">THE ARCHIVE</h1>
-        <p class="text-[#c5a059] uppercase tracking-[0.5em] text-[10px] font-black">Quick Access Library // Total Reviews: 18</p>
-    </header>
-
-    <div id="reviewGrid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
-        <a href="/reviews/the-nightowls/" class="review-card group relative aspect-square overflow-hidden bg-black border border-white/5 rounded-sm" 
-           data-artist="the nightowls" 
-           data-album="good as gold" 
-           data-title="the nightowls">
-            
-            
-            
-                
-            
-
-            <img src="/assets/img/goodasgold.jpg" alt="The Nightowls" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-all duration-500 group-hover:scale-110">
-            
-            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent p-4 flex flex-col justify-end">
-                <span class="text-[#c5a059] text-[8px] font-black uppercase tracking-widest mb-1">Independent</span>
-                <h3 class="text-white text-xs font-black uppercase tracking-tighter leading-none mb-1">The Nightowls</h3>
-                <p class="text-white/40 text-[9px] uppercase italic truncate">Good As Gold</p>
-                
-                <div class="absolute top-2 right-2 flex items-baseline bg-black/80 px-2 py-1 backdrop-blur-sm">
-                    <span class="text-white font-black text-xs italic">90</span>
-                    <span class="text-[#c5a059] font-bold text-[8px] ml-0.5">%</span>
-                </div>
+    <main class="max-w-[1600px] mx-auto px-6">
+        <header class="mb-12">
+            <h1 class="serif text-4xl text-white mb-4">The Archive</h1>
+            <div class="max-w-xs relative">
+                <input type="text" id="reviewSearch" 
+                       placeholder="Filter collection..." 
+                       class="w-full bg-slate-900/50 border border-white/10 rounded-sm py-2 px-4 text-xs text-white focus:outline-none focus:border-[#c5a059] transition-colors italic">
             </div>
-        </a>
-        
-        <a href="/reviews/soul-surfers/" class="review-card group relative aspect-square overflow-hidden bg-black border border-white/5 rounded-sm" 
-           data-artist="the soul surfers" 
-           data-album="soul rock!" 
-           data-title="the soul surfers">
-            
-            
-            
-                
-            
+        </header>
 
-            <img src="/assets/img/soulsurfers.jpg" alt="The Soul Surfers" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-all duration-500 group-hover:scale-110">
-            
-            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent p-4 flex flex-col justify-end">
-                <span class="text-[#c5a059] text-[8px] font-black uppercase tracking-widest mb-1">Ubiquity Records</span>
-                <h3 class="text-white text-xs font-black uppercase tracking-tighter leading-none mb-1">The Soul Surfers</h3>
-                <p class="text-white/40 text-[9px] uppercase italic truncate">Soul Rock!</p>
-                
-                <div class="absolute top-2 right-2 flex items-baseline bg-black/80 px-2 py-1 backdrop-blur-sm">
-                    <span class="text-white font-black text-xs italic">90</span>
-                    <span class="text-[#c5a059] font-bold text-[8px] ml-0.5">%</span>
-                </div>
-            </div>
-        </a>
-        
-        <a href="/reviews/Trombone_shorty/" class="review-card group relative aspect-square overflow-hidden bg-black border border-white/5 rounded-sm" 
-           data-artist="trombone shorty" 
-           data-album="say that to say this" 
-           data-title="trombone shorty">
-            
-            
+        <div id="cardGrid" class="grid grid-cols-3 sm:grid-cols-5 md:grid-cols-7 lg:grid-cols-10 gap-3">
             
                 
             
-
-            <img src="/assets/img/saythattosaythis.jpg" alt="Trombone Shorty" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-all duration-500 group-hover:scale-110">
-            
-            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent p-4 flex flex-col justify-end">
-                <span class="text-[#c5a059] text-[8px] font-black uppercase tracking-widest mb-1">Verve Records</span>
-                <h3 class="text-white text-xs font-black uppercase tracking-tighter leading-none mb-1">Trombone Shorty</h3>
-                <p class="text-white/40 text-[9px] uppercase italic truncate">Say That To Say This</p>
-                
-                <div class="absolute top-2 right-2 flex items-baseline bg-black/80 px-2 py-1 backdrop-blur-sm">
-                    <span class="text-white font-black text-xs italic">90</span>
-                    <span class="text-[#c5a059] font-bold text-[8px] ml-0.5">%</span>
-                </div>
-            </div>
-        </a>
-        
-        <a href="/reviews/neal-francis/" class="review-card group relative aspect-square overflow-hidden bg-black border border-white/5 rounded-sm" 
-           data-artist="neal francis" 
-           data-album="changes" 
-           data-title="neal francis">
-            
-            
-            
                 
             
-
-            <img src="/assets/img/nfchanges.jpg" alt="Neal Francis" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-all duration-500 group-hover:scale-110">
-            
-            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent p-4 flex flex-col justify-end">
-                <span class="text-[#c5a059] text-[8px] font-black uppercase tracking-widest mb-1">Karma Chief</span>
-                <h3 class="text-white text-xs font-black uppercase tracking-tighter leading-none mb-1">Neal Francis</h3>
-                <p class="text-white/40 text-[9px] uppercase italic truncate">Changes</p>
                 
-                <div class="absolute top-2 right-2 flex items-baseline bg-black/80 px-2 py-1 backdrop-blur-sm">
-                    <span class="text-white font-black text-xs italic">100</span>
-                    <span class="text-[#c5a059] font-bold text-[8px] ml-0.5">%</span>
-                </div>
-            </div>
-        </a>
-        
-        <a href="/reviews/james-hunter-six/" class="review-card group relative aspect-square overflow-hidden bg-black border border-white/5 rounded-sm" 
-           data-artist="the james hunter six" 
-           data-album="nick of time" 
-           data-title="james hunter six">
-            
-            
-            
-                
-            
-
-            <img src="/assets/img/nickoftime.jpg" alt="The James Hunter Six" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-all duration-500 group-hover:scale-110">
-            
-            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent p-4 flex flex-col justify-end">
-                <span class="text-[#c5a059] text-[8px] font-black uppercase tracking-widest mb-1">Daptone Records</span>
-                <h3 class="text-white text-xs font-black uppercase tracking-tighter leading-none mb-1">The James Hunter Six</h3>
-                <p class="text-white/40 text-[9px] uppercase italic truncate">Nick Of Time</p>
-                
-                <div class="absolute top-2 right-2 flex items-baseline bg-black/80 px-2 py-1 backdrop-blur-sm">
-                    <span class="text-white font-black text-xs italic">91</span>
-                    <span class="text-[#c5a059] font-bold text-[8px] ml-0.5">%</span>
-                </div>
-            </div>
-        </a>
-        
-        <a href="/reviews/monophonics/" class="review-card group relative aspect-square overflow-hidden bg-black border border-white/5 rounded-sm" 
-           data-artist="the monophonics" 
-           data-album="it’s only us" 
-           data-title="the monophonics">
-            
-            
-            
+                <a href="/reviews/the-nightowls/" 
+                   class="review-card-item block group" 
+                   data-title="Good As Gold" 
+                   data-artist="The Nightowls">
+                    <div class="glass-card p-2 rounded-sm h-full flex flex-col">
+                        <div class="aspect-square mb-2 overflow-hidden rounded-sm bg-slate-900/50 border border-white/5">
+                            
+                            <img src="/assets/img/goodasgold.jpg" 
+                                 alt="The Nightowls" 
+                                 class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity">
+                        </div>
+                        <div class="flex-grow">
+                            <h3 class="text-white font-bold text-[9px] leading-tight group-hover:text-[#c5a059] transition-colors line-clamp-1">
+                                Good As Gold
+                            </h3>
+                            <p class="text-[7px] uppercase tracking-wider text-slate-600 font-bold mt-1">
+                                The Nightowls
+                            </p>
+                        </div>
+                        <div class="mt-2 pt-1 border-t border-white/5 flex justify-between items-center">
+                            <span class="text-[#c5a059] font-black italic serif text-sm">
+                                90%
+                            </span>
+                        </div>
+                    </div>
+                </a>
                 
             
-
-            <img src="/assets/img/itsonlyus.jpg" alt="The Monophonics" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-all duration-500 group-hover:scale-110">
-            
-            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent p-4 flex flex-col justify-end">
-                <span class="text-[#c5a059] text-[8px] font-black uppercase tracking-widest mb-1">Colemine Records</span>
-                <h3 class="text-white text-xs font-black uppercase tracking-tighter leading-none mb-1">The Monophonics</h3>
-                <p class="text-white/40 text-[9px] uppercase italic truncate">It’s Only Us</p>
                 
-                <div class="absolute top-2 right-2 flex items-baseline bg-black/80 px-2 py-1 backdrop-blur-sm">
-                    <span class="text-white font-black text-xs italic">93</span>
-                    <span class="text-[#c5a059] font-bold text-[8px] ml-0.5">%</span>
-                </div>
-            </div>
-        </a>
-        
-        <a href="/reviews/voo-davis/" class="review-card group relative aspect-square overflow-hidden bg-black border border-white/5 rounded-sm" 
-           data-artist="voo davis" 
-           data-album="vicious things" 
-           data-title="voo davis">
-            
-            
-            
-                
-            
-
-            <img src="/assets/img/voodavis.jpg" alt="Voo Davis" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-all duration-500 group-hover:scale-110">
-            
-            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent p-4 flex flex-col justify-end">
-                <span class="text-[#c5a059] text-[8px] font-black uppercase tracking-widest mb-1">Independent</span>
-                <h3 class="text-white text-xs font-black uppercase tracking-tighter leading-none mb-1">Voo Davis</h3>
-                <p class="text-white/40 text-[9px] uppercase italic truncate">Vicious Things</p>
-                
-                <div class="absolute top-2 right-2 flex items-baseline bg-black/80 px-2 py-1 backdrop-blur-sm">
-                    <span class="text-white font-black text-xs italic">92</span>
-                    <span class="text-[#c5a059] font-bold text-[8px] ml-0.5">%</span>
-                </div>
-            </div>
-        </a>
-        
-        <a href="/reviews/wily-bo-walker/" class="review-card group relative aspect-square overflow-hidden bg-black border border-white/5 rounded-sm" 
-           data-artist="wily bo walker &amp; the danny flam big band" 
-           data-album="wily bo walker &amp; the danny flam big band" 
-           data-title="wily bo walker">
-            
-            
-            
+                <a href="/reviews/soul-surfers/" 
+                   class="review-card-item block group" 
+                   data-title="Soul Rock!" 
+                   data-artist="The Soul Surfers">
+                    <div class="glass-card p-2 rounded-sm h-full flex flex-col">
+                        <div class="aspect-square mb-2 overflow-hidden rounded-sm bg-slate-900/50 border border-white/5">
+                            
+                            <img src="/assets/img/soulsurfers.jpg" 
+                                 alt="The Soul Surfers" 
+                                 class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity">
+                        </div>
+                        <div class="flex-grow">
+                            <h3 class="text-white font-bold text-[9px] leading-tight group-hover:text-[#c5a059] transition-colors line-clamp-1">
+                                Soul Rock!
+                            </h3>
+                            <p class="text-[7px] uppercase tracking-wider text-slate-600 font-bold mt-1">
+                                The Soul Surfers
+                            </p>
+                        </div>
+                        <div class="mt-2 pt-1 border-t border-white/5 flex justify-between items-center">
+                            <span class="text-[#c5a059] font-black italic serif text-sm">
+                                90%
+                            </span>
+                        </div>
+                    </div>
+                </a>
                 
             
-
-            <img src="/assets/img/wilybo.jpg" alt="Wily Bo Walker &amp; The Danny Flam Big Band" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-all duration-500 group-hover:scale-110">
-            
-            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent p-4 flex flex-col justify-end">
-                <span class="text-[#c5a059] text-[8px] font-black uppercase tracking-widest mb-1">WBW</span>
-                <h3 class="text-white text-xs font-black uppercase tracking-tighter leading-none mb-1">Wily Bo Walker &amp; The Danny Flam Big Band</h3>
-                <p class="text-white/40 text-[9px] uppercase italic truncate">Wily Bo Walker &amp; The Danny Flam Big Band</p>
                 
-                <div class="absolute top-2 right-2 flex items-baseline bg-black/80 px-2 py-1 backdrop-blur-sm">
-                    <span class="text-white font-black text-xs italic">90</span>
-                    <span class="text-[#c5a059] font-bold text-[8px] ml-0.5">%</span>
-                </div>
-            </div>
-        </a>
-        
-        <a href="/reviews/gatemouth-brown/" class="review-card group relative aspect-square overflow-hidden bg-black border border-white/5 rounded-sm" 
-           data-artist="clarence &quot;gatemouth&quot; brown" 
-           data-album="san antonio ballbuster" 
-           data-title="clarence &quot;gatemouth&quot; brown">
-            
-            
-            
-                
-            
-
-            <img src="/assets/img/gatemouth.jpg" alt="Clarence &quot;Gatemouth&quot; Brown" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-all duration-500 group-hover:scale-110">
-            
-            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent p-4 flex flex-col justify-end">
-                <span class="text-[#c5a059] text-[8px] font-black uppercase tracking-widest mb-1">Charly Records</span>
-                <h3 class="text-white text-xs font-black uppercase tracking-tighter leading-none mb-1">Clarence &quot;Gatemouth&quot; Brown</h3>
-                <p class="text-white/40 text-[9px] uppercase italic truncate">San Antonio Ballbuster</p>
-                
-                <div class="absolute top-2 right-2 flex items-baseline bg-black/80 px-2 py-1 backdrop-blur-sm">
-                    <span class="text-white font-black text-xs italic">94</span>
-                    <span class="text-[#c5a059] font-bold text-[8px] ml-0.5">%</span>
-                </div>
-            </div>
-        </a>
-        
-        <a href="/reviews/black_joe_lewis/" class="review-card group relative aspect-square overflow-hidden bg-black border border-white/5 rounded-sm" 
-           data-artist="black joe lewis" 
-           data-album="electric slave" 
-           data-title="black joe lewis">
-            
-            
-            
+                <a href="/reviews/Trombone_shorty/" 
+                   class="review-card-item block group" 
+                   data-title="Say That To Say This" 
+                   data-artist="Trombone Shorty">
+                    <div class="glass-card p-2 rounded-sm h-full flex flex-col">
+                        <div class="aspect-square mb-2 overflow-hidden rounded-sm bg-slate-900/50 border border-white/5">
+                            
+                            <img src="/assets/img/saythattosaythis.jpg" 
+                                 alt="Trombone Shorty" 
+                                 class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity">
+                        </div>
+                        <div class="flex-grow">
+                            <h3 class="text-white font-bold text-[9px] leading-tight group-hover:text-[#c5a059] transition-colors line-clamp-1">
+                                Say That To Say This
+                            </h3>
+                            <p class="text-[7px] uppercase tracking-wider text-slate-600 font-bold mt-1">
+                                Trombone Shorty
+                            </p>
+                        </div>
+                        <div class="mt-2 pt-1 border-t border-white/5 flex justify-between items-center">
+                            <span class="text-[#c5a059] font-black italic serif text-sm">
+                                90%
+                            </span>
+                        </div>
+                    </div>
+                </a>
                 
             
-
-            <img src="/assets/img/black_joe_lewis.jpg" alt="Black Joe Lewis" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-all duration-500 group-hover:scale-110">
-            
-            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent p-4 flex flex-col justify-end">
-                <span class="text-[#c5a059] text-[8px] font-black uppercase tracking-widest mb-1">Vagrant Records</span>
-                <h3 class="text-white text-xs font-black uppercase tracking-tighter leading-none mb-1">Black Joe Lewis</h3>
-                <p class="text-white/40 text-[9px] uppercase italic truncate">Electric Slave</p>
                 
-                <div class="absolute top-2 right-2 flex items-baseline bg-black/80 px-2 py-1 backdrop-blur-sm">
-                    <span class="text-white font-black text-xs italic">88</span>
-                    <span class="text-[#c5a059] font-bold text-[8px] ml-0.5">%</span>
-                </div>
-            </div>
-        </a>
-        
-        <a href="/reviews/tommy-castro/" class="review-card group relative aspect-square overflow-hidden bg-black border border-white/5 rounded-sm" 
-           data-artist="joe louis walker" 
-           data-album="hornet’s nest" 
-           data-title="joe louis walker">
-            
-            
-            
-                
-            
-
-            <img src="/assets/img/hornetsnest.jpg" alt="Joe Louis Walker" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-all duration-500 group-hover:scale-110">
-            
-            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent p-4 flex flex-col justify-end">
-                <span class="text-[#c5a059] text-[8px] font-black uppercase tracking-widest mb-1">Alligator Records</span>
-                <h3 class="text-white text-xs font-black uppercase tracking-tighter leading-none mb-1">Joe Louis Walker</h3>
-                <p class="text-white/40 text-[9px] uppercase italic truncate">Hornet’s Nest</p>
-                
-                <div class="absolute top-2 right-2 flex items-baseline bg-black/80 px-2 py-1 backdrop-blur-sm">
-                    <span class="text-white font-black text-xs italic">89</span>
-                    <span class="text-[#c5a059] font-bold text-[8px] ml-0.5">%</span>
-                </div>
-            </div>
-        </a>
-        
-        <a href="/reviews/hornets-nest/" class="review-card group relative aspect-square overflow-hidden bg-black border border-white/5 rounded-sm" 
-           data-artist="joe louis walker" 
-           data-album="hornet’s nest" 
-           data-title="joe louis walker">
-            
-            
-            
+                <a href="/reviews/neal-francis/" 
+                   class="review-card-item block group" 
+                   data-title="Changes" 
+                   data-artist="Neal Francis">
+                    <div class="glass-card p-2 rounded-sm h-full flex flex-col">
+                        <div class="aspect-square mb-2 overflow-hidden rounded-sm bg-slate-900/50 border border-white/5">
+                            
+                            <img src="/assets/img/nfchanges.jpg" 
+                                 alt="Neal Francis" 
+                                 class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity">
+                        </div>
+                        <div class="flex-grow">
+                            <h3 class="text-white font-bold text-[9px] leading-tight group-hover:text-[#c5a059] transition-colors line-clamp-1">
+                                Changes
+                            </h3>
+                            <p class="text-[7px] uppercase tracking-wider text-slate-600 font-bold mt-1">
+                                Neal Francis
+                            </p>
+                        </div>
+                        <div class="mt-2 pt-1 border-t border-white/5 flex justify-between items-center">
+                            <span class="text-[#c5a059] font-black italic serif text-sm">
+                                100%
+                            </span>
+                        </div>
+                    </div>
+                </a>
                 
             
-
-            <img src="/assets/img/hornetsnest.jpg" alt="Joe Louis Walker" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-all duration-500 group-hover:scale-110">
-            
-            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent p-4 flex flex-col justify-end">
-                <span class="text-[#c5a059] text-[8px] font-black uppercase tracking-widest mb-1">Alligator Records</span>
-                <h3 class="text-white text-xs font-black uppercase tracking-tighter leading-none mb-1">Joe Louis Walker</h3>
-                <p class="text-white/40 text-[9px] uppercase italic truncate">Hornet’s Nest</p>
                 
-                <div class="absolute top-2 right-2 flex items-baseline bg-black/80 px-2 py-1 backdrop-blur-sm">
-                    <span class="text-white font-black text-xs italic">89</span>
-                    <span class="text-[#c5a059] font-bold text-[8px] ml-0.5">%</span>
-                </div>
-            </div>
-        </a>
-        
-        <a href="/reviews/sharon-jones/" class="review-card group relative aspect-square overflow-hidden bg-black border border-white/5 rounded-sm" 
-           data-artist="sharon jones &amp; the dap-kings" 
-           data-album="give the people what they want" 
-           data-title="sharon jones &amp; the dap-kings">
-            
-            
-            
-                
-            
-
-            <img src="/assets/img/sharonjones.jpg" alt="Sharon Jones &amp; The Dap-Kings" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-all duration-500 group-hover:scale-110">
-            
-            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent p-4 flex flex-col justify-end">
-                <span class="text-[#c5a059] text-[8px] font-black uppercase tracking-widest mb-1">Daptone Records</span>
-                <h3 class="text-white text-xs font-black uppercase tracking-tighter leading-none mb-1">Sharon Jones &amp; The Dap-Kings</h3>
-                <p class="text-white/40 text-[9px] uppercase italic truncate">Give the People What They Want</p>
-                
-                <div class="absolute top-2 right-2 flex items-baseline bg-black/80 px-2 py-1 backdrop-blur-sm">
-                    <span class="text-white font-black text-xs italic">95</span>
-                    <span class="text-[#c5a059] font-bold text-[8px] ml-0.5">%</span>
-                </div>
-            </div>
-        </a>
-        
-        <a href="/reviews/no-show-ponies/" class="review-card group relative aspect-square overflow-hidden bg-black border border-white/5 rounded-sm" 
-           data-artist="no show ponies" 
-           data-album="a manual for defeat" 
-           data-title="no show ponies">
-            
-            
-            
+                <a href="/reviews/james-hunter-six/" 
+                   class="review-card-item block group" 
+                   data-title="Nick Of Time" 
+                   data-artist="The James Hunter Six">
+                    <div class="glass-card p-2 rounded-sm h-full flex flex-col">
+                        <div class="aspect-square mb-2 overflow-hidden rounded-sm bg-slate-900/50 border border-white/5">
+                            
+                            <img src="/assets/img/nickoftime.jpg" 
+                                 alt="The James Hunter Six" 
+                                 class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity">
+                        </div>
+                        <div class="flex-grow">
+                            <h3 class="text-white font-bold text-[9px] leading-tight group-hover:text-[#c5a059] transition-colors line-clamp-1">
+                                Nick Of Time
+                            </h3>
+                            <p class="text-[7px] uppercase tracking-wider text-slate-600 font-bold mt-1">
+                                The James Hunter Six
+                            </p>
+                        </div>
+                        <div class="mt-2 pt-1 border-t border-white/5 flex justify-between items-center">
+                            <span class="text-[#c5a059] font-black italic serif text-sm">
+                                91%
+                            </span>
+                        </div>
+                    </div>
+                </a>
                 
             
-
-            <img src="/assets/img/noshowponies.jpg" alt="No Show Ponies" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-all duration-500 group-hover:scale-110">
-            
-            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent p-4 flex flex-col justify-end">
-                <span class="text-[#c5a059] text-[8px] font-black uppercase tracking-widest mb-1">Independent</span>
-                <h3 class="text-white text-xs font-black uppercase tracking-tighter leading-none mb-1">No Show Ponies</h3>
-                <p class="text-white/40 text-[9px] uppercase italic truncate">A Manual For Defeat</p>
                 
-                <div class="absolute top-2 right-2 flex items-baseline bg-black/80 px-2 py-1 backdrop-blur-sm">
-                    <span class="text-white font-black text-xs italic">85</span>
-                    <span class="text-[#c5a059] font-bold text-[8px] ml-0.5">%</span>
-                </div>
-            </div>
-        </a>
-        
-        <a href="/reviews/the-bamboos/" class="review-card group relative aspect-square overflow-hidden bg-black border border-white/5 rounded-sm" 
-           data-artist="the bamboos" 
-           data-album="fever in the road" 
-           data-title="the bamboos">
-            
-            
-            
-                
-            
-
-            <img src="/assets/img/feveritr.jpg" alt="The Bamboos" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-all duration-500 group-hover:scale-110">
-            
-            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent p-4 flex flex-col justify-end">
-                <span class="text-[#c5a059] text-[8px] font-black uppercase tracking-widest mb-1">Pacific Theatre</span>
-                <h3 class="text-white text-xs font-black uppercase tracking-tighter leading-none mb-1">The Bamboos</h3>
-                <p class="text-white/40 text-[9px] uppercase italic truncate">Fever In The Road</p>
-                
-                <div class="absolute top-2 right-2 flex items-baseline bg-black/80 px-2 py-1 backdrop-blur-sm">
-                    <span class="text-white font-black text-xs italic">92</span>
-                    <span class="text-[#c5a059] font-bold text-[8px] ml-0.5">%</span>
-                </div>
-            </div>
-        </a>
-        
-        <a href="/reviews/fight-for-my-soul/" class="review-card group relative aspect-square overflow-hidden bg-black border border-white/5 rounded-sm" 
-           data-artist="jonny lang" 
-           data-album="fight for my soul" 
-           data-title="jonny lang">
-            
-            
-            
+                <a href="/reviews/monophonics/" 
+                   class="review-card-item block group" 
+                   data-title="It’s Only Us" 
+                   data-artist="The Monophonics">
+                    <div class="glass-card p-2 rounded-sm h-full flex flex-col">
+                        <div class="aspect-square mb-2 overflow-hidden rounded-sm bg-slate-900/50 border border-white/5">
+                            
+                            <img src="/assets/img/itsonlyus.jpg" 
+                                 alt="The Monophonics" 
+                                 class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity">
+                        </div>
+                        <div class="flex-grow">
+                            <h3 class="text-white font-bold text-[9px] leading-tight group-hover:text-[#c5a059] transition-colors line-clamp-1">
+                                It’s Only Us
+                            </h3>
+                            <p class="text-[7px] uppercase tracking-wider text-slate-600 font-bold mt-1">
+                                The Monophonics
+                            </p>
+                        </div>
+                        <div class="mt-2 pt-1 border-t border-white/5 flex justify-between items-center">
+                            <span class="text-[#c5a059] font-black italic serif text-sm">
+                                93%
+                            </span>
+                        </div>
+                    </div>
+                </a>
                 
             
-
-            <img src="/assets/img/ffys.jpg" alt="Jonny Lang" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-all duration-500 group-hover:scale-110">
-            
-            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent p-4 flex flex-col justify-end">
-                <span class="text-[#c5a059] text-[8px] font-black uppercase tracking-widest mb-1">Concord Records</span>
-                <h3 class="text-white text-xs font-black uppercase tracking-tighter leading-none mb-1">Jonny Lang</h3>
-                <p class="text-white/40 text-[9px] uppercase italic truncate">Fight For My Soul</p>
                 
-                <div class="absolute top-2 right-2 flex items-baseline bg-black/80 px-2 py-1 backdrop-blur-sm">
-                    <span class="text-white font-black text-xs italic">90</span>
-                    <span class="text-[#c5a059] font-bold text-[8px] ml-0.5">%</span>
-                </div>
-            </div>
-        </a>
+                <a href="/reviews/voo-davis/" 
+                   class="review-card-item block group" 
+                   data-title="Vicious Things" 
+                   data-artist="Voo Davis">
+                    <div class="glass-card p-2 rounded-sm h-full flex flex-col">
+                        <div class="aspect-square mb-2 overflow-hidden rounded-sm bg-slate-900/50 border border-white/5">
+                            
+                            <img src="/assets/img/voodavis.jpg" 
+                                 alt="Voo Davis" 
+                                 class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity">
+                        </div>
+                        <div class="flex-grow">
+                            <h3 class="text-white font-bold text-[9px] leading-tight group-hover:text-[#c5a059] transition-colors line-clamp-1">
+                                Vicious Things
+                            </h3>
+                            <p class="text-[7px] uppercase tracking-wider text-slate-600 font-bold mt-1">
+                                Voo Davis
+                            </p>
+                        </div>
+                        <div class="mt-2 pt-1 border-t border-white/5 flex justify-between items-center">
+                            <span class="text-[#c5a059] font-black italic serif text-sm">
+                                92%
+                            </span>
+                        </div>
+                    </div>
+                </a>
+                
+            
+                
+                <a href="/reviews/wily-bo-walker/" 
+                   class="review-card-item block group" 
+                   data-title="Wily Bo Walker &amp; The Danny Flam Big Band" 
+                   data-artist="Wily Bo Walker &amp; The Danny Flam Big Band">
+                    <div class="glass-card p-2 rounded-sm h-full flex flex-col">
+                        <div class="aspect-square mb-2 overflow-hidden rounded-sm bg-slate-900/50 border border-white/5">
+                            
+                            <img src="/assets/img/wilybo.jpg" 
+                                 alt="Wily Bo Walker &amp; The Danny Flam Big Band" 
+                                 class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity">
+                        </div>
+                        <div class="flex-grow">
+                            <h3 class="text-white font-bold text-[9px] leading-tight group-hover:text-[#c5a059] transition-colors line-clamp-1">
+                                Wily Bo Walker &amp; The Danny Flam Big Band
+                            </h3>
+                            <p class="text-[7px] uppercase tracking-wider text-slate-600 font-bold mt-1">
+                                Wily Bo Walker &amp; The Danny Flam Big Band
+                            </p>
+                        </div>
+                        <div class="mt-2 pt-1 border-t border-white/5 flex justify-between items-center">
+                            <span class="text-[#c5a059] font-black italic serif text-sm">
+                                90%
+                            </span>
+                        </div>
+                    </div>
+                </a>
+                
+            
+                
+                <a href="/reviews/gatemouth-brown/" 
+                   class="review-card-item block group" 
+                   data-title="San Antonio Ballbuster" 
+                   data-artist="Clarence &quot;Gatemouth&quot; Brown">
+                    <div class="glass-card p-2 rounded-sm h-full flex flex-col">
+                        <div class="aspect-square mb-2 overflow-hidden rounded-sm bg-slate-900/50 border border-white/5">
+                            
+                            <img src="/assets/img/gatemouth.jpg" 
+                                 alt="Clarence &quot;Gatemouth&quot; Brown" 
+                                 class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity">
+                        </div>
+                        <div class="flex-grow">
+                            <h3 class="text-white font-bold text-[9px] leading-tight group-hover:text-[#c5a059] transition-colors line-clamp-1">
+                                San Antonio Ballbuster
+                            </h3>
+                            <p class="text-[7px] uppercase tracking-wider text-slate-600 font-bold mt-1">
+                                Clarence &quot;Gatemouth&quot; Brown
+                            </p>
+                        </div>
+                        <div class="mt-2 pt-1 border-t border-white/5 flex justify-between items-center">
+                            <span class="text-[#c5a059] font-black italic serif text-sm">
+                                94%
+                            </span>
+                        </div>
+                    </div>
+                </a>
+                
+            
+                
+                <a href="/reviews/black_joe_lewis/" 
+                   class="review-card-item block group" 
+                   data-title="Electric Slave" 
+                   data-artist="Black Joe Lewis">
+                    <div class="glass-card p-2 rounded-sm h-full flex flex-col">
+                        <div class="aspect-square mb-2 overflow-hidden rounded-sm bg-slate-900/50 border border-white/5">
+                            
+                            <img src="/assets/img/black_joe_lewis.jpg" 
+                                 alt="Black Joe Lewis" 
+                                 class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity">
+                        </div>
+                        <div class="flex-grow">
+                            <h3 class="text-white font-bold text-[9px] leading-tight group-hover:text-[#c5a059] transition-colors line-clamp-1">
+                                Electric Slave
+                            </h3>
+                            <p class="text-[7px] uppercase tracking-wider text-slate-600 font-bold mt-1">
+                                Black Joe Lewis
+                            </p>
+                        </div>
+                        <div class="mt-2 pt-1 border-t border-white/5 flex justify-between items-center">
+                            <span class="text-[#c5a059] font-black italic serif text-sm">
+                                88%
+                            </span>
+                        </div>
+                    </div>
+                </a>
+                
+            
+                
+                <a href="/reviews/tommy-castro/" 
+                   class="review-card-item block group" 
+                   data-title="Hornet’s Nest" 
+                   data-artist="Joe Louis Walker">
+                    <div class="glass-card p-2 rounded-sm h-full flex flex-col">
+                        <div class="aspect-square mb-2 overflow-hidden rounded-sm bg-slate-900/50 border border-white/5">
+                            
+                            <img src="/assets/img/hornetsnest.jpg" 
+                                 alt="Joe Louis Walker" 
+                                 class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity">
+                        </div>
+                        <div class="flex-grow">
+                            <h3 class="text-white font-bold text-[9px] leading-tight group-hover:text-[#c5a059] transition-colors line-clamp-1">
+                                Hornet’s Nest
+                            </h3>
+                            <p class="text-[7px] uppercase tracking-wider text-slate-600 font-bold mt-1">
+                                Joe Louis Walker
+                            </p>
+                        </div>
+                        <div class="mt-2 pt-1 border-t border-white/5 flex justify-between items-center">
+                            <span class="text-[#c5a059] font-black italic serif text-sm">
+                                89%
+                            </span>
+                        </div>
+                    </div>
+                </a>
+                
+            
+                
+                <a href="/reviews/hornets-nest/" 
+                   class="review-card-item block group" 
+                   data-title="Hornet’s Nest" 
+                   data-artist="Joe Louis Walker">
+                    <div class="glass-card p-2 rounded-sm h-full flex flex-col">
+                        <div class="aspect-square mb-2 overflow-hidden rounded-sm bg-slate-900/50 border border-white/5">
+                            
+                            <img src="/assets/img/hornetsnest.jpg" 
+                                 alt="Joe Louis Walker" 
+                                 class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity">
+                        </div>
+                        <div class="flex-grow">
+                            <h3 class="text-white font-bold text-[9px] leading-tight group-hover:text-[#c5a059] transition-colors line-clamp-1">
+                                Hornet’s Nest
+                            </h3>
+                            <p class="text-[7px] uppercase tracking-wider text-slate-600 font-bold mt-1">
+                                Joe Louis Walker
+                            </p>
+                        </div>
+                        <div class="mt-2 pt-1 border-t border-white/5 flex justify-between items-center">
+                            <span class="text-[#c5a059] font-black italic serif text-sm">
+                                89%
+                            </span>
+                        </div>
+                    </div>
+                </a>
+                
+            
+                
+                <a href="/reviews/sharon-jones/" 
+                   class="review-card-item block group" 
+                   data-title="Give the People What They Want" 
+                   data-artist="Sharon Jones &amp; The Dap-Kings">
+                    <div class="glass-card p-2 rounded-sm h-full flex flex-col">
+                        <div class="aspect-square mb-2 overflow-hidden rounded-sm bg-slate-900/50 border border-white/5">
+                            
+                            <img src="/assets/img/sharonjones.jpg" 
+                                 alt="Sharon Jones &amp; The Dap-Kings" 
+                                 class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity">
+                        </div>
+                        <div class="flex-grow">
+                            <h3 class="text-white font-bold text-[9px] leading-tight group-hover:text-[#c5a059] transition-colors line-clamp-1">
+                                Give the People What They Want
+                            </h3>
+                            <p class="text-[7px] uppercase tracking-wider text-slate-600 font-bold mt-1">
+                                Sharon Jones &amp; The Dap-Kings
+                            </p>
+                        </div>
+                        <div class="mt-2 pt-1 border-t border-white/5 flex justify-between items-center">
+                            <span class="text-[#c5a059] font-black italic serif text-sm">
+                                95%
+                            </span>
+                        </div>
+                    </div>
+                </a>
+                
+            
+                
+                <a href="/reviews/no-show-ponies/" 
+                   class="review-card-item block group" 
+                   data-title="A Manual For Defeat" 
+                   data-artist="No Show Ponies">
+                    <div class="glass-card p-2 rounded-sm h-full flex flex-col">
+                        <div class="aspect-square mb-2 overflow-hidden rounded-sm bg-slate-900/50 border border-white/5">
+                            
+                            <img src="/assets/img/noshowponies.jpg" 
+                                 alt="No Show Ponies" 
+                                 class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity">
+                        </div>
+                        <div class="flex-grow">
+                            <h3 class="text-white font-bold text-[9px] leading-tight group-hover:text-[#c5a059] transition-colors line-clamp-1">
+                                A Manual For Defeat
+                            </h3>
+                            <p class="text-[7px] uppercase tracking-wider text-slate-600 font-bold mt-1">
+                                No Show Ponies
+                            </p>
+                        </div>
+                        <div class="mt-2 pt-1 border-t border-white/5 flex justify-between items-center">
+                            <span class="text-[#c5a059] font-black italic serif text-sm">
+                                85%
+                            </span>
+                        </div>
+                    </div>
+                </a>
+                
+            
+                
+                <a href="/reviews/the-bamboos/" 
+                   class="review-card-item block group" 
+                   data-title="Fever In The Road" 
+                   data-artist="The Bamboos">
+                    <div class="glass-card p-2 rounded-sm h-full flex flex-col">
+                        <div class="aspect-square mb-2 overflow-hidden rounded-sm bg-slate-900/50 border border-white/5">
+                            
+                            <img src="/assets/img/feveritr.jpg" 
+                                 alt="The Bamboos" 
+                                 class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity">
+                        </div>
+                        <div class="flex-grow">
+                            <h3 class="text-white font-bold text-[9px] leading-tight group-hover:text-[#c5a059] transition-colors line-clamp-1">
+                                Fever In The Road
+                            </h3>
+                            <p class="text-[7px] uppercase tracking-wider text-slate-600 font-bold mt-1">
+                                The Bamboos
+                            </p>
+                        </div>
+                        <div class="mt-2 pt-1 border-t border-white/5 flex justify-between items-center">
+                            <span class="text-[#c5a059] font-black italic serif text-sm">
+                                92%
+                            </span>
+                        </div>
+                    </div>
+                </a>
+                
+            
+                
+                <a href="/reviews/fight-for-my-soul/" 
+                   class="review-card-item block group" 
+                   data-title="Fight For My Soul" 
+                   data-artist="Jonny Lang">
+                    <div class="glass-card p-2 rounded-sm h-full flex flex-col">
+                        <div class="aspect-square mb-2 overflow-hidden rounded-sm bg-slate-900/50 border border-white/5">
+                            
+                            <img src="/assets/img/ffys.jpg" 
+                                 alt="Jonny Lang" 
+                                 class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity">
+                        </div>
+                        <div class="flex-grow">
+                            <h3 class="text-white font-bold text-[9px] leading-tight group-hover:text-[#c5a059] transition-colors line-clamp-1">
+                                Fight For My Soul
+                            </h3>
+                            <p class="text-[7px] uppercase tracking-wider text-slate-600 font-bold mt-1">
+                                Jonny Lang
+                            </p>
+                        </div>
+                        <div class="mt-2 pt-1 border-t border-white/5 flex justify-between items-center">
+                            <span class="text-[#c5a059] font-black italic serif text-sm">
+                                90%
+                            </span>
+                        </div>
+                    </div>
+                </a>
+                
+            
         </div>
-</div>
 
-<script>
-    document.getElementById('reviewSearch').addEventListener('input', function(e) {
-        const searchTerm = e.target.value.toLowerCase();
-        const cards = document.querySelectorAll('.review-card');
-        
-        cards.forEach(card => {
-            const artist = card.getAttribute('data-artist') || '';
-            const album = card.getAttribute('data-album') || '';
-            const title = card.getAttribute('data-title') || '';
-            
-            if (artist.includes(searchTerm) || album.includes(searchTerm) || title.includes(searchTerm)) {
-                card.style.display = 'block';
-            } else {
-                card.style.display = 'none';
-            }
+        <div id="noResults" class="hidden py-20 text-center">
+            <p class="serif text-xl text-slate-600 italic">No matches found.</p>
+        </div>
+    </main>
+
+    <script>
+        const searchInput = document.getElementById('reviewSearch');
+        const cards = document.querySelectorAll('.review-card-item');
+        const grid = document.getElementById('cardGrid');
+        const noResults = document.getElementById('noResults');
+
+        searchInput.addEventListener('input', (e) => {
+            const term = e.target.value.toLowerCase();
+            let hasResults = false;
+
+            cards.forEach(card => {
+                const title = (card.getAttribute('data-title') || "").toLowerCase();
+                const artist = (card.getAttribute('data-artist') || "").toLowerCase();
+
+                if (title.includes(term) || artist.includes(term)) {
+                    card.style.display = 'block';
+                    hasResults = true;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            noResults.classList.toggle('hidden', hasResults);
+            grid.classList.toggle('hidden', !hasResults);
         });
-    });
-</script>
-    </div>
+    </script>
 </body>
 </html>
