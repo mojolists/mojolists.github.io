@@ -5,23 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Joe Louis Walker | MojoLists</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="/assets/css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/main.css">
     <style>
         .glass-card {
             background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
         }
+        .logo-font { font-family: 'Cormorant Garamond', serif; }
     </style>
 </head>
 <body class="bg-black text-white min-h-screen font-sans selection:bg-yellow-500 selection:text-black">
     <div class="min-h-screen flex flex-col">
         <nav class="border-b border-white border-opacity-10 px-6 py-6">
             <div class="max-w-7xl mx-auto flex justify-between items-center">
-                <a href="/" class="text-3xl font-black tracking-tighter hover:text-yellow-500 transition-all">MOJOLISTS</a>
+                <a href="/" class="text-3xl text-white font-light uppercase tracking-tighter logo-font">
+                    MOJO<span class="text-red-500 font-normal">LISTS</span>
+                </a>
                 <div class="hidden md:flex space-x-12 text-sm font-bold uppercase tracking-[0.2em] text-gray-400">
-                    <a href="/" class="hover:text-white transition">Reviews</a>
-                    <a href="/archives" class="hover:text-white transition">Archives</a>
+                    <a href="/reviews/" class="hover:text-white transition">Reviews</a>
+                    <a href="/reviews/" class="hover:text-white transition">Archive</a>
                     <a href="/about" class="hover:text-white transition">About</a>
                 </div>
             </div>
@@ -41,9 +45,9 @@
                     <span class="text-[#c5a059] uppercase tracking-[0.4em] text-[10px] font-black">
                         Alligator Records // 2014
                     </span>
-                    <span class="text-white text-lg font-black italic tracking-tighter uppercase">
-                        MOJO<span class="text-red-600">LISTS</span>
-                    </span>
+                    <a href="/reviews/" class="text-xl text-white font-light italic tracking-tighter uppercase logo-font">
+                        MOJO<span class="text-red-500 font-normal">LISTS</span>
+                    </a>
                 </div>
                 
                 <h1 class="text-white font-black uppercase tracking-tighter leading-[0.85] mb-4 break-words" 
@@ -66,9 +70,9 @@
                 </div>
                 
                 <div class="pb-2">
-                    <div class="px-6 py-2 border border-[#c5a059] text-[#c5a059] text-[10px] uppercase tracking-[0.3em] font-black hover:bg-[#c5a059] hover:text-black transition-all">
-                        REVIEW
-                    </div>
+                    <a href="/reviews/" class="px-6 py-2 border border-[#c5a059] text-[#c5a059] text-[10px] uppercase tracking-[0.3em] font-black hover:bg-[#c5a059] hover:text-black transition-all">
+                        ARCHIVE
+                    </a>
                 </div>
             </div>
         </div>
