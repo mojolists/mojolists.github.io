@@ -7,23 +7,24 @@ layout: false
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>All Reviews & Articles | MojoLists</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400;1,600&family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <title>The Archive | MojoLists</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body { font-family: 'Inter', sans-serif; background-color: #0b1120; color: #94a3b8; }
         .serif { font-family: 'Playfair Display', serif; }
         .logo-font { font-family: 'Cormorant Garamond', serif; }
         
-        .quick-card { 
-            background: rgba(30, 41, 59, 0.5); 
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: all 0.2s ease;
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.3s ease;
         }
-        .quick-card:hover {
-            background: rgba(30, 41, 59, 0.8);
+        .glass-card:hover {
+            background: rgba(255, 255, 255, 0.06);
             border-color: #c5a059;
-            transform: translateY(-2px);
+            transform: translateY(-4px);
         }
     </style>
 </head>
@@ -33,39 +34,48 @@ layout: false
         <a href="/" class="text-xs uppercase tracking-[0.4em] text-slate-500 hover:text-[#c5a059] transition-colors font-bold">Back Home</a>
     </nav>
 
-    <main class="max-w-5xl mx-auto px-6">
+    <main class="max-w-7xl mx-auto px-6">
         <header class="mb-16">
-            <h1 class="serif text-6xl text-white mb-6">The Archive</h1>
-            <div class="max-w-xl relative">
+            <h1 class="serif text-5xl text-white mb-6">The Archive</h1>
+            <div class="max-w-md relative">
                 <input type="text" id="reviewSearch" 
                        placeholder="Search artist or album..." 
-                       class="w-full bg-slate-900/50 border border-white/10 rounded-sm py-4 px-6 text-white focus:outline-none focus:border-[#c5a059] transition-colors italic">
+                       class="w-full bg-slate-900/50 border border-white/10 rounded-sm py-3 px-6 text-white focus:outline-none focus:border-[#c5a059] transition-colors italic">
             </div>
         </header>
 
-        <div id="cardGrid" class="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {% for review in collections.reviews | reverse %}
-            {% if not review.data.featured %}
-            <a href="{{ review.url }}" 
-               class="review-card-item block group" 
-               data-title="{{ review.data.album or review.data.title }}" 
-               data-artist="{{ review.data.artist }}">
-                <div class="quick-card p-4 rounded-sm flex gap-6 items-center">
-                    <div class="w-16 h-16 flex-shrink-0 overflow-hidden rounded-sm border border-white/5">
-                        <img src="/assets/img/{{ review.data.image or review.data.img }}" 
-                             alt="{{ review.data.artist }}" 
-                             class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity">
+        <div id="cardGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            {% for review in collections.all | reverse %}
+                {% if review.data.tags and ("reviews" in review.data.tags or "posts" in review.data.tags) %}
+                <a href="{{ review.url }}" 
+                   class="review-card-item block group" 
+                   data-title="{{ review.data.album or review.data.title }}" 
+                   data-artist="{{ review.data.artist }}">
+                    <div class="glass-card p-4 rounded-sm h-full flex flex-col">
+                        <div class="aspect-square mb-4 overflow-hidden rounded-sm bg-slate-900 border border-white/5">
+                            {% set imgPath = review.data.image or review.data.img or review.data.coverImage %}
+                            {# Smart Image Pathing: Prepend assets path only if not already present #}
+                            <img src="{% if '/assets/img/' in imgPath %}{{ imgPath }}{% else %}/assets/img/{{ imgPath }}{% endif %}" 
+                                 alt="{{ review.data.artist }}" 
+                                 class="w-full h-full object-cover opacity-70 group-hover:opacity-100 transition-opacity">
+                        </div>
+                        <div class="flex-grow">
+                            <h3 class="text-white font-bold text-sm leading-tight group-hover:text-[#c5a059] transition-colors">
+                                {{ review.data.album or review.data.title }}
+                            </h3>
+                            <p class="text-[9px] uppercase tracking-[0.2em] text-slate-500 font-bold mt-2">
+                                {{ review.data.artist }}
+                            </p>
+                        </div>
+                        <div class="mt-4 pt-4 border-t border-white/5 flex justify-between items-center">
+                            <span class="text-[#c5a059] font-black italic serif text-xl">
+                                {{ review.data.score or review.data.mojoScore or 0 }}%
+                            </span>
+                            <span class="text-[8px] uppercase tracking-widest text-slate-600 font-bold">Mojo Rating</span>
+                        </div>
                     </div>
-                    <div class="flex-grow min-w-0">
-                        <h3 class="text-white font-bold truncate group-hover:text-[#c5a059] transition-colors">{{ review.data.album or review.data.title }}</h3>
-                        <p class="text-[10px] uppercase tracking-[0.2em] text-slate-500 font-bold mt-1">{{ review.data.artist }}</p>
-                    </div>
-                    <div class="text-[#c5a059] font-black italic serif text-xl pr-2">
-                        {{ review.data.score or review.data.mojoScore or 0 }}%
-                    </div>
-                </div>
-            </a>
-            {% endif %}
+                </a>
+                {% endif %}
             {% endfor %}
         </div>
 
@@ -89,20 +99,15 @@ layout: false
                 const artist = (card.getAttribute('data-artist') || "").toLowerCase();
 
                 if (title.includes(term) || artist.includes(term)) {
-                    card.classList.remove('hidden');
+                    card.style.display = 'block';
                     hasResults = true;
                 } else {
-                    card.classList.add('hidden');
+                    card.style.display = 'none';
                 }
             });
 
-            if (hasResults) {
-                noResults.classList.add('hidden');
-                grid.classList.remove('hidden');
-            } else {
-                noResults.classList.remove('hidden');
-                grid.classList.add('hidden');
-            }
+            noResults.classList.toggle('hidden', hasResults);
+            grid.classList.toggle('hidden', !hasResults);
         });
     </script>
 </body>
