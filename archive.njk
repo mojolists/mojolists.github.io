@@ -16,67 +16,75 @@ layout: false
         .logo-font { font-family: 'Cormorant Garamond', serif; }
         
         .glass-card {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.2s ease;
         }
         .glass-card:hover {
             border-color: #c5a059;
-            transform: translateY(-4px);
+            background: rgba(255, 255, 255, 0.05);
+            transform: scale(1.02);
+        }
+        .line-clamp-1 {
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;  
+            overflow: hidden;
         }
     </style>
 </head>
 <body class="min-h-screen pb-20">
-    <nav class="p-8 mb-12 flex justify-between items-center max-w-7xl mx-auto">
-        <a href="/" class="logo-font text-3xl text-white font-light tracking-widest uppercase">MojoLists</a>
-        <a href="/" class="text-xs uppercase tracking-[0.4em] text-slate-500 hover:text-[#c5a059] transition-colors font-bold">Back Home</a>
+    <nav class="p-6 mb-8 flex justify-between items-center max-w-[1600px] mx-auto">
+        <a href="/" class="logo-font text-2xl text-white font-light tracking-widest uppercase">MojoLists</a>
+        <a href="/" class="text-[10px] uppercase tracking-[0.4em] text-slate-500 hover:text-[#c5a059] transition-colors font-bold">Home</a>
     </nav>
 
-    <main class="max-w-7xl mx-auto px-6">
-        <header class="mb-16">
-            <h1 class="serif text-5xl text-white mb-6">The Archive</h1>
-            <div class="max-w-md relative">
+    <main class="max-w-[1600px] mx-auto px-6">
+        <header class="mb-12">
+            <h1 class="serif text-4xl text-white mb-4">The Archive</h1>
+            <div class="max-w-xs relative">
                 <input type="text" id="reviewSearch" 
-                       placeholder="Search artist or album..." 
-                       class="w-full bg-slate-900/50 border border-white/10 rounded-sm py-3 px-6 text-white focus:outline-none focus:border-[#c5a059] transition-colors italic">
+                       placeholder="Filter collection..." 
+                       class="w-full bg-slate-900/50 border border-white/10 rounded-sm py-2 px-4 text-xs text-white focus:outline-none focus:border-[#c5a059] transition-colors italic">
             </div>
         </header>
 
-        <div id="cardGrid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            {% for review in collections.reviews | reverse %}
-            <a href="{{ review.url }}" 
-               class="review-card-item block group" 
-               data-title="{{ review.data.album or review.data.title }}" 
-               data-artist="{{ review.data.artist }}">
-                <div class="glass-card p-4 rounded-sm h-full flex flex-col">
-                    <div class="aspect-square mb-4 overflow-hidden rounded-sm bg-slate-900/50 border border-white/5">
-                        {% set imgPath = review.data.image or review.data.img or review.data.coverImage %}
-                        {# If the path doesn't start with /assets/, prepend it #}
-                        <img src="{% if '/assets/img/' in imgPath %}{{ imgPath }}{% else %}/assets/img/{{ imgPath }}{% endif %}" 
-                             alt="{{ review.data.artist }}" 
-                             class="w-full h-full object-cover opacity-70 group-hover:opacity-100 transition-opacity">
+        <div id="cardGrid" class="grid grid-cols-3 sm:grid-cols-5 md:grid-cols-7 lg:grid-cols-10 gap-3">
+            {% for review in collections.all | reverse %}
+                {% if review.data.artist or review.data.album or review.data.title %}
+                <a href="{{ review.url }}" 
+                   class="review-card-item block group" 
+                   data-title="{{ review.data.album or review.data.title }}" 
+                   data-artist="{{ review.data.artist }}">
+                    <div class="glass-card p-2 rounded-sm h-full flex flex-col">
+                        <div class="aspect-square mb-2 overflow-hidden rounded-sm bg-slate-900/50 border border-white/5">
+                            {% set imgPath = review.data.image or review.data.img or review.data.coverImage %}
+                            <img src="{% if '/assets/img/' in imgPath %}{{ imgPath }}{% else %}/assets/img/{{ imgPath }}{% endif %}" 
+                                 alt="{{ review.data.artist }}" 
+                                 class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity">
+                        </div>
+                        <div class="flex-grow">
+                            <h3 class="text-white font-bold text-[9px] leading-tight group-hover:text-[#c5a059] transition-colors line-clamp-1">
+                                {{ review.data.album or review.data.title }}
+                            </h3>
+                            <p class="text-[7px] uppercase tracking-wider text-slate-600 font-bold mt-1">
+                                {{ review.data.artist }}
+                            </p>
+                        </div>
+                        <div class="mt-2 pt-1 border-t border-white/5 flex justify-between items-center">
+                            <span class="text-[#c5a059] font-black italic serif text-sm">
+                                {{ review.data.score or review.data.mojoScore or 0 }}%
+                            </span>
+                        </div>
                     </div>
-                    <div class="flex-grow">
-                        <h3 class="text-white font-bold text-sm leading-tight group-hover:text-[#c5a059] transition-colors">
-                            {{ review.data.album or review.data.title }}
-                        </h3>
-                        <p class="text-[9px] uppercase tracking-[0.2em] text-slate-500 font-bold mt-2">
-                            {{ review.data.artist }}
-                        </p>
-                    </div>
-                    <div class="mt-4 pt-4 border-t border-white/5 flex justify-between items-center">
-                        <span class="text-[#c5a059] font-black italic serif text-xl">
-                            {{ review.data.score or review.data.mojoScore or 0 }}%
-                        </span>
-                    </div>
-                </div>
-            </a>
+                </a>
+                {% endif %}
             {% endfor %}
         </div>
 
         <div id="noResults" class="hidden py-20 text-center">
-            <p class="serif text-2xl text-slate-600 italic">No matches found in the archive.</p>
+            <p class="serif text-xl text-slate-600 italic">No matches found.</p>
         </div>
     </main>
 
