@@ -34,13 +34,11 @@ body {
 
 /* Glass Card */
 .glass-card {
-    background: rgba(255, 255, 255, 0.03);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 2rem;
-    display: flex;
-    flex-direction: column;
+    background: rgba(255, 255, 255, 0.02);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 2.5rem;
 }
 
 /* Artist Heading - Montserrat 900 */
@@ -48,36 +46,36 @@ body {
     font-family: 'Montserrat', sans-serif !important;
     font-weight: 900;
     text-transform: uppercase;
-    line-height: 0.9;
-    letter-spacing: -0.02em;
-    /* Responsive font size that stays within 400px */
-    font-size: clamp(1.2rem, 4vw, 2.5rem);
+    line-height: 0.85;
+    letter-spacing: -0.04em;
+    font-size: clamp(1.5rem, 4vw, 2.8rem);
 }
 
-/* Album Subheading - Red, Bold, Clean */
+/* Album Subheading - Red, Clean */
 .album-subheading {
     font-family: 'Inter', sans-serif !important;
-    font-weight: 700;
-    font-size: 1.1rem;
+    font-weight: 600;
+    font-size: 1rem;
     color: #e63946;
+    letter-spacing: -0.01em;
 }
 
-/* Metadata Text */
+/* Metadata Text - Lightweight Editorial style */
 .metadata-text {
     font-family: 'Inter', sans-serif;
-    font-size: 11px;
+    font-size: 10px;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
-    font-weight: 500;
-    color: rgba(255, 255, 255, 0.8);
+    letter-spacing: 0.15em;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.9);
 }
 
-/* Mojo Rating - Transparent/No Border */
+/* Mojo Rating - Transparent/Borderless Box */
 .mojo-rating {
     font-family: 'Montserrat', sans-serif !important;
     font-weight: 900;
     font-style: italic;
-    font-size: 3.5rem;
+    font-size: 5rem;
     color: #ffffff;
     line-height: 1;
     letter-spacing: -0.05em;
@@ -87,23 +85,12 @@ body {
 .review-content {
     font-family: 'Inter', sans-serif !important;
     font-size: 1.125rem;
-    line-height: 1.8;
-    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.85;
+    color: rgba(255, 255, 255, 0.85);
 }
 
-/* Gold Action Buttons */
-.btn-gold {
-    border: 1px solid #DAA520;
-    color: #DAA520;
-    padding: 0.5rem 1rem;
-    text-transform: uppercase;
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 0.15em;
-    transition: all 0.3s ease;
-}
-
-.btn-gold:hover {
+/* Selection and Accent */
+::selection {
     background: #DAA520;
-    color: #000;
+    color: black;
 }

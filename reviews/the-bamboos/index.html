@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Bamboos | MojoLists</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Inter:wght@300;400;700;900&family=Montserrat:wght@900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/assets/css/main.css">
 </head>
 <body class="bg-black text-white min-h-screen font-sans selection:bg-[#DAA520] selection:text-black">
@@ -16,7 +16,6 @@
                     MOJO<span class="logo-lists">LISTS</span>
                 </a>
                 <div class="hidden md:flex space-x-12 text-[10px] font-bold uppercase tracking-[0.3em] text-gray-400">
-                    <a href="/reviews/" class="hover:text-white transition">Reviews</a>
                     <a href="/reviews/" class="hover:text-white transition">Archive</a>
                     <a href="/about" class="hover:text-white transition">About</a>
                 </div>
@@ -33,42 +32,29 @@
         
         <div class="glass-card fixed-square relative overflow-hidden">
             <div class="flex flex-col h-full">
-                <div class="flex justify-between items-start mb-4">
-                    <div class="text-xl uppercase logo-mojo text-[10px] tracking-widest">
-                        MOJO<span class="logo-lists">LISTS</span>
-                    </div>
-                </div>
                 
                 <div class="mb-auto">
                     <h1 class="artist-heading text-white mb-1">
                         The Bamboos
                     </h1>
-                    <h2 class="album-subheading text-[#e63946] uppercase font-bold tracking-tight mb-6">
+                    <h2 class="album-subheading text-[#e63946] uppercase font-bold tracking-tight mb-8">
                         Fever In The Road
                     </h2>
 
-                    <div class="space-y-1">
+                    <div class="space-y-2">
                         <div class="metadata-text">
-                            <span class="opacity-40">Label:</span> Pacific Theatre
+                            <span class="opacity-30 mr-2">Label</span> <span class="text-white/80 font-normal capitalize tracking-normal">Pacific Theatre</span>
                         </div>
                         <div class="metadata-text">
-                            <span class="opacity-40">Released:</span> 2013
+                            <span class="opacity-30 mr-2">Year</span> <span class="text-white/80 font-normal tracking-normal">2013</span>
                         </div>
                     </div>
                 </div>
 
-                <div class="pt-6 flex items-end justify-between border-t border-white/10">
-                    <div class="flex flex-col">
-                        <span class="metadata-text mb-1" style="letter-spacing: 0.1em;">Mojo Rating</span>
-                        <div class="mojo-rating">
-                            92%
-                        </div>
-                    </div>
-                    
-                    <div class="pb-2">
-                        <a href="/reviews/" class="btn-gold">
-                            ARCHIVE
-                        </a>
+                <div class="pt-6 border-t border-white/10">
+                    <span class="metadata-text block mb-2 opacity-30">Mojo Rating</span>
+                    <div class="mojo-rating">
+                        92%
                     </div>
                 </div>
             </div>
