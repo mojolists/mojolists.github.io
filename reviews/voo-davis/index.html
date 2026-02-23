@@ -5,25 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Voo Davis | MojoLists</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Inter:wght@300;400;700;900&family=Montserrat:wght@900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/assets/css/main.css">
-    <style>
-        .glass-card {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-        }
-        .logo-font { font-family: 'Cormorant Garamond', serif; }
-    </style>
 </head>
-<body class="bg-black text-white min-h-screen font-sans selection:bg-yellow-500 selection:text-black">
+<body class="bg-black text-white min-h-screen font-sans selection:bg-[#DAA520] selection:text-black">
     <div class="min-h-screen flex flex-col">
         <nav class="border-b border-white border-opacity-10 px-6 py-6">
             <div class="max-w-7xl mx-auto flex justify-between items-center">
-                <a href="/" class="text-3xl text-white font-light uppercase tracking-tighter logo-font">
-                    MOJO<span class="text-red-500 font-normal">LISTS</span>
+                <a href="/" class="text-3xl uppercase tracking-tighter logo-mojo">
+                    MOJO<span class="logo-lists">LISTS</span>
                 </a>
-                <div class="hidden md:flex space-x-12 text-sm font-bold uppercase tracking-[0.2em] text-gray-400">
+                <div class="hidden md:flex space-x-12 text-[10px] font-bold uppercase tracking-[0.3em] text-gray-400">
                     <a href="/reviews/" class="hover:text-white transition">Reviews</a>
                     <a href="/reviews/" class="hover:text-white transition">Archive</a>
                     <a href="/about" class="hover:text-white transition">About</a>
@@ -33,44 +25,41 @@
 
         <main class="flex-grow">
             <article class="max-w-6xl mx-auto px-6 py-12">
-    <header class="flex flex-col lg:flex-row gap-8 justify-center items-center mb-16">
+    <header class="flex flex-col lg:flex-row gap-8 justify-center items-end mb-16">
         
-        <div class="w-[400px] h-[400px] flex-shrink-0">
+        <div class="fixed-square">
             <img src="/assets/img/voodavis.jpg" alt="Voo Davis - Vicious Things" class="w-full h-full object-cover border border-white/10 rounded-sm shadow-2xl">
         </div>
         
-        <div class="glass-card p-10 flex flex-col justify-between w-[400px] h-[400px] flex-shrink-0 relative overflow-hidden">
+        <div class="glass-card fixed-square relative overflow-hidden">
             <div>
                 <div class="flex justify-between items-start mb-6">
-                    <span class="text-[#c5a059] uppercase tracking-[0.4em] text-[10px] font-black">
+                    <span class="metadata-text text-[#c5a059]">
                         Independent // 2013
                     </span>
-                    <a href="/reviews/" class="text-xl text-white font-light italic tracking-tighter uppercase logo-font">
-                        MOJO<span class="text-red-500 font-normal">LISTS</span>
-                    </a>
+                    <div class="text-xl uppercase logo-mojo text-xs">
+                        MOJO<span class="logo-lists">LISTS</span>
+                    </div>
                 </div>
                 
-                <h1 class="text-white font-black uppercase tracking-tighter leading-[0.85] mb-4 break-words" 
-                    style="font-size: clamp(1.8rem, 5vw, 4rem);">
+                <h1 class="artist-heading text-white mb-2">
                     Voo Davis
                 </h1>
-                
-                <h2 class="text-[#c5a059] text-xl font-extrabold uppercase italic tracking-widest leading-tight">
+                <h2 class="text-white/70 font-medium tracking-tight text-xl italic font-serif">
                     Vicious Things
                 </h2>
             </div>
 
             <div class="pt-8 flex items-end justify-between bg-transparent border-t border-white/10">
                 <div class="flex flex-col">
-                    <span class="text-slate-500 uppercase text-[9px] tracking-[0.4em] mb-1 font-bold">Mojo Confidence</span>
-                    <div class="flex items-baseline bg-transparent">
-                        <span class="text-6xl font-black text-white italic tracking-tighter leading-none">92%</span>
-                        <span class="text-xs text-slate-600 font-bold uppercase ml-2 tracking-widest">Rating</span>
+                    <span class="metadata-text mb-1">Mojo Score</span>
+                    <div class="mojo-rating">
+                        92%
                     </div>
                 </div>
                 
                 <div class="pb-2">
-                    <a href="/reviews/" class="px-6 py-2 border border-[#c5a059] text-[#c5a059] text-[10px] uppercase tracking-[0.3em] font-black hover:bg-[#c5a059] hover:text-black transition-all">
+                    <a href="/reviews/" class="btn-gold">
                         ARCHIVE
                     </a>
                 </div>
@@ -78,7 +67,7 @@
         </div>
     </header>
 
-    <div class="max-w-3xl mx-auto text-slate-200 text-lg leading-relaxed space-y-8">
+    <div class="max-w-3xl mx-auto review-content space-y-8">
         <p>I have been anxiously awaiting the arrival of the new Voo Davis album since I listened to his first one, A Place for Secrets. His initial offering showed a talent that was on the verge of full bloom. The recording was raw, the song writing strong but still somewhat unpolished. It was filled with promises.</p>
 <p class="text-xl text-gray-200 italic leading-relaxed border-l-4 border-red-600 pl-6 py-2 my-8">
   "Vicious Things opens up with what I have begun to call the “Wall of Voo” sound"
@@ -106,9 +95,7 @@
 
         <footer class="border-t border-white border-opacity-10 py-12 mt-20">
             <div class="max-w-7xl mx-auto px-6 text-center">
-                <p class="text-gray-500 text-[10px] font-bold uppercase tracking-[0.4em]">
-                    © 2026 MojoLists • High-Fidelity Reviews
-                </p>
+                <p class="logo-mojo text-sm opacity-50">© 2026 MOJOLISTS</p>
             </div>
         </footer>
     </div>
