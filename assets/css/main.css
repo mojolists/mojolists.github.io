@@ -1,5 +1,5 @@
 /* main.css - Full File */
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=Inter:wght@400;500;600&family=Montserrat:wght@900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@900&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -27,8 +27,8 @@ body {
 
 /* Header Constraints */
 .fixed-square {
-    width: 400px;
-    height: 400px;
+    width: 400px !important;
+    height: 400px !important;
     flex-shrink: 0;
 }
 
@@ -38,23 +38,52 @@ body {
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     border: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 2.5rem;
+    padding: 2rem;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
 }
 
-/* Artist Heading - Montserrat 900 with Clamp */
+/* Artist Heading - Montserrat 900 */
 .artist-heading {
     font-family: 'Montserrat', sans-serif !important;
     font-weight: 900;
     text-transform: uppercase;
-    line-height: 0.85;
-    letter-spacing: -0.04em;
-    font-size: clamp(1.5rem, 8vw, 3rem); /* Keeps long names inside 400px */
+    line-height: 0.9;
+    letter-spacing: -0.02em;
+    /* Responsive font size that stays within 400px */
+    font-size: clamp(1.2rem, 4vw, 2.5rem);
 }
 
-/* Main Body Content - Legible Inter */
+/* Album Subheading - Red, Bold, Clean */
+.album-subheading {
+    font-family: 'Inter', sans-serif !important;
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: #e63946;
+}
+
+/* Metadata Text */
+.metadata-text {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* Mojo Rating - Transparent/No Border */
+.mojo-rating {
+    font-family: 'Montserrat', sans-serif !important;
+    font-weight: 900;
+    font-style: italic;
+    font-size: 3.5rem;
+    color: #ffffff;
+    line-height: 1;
+    letter-spacing: -0.05em;
+}
+
+/* Main Body Content */
 .review-content {
     font-family: 'Inter', sans-serif !important;
     font-size: 1.125rem;
@@ -62,39 +91,15 @@ body {
     color: rgba(255, 255, 255, 0.9);
 }
 
-.review-content p {
-    margin-bottom: 1.5rem;
-}
-
-.metadata-text {
-    font-family: 'Inter', sans-serif;
-    font-size: 10px;
-    text-transform: uppercase;
-    letter-spacing: 0.3em;
-    font-weight: 700;
-    color: rgba(255, 255, 255, 0.5);
-}
-
-/* Mojo Rating */
-.mojo-rating {
-    font-family: 'Montserrat', sans-serif !important;
-    font-weight: 900;
-    font-style: italic;
-    font-size: 4.5rem;
-    color: #ffffff;
-    line-height: 1;
-    letter-spacing: -0.05em;
-}
-
 /* Gold Action Buttons */
 .btn-gold {
     border: 1px solid #DAA520;
     color: #DAA520;
-    padding: 0.6rem 1.2rem;
+    padding: 0.5rem 1rem;
     text-transform: uppercase;
     font-size: 10px;
-    font-weight: 900;
-    letter-spacing: 0.2em;
+    font-weight: 700;
+    letter-spacing: 0.15em;
     transition: all 0.3s ease;
 }
 
