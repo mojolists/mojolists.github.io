@@ -1,107 +1,123 @@
-/* assets/css/main.css */
+/* main.css - Full File */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=Inter:wght@400;500;600&family=Montserrat:wght@900&display=swap');
 
-html, body {
-    height: 100%;
-    margin: 0;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    background-color: #000000;
+    color: #ffffff;
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
 }
 
-body { 
-    font-family: 'Inter', sans-serif; 
-    background-color: #0f172a; 
-    color: #f8fafc;
-}
-
-/* HIGH-CONTRAST HEADER */
-.hero-bg {
-    position: relative;
-    background-image: url('../img/lifestyle-bg.jpg');
-    background-size: cover;
-    background-position: center;
-    min-height: 400px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.hero-bg::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: rgba(15, 23, 42, 0.88); 
-    backdrop-filter: blur(12px);
-    z-index: 1;
-}
-
-.hero-content { position: relative; z-index: 10; }
-
-.logo {
-    font-family: 'Playfair Display', serif;
+/* Logo Styling */
+.logo-mojo {
+    font-family: 'Cormorant Garamond', serif;
     font-weight: 300;
-    font-size: clamp(3rem, 10vw, 5.5rem); 
-    letter-spacing: -0.02em;
-    color: #ffffff;
-}
-
-.logo-lists { color: #ef4444; font-weight: 400; }
-
-.tagline {
-    font-size: 0.8rem;
     text-transform: uppercase;
-    letter-spacing: 0.65em;
-    color: #ffffff; 
+    letter-spacing: -0.05em;
+}
+
+.logo-lists {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 400;
+    color: #e63946;
+    letter-spacing: -0.05em;
+}
+
+/* Header Constraints */
+.review-header-container {
+    display: flex;
+    align-items: flex-end;
+    gap: 20px;
+}
+
+.fixed-square {
+    width: 400px;
+    height: 400px;
+    flex-shrink: 0;
+}
+
+/* Glass Card */
+.glass-card {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* Typography Utilities */
+.artist-heading {
+    font-family: 'Montserrat', sans-serif;
     font-weight: 900;
-    margin: 1.5rem 0 2.5rem 0;
+    text-transform: uppercase;
+    line-height: 0.9;
+    /* Spill-over Rule: Adjusts size based on container width */
+    font-size: clamp(1.5rem, 5vw, 3.5rem);
 }
 
-.hero-nav a {
+.section-heading {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    text-transform: uppercase;
+    color: #e63946;
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+    letter-spacing: 0.05em;
+}
+
+.review-content {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.125rem;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.metadata-text {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+/* Mojo Rating - Transparent/No Border */
+.mojo-rating {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    font-style: italic;
+    font-size: 4rem;
     color: #ffffff;
-    text-decoration: none;
-    font-size: 0.8rem;
-    font-weight: 800;
-    letter-spacing: 0.25em;
-    margin: 0 1.5rem;
-    transition: color 0.3s;
+    background: transparent;
+    border: none;
+    line-height: 1;
 }
 
-.hero-nav a:hover { color: #ef4444; }
+/* Red Line Accent */
+.red-line {
+    height: 2px;
+    background-color: #e63946;
+    width: 50px;
+    margin-bottom: 1.5rem;
+}
 
-/* TEASER CARDS: OPTION 3 LIGHT SERIF */
-.review-card {
-    background-color: #1e293b; 
-    border: 1px solid #334155; 
+/* Gold Action Buttons */
+.btn-gold {
+    border: 1px solid #DAA520;
+    color: #DAA520;
+    padding: 0.5rem 1rem;
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 0.1em;
     transition: all 0.3s ease;
 }
 
-.review-card:hover { border-color: #ef4444; transform: translateY(-4px); }
-
-.card-title {
-    font-family: 'Playfair Display', serif;
-    font-weight: 300; 
-    font-size: 1.9rem;
-    color: #ffffff;
-    margin-bottom: 0.2rem;
-}
-
-/* RED HIGHLIGHTS */
-.card-subtitle {
-    color: #ef4444;
-    font-size: 0.75rem;
-    font-weight: 900;
-    text-transform: uppercase;
-    letter-spacing: 0.2em;
-    margin-bottom: 1.25rem;
-}
-
-.card-excerpt {
-    color: #94a3b8;
-    font-size: 0.95rem;
-    line-height: 1.6;
-    margin-bottom: 2rem;
-}
-
-.line-clamp-3 {
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;  
-    overflow: hidden;
+.btn-gold:hover {
+    background: #DAA520;
+    color: #000;
 }
