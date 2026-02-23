@@ -10,42 +10,29 @@ layout: base.njk
         
         <div class="glass-card fixed-square relative overflow-hidden">
             <div class="flex flex-col h-full">
-                <div class="flex justify-between items-start mb-4">
-                    <div class="text-xl uppercase logo-mojo text-[10px] tracking-widest">
-                        MOJO<span class="logo-lists">LISTS</span>
-                    </div>
-                </div>
                 
                 <div class="mb-auto">
                     <h1 class="artist-heading text-white mb-1">
                         {{ artist }}
                     </h1>
-                    <h2 class="album-subheading text-[#e63946] uppercase font-bold tracking-tight mb-6">
+                    <h2 class="album-subheading text-[#e63946] uppercase font-bold tracking-tight mb-8">
                         {{ album }}
                     </h2>
 
-                    <div class="space-y-1">
+                    <div class="space-y-2">
                         <div class="metadata-text">
-                            <span class="opacity-40">Label:</span> {{ label }}
+                            <span class="opacity-30 mr-2">Label</span> <span class="text-white/80 font-normal capitalize tracking-normal">{{ label }}</span>
                         </div>
                         <div class="metadata-text">
-                            <span class="opacity-40">Released:</span> {{ year }}
+                            <span class="opacity-30 mr-2">Year</span> <span class="text-white/80 font-normal tracking-normal">{{ year }}</span>
                         </div>
                     </div>
                 </div>
 
-                <div class="pt-6 flex items-end justify-between border-t border-white/10">
-                    <div class="flex flex-col">
-                        <span class="metadata-text mb-1" style="letter-spacing: 0.1em;">Mojo Rating</span>
-                        <div class="mojo-rating">
-                            {{ score }}%
-                        </div>
-                    </div>
-                    
-                    <div class="pb-2">
-                        <a href="/reviews/" class="btn-gold">
-                            ARCHIVE
-                        </a>
+                <div class="pt-6 border-t border-white/10">
+                    <span class="metadata-text block mb-2 opacity-30">Mojo Rating</span>
+                    <div class="mojo-rating">
+                        {{ score }}%
                     </div>
                 </div>
             </div>
