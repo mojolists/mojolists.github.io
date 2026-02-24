@@ -1,4 +1,4 @@
-/* main.css - Full File */
+/* main.css - Full Design Lock */
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=Inter:wght@300;400;500;600&display=swap');
 
 @tailwind base;
@@ -12,7 +12,7 @@ body {
     -webkit-font-smoothing: antialiased;
 }
 
-/* Logo Styling */
+/* Brand Identity */
 .logo-mojo {
     font-family: 'Cormorant Garamond', serif;
     font-weight: 300;
@@ -24,14 +24,14 @@ body {
     color: #e63946;
 }
 
-/* Header Constraints */
+/* Fixed Architecture */
 .fixed-square {
     width: 400px !important;
     height: 400px !important;
     flex-shrink: 0;
 }
 
-/* Glass Card */
+/* Glass Surface */
 .glass-card {
     background: rgba(255, 255, 255, 0.02);
     backdrop-filter: blur(25px);
@@ -40,18 +40,17 @@ body {
     padding: 3rem;
 }
 
-/* Artist Heading - Clean & Sophisticated */
+/* Typography Hierarchy */
 .artist-heading {
     font-family: 'Inter', sans-serif !important;
     font-weight: 600;
     text-transform: uppercase;
-    line-height: 1.1;
-    letter-spacing: -0.02em;
-    /* Keeps long names inside 400px box */
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    /* Responsive sizing contained within 400px */
     font-size: clamp(1.4rem, 4vw, 2.1rem);
 }
 
-/* Album Subheading - Red, Medium Weight */
 .album-subheading {
     font-family: 'Inter', sans-serif !important;
     font-weight: 500;
@@ -61,19 +60,18 @@ body {
     text-transform: uppercase;
 }
 
-/* Metadata Styling */
 .metadata-row {
     display: flex;
     justify-content: space-between;
     align-items: baseline;
-    font-size: 11px;
+    font-size: 10px;
     text-transform: uppercase;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.15em;
 }
 
 .metadata-label {
     font-weight: 300;
-    opacity: 0.4;
+    opacity: 0.35;
 }
 
 .metadata-value {
@@ -81,26 +79,31 @@ body {
     color: rgba(255, 255, 255, 0.9);
 }
 
-/* Mojo Rating - Clean Italic */
 .mojo-rating {
     font-family: 'Inter', sans-serif !important;
     font-weight: 600;
     font-style: italic;
-    font-size: 3.5rem;
+    font-size: 4rem;
     color: #ffffff;
     line-height: 1;
-    letter-spacing: -0.04em;
+    letter-spacing: -0.05em;
 }
 
-/* Main Body Content */
+/* Editorial Body Text */
 .review-content {
     font-family: 'Inter', sans-serif !important;
     font-size: 1.125rem;
-    line-height: 1.85;
+    line-height: 1.9;
     color: rgba(255, 255, 255, 0.75);
     font-weight: 300;
 }
 
 .review-content p {
     margin-bottom: 2rem;
+}
+
+/* Custom Selection Color */
+::selection {
+    background: #DAA520;
+    color: black;
 }
