@@ -5,17 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Clarence &quot;Gatemouth&quot; Brown | MojoLists</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/assets/css/main.css">
 </head>
 <body class="bg-black text-white min-h-screen font-sans selection:bg-[#DAA520] selection:text-black">
     <div class="min-h-screen flex flex-col">
-        <nav class="border-b border-white border-opacity-10 px-6 py-6">
+        <nav class="border-b border-white border-opacity-10 px-6 py-8">
             <div class="max-w-7xl mx-auto flex justify-between items-center">
                 <a href="/" class="text-3xl uppercase tracking-tighter logo-mojo">
                     MOJO<span class="logo-lists">LISTS</span>
                 </a>
-                <div class="hidden md:flex space-x-12 text-[10px] font-bold uppercase tracking-[0.3em] text-gray-400">
+                <div class="hidden md:flex space-x-12 text-[10px] font-medium uppercase tracking-[0.3em] text-gray-500">
                     <a href="/reviews/" class="hover:text-white transition">Archive</a>
                     <a href="/about" class="hover:text-white transition">About</a>
                 </div>
@@ -24,7 +24,7 @@
 
         <main class="flex-grow">
             <article class="max-w-6xl mx-auto px-6 py-12">
-    <header class="flex flex-col lg:flex-row gap-8 justify-center items-end mb-16">
+    <header class="flex flex-col lg:flex-row gap-8 justify-center items-end mb-20">
         
         <div class="fixed-square">
             <img src="/assets/img/gatemouth.jpg" alt="Clarence &quot;Gatemouth&quot; Brown - San Antonio Ballbuster" class="w-full h-full object-cover border border-white/10 rounded-sm shadow-2xl">
@@ -37,22 +37,25 @@
                     <h1 class="artist-heading text-white mb-1">
                         Clarence &quot;Gatemouth&quot; Brown
                     </h1>
-                    <h2 class="album-subheading text-[#e63946] uppercase font-bold tracking-tight mb-8">
+                    
+                    <h2 class="album-subheading mb-10">
                         San Antonio Ballbuster
                     </h2>
 
-                    <div class="space-y-2">
-                        <div class="metadata-text">
-                            <span class="opacity-30 mr-2">Label</span> <span class="text-white/80 font-normal capitalize tracking-normal">Charly Records</span>
+                    <div class="space-y-4">
+                        <div class="metadata-row">
+                            <span class="metadata-label">Label</span>
+                            <span class="metadata-value">Charly Records</span>
                         </div>
-                        <div class="metadata-text">
-                            <span class="opacity-30 mr-2">Year</span> <span class="text-white/80 font-normal tracking-normal">1960</span>
+                        <div class="metadata-row">
+                            <span class="metadata-label">Released</span>
+                            <span class="metadata-value">1960</span>
                         </div>
                     </div>
                 </div>
 
-                <div class="pt-6 border-t border-white/10">
-                    <span class="metadata-text block mb-2 opacity-30">Mojo Rating</span>
+                <div class="pt-8 border-t border-white/10">
+                    <span class="metadata-label block mb-2">Mojo Rating</span>
                     <div class="mojo-rating">
                         94%
                     </div>

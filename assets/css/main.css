@@ -1,5 +1,5 @@
 /* main.css - Full File */
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=Inter:wght@300;400;500;600&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -18,7 +18,6 @@ body {
     font-weight: 300;
     color: white;
 }
-
 .logo-lists {
     font-family: 'Cormorant Garamond', serif;
     font-weight: 400;
@@ -35,50 +34,62 @@ body {
 /* Glass Card */
 .glass-card {
     background: rgba(255, 255, 255, 0.02);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
     border: 1px solid rgba(255, 255, 255, 0.08);
-    padding: 2.5rem;
+    padding: 3rem;
 }
 
-/* Artist Heading - Montserrat 900 */
+/* Artist Heading - Clean & Sophisticated */
 .artist-heading {
-    font-family: 'Montserrat', sans-serif !important;
-    font-weight: 900;
-    text-transform: uppercase;
-    line-height: 0.85;
-    letter-spacing: -0.04em;
-    font-size: clamp(1.5rem, 4vw, 2.8rem);
-}
-
-/* Album Subheading - Red, Clean */
-.album-subheading {
     font-family: 'Inter', sans-serif !important;
     font-weight: 600;
-    font-size: 1rem;
-    color: #e63946;
-    letter-spacing: -0.01em;
+    text-transform: uppercase;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    /* Keeps long names inside 400px box */
+    font-size: clamp(1.4rem, 4vw, 2.1rem);
 }
 
-/* Metadata Text - Lightweight Editorial style */
-.metadata-text {
-    font-family: 'Inter', sans-serif;
-    font-size: 10px;
+/* Album Subheading - Red, Medium Weight */
+.album-subheading {
+    font-family: 'Inter', sans-serif !important;
+    font-weight: 500;
+    font-size: 1.1rem;
+    color: #e63946;
+    letter-spacing: -0.01em;
     text-transform: uppercase;
-    letter-spacing: 0.15em;
-    font-weight: 600;
+}
+
+/* Metadata Styling */
+.metadata-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.metadata-label {
+    font-weight: 300;
+    opacity: 0.4;
+}
+
+.metadata-value {
+    font-weight: 400;
     color: rgba(255, 255, 255, 0.9);
 }
 
-/* Mojo Rating - Transparent/Borderless Box */
+/* Mojo Rating - Clean Italic */
 .mojo-rating {
-    font-family: 'Montserrat', sans-serif !important;
-    font-weight: 900;
+    font-family: 'Inter', sans-serif !important;
+    font-weight: 600;
     font-style: italic;
-    font-size: 5rem;
+    font-size: 3.5rem;
     color: #ffffff;
     line-height: 1;
-    letter-spacing: -0.05em;
+    letter-spacing: -0.04em;
 }
 
 /* Main Body Content */
@@ -86,11 +97,10 @@ body {
     font-family: 'Inter', sans-serif !important;
     font-size: 1.125rem;
     line-height: 1.85;
-    color: rgba(255, 255, 255, 0.85);
+    color: rgba(255, 255, 255, 0.75);
+    font-weight: 300;
 }
 
-/* Selection and Accent */
-::selection {
-    background: #DAA520;
-    color: black;
+.review-content p {
+    margin-bottom: 2rem;
 }
