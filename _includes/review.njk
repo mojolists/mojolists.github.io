@@ -6,7 +6,7 @@ layout: base.njk
 {%- set previousPost = collections.reviews | getPreviousCollectionItem(page) %}
 
 <div class="absolute top-0 left-0 w-full h-[700px] overflow-hidden -z-10 pointer-events-none">
-    <img src="/assets/img/{{ image }}" class="w-full h-full object-cover opacity-40 blur-sm" alt="">
+    <img src="/assets/img/{{ image }}" class="w-full h-full object-cover object-top opacity-40 blur-sm" alt="">
     {# The Fade Out: Blends the image into the black background by the second paragraph #}
     <div class="absolute inset-0 bg-gradient-to-b from-black/0 via-black/70 to-[#000000]"></div>
 </div>
@@ -75,7 +75,7 @@ layout: base.njk
         </div>
     </header>
 
-    <div class="max-w-3xl mx-auto review-content space-y-8 relative z-10">
+    <div class="max-w-3xl mx-auto review-content space-y-8 relative z-10 text-white font-light leading-[1.85]">
         {{ content | safe }}
     </div>
 
