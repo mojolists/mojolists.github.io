@@ -1,14 +1,15 @@
+Markdown
+
 ---
 layout: review.njk
-title: "The Soul Surfers"
 artist: "The Soul Surfers"
 album: "Soul Rock!"
 label: "Ubiquity Records"
-year: "2015"
-image: "soulsurfers.jpg"
-score: 90
-tags: reviews
-date: 2026-02-22
+year: 2015
+score: 85
+image: "soul-surfers.jpg"
+youtubeId: "7hW330h0p9M"
+date: 2026-02-25
 ---
 
 I have several of their singles and had high hopes for their first album. The Soul Surfers did not disappoint, this is a kick ass album in every funky way possible. 
