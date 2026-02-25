@@ -42,5 +42,5 @@ I am thrilled to say there is no digital compression on this album, it is what e
 I don’t know what is in store for the band, I certainly wish them well, the album is superb, both the songwriting and recording is top notch. In truth I think these guys are simply not marketing themselves well. Hell, I am interested in them and still find it difficult to keep tabs on what they are doing. Get yourself someone who understand and embraces social media guys because it sure isn’t your music that is holding you back.
 
 <div class="my-12 aspect-video border border-white/10 rounded-sm overflow-hidden shadow-2xl">
-    <iframe class="w-full h-full" src="https://www.youtube.com/embed/vB8K5m7gWzU" frameborder="0" allowfullscreen></iframe>
+    <iframe class="w-full h-full" src="https://www.youtube.com/watch?v=knz9zbuft4s&list=OLAK5uy_mloBalYflwAz9oZ-BiVog_VJ0iNN4hQgM" frameborder="0" allowfullscreen></iframe>
 </div>
