@@ -1,7 +1,5 @@
-Markdown
-
 ---
-layout: review.njk
+layout: "review.njk"
 artist: "The Soul Surfers"
 album: "Soul Rock!"
 label: "Ubiquity Records"
