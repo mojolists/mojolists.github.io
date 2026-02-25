@@ -5,18 +5,19 @@ layout: base.njk
 {%- set nextPost = collections.reviews | getNextCollectionItem(page) %}
 {%- set previousPost = collections.reviews | getPreviousCollectionItem(page) %}
 
-<div class="fixed inset-0 -z-20 overflow-hidden pointer-events-none">
-    <img src="/assets/img/{{ image }}" class="w-full h-full object-cover opacity-20 blur-3xl scale-110" alt="">
-    <div class="absolute inset-0 bg-black/40"></div>
+<div class="absolute top-0 left-0 w-full h-[700px] overflow-hidden -z-10 pointer-events-none">
+    <img src="/assets/img/{{ image }}" class="w-full h-full object-cover opacity-40 blur-sm" alt="">
+    {# The Fade Out: Blends the image into the black background by the second paragraph #}
+    <div class="absolute inset-0 bg-gradient-to-b from-black/0 via-black/70 to-[#000000]"></div>
 </div>
 
 <article class="max-w-6xl mx-auto px-6 py-12 relative">
     
-    {# Desktop Navigation Arrows #}
+    {# Desktop Navigation Arrows: Gold + Artist Name #}
     {% if previousPost %}
     <a href="{{ previousPost.url }}" class="fixed left-8 top-1/2 -translate-y-1/2 hidden xl:flex flex-col items-start group z-50">
         <span class="text-[#DAA520] text-4xl font-light mb-2 transition-transform group-hover:-translate-x-2">←</span>
-        <span class="text-[#DAA520] text-[10px] font-bold uppercase tracking-[0.3em] vertical-text opacity-60 group-hover:opacity-100 transition-opacity">
+        <span class="text-[#DAA520] text-[10px] font-bold uppercase tracking-[0.3em] vertical-text opacity-40 group-hover:opacity-100 transition-opacity">
             {{ previousPost.data.artist }}
         </span>
     </a>
@@ -25,18 +26,20 @@ layout: base.njk
     {% if nextPost %}
     <a href="{{ nextPost.url }}" class="fixed right-8 top-1/2 -translate-y-1/2 hidden xl:flex flex-col items-end group z-50">
         <span class="text-[#DAA520] text-4xl font-light mb-2 transition-transform group-hover:translate-x-2">→</span>
-        <span class="text-[#DAA520] text-[10px] font-bold uppercase tracking-[0.3em] vertical-text opacity-60 group-hover:opacity-100 transition-opacity">
+        <span class="text-[#DAA520] text-[10px] font-bold uppercase tracking-[0.3em] vertical-text opacity-40 group-hover:opacity-100 transition-opacity">
             {{ nextPost.data.artist }}
         </span>
     </a>
     {% endif %}
 
-    <header class="flex flex-col lg:flex-row gap-8 justify-center items-end mb-20">
+    <header class="flex flex-col lg:flex-row gap-8 justify-center items-end mb-20 relative z-10">
         
+        {# Left Block: Album Art (Fixed 400x400) #}
         <div class="fixed-square">
             <img src="/assets/img/{{ image }}" alt="{{ artist }} - {{ album }}" class="w-full h-full object-cover border border-white/10 rounded-sm shadow-2xl">
         </div>
         
+        {# Right Block: Glass Info Card (Fixed 400x400) #}
         <div class="glass-card fixed-square relative overflow-hidden">
             <div class="flex flex-col h-full">
                 
@@ -52,18 +55,19 @@ layout: base.njk
                     <div class="space-y-4">
                         <div class="metadata-row">
                             <span class="metadata-label">Label</span>
-                            <span class="metadata-value">{{ label }}</span>
+                            <span class="metadata-value text-white">{{ label }}</span>
                         </div>
                         <div class="metadata-row">
                             <span class="metadata-label">Released</span>
-                            <span class="metadata-value">{{ year }}</span>
+                            <span class="metadata-value text-white">{{ year }}</span>
                         </div>
                     </div>
                 </div>
 
-                <div class="pt-8 border-t border-white/10">
+                {# Mojo Rating: Transparent, borderless, italicized #}
+                <div class="pt-8">
                     <span class="metadata-label block mb-2">Mojo Rating</span>
-                    <div class="mojo-rating">
+                    <div class="mojo-rating italic font-[600]">
                         {{ score }}%
                     </div>
                 </div>
@@ -71,18 +75,18 @@ layout: base.njk
         </div>
     </header>
 
-    <div class="max-w-3xl mx-auto review-content space-y-8">
+    <div class="max-w-3xl mx-auto review-content space-y-8 relative z-10">
         {{ content | safe }}
     </div>
 
     {% if youtubeId %}
-    <div class="max-w-5xl mx-auto my-16 aspect-video border border-white/10 rounded-sm overflow-hidden shadow-2xl">
+    <div class="max-w-5xl mx-auto my-16 aspect-video border border-white/10 rounded-sm overflow-hidden shadow-2xl relative z-10">
         <iframe class="w-full h-full" src="https://www.youtube.com/embed/{{ youtubeId }}" frameborder="0" allowfullscreen></iframe>
     </div>
     {% endif %}
 
     {# Mobile Navigation Footer #}
-    <div class="xl:hidden flex justify-between items-center mt-20 pt-10 border-t border-white/10">
+    <div class="xl:hidden flex justify-between items-center mt-20 pt-10 border-t border-white/10 relative z-10">
         {% if previousPost %}
         <a href="{{ previousPost.url }}" class="flex flex-col">
             <span class="text-[#DAA520] text-[10px] font-bold uppercase tracking-widest mb-1">← Previous</span>
@@ -102,9 +106,12 @@ layout: base.njk
 </article>
 
 <style>
-    /* Styling for the vertical artist names in navigation */
     .vertical-text {
         writing-mode: vertical-rl;
         text-orientation: mixed;
+    }
+    .mojo-rating {
+        font-size: 2.5rem;
+        color: white;
     }
 </style>
