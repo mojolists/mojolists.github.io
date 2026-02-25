@@ -23,7 +23,34 @@
         </nav>
 
         <main class="flex-grow">
-            <article class="max-w-6xl mx-auto px-6 py-12">
+            
+
+<div class="fixed inset-0 -z-20 overflow-hidden pointer-events-none">
+    <img src="/assets/img/nfchanges.jpg" class="w-full h-full object-cover opacity-20 blur-3xl scale-110" alt="">
+    <div class="absolute inset-0 bg-black/40"></div>
+</div>
+
+<article class="max-w-6xl mx-auto px-6 py-12 relative">
+    
+    
+    
+    <a href="/reviews/the-nightowls/" class="fixed left-8 top-1/2 -translate-y-1/2 hidden xl:flex flex-col items-start group z-50">
+        <span class="text-[#DAA520] text-4xl font-light mb-2 transition-transform group-hover:-translate-x-2">←</span>
+        <span class="text-[#DAA520] text-[10px] font-bold uppercase tracking-[0.3em] vertical-text opacity-60 group-hover:opacity-100 transition-opacity">
+            The Nightowls
+        </span>
+    </a>
+    
+
+    
+    <a href="/reviews/james-hunter-six/" class="fixed right-8 top-1/2 -translate-y-1/2 hidden xl:flex flex-col items-end group z-50">
+        <span class="text-[#DAA520] text-4xl font-light mb-2 transition-transform group-hover:translate-x-2">→</span>
+        <span class="text-[#DAA520] text-[10px] font-bold uppercase tracking-[0.3em] vertical-text opacity-60 group-hover:opacity-100 transition-opacity">
+            The James Hunter Six
+        </span>
+    </a>
+    
+
     <header class="flex flex-col lg:flex-row gap-8 justify-center items-end mb-20">
         
         <div class="fixed-square">
@@ -83,7 +110,32 @@
     </div>
 
     
+
+    
+    <div class="xl:hidden flex justify-between items-center mt-20 pt-10 border-t border-white/10">
+        
+        <a href="/reviews/the-nightowls/" class="flex flex-col">
+            <span class="text-[#DAA520] text-[10px] font-bold uppercase tracking-widest mb-1">← Previous</span>
+            <span class="text-white/40 text-[9px] uppercase tracking-wider">The Nightowls</span>
+        </a>
+        
+
+        
+        <a href="/reviews/james-hunter-six/" class="flex flex-col items-end text-right">
+            <span class="text-[#DAA520] text-[10px] font-bold uppercase tracking-widest mb-1">Next →</span>
+            <span class="text-white/40 text-[9px] uppercase tracking-wider">The James Hunter Six</span>
+        </a>
+        
+    </div>
 </article>
+
+<style>
+    /* Styling for the vertical artist names in navigation */
+    .vertical-text {
+        writing-mode: vertical-rl;
+        text-orientation: mixed;
+    }
+</style>
         </main>
 
         <footer class="border-t border-white border-opacity-10 py-12 mt-20">
