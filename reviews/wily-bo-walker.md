@@ -1,32 +1,28 @@
 ---
 layout: review.njk
-title: "Wily Bo Walker"
+title: "Moonshine Boogie"
 artist: "Wily Bo Walker & The Danny Flam Big Band"
-album: "Wily Bo Walker & The Danny Flam Big Band"
-label: "WBW"
-year: "2020"
+album: "Moonshine Boogie"
+label: "Mescal Canyon Records"
+year: "2015"
 image: "wilybo.jpg"
 score: 90
 tags: reviews
-date: 2020-03-01
+date: 2026-02-25
 ---
 
-I have heard of Wily Bo Walker only peripherally but being a fan of horns and a big band sound I couldn’t resist his new album, Wily Bo Walker and The Danny Flam Big band. The name caught my attention and after a short bit of research, I downloaded the MP3 version. Walker is known as a vocalist, mutli-instrumentalist, arranger, and songwriter.
+I have heard of Wily Bo Walker only peripherally but being a fan of horns and a big band sound I couldn’t resist his new album, Wily Bo Walker and The Danny Flam Big band. The name caught my attention and after a short bit of research, I downloaded the MP3 version. Walker is known as a vocalist, mutli-instrumentalist, arranger, and songwriter. The lack of vocals on the first four songs was my first surprise and far from the last. Every time I thought I thought I had a handle on the albums style I was vaulted into something new. It wasn’t jolting or uncomfortable; it was exhilarating to leap effortlessly from era, influence, and genre. Every horn genre that counts is here, from big band to power horns that transport you instantly into a DB9 beside James Bond. 
 
 <p class="text-xl text-gray-200 italic leading-relaxed border-l-4 border-red-600 pl-6 py-2 my-8">
-  "Walkers voice hits you like your best girl talking dirty in church"
+  "When Walkers voice finally drops into the mix on Rendez-Vous Des Cheminots it hits you like your best girl talking dirty in church."
 </p>
 
-The lack of vocals on the first four songs was my first surprise and far from the last. Every time I thought I had a handle on the albums style I was vaulted into something new. It wasn’t jolting or uncomfortable; it was exhilarating to leap effortlessly from era, influence, and genre. Every horn genre that counts is here, from big band to power horns that transport you instantly into a DB9 beside James Bond.
-
-<div class="flex flex-col md:flex-row gap-6 justify-center my-10">
-    <a href="https://wilybowalker.com" target="_blank" class="px-12 py-4 border border-[#c5a059] text-[#c5a059] font-black uppercase tracking-widest text-xs hover:bg-[#c5a059] hover:text-black transition-all">Buy Album</a>
-</div>
-
-When Walkers voice finally drops into the mix on Rendez-Vous Des Cheminots it hits you like your best girl talking dirty in church. It comes out of nowhere and instantly has your full attention. What more can one ask for? Wily Bo Walker and The Danny Flam Big band is crafted to take you on a journey and it does so brilliantly from beginning to end. This is the perfect album to play when you desperately need to be transported to another place.
+When Walkers voice finally drops into the mix on Rendez-Vous Des Cheminots it hits you like your best girl talking dirty in church. It comes out of nowhere and instantly has your full attention. What more can one ask for? Wily Bo Walker and The Danny Flam Big band is crafted to take you on a journey and it does so brilliantly from beginning to end. This is the perfect album to play when you desperately need to be transported to another place. 
 
 I am sad to say that I didn’t know there was a FLAC download available before I jumped on the MP3 version. The sound quality is very good and involving but I can’t help but feel the FLAC version would add life to the recording. The horn blats are rounded off and the dynamics seem constrained by the format. I would love to have a lossless version to compare it to. 
 
-That said, the recording is better than most and when I went from my main system to my mobile rig my complaints were greatly minimized. My backyard/mobile rig consists of Beyerdynamic 770 Pros, driven by a UDAC2, which also did the digital to analog conversion. This combination is less revealing, letting the songs carry me away without more distraction. I am convinced any complaints are an issue with MP3.
+That said, the recording is better than most and when I went from my main system to my mobile rig my complaints were greatly minimized. My backyard/mobile rig consists of Beyerdynamic 770 Pros, driven by a UDAC2, which also did the digital to analog conversion. This combination is less revealing, letting the songs carry me away without more distraction. I am convinced any complaints are an issue with MP3. Wily Bo Walker and The Danny Flam Big band will be my go to escape album for the next month or so and if I can nab a vinyl copy I suspect it will be a fantastic match with my main system and a very good glass of bourbon.
 
-Wily Bo Walker and The Danny Flam Big band will be my go to escape album for the next month or so and if I can nab a vinyl copy I suspect it will be a fantastic match with my main system and a very good glass of bourbon.
+<div class="my-12 aspect-video border border-white/10 rounded-sm overflow-hidden shadow-2xl">
+    <iframe class="w-full h-full" src="https://www.youtube.com/embed/XO3h6l8XqEk" frameborder="0" allowfullscreen></iframe>
+</div>
