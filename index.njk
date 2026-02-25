@@ -26,10 +26,11 @@ layout: false
             height: 100%;
             width: 100%;
         }
-        .review-card:hover { border-color: rgba(197, 160, 89, 0.4); }
+        /* Hover triggers on the card or its parent link */
+        .card-link:hover .review-card { border-color: rgba(197, 160, 89, 0.4); }
         .img-container { background-color: #0f172a; aspect-ratio: 1 / 1; overflow: hidden; border: 1px solid #1e293b; }
         .card-img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
-        .review-card:hover .card-img { transform: scale(1.05); }
+        .card-link:hover .card-img { transform: scale(1.05); }
         .row-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.3em; color: var(--mojo-red); margin-bottom: 12px; display: block; text-align: left; }
         .stat-value { color: var(--mojo-gold); font-family: 'Playfair Display', serif; }
     </style>
@@ -67,15 +68,17 @@ layout: false
                     {% else %}Explore{% endif %}
                 </span>
                 {% endif %}
-                <article class="review-card p-6">
-                    <div class="img-container mb-6">
-                        <img src="/assets/img/{{ review.data.image or review.data.coverImage }}" class="card-img" alt="{{ review.data.artist }} - {{ review.data.album }}">
-                    </div>
-                    <h3 class="serif text-3xl text-white mb-1">{{ review.data.artist }}</h3>
-                    <p class="text-[10px] font-bold text-red-500 uppercase tracking-widest mb-4 italic">{{ review.data.album or review.data.title }}</p>
-                    <p class="text-sm leading-relaxed mb-10 text-slate-300">{{ review.templateContent | striptags | truncate(80) }}</p>
-                    <a href="{{ review.url }}" class="mt-auto text-[10px] font-bold uppercase tracking-widest text-white border-b border-white/20 w-max pb-1">Read Review →</a>
-                </article>
+                <a href="{{ review.url }}" class="card-link block h-full">
+                    <article class="review-card p-6">
+                        <div class="img-container mb-6">
+                            <img src="/assets/img/{{ review.data.image or review.data.coverImage }}" class="card-img" alt="{{ review.data.artist }} - {{ review.data.album }}">
+                        </div>
+                        <h3 class="serif text-3xl text-white mb-1">{{ review.data.artist }}</h3>
+                        <p class="text-[10px] font-bold text-red-500 uppercase tracking-widest mb-4 italic">{{ review.data.album or review.data.title }}</p>
+                        <p class="text-sm leading-relaxed mb-10 text-slate-300">{{ review.templateContent | striptags | truncate(80) }}</p>
+                        <span class="mt-auto text-[10px] font-bold uppercase tracking-widest text-white border-b border-white/20 w-max pb-1">Read Review →</span>
+                    </article>
+                </a>
             </div>
             {% endfor %}
 
