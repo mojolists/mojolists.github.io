@@ -40,5 +40,5 @@ Whispers picks right up again and takes us on a ride through the dark history of
 Voo Davis has established himself with *Vicious Things* and his future as a musician is now on much firmer ground and not just as a bluesman. I could go on and on about *Vicious Things*, it just hits me in the right place. I appreciate the care Voo took in recording this album, but right now, all I want to do is put the top down and crank "One for the habit, One for the Road" while I blast down a central Texas country road at a very unsafe velocity.
 
 <div class="my-12 aspect-video border border-white/10 rounded-sm overflow-hidden shadow-2xl">
-    <iframe class="w-full h-full" src="https://www.youtube.com/embed/B4mOG4XiF2E" frameborder="0" allowfullscreen></iframe>
+    <iframe class="w-full h-full" src="https://www.youtube.com/embed/mat3Ngwy0Zw" frameborder="0" allowfullscreen></iframe>
 </div>

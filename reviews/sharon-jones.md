@@ -34,5 +34,5 @@ Sharon Jones is an unstoppable force with a spirit that refuses to surrender and
 *Give the People What They Want* is another amazing soul album that only exists because of find folks at Daptone. If you are just dipping your toes into the soul revival this is your gateway drug album, prepare to be moved. 
 
 <div class="my-12 aspect-video border border-white/10 rounded-sm overflow-hidden shadow-2xl">
-    <iframe class="w-full h-full" src="https://www.youtube.com/embed/1QFSYCu0zY8" frameborder="0" allowfullscreen></iframe>
+    <iframe class="w-full h-full" src="https://www.youtube.com/embed/VmLl21gZjfM" frameborder="0" allowfullscreen></iframe>
 </div>

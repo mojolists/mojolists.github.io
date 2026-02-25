@@ -34,5 +34,5 @@ I am pleased to say The Bamboos are heavy supporters of vinyl and I happily gave
 If it isn’t clear, I have a major crush on this band and their album 4 has been among my most played albums ever. *Fever In The Road* is now going to be getting that rotation when I need the funky dance bop to get me through the day. *Fever In The Road* is currently not available from any US retailers but you can order it directly from the Bamboos website as I did. If you must wait, they promise not only an American release late fall 13 or early 14 but also a US tour. If they come anywhere near Austin I will be at the stage. Do yourself a favor and grab *Fever In The Road* as soon as possible, I promise it will make you feel better no matter what ails you.
 
 <div class="my-12 aspect-video border border-white/10 rounded-sm overflow-hidden shadow-2xl">
-    <iframe class="w-full h-full" src="https://www.youtube.com/embed/v5C_xB0t9Mk" frameborder="0" allowfullscreen></iframe>
+    <iframe class="w-full h-full" src="https://www.youtube.com/embed/-x0N9hdNwQc" frameborder="0" allowfullscreen></iframe>
 </div>
