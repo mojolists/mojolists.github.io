@@ -32,5 +32,5 @@ The Nightowls *Good As Gold* is a must own despite my nit picking, so click the 
 Now, I gotta see where The Nightowls are playing because I think this band may be even better live!
 
 <div class="my-12 aspect-video border border-white/10 rounded-sm overflow-hidden shadow-2xl">
-    <iframe class="w-full h-full" src="https://www.youtube.com/embed/V8fF5qC9SGo" frameborder="0" allowfullscreen></iframe>
+    <iframe class="w-full h-full" src="https://www.youtube.com/embed/u8sswjozWZc" frameborder="0" allowfullscreen></iframe>
 </div>

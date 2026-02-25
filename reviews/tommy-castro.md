@@ -28,5 +28,5 @@ I nabbed a special, red vinyl LP directly from the Alligator label website and I
 Tommy leaves no doubt that he belongs among the greatest bluesmen to ever pick up a six string, he is a gifted musician and songwriter and *The Devil You Know* is simply another amazing album in his discography.
 
 <div class="my-12 aspect-video border border-white/10 rounded-sm overflow-hidden shadow-2xl">
-    <iframe class="w-full h-full" src="https://www.youtube.com/embed/B6VzX66-E_o" frameborder="0" allowfullscreen></iframe>
+    <iframe class="w-full h-full" src="https://www.youtube.com/embed/ZSelRpE_5z0" frameborder="0" allowfullscreen></iframe>
 </div>
