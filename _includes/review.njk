@@ -5,6 +5,12 @@ layout: base.njk
 {%- set nextPost = collections.reviews | getNextCollectionItem(page) %}
 {%- set previousPost = collections.reviews | getPreviousCollectionItem(page) %}
 
+{# Calculate Average Mojo Rating #}
+{% set score1 = score1 | default(0) %}
+{% set score2 = score2 | default(0) %}
+{% set score3 = score3 | default(0) %}
+{% set avgScore = ((score1 + score2 + score3) / 3) | round %}
+
 <div class="absolute top-0 left-0 w-full h-[700px] overflow-hidden -z-10 pointer-events-none">
     <img src="/assets/img/{{ image }}" class="w-full h-full object-cover object-top opacity-40 blur-sm" alt="">
     {# The Fade Out: Blends the image into the black background by the second paragraph #}
@@ -48,7 +54,7 @@ layout: base.njk
                         {{ artist }}
                     </h1>
                     
-                    <h2 class="album-subheading mb-10">
+                    <h2 class="album-subheading mb-6">
                         {{ album }}
                     </h2>
 
@@ -65,10 +71,10 @@ layout: base.njk
                 </div>
 
                 {# Mojo Rating: Transparent, borderless, italicized #}
-                <div class="pt-8">
-                    <span class="metadata-label block mb-2">Mojo Rating</span>
+                <div class="pt-4">
+                    <span class="metadata-label block mb-1">Mojo Rating</span>
                     <div class="mojo-rating italic font-[600]">
-                        {{ score }}%
+                        {{ avgScore }}%
                     </div>
                 </div>
             </div>
