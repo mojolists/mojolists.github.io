@@ -28,5 +28,5 @@ The first track, “Chances” comes at you head on with an up tempo, undeniable
 Overall, this is The Monophonics most complete album to date. They stay true to their San Francisco, psychedelic soul funk sound with more polish and musical poise than past efforts. You can listen to any Monophonics album and walk away smiling but *It’s Only Us* feels closer to the vision these amazing musicians move towards with each new song.
 
 <div class="my-12 aspect-video border border-white/10 rounded-sm overflow-hidden shadow-2xl">
-    <iframe class="w-full h-full" src="https://www.youtube.com/embed/jODXa579Ws8" frameborder="0" allowfullscreen></iframe>
+    <iframe class="w-full h-full" src="https://www.youtube.com/embed/iUOYT2L_eRo" frameborder="0" allowfullscreen></iframe>
 </div>
