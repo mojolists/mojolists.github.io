@@ -3,13 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ title }} - {{ artist }} | MojoLists</title>
+    <title>{{ title }} | MojoLists</title>
     <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        mojoGold: '#c5a059',
+                    }
+                }
+            }
+        }
+    </script>
     <style>
         body {
             background-color: #0a0a0a;
             color: #e5e5e5;
-            font-family: ui-sans-serif, system-ui, -apple-system, sans-serif;
         }
         .glass-card {
             background: rgba(255, 255, 255, 0.03);
@@ -17,61 +27,65 @@
             -webkit-backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
+        .prose blockquote {
+            border-left-color: #dc2626 !important;
+            color: #e5e5e5 !important;
+            font-style: italic;
+        }
     </style>
 </head>
-<body class="min-h-screen py-12 px-4">
+<body class="min-h-screen py-12 px-4 selection:bg-mojoGold selection:text-black">
 
     <main class="max-w-4xl mx-auto">
         
-        {# Calculate the Mojo Rating Average from the three new metrics #}
+        {# Mojo Rating Logic #}
         {% set mojoScore = ((listenability + danceability + musicality) / 3) | round %}
-        
-        {# Fallback: If metrics are missing, use the legacy 'score' field #}
         {% if not listenability and not danceability and not musicality %}
             {% set mojoScore = score %}
         {% endif %}
 
         <article class="glass-card rounded-2xl overflow-hidden shadow-2xl">
             
-            <div class="relative h-96 w-full">
-                <img src="/img/{{ image }}" alt="{{ album }} by {{ artist }}" class="w-full h-full object-cover">
+            <div class="relative h-80 w-full">
+                <img src="/img/{{ image }}" alt="{{ album }}" class="w-full h-full object-cover">
                 <div class="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-transparent"></div>
-                
-                <div class="absolute bottom-0 left-0 p-8 md:p-12 w-full">
-                    <h1 class="text-4xl md:text-6xl font-black text-white tracking-tight mb-2">{{ album }}</h1>
-                    <p class="text-[#c5a059] text-xl font-bold uppercase tracking-widest">{{ artist }}</p>
+                <div class="absolute bottom-0 left-0 p-8">
+                    <h1 class="text-5xl font-black text-white tracking-tight uppercase italic">{{ album }}</h1>
+                    <p class="text-mojoGold text-lg font-bold tracking-widest uppercase mt-2">{{ artist }}</p>
                 </div>
             </div>
 
-            <div class="p-8 md:p-12 pt-0">
+            <div class="p-8 md:p-12">
                 
                 <div class="flex flex-col items-center mb-16">
-                    <div class="bg-transparent p-6 text-center">
-                        <div class="text-9xl font-black text-white leading-none tracking-tighter">{{ mojoScore }}</div>
-                        <div class="text-xs uppercase tracking-[0.5em] text-[#c5a059] mt-4 font-bold">Mojo Rating</div>
+                    <div class="bg-transparent text-center">
+                        <div class="text-[10rem] font-black text-white leading-none tracking-tighter">{{ mojoScore }}</div>
+                        <div class="text-xs uppercase tracking-[0.6em] text-mojoGold mt-2 font-bold">Mojo Rating</div>
                     </div>
 
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 w-full max-w-2xl mt-8 pt-8 border-t border-white/10">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 w-full max-w-2xl mt-12 pt-8 border-t border-white/10">
                         <div class="text-center">
-                            <div class="text-3xl font-black text-white">{{ listenability or "—" }}</div>
-                            <div class="text-[10px] uppercase tracking-[0.2em] text-[#c5a059] font-bold mt-1">Listenability</div>
+                            <div class="text-3xl font-black text-white">{{ listenability if listenability else "—" }}</div>
+                            <div class="text-[10px] uppercase tracking-widest text-mojoGold font-bold mt-1">Listenability</div>
                         </div>
-                        <div class="text-center border-x border-white/10">
-                            <div class="text-3xl font-black text-white">{{ danceability or "—" }}</div>
-                            <div class="text-[10px] uppercase tracking-[0.2em] text-[#c5a059] font-bold mt-1">Danceability</div>
+                        <div class="text-center border-x border-white/10 px-4">
+                            <div class="text-3xl font-black text-white">{{ danceability if danceability else "—" }}</div>
+                            <div class="text-[10px] uppercase tracking-widest text-mojoGold font-bold mt-1">Danceability</div>
                         </div>
                         <div class="text-center">
-                            <div class="text-3xl font-black text-white">{{ musicality or "—" }}</div>
-                            <div class="text-[10px] uppercase tracking-[0.2em] text-[#c5a059] font-bold mt-1">Musicality</div>
+                            <div class="text-3xl font-black text-white">{{ musicality if musicality else "—" }}</div>
+                            <div class="text-[10px] uppercase tracking-widest text-mojoGold font-bold mt-1">Musicality</div>
                         </div>
                     </div>
                 </div>
 
-                <div class="prose prose-invert prose-red max-w-none">
-                    <div class="flex items-center gap-4 text-sm text-gray-400 uppercase tracking-widest mb-8 border-b border-white/5 pb-4">
+                <div class="prose prose-invert max-w-none prose-p:leading-relaxed prose-p:text-gray-300">
+                    <div class="flex items-center gap-4 text-xs text-gray-500 uppercase tracking-[0.3em] mb-10 border-b border-white/5 pb-6">
                         <span>{{ label }}</span>
                         <span class="text-white/20">•</span>
                         <span>{{ year }}</span>
+                        <span class="text-white/20">•</span>
+                        <span>{{ date | dateFilter }}</span>
                     </div>
 
                     {{ content | safe }}
@@ -80,8 +94,10 @@
             </div>
         </article>
 
-        <div class="mt-12 text-center">
-            <a href="/archive" class="text-gray-500 hover:text-[#c5a059] transition-colors uppercase tracking-[0.3em] text-xs font-bold">← Back to Archive</a>
+        <div class="mt-16 text-center">
+            <a href="/archive" class="inline-block px-8 py-3 border border-white/10 text-gray-500 hover:text-mojoGold hover:border-mojoGold transition-all uppercase tracking-widest text-xs font-bold rounded-sm">
+                ← Back to Archive
+            </a>
         </div>
 
     </main>
