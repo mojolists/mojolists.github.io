@@ -25,9 +25,10 @@
         <main class="flex-grow">
             
 
-<div class="fixed inset-0 -z-20 overflow-hidden pointer-events-none">
-    <img src="/assets/img/ffys.jpg" class="w-full h-full object-cover opacity-20 blur-3xl scale-110" alt="">
-    <div class="absolute inset-0 bg-black/40"></div>
+<div class="absolute top-0 left-0 w-full h-[700px] overflow-hidden -z-10 pointer-events-none">
+    <img src="/assets/img/ffys.jpg" class="w-full h-full object-cover opacity-40 blur-sm" alt="">
+    
+    <div class="absolute inset-0 bg-gradient-to-b from-black/0 via-black/70 to-[#000000]"></div>
 </div>
 
 <article class="max-w-6xl mx-auto px-6 py-12 relative">
@@ -36,7 +37,7 @@
     
     <a href="/reviews/the-bamboos/" class="fixed left-8 top-1/2 -translate-y-1/2 hidden xl:flex flex-col items-start group z-50">
         <span class="text-[#DAA520] text-4xl font-light mb-2 transition-transform group-hover:-translate-x-2">←</span>
-        <span class="text-[#DAA520] text-[10px] font-bold uppercase tracking-[0.3em] vertical-text opacity-60 group-hover:opacity-100 transition-opacity">
+        <span class="text-[#DAA520] text-[10px] font-bold uppercase tracking-[0.3em] vertical-text opacity-40 group-hover:opacity-100 transition-opacity">
             The Bamboos
         </span>
     </a>
@@ -44,11 +45,13 @@
 
     
 
-    <header class="flex flex-col lg:flex-row gap-8 justify-center items-end mb-20">
+    <header class="flex flex-col lg:flex-row gap-8 justify-center items-end mb-20 relative z-10">
+        
         
         <div class="fixed-square">
             <img src="/assets/img/ffys.jpg" alt="Jonny Lang - Fight For My Soul" class="w-full h-full object-cover border border-white/10 rounded-sm shadow-2xl">
         </div>
+        
         
         <div class="glass-card fixed-square relative overflow-hidden">
             <div class="flex flex-col h-full">
@@ -65,18 +68,19 @@
                     <div class="space-y-4">
                         <div class="metadata-row">
                             <span class="metadata-label">Label</span>
-                            <span class="metadata-value">Concord Records</span>
+                            <span class="metadata-value text-white">Concord Records</span>
                         </div>
                         <div class="metadata-row">
                             <span class="metadata-label">Released</span>
-                            <span class="metadata-value">2013</span>
+                            <span class="metadata-value text-white">2013</span>
                         </div>
                     </div>
                 </div>
 
-                <div class="pt-8 border-t border-white/10">
+                
+                <div class="pt-8">
                     <span class="metadata-label block mb-2">Mojo Rating</span>
-                    <div class="mojo-rating">
+                    <div class="mojo-rating italic font-[600]">
                         90%
                     </div>
                 </div>
@@ -84,7 +88,7 @@
         </div>
     </header>
 
-    <div class="max-w-3xl mx-auto review-content space-y-8">
+    <div class="max-w-3xl mx-auto review-content space-y-8 relative z-10">
         <p>When you are gifted with the guitar playing abilities and natural blues voice of Jonny Lang, there are expectations that would cripple most 16 year olds, but he never backed away from the challenge. Lang’s guitar abilities were never in question, nor his vocal ability, but his albums always left you feeling like he was trapped in the blues by those around him. After a seven year hiatus from studio recording, Jonny Lang has come back with a more mature, more polished, and all-around better album than his past efforts called <em>Fight For My Soul</em>.</p>
 <p class="text-xl text-gray-200 italic leading-relaxed border-l-4 border-red-600 pl-6 py-2 my-8">
   "After a seven year hiatus from studio recording, Jonny Lang has come back with a more mature, more polished, and all-around better album than his past efforts"
@@ -103,7 +107,7 @@
     
 
     
-    <div class="xl:hidden flex justify-between items-center mt-20 pt-10 border-t border-white/10">
+    <div class="xl:hidden flex justify-between items-center mt-20 pt-10 border-t border-white/10 relative z-10">
         
         <a href="/reviews/the-bamboos/" class="flex flex-col">
             <span class="text-[#DAA520] text-[10px] font-bold uppercase tracking-widest mb-1">← Previous</span>
@@ -116,10 +120,13 @@
 </article>
 
 <style>
-    /* Styling for the vertical artist names in navigation */
     .vertical-text {
         writing-mode: vertical-rl;
         text-orientation: mixed;
+    }
+    .mojo-rating {
+        font-size: 2.5rem;
+        color: white;
     }
 </style>
         </main>

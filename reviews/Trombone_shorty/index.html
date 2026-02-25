@@ -25,9 +25,10 @@
         <main class="flex-grow">
             
 
-<div class="fixed inset-0 -z-20 overflow-hidden pointer-events-none">
-    <img src="/assets/img/saythattosaythis.jpg" class="w-full h-full object-cover opacity-20 blur-3xl scale-110" alt="">
-    <div class="absolute inset-0 bg-black/40"></div>
+<div class="absolute top-0 left-0 w-full h-[700px] overflow-hidden -z-10 pointer-events-none">
+    <img src="/assets/img/saythattosaythis.jpg" class="w-full h-full object-cover opacity-40 blur-sm" alt="">
+    
+    <div class="absolute inset-0 bg-gradient-to-b from-black/0 via-black/70 to-[#000000]"></div>
 </div>
 
 <article class="max-w-6xl mx-auto px-6 py-12 relative">
@@ -38,17 +39,19 @@
     
     <a href="/reviews/soul-surfers/" class="fixed right-8 top-1/2 -translate-y-1/2 hidden xl:flex flex-col items-end group z-50">
         <span class="text-[#DAA520] text-4xl font-light mb-2 transition-transform group-hover:translate-x-2">→</span>
-        <span class="text-[#DAA520] text-[10px] font-bold uppercase tracking-[0.3em] vertical-text opacity-60 group-hover:opacity-100 transition-opacity">
+        <span class="text-[#DAA520] text-[10px] font-bold uppercase tracking-[0.3em] vertical-text opacity-40 group-hover:opacity-100 transition-opacity">
             The Soul Surfers
         </span>
     </a>
     
 
-    <header class="flex flex-col lg:flex-row gap-8 justify-center items-end mb-20">
+    <header class="flex flex-col lg:flex-row gap-8 justify-center items-end mb-20 relative z-10">
+        
         
         <div class="fixed-square">
             <img src="/assets/img/saythattosaythis.jpg" alt="Trombone Shorty - Say That To Say This" class="w-full h-full object-cover border border-white/10 rounded-sm shadow-2xl">
         </div>
+        
         
         <div class="glass-card fixed-square relative overflow-hidden">
             <div class="flex flex-col h-full">
@@ -65,18 +68,19 @@
                     <div class="space-y-4">
                         <div class="metadata-row">
                             <span class="metadata-label">Label</span>
-                            <span class="metadata-value">Verve Records</span>
+                            <span class="metadata-value text-white">Verve Records</span>
                         </div>
                         <div class="metadata-row">
                             <span class="metadata-label">Released</span>
-                            <span class="metadata-value">2013</span>
+                            <span class="metadata-value text-white">2013</span>
                         </div>
                     </div>
                 </div>
 
-                <div class="pt-8 border-t border-white/10">
+                
+                <div class="pt-8">
                     <span class="metadata-label block mb-2">Mojo Rating</span>
-                    <div class="mojo-rating">
+                    <div class="mojo-rating italic font-[600]">
                         90%
                     </div>
                 </div>
@@ -84,7 +88,7 @@
         </div>
     </header>
 
-    <div class="max-w-3xl mx-auto review-content space-y-8">
+    <div class="max-w-3xl mx-auto review-content space-y-8 relative z-10">
         <p>The story of Troy ‘Trombone Shorty’ Andrews career, which started at the age of four, when he and his chosen instrument, which was twice as tall as he, stood on stage with Bo Diddly. The crowd and Mr. Diddley were blown away all those years ago and Trombone Shorty has never looked back. NOLA has never forgotten this treasure and Trombone Shorty has never forgotten from whence he came.</p>
 <p class="text-xl text-gray-200 italic leading-relaxed border-l-4 border-red-600 pl-6 py-2 my-8">
   "Say That To Say This is the maturation of an artist mastering his craft."
@@ -104,7 +108,7 @@
     
 
     
-    <div class="xl:hidden flex justify-between items-center mt-20 pt-10 border-t border-white/10">
+    <div class="xl:hidden flex justify-between items-center mt-20 pt-10 border-t border-white/10 relative z-10">
         
         <div></div>
         
@@ -119,10 +123,13 @@
 </article>
 
 <style>
-    /* Styling for the vertical artist names in navigation */
     .vertical-text {
         writing-mode: vertical-rl;
         text-orientation: mixed;
+    }
+    .mojo-rating {
+        font-size: 2.5rem;
+        color: white;
     }
 </style>
         </main>
