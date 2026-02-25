@@ -1,13 +1,14 @@
 ---
-layout: "review.njk"
+layout: review.njk
+title: "The Soul Surfers"
 artist: "The Soul Surfers"
 album: "Soul Rock!"
 label: "Ubiquity Records"
-year: 2015
-score: 85
-image: "soul-surfers.jpg"
-youtubeId: "7hW330h0p9M"
-date: 2026-02-25
+year: "2015"
+image: "soulsurfers.jpg"
+score: 90
+tags: reviews
+date: 2026-02-22
 ---
 
 I have several of their singles and had high hopes for their first album. The Soul Surfers did not disappoint, this is a kick ass album in every funky way possible. 
@@ -27,5 +28,5 @@ Soul crooners Myron & E break out of their “smooth” vocal personas and deliv
 Co-collaborators JJ Whitefield from The Poets of Rhythm and Malcom Catto of the Heliocentrics add their signature touch on two of the album’s ”heavier” cuts “Raw” and “Stop Fooling Around.” Label-mate, multi-instrumentalist and studio genius Shawn Lee lends his vocal, guitar and mixing board talents to “Time Is A Gun” while noted producer Didier from the Soul Investigators gets in on the mix, vibes, and percussion on the heavy slow-burner “Astra”. Smoove & Turrell round out the album with the blue-eyed soul stomper “Straight Up”.
 
 <div class="my-12 aspect-video border border-white/10 rounded-sm overflow-hidden shadow-2xl">
-    <iframe class="w-full h-full" src="https://www.youtube.com/embed/HIBoBqW8ts0" frameborder="0" allowfullscreen></iframe>
+    <iframe class="w-full h-full" src="https://www.youtube.com/embed/Dx1TUODIJTU" frameborder="0" allowfullscreen></iframe>
 </div>
