@@ -1,106 +1,117 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ title }} | MojoLists</title>
-    <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        mojoGold: '#c5a059',
-                    }
-                }
-            }
-        }
-    </script>
-    <style>
-        body {
-            background-color: #0a0a0a;
-            color: #e5e5e5;
-        }
-        .glass-card {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        .prose blockquote {
-            border-left-color: #dc2626 !important;
-            color: #e5e5e5 !important;
-            font-style: italic;
-        }
-    </style>
-</head>
-<body class="min-h-screen py-12 px-4 selection:bg-mojoGold selection:text-black">
+---
+layout: base.njk
+---
+{# Fetch navigation items #}
+{%- set nextPost = collections.reviews | getNextCollectionItem(page) %}
+{%- set previousPost = collections.reviews | getPreviousCollectionItem(page) %}
 
-    <main class="max-w-4xl mx-auto">
+<div class="absolute top-0 left-0 w-full h-[700px] overflow-hidden -z-10 pointer-events-none">
+    <img src="/assets/img/{{ image }}" class="w-full h-full object-cover object-top opacity-40 blur-sm" alt="">
+    {# The Fade Out: Blends the image into the black background by the second paragraph #}
+    <div class="absolute inset-0 bg-gradient-to-b from-black/0 via-black/70 to-[#000000]"></div>
+</div>
+
+<article class="max-w-6xl mx-auto px-6 py-12 relative">
+    
+    {# Desktop Navigation Arrows: Gold + Artist Name #}
+    {% if previousPost %}
+    <a href="{{ previousPost.url }}" class="fixed left-8 top-1/2 -translate-y-1/2 hidden xl:flex flex-col items-start group z-50">
+        <span class="text-[#DAA520] text-4xl font-light mb-2 transition-transform group-hover:-translate-x-2">←</span>
+        <span class="text-[#DAA520] text-[10px] font-bold uppercase tracking-[0.3em] vertical-text opacity-40 group-hover:opacity-100 transition-opacity">
+            {{ previousPost.data.artist }}
+        </span>
+    </a>
+    {% endif %}
+
+    {% if nextPost %}
+    <a href="{{ nextPost.url }}" class="fixed right-8 top-1/2 -translate-y-1/2 hidden xl:flex flex-col items-end group z-50">
+        <span class="text-[#DAA520] text-4xl font-light mb-2 transition-transform group-hover:translate-x-2">→</span>
+        <span class="text-[#DAA520] text-[10px] font-bold uppercase tracking-[0.3em] vertical-text opacity-40 group-hover:opacity-100 transition-opacity">
+            {{ nextPost.data.artist }}
+        </span>
+    </a>
+    {% endif %}
+
+    <header class="flex flex-col lg:flex-row gap-8 justify-center items-end mb-20 relative z-10">
         
-        {# Mojo Rating Logic #}
-        {% set mojoScore = ((listenability + danceability + musicality) / 3) | round %}
-        {% if not listenability and not danceability and not musicality %}
-            {% set mojoScore = score %}
+        {# Left Block: Album Art (Fixed 400x400) #}
+        <div class="fixed-square">
+            <img src="/assets/img/{{ image }}" alt="{{ artist }} - {{ album }}" class="w-full h-full object-cover border border-white/10 rounded-sm shadow-2xl">
+        </div>
+        
+        {# Right Block: Glass Info Card (Fixed 400x400) #}
+        <div class="glass-card fixed-square relative overflow-hidden">
+            <div class="flex flex-col h-full">
+                
+                <div class="mb-auto">
+                    <h1 class="artist-heading text-white mb-1">
+                        {{ artist }}
+                    </h1>
+                    
+                    <h2 class="album-subheading mb-10">
+                        {{ album }}
+                    </h2>
+
+                    <div class="space-y-4">
+                        <div class="metadata-row">
+                            <span class="metadata-label">Label</span>
+                            <span class="metadata-value text-white">{{ label }}</span>
+                        </div>
+                        <div class="metadata-row">
+                            <span class="metadata-label">Released</span>
+                            <span class="metadata-value text-white">{{ year }}</span>
+                        </div>
+                    </div>
+                </div>
+
+                {# Mojo Rating: Transparent, borderless, italicized #}
+                <div class="pt-8">
+                    <span class="metadata-label block mb-2">Mojo Rating</span>
+                    <div class="mojo-rating italic font-[600]">
+                        {{ score }}%
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="max-w-3xl mx-auto review-content space-y-8 relative z-10 text-white font-light leading-[1.85]">
+        {{ content | safe }}
+    </div>
+
+    {% if youtubeId %}
+    <div class="max-w-5xl mx-auto my-16 aspect-video border border-white/10 rounded-sm overflow-hidden shadow-2xl relative z-10">
+        <iframe class="w-full h-full" src="https://www.youtube.com/embed/{{ youtubeId }}" frameborder="0" allowfullscreen></iframe>
+    </div>
+    {% endif %}
+
+    {# Mobile Navigation Footer #}
+    <div class="xl:hidden flex justify-between items-center mt-20 pt-10 border-t border-white/10 relative z-10">
+        {% if previousPost %}
+        <a href="{{ previousPost.url }}" class="flex flex-col">
+            <span class="text-[#DAA520] text-[10px] font-bold uppercase tracking-widest mb-1">← Previous</span>
+            <span class="text-white/40 text-[9px] uppercase tracking-wider">{{ previousPost.data.artist }}</span>
+        </a>
+        {% else %}
+        <div></div>
         {% endif %}
 
-        <article class="glass-card rounded-2xl overflow-hidden shadow-2xl">
-            
-            <div class="relative h-80 w-full">
-                <img src="/img/{{ image }}" alt="{{ album }}" class="w-full h-full object-cover">
-                <div class="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-transparent"></div>
-                <div class="absolute bottom-0 left-0 p-8">
-                    <h1 class="text-5xl font-black text-white tracking-tight uppercase italic">{{ album }}</h1>
-                    <p class="text-mojoGold text-lg font-bold tracking-widest uppercase mt-2">{{ artist }}</p>
-                </div>
-            </div>
+        {% if nextPost %}
+        <a href="{{ nextPost.url }}" class="flex flex-col items-end text-right">
+            <span class="text-[#DAA520] text-[10px] font-bold uppercase tracking-widest mb-1">Next →</span>
+            <span class="text-white/40 text-[9px] uppercase tracking-wider">{{ nextPost.data.artist }}</span>
+        </a>
+        {% endif %}
+    </div>
+</article>
 
-            <div class="p-8 md:p-12">
-                
-                <div class="flex flex-col items-center mb-16">
-                    <div class="bg-transparent text-center">
-                        <div class="text-[10rem] font-black text-white leading-none tracking-tighter">{{ mojoScore }}</div>
-                        <div class="text-xs uppercase tracking-[0.6em] text-mojoGold mt-2 font-bold">Mojo Rating</div>
-                    </div>
-
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 w-full max-w-2xl mt-12 pt-8 border-t border-white/10">
-                        <div class="text-center">
-                            <div class="text-3xl font-black text-white">{{ listenability if listenability else "—" }}</div>
-                            <div class="text-[10px] uppercase tracking-widest text-mojoGold font-bold mt-1">Listenability</div>
-                        </div>
-                        <div class="text-center border-x border-white/10 px-4">
-                            <div class="text-3xl font-black text-white">{{ danceability if danceability else "—" }}</div>
-                            <div class="text-[10px] uppercase tracking-widest text-mojoGold font-bold mt-1">Danceability</div>
-                        </div>
-                        <div class="text-center">
-                            <div class="text-3xl font-black text-white">{{ musicality if musicality else "—" }}</div>
-                            <div class="text-[10px] uppercase tracking-widest text-mojoGold font-bold mt-1">Musicality</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="prose prose-invert max-w-none prose-p:leading-relaxed prose-p:text-gray-300">
-                    <div class="flex items-center gap-4 text-xs text-gray-500 uppercase tracking-[0.3em] mb-10 border-b border-white/5 pb-6">
-                        <span>{{ label }}</span>
-                        <span class="text-white/20">•</span>
-                        <span>{{ year }}</span>
-                        <span class="text-white/20">•</span>
-                        <span>{{ date | dateFilter }}</span>
-                    </div>
-
-                    {{ content | safe }}
-                </div>
-
-            </div>
-        </article>
-
-        <div class="mt-16 text-center">
-            <a href="/archive" class="inline-block px-8 py-3 border border-white/10 text-gray-500 hover:text-mojoGold hover:border-mojoGold transition-all uppercase tracking-widest text-xs font-bold rounded-sm">
-                ← Back to Archive
-            </a>
-        </div>
-
-    </main>
-
-</body>
-</html>
+<style>
+    .vertical-text {
+        writing-mode: vertical-rl;
+        text-orientation: mixed;
+    }
+    .mojo-rating {
+        font-size: 2.5rem;
+        color: white;
+    }
+</style>
