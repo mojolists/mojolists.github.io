@@ -21,8 +21,8 @@ layout: base.njk
     {# Desktop Navigation Arrows #}
     {% if previousPost %}
     <a href="{{ previousPost.url }}" class="fixed left-8 top-1/2 -translate-y-1/2 hidden xl:flex flex-col items-start group z-50">
-        <span class="text-[#DAA520] text-4xl font-light mb-2 transition-transform group-hover:-translate-x-2">←</span>
-        <span class="text-[#DAA520] text-[10px] font-bold uppercase tracking-[0.3em] vertical-text opacity-40 group-hover:opacity-100 transition-opacity">
+        <span class="text-[#FFD700] text-4xl font-light mb-2 transition-transform group-hover:-translate-x-2">←</span>
+        <span class="text-[#FFD700] text-[10px] font-bold uppercase tracking-[0.3em] vertical-text opacity-60 group-hover:opacity-100 transition-opacity">
             {{ previousPost.data.artist }}
         </span>
     </a>
@@ -30,8 +30,8 @@ layout: base.njk
 
     {% if nextPost %}
     <a href="{{ nextPost.url }}" class="fixed right-8 top-1/2 -translate-y-1/2 hidden xl:flex flex-col items-end group z-50">
-        <span class="text-[#DAA520] text-4xl font-light mb-2 transition-transform group-hover:translate-x-2">→</span>
-        <span class="text-[#DAA520] text-[10px] font-bold uppercase tracking-[0.3em] vertical-text opacity-40 group-hover:opacity-100 transition-opacity">
+        <span class="text-[#FFD700] text-4xl font-light mb-2 transition-transform group-hover:translate-x-2">→</span>
+        <span class="text-[#FFD700] text-[10px] font-bold uppercase tracking-[0.3em] vertical-text opacity-60 group-hover:opacity-100 transition-opacity">
             {{ nextPost.data.artist }}
         </span>
     </a>
@@ -41,7 +41,7 @@ layout: base.njk
         
         {# Left Block: Album Art #}
         <div class="fixed-square">
-            <img src="/assets/img/{{ image }}" alt="{{ artist }} - {{ album }}" class="w-full h-full object-cover border border-white/10 rounded-sm shadow-2xl">
+            <img src="/assets/img/{{ image }}" alt="{{ artist }} - {{ album }}" class="w-full h-full object-cover border border-white/20 rounded-sm shadow-2xl">
         </div>
         
         {# Right Block: Glass Info Card #}
@@ -59,36 +59,36 @@ layout: base.njk
 
                     <div class="space-y-3">
                         <div class="metadata-row">
-                            <span class="metadata-label">Label</span>
+                            <span class="metadata-label font-medium text-white/90">Label</span>
                             <span class="metadata-value text-white">{{ label }}</span>
                         </div>
                         <div class="metadata-row">
-                            <span class="metadata-label">Released</span>
+                            <span class="metadata-label font-medium text-white/90">Released</span>
                             <span class="metadata-value text-white">{{ year }}</span>
                         </div>
 
                         {# Visual Separator #}
-                        <div class="border-t border-white/10 my-6"></div>
+                        <div class="border-t border-white/20 my-6"></div>
 
                         <div class="metadata-row">
-                            <span class="metadata-label text-[#DAA520]">Performance</span>
-                            <span class="metadata-value text-[#DAA520] font-bold">{{ s1 }}</span>
+                            <span class="metadata-label font-bold text-[#FFD700]">Performance</span>
+                            <span class="metadata-value text-[#FFD700] font-black">{{ s1 }}</span>
                         </div>
                         <div class="metadata-row">
-                            <span class="metadata-label text-[#DAA520]">Production</span>
-                            <span class="metadata-value text-[#DAA520] font-bold">{{ s2 }}</span>
+                            <span class="metadata-label font-bold text-[#FFD700]">Production</span>
+                            <span class="metadata-value text-[#FFD700] font-black">{{ s2 }}</span>
                         </div>
                         <div class="metadata-row">
-                            <span class="metadata-label text-[#DAA520]">Danceability</span>
-                            <span class="metadata-value text-[#DAA520] font-bold">{{ s3 }}</span>
+                            <span class="metadata-label font-bold text-[#FFD700]">Danceability</span>
+                            <span class="metadata-value text-[#FFD700] font-black">{{ s3 }}</span>
                         </div>
                     </div>
                 </div>
 
-                {# Mojo Rating: Inline Label and Score, both Gold #}
+                {# Mojo Rating: Inline Label and Score, both Brighter Gold #}
                 <div class="pt-6 flex items-baseline gap-4">
-                    <span class="metadata-label text-[#DAA520] uppercase tracking-[0.3em]">Mojo Rating</span>
-                    <div class="mojo-rating italic font-[600] text-[#DAA520]">
+                    <span class="metadata-label text-[#FFD700] font-bold uppercase tracking-[0.3em] text-[11px]">Mojo Rating</span>
+                    <div class="mojo-rating italic font-black text-[#FFD700]">
                         {{ avgScore }}%
                     </div>
                 </div>
@@ -110,7 +110,7 @@ layout: base.njk
     <div class="xl:hidden flex justify-between items-center mt-20 pt-10 border-t border-white/10 relative z-10">
         {% if previousPost %}
         <a href="{{ previousPost.url }}" class="flex flex-col">
-            <span class="text-[#DAA520] text-[10px] font-bold uppercase tracking-widest mb-1">← Previous</span>
+            <span class="text-[#FFD700] text-[10px] font-bold uppercase tracking-widest mb-1">← Previous</span>
             <span class="text-white/40 text-[9px] uppercase tracking-wider">{{ previousPost.data.artist }}</span>
         </a>
         {% else %}
@@ -119,7 +119,7 @@ layout: base.njk
 
         {% if nextPost %}
         <a href="{{ nextPost.url }}" class="flex flex-col items-end text-right">
-            <span class="text-[#DAA520] text-[10px] font-bold uppercase tracking-widest mb-1">Next →</span>
+            <span class="text-[#FFD700] text-[10px] font-bold uppercase tracking-widest mb-1">Next →</span>
             <span class="text-white/40 text-[9px] uppercase tracking-wider">{{ nextPost.data.artist }}</span>
         </a>
         {% endif %}
@@ -132,6 +132,7 @@ layout: base.njk
         text-orientation: mixed;
     }
     .mojo-rating {
-        font-size: 2.5rem;
+        font-size: 2.75rem;
+        text-shadow: 0 0 20px rgba(255, 215, 0, 0.2);
     }
 </style>
