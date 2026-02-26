@@ -6,25 +6,21 @@ permalink: /archive/
 
 <div class="max-w-7xl mx-auto px-6 py-20 relative z-10">
     <header class="mb-16">
-        <h1 class="text-6xl font-light uppercase tracking-tighter text-white mb-2 logo-mojo">
-            Collection <span class="logo-lists text-[#e63946]">Archive</span>
+        <h1 class="text-6xl font-light uppercase tracking-tighter text-white logo-mojo">
+            Archive
         </h1>
-        <div class="flex items-center gap-4">
-            <div class="h-[1px] w-8 bg-[#DAA520]/40"></div>
-            <p class="text-white/30 uppercase tracking-[0.4em] text-[9px] font-medium">Sortable by performance, production, and mojo</p>
-        </div>
     </header>
 
     {# Sorting Headers #}
-    <div class="grid grid-cols-12 gap-4 px-6 mb-6 items-center border-b border-white/5 pb-4">
+    <div class="grid grid-cols-12 gap-4 px-6 mb-6 items-center border-b border-white/10 pb-4">
         <div class="col-span-1"></div>
-        <button onclick="sortTable(2)" class="col-span-3 text-left text-[9px] uppercase tracking-[0.2em] font-bold text-white/20 hover:text-[#DAA520] transition-colors">Artist</button>
-        <button onclick="sortTable(3)" class="col-span-3 text-left text-[9px] uppercase tracking-[0.2em] font-bold text-white/20 hover:text-[#DAA520] transition-colors">Album</button>
-        <button onclick="sortTable(4)" class="col-span-1 text-center text-[9px] uppercase tracking-[0.2em] font-bold text-white/20 hover:text-[#DAA520] transition-colors">Year</button>
-        <button onclick="sortTable(5)" class="col-span-1 text-center text-[9px] uppercase tracking-[0.2em] font-bold text-white/20 hover:text-[#DAA520] transition-colors">Perf</button>
-        <button onclick="sortTable(6)" class="col-span-1 text-center text-[9px] uppercase tracking-[0.2em] font-bold text-white/20 hover:text-[#DAA520] transition-colors">Prod</button>
-        <button onclick="sortTable(7)" class="col-span-1 text-center text-[9px] uppercase tracking-[0.2em] font-bold text-white/20 hover:text-[#DAA520] transition-colors">Dance</button>
-        <button onclick="sortTable(8)" class="col-span-1 text-right text-[9px] uppercase tracking-[0.2em] font-bold text-white/20 hover:text-[#DAA520] transition-colors">Mojo</button>
+        <button onclick="sortTable(2)" class="col-span-3 text-left text-[9px] uppercase tracking-[0.2em] font-bold text-white/50 hover:text-[#DAA520] transition-colors">Artist</button>
+        <button onclick="sortTable(3)" class="col-span-3 text-left text-[9px] uppercase tracking-[0.2em] font-bold text-white/50 hover:text-[#DAA520] transition-colors">Album</button>
+        <button onclick="sortTable(4)" class="col-span-1 text-center text-[9px] uppercase tracking-[0.2em] font-bold text-white/50 hover:text-[#DAA520] transition-colors">Year</button>
+        <button onclick="sortTable(5)" class="col-span-1 text-center text-[9px] uppercase tracking-[0.2em] font-bold text-white/50 hover:text-[#DAA520] transition-colors">Perf</button>
+        <button onclick="sortTable(6)" class="col-span-1 text-center text-[9px] uppercase tracking-[0.2em] font-bold text-white/50 hover:text-[#DAA520] transition-colors">Prod</button>
+        <button onclick="sortTable(7)" class="col-span-1 text-center text-[9px] uppercase tracking-[0.2em] font-bold text-white/50 hover:text-[#DAA520] transition-colors">Dance</button>
+        <button onclick="sortTable(8)" class="col-span-1 text-right text-[9px] uppercase tracking-[0.2em] font-bold text-white/50 hover:text-[#DAA520] transition-colors">Mojo</button>
     </div>
 
     {# The Archive List #}
@@ -35,35 +31,35 @@ permalink: /archive/
         {% set s3 = review.data.score3 | default(0) %}
         {% set avg = ((s1 + s2 + s3) / 3) | round %}
 
-        <a href="{{ review.url }}" class="archive-row glass-card grid grid-cols-12 gap-4 px-6 py-3 items-center group hover:border-[#DAA520]/20 transition-all duration-500">
+        <a href="{{ review.url }}" class="archive-row glass-card grid grid-cols-12 gap-4 px-6 py-3 items-center group hover:border-[#DAA520]/40 transition-all duration-500">
             {# Album Art #}
-            <div class="col-span-1 aspect-square overflow-hidden rounded-sm border border-white/5">
-                <img src="/assets/img/{{ review.data.image }}" alt="{{ review.data.album }}" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity">
+            <div class="col-span-1 aspect-square overflow-hidden rounded-sm border border-white/10">
+                <img src="/assets/img/{{ review.data.image }}" alt="{{ review.data.album }}" class="w-full h-full object-cover">
             </div>
 
             {# Artist #}
-            <div class="col-span-3 text-sm font-medium text-white/80 group-hover:text-white transition-colors truncate tracking-tight">
+            <div class="col-span-3 text-sm font-medium text-white group-hover:text-[#DAA520] transition-colors truncate tracking-tight">
                 {{ review.data.artist }}
             </div>
             
             {# Album #}
-            <div class="col-span-3 text-white/40 text-xs italic font-light truncate">
+            <div class="col-span-3 text-white/60 text-xs italic font-light truncate">
                 {{ review.data.album }}
             </div>
 
             {# Year #}
-            <div class="col-span-1 text-center text-white/20 font-light text-[10px] tracking-widest">
+            <div class="col-span-1 text-center text-white/50 font-light text-[10px] tracking-widest">
                 {{ review.data.year }}
             </div>
 
             {# Technical Scores #}
-            <div class="col-span-1 text-center text-white/40 text-xs font-medium group-hover:text-[#DAA520]/60">
+            <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white">
                 {{ s1 }}
             </div>
-            <div class="col-span-1 text-center text-white/40 text-xs font-medium group-hover:text-[#DAA520]/60">
+            <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white">
                 {{ s2 }}
             </div>
-            <div class="col-span-1 text-center text-white/40 text-xs font-medium group-hover:text-[#DAA520]/60">
+            <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white">
                 {{ s3 }}
             </div>
 
@@ -101,14 +97,14 @@ function sortTable(columnIndex) {
 
 <style>
     .glass-card {
-        background: rgba(255, 255, 255, 0.01);
-        backdrop-filter: blur(8px);
-        border: 1px solid rgba(255, 255, 255, 0.03);
+        background: rgba(255, 255, 255, 0.02);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.08);
         border-radius: 2px;
         text-decoration: none;
     }
     .archive-row:hover {
-        background: rgba(255, 255, 255, 0.03);
-        transform: scale(1.005);
+        background: rgba(255, 255, 255, 0.05);
+        transform: scale(1.002);
     }
 </style>
