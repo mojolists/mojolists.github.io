@@ -1,6 +1,7 @@
 ---
 layout: base.njk
 title: "Archive"
+permalink: /archive/
 ---
 
 <div class="max-w-7xl mx-auto px-6 py-20 relative z-10">
@@ -22,44 +23,37 @@ title: "Archive"
 
     {# The Archive List #}
     <div id="archiveList" class="space-y-2">
-        {% for review in collections.reviews | reverse %}
+        {% for review in collections.reviews %}
         {% set s1 = review.data.score1 | default(0) %}
         {% set s2 = review.data.score2 | default(0) %}
         {% set s3 = review.data.score3 | default(0) %}
         {% set avg = ((s1 + s2 + s3) / 3) | round %}
 
         <a href="{{ review.url }}" class="archive-row glass-card grid grid-cols-12 gap-4 px-8 py-4 items-center group hover:border-[#FFD700]/30 transition-all duration-300">
-            {# Artist #}
             <div class="col-span-3 font-bold text-white group-hover:text-[#FFD700] transition-colors">
                 {{ review.data.artist }}
             </div>
             
-            {# Album #}
             <div class="col-span-3 text-white/60 text-sm">
                 {{ review.data.album }}
             </div>
 
-            {# Year #}
             <div class="col-span-1 text-center text-white/40 font-mono text-xs">
                 {{ review.data.year }}
             </div>
 
-            {# Score 1 #}
             <div class="col-span-1 text-center text-[#FFD700]/60 font-bold group-hover:text-[#FFD700]">
                 {{ s1 }}
             </div>
 
-            {# Score 2 #}
             <div class="col-span-1 text-center text-[#FFD700]/60 font-bold group-hover:text-[#FFD700]">
                 {{ s2 }}
             </div>
 
-            {# Score 3 #}
             <div class="col-span-1 text-center text-[#FFD700]/60 font-bold group-hover:text-[#FFD700]">
                 {{ s3 }}
             </div>
 
-            {# Average Mojo #}
             <div class="col-span-2 text-right italic font-black text-[#FFD700] text-xl">
                 {{ avg }}%
             </div>
@@ -77,11 +71,10 @@ function sortTable(columnIndex) {
         const aVal = a.children[columnIndex - 1].innerText.trim();
         const bVal = b.children[columnIndex - 1].innerText.trim();
         
-        // Check if numeric
         if (!isNaN(aVal) && !isNaN(bVal)) {
-            return parseFloat(bVal) - parseFloat(aVal); // Sort numbers descending
+            return parseFloat(bVal) - parseFloat(aVal);
         }
-        return aVal.localeCompare(bVal); // Sort text ascending
+        return aVal.localeCompare(bVal);
     });
 
     list.innerHTML = '';
