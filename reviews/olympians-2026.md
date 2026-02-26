@@ -6,9 +6,9 @@ album: "In Search of a Revival"
 label: "Daptone Records / Colemine Records"
 year: "2026"
 image: "olympians.jpg"
-score1: 95
+score1: 85
 score2: 92
-score3: 95
+score3: 92
 tags: reviews
 date: 2026-02-26
 youtubeId: "vBvP6V9XW2w"
