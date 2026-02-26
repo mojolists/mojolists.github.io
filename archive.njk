@@ -4,130 +4,101 @@ title: "Archive"
 permalink: /archive/
 ---
 
-<div class="max-w-7xl mx-auto px-6 py-10 h-[calc(100vh-120px)] relative z-10 overflow-hidden">
-    <div class="flex h-full gap-12">
-        
-        {# Left Column: The List (Scrollable) #}
-        <div class="w-full md:w-5/12 lg:w-4/12 flex flex-col h-full">
-            <header class="mb-8">
-                <h1 class="text-4xl font-black uppercase tracking-tighter text-white leading-none">The <span class="logo-lists">Archive</span></h1>
-                <p class="text-white/20 uppercase tracking-[0.4em] text-[8px] font-bold mt-2">Crate Navigation System</p>
-            </header>
+<div class="max-w-7xl mx-auto px-6 py-20 relative z-10">
+    <header class="mb-12">
+        <h1 class="text-5xl font-black uppercase tracking-tighter text-white mb-2">Collection <span class="logo-lists">Archive</span></h1>
+        <p class="text-white/40 uppercase tracking-[0.3em] text-[10px] font-bold">Sortable by performance, production, and mojo</p>
+    </header>
 
-            <div class="flex-grow overflow-y-auto pr-4 space-y-1 custom-scrollbar" id="archive-list">
-                {% for review in collections.reviews %}
-                {% set s1 = review.data.score1 | default(0) %}
-                {% set s2 = review.data.score2 | default(0) %}
-                {% set s3 = review.data.score3 | default(0) %}
-                {% set avg = ((s1 + s2 + s3) / 3) | round %}
-                
-                <div class="archive-item group cursor-pointer py-3 px-4 border-l-2 border-transparent hover:border-[#DAA520] hover:bg-white/5 transition-all"
-                     onmouseenter="updatePreview('{{ review.data.artist }}', '{{ review.data.album }}', '{{ review.data.image }}', '{{ avg }}', '{{ s1 }}', '{{ s2 }}', '{{ s3 }}', '{{ review.url }}')">
-                    <div class="flex justify-between items-start">
-                        <div>
-                            <p class="text-[9px] uppercase tracking-widest text-white/40 group-hover:text-[#DAA520] transition-colors font-bold">{{ review.data.artist }}</p>
-                            <h2 class="text-sm font-bold text-white leading-tight">{{ review.data.album }}</h2>
-                        </div>
-                        <span class="font-mono text-[10px] text-white/20">{{ review.data.year }}</span>
-                    </div>
-                </div>
-                {% endfor %}
+    {# Sorting Headers #}
+    <div class="grid grid-cols-12 gap-4 px-8 mb-4 items-center">
+        <div class="col-span-1"></div>
+        <button onclick="sortTable(2)" class="col-span-3 text-left text-[10px] uppercase tracking-[0.2em] font-black text-white/40 hover:text-[#DAA520] transition-colors">Artist</button>
+        <button onclick="sortTable(3)" class="col-span-3 text-left text-[10px] uppercase tracking-[0.2em] font-black text-white/40 hover:text-[#DAA520] transition-colors">Album</button>
+        <button onclick="sortTable(4)" class="col-span-1 text-center text-[10px] uppercase tracking-[0.2em] font-black text-white/40 hover:text-[#DAA520] transition-colors">Year</button>
+        <button onclick="sortTable(5)" class="col-span-1 text-center text-[10px] uppercase tracking-[0.2em] font-black text-white/40 hover:text-[#DAA520] transition-colors">Perf</button>
+        <button onclick="sortTable(6)" class="col-span-1 text-center text-[10px] uppercase tracking-[0.2em] font-black text-white/40 hover:text-[#DAA520] transition-colors">Prod</button>
+        <button onclick="sortTable(7)" class="col-span-1 text-center text-[10px] uppercase tracking-[0.2em] font-black text-white/40 hover:text-[#DAA520] transition-colors">Dance</button>
+        <button onclick="sortTable(8)" class="col-span-1 text-right text-[10px] uppercase tracking-[0.2em] font-black text-white/40 hover:text-[#DAA520] transition-colors">Mojo</button>
+    </div>
+
+    {# The Archive List #}
+    <div id="archiveList" class="space-y-2">
+        {% for review in collections.reviews %}
+        {% set s1 = review.data.score1 | default(0) %}
+        {% set s2 = review.data.score2 | default(0) %}
+        {% set s3 = review.data.score3 | default(0) %}
+        {% set avg = ((s1 + s2 + s3) / 3) | round %}
+
+        <a href="{{ review.url }}" class="archive-row glass-card grid grid-cols-12 gap-4 px-8 py-4 items-center group hover:border-[#DAA520]/30 transition-all duration-300">
+            {# Album Art Thumbnail #}
+            <div class="col-span-1 aspect-square overflow-hidden rounded-sm border border-white/10">
+                <img src="/assets/img/{{ review.data.image }}" alt="{{ review.data.album }}" class="w-full h-full object-cover">
             </div>
-        </div>
 
-        {# Right Column: The Hero Preview (Fixed) #}
-        <div class="hidden md:flex md:w-7/12 lg:w-8/12 h-full items-center justify-center">
-            <div id="preview-container" class="glass-card w-full max-w-2xl p-10 flex gap-10 items-center relative overflow-hidden transition-all duration-500 opacity-0 transform translate-y-4">
-                
-                {# Album Art #}
-                <div class="w-1/2 aspect-square relative z-10">
-                    <img id="preview-art" src="" alt="" class="w-full h-full object-cover shadow-2xl border border-white/10">
-                </div>
-
-                {# Details #}
-                <div class="w-1/2 space-y-6 relative z-10">
-                    <div>
-                        <h3 id="preview-artist" class="text-[10px] uppercase tracking-[0.3em] text-[#DAA520] font-black"></h3>
-                        <h2 id="preview-album" class="text-3xl font-black text-white leading-tight uppercase tracking-tighter"></h2>
-                    </div>
-
-                    <div class="space-y-3 py-6 border-y border-white/5">
-                        <div class="flex justify-between items-center text-[10px] uppercase tracking-widest text-white/40">
-                            <span>Performance</span>
-                            <span id="preview-s1" class="text-white font-bold"></span>
-                        </div>
-                        <div class="flex justify-between items-center text-[10px] uppercase tracking-widest text-white/40">
-                            <span>Production</span>
-                            <span id="preview-s2" class="text-white font-bold"></span>
-                        </div>
-                        <div class="flex justify-between items-center text-[10px] uppercase tracking-widest text-white/40">
-                            <span>Danceability</span>
-                            <span id="preview-s3" class="text-white font-bold"></span>
-                        </div>
-                    </div>
-
-                    <div class="flex items-center justify-between pt-4">
-                        <div class="text-center">
-                            <span id="preview-mojo" class="text-5xl font-black italic text-white leading-none"></span>
-                            <p class="text-[8px] uppercase tracking-[0.3em] text-white/30 font-bold mt-1">Mojo Rating</p>
-                        </div>
-                        <a id="preview-link" href="" class="px-8 py-3 border border-[#DAA520] text-[#DAA520] text-[10px] font-bold uppercase tracking-[0.2em] hover:bg-[#DAA520] hover:text-black transition-all">
-                            Read Review
-                        </a>
-                    </div>
-                </div>
-                
-                {# Background Blur Decor #}
-                <div id="preview-bg" class="absolute inset-0 opacity-10 blur-3xl scale-150 -z-0"></div>
+            <div class="col-span-3 font-bold text-white group-hover:text-[#DAA520] transition-colors truncate">
+                {{ review.data.artist }}
             </div>
             
-            {# Empty State #}
-            <div id="preview-empty" class="text-center space-y-4">
-                <div class="w-16 h-[1px] bg-white/10 mx-auto"></div>
-                <p class="text-[10px] uppercase tracking-[0.5em] text-white/20">Select a record to preview</p>
-                <div class="w-16 h-[1px] bg-white/10 mx-auto"></div>
+            <div class="col-span-3 text-white/60 text-sm truncate">
+                {{ review.data.album }}
             </div>
-        </div>
 
+            <div class="col-span-1 text-center text-white/40 font-mono text-xs">
+                {{ review.data.year }}
+            </div>
+
+            <div class="col-span-1 text-center text-[#DAA520]/60 font-bold group-hover:text-[#DAA520]">
+                {{ s1 }}
+            </div>
+
+            <div class="col-span-1 text-center text-[#DAA520]/60 font-bold group-hover:text-[#DAA520]">
+                {{ s2 }}
+            </div>
+
+            <div class="col-span-1 text-center text-[#DAA520]/60 font-bold group-hover:text-[#DAA520]">
+                {{ s3 }}
+            </div>
+
+            <div class="col-span-1 text-right italic font-black text-[#DAA520] text-xl">
+                {{ avg }}%
+            </div>
+        </a>
+        {% endfor %}
     </div>
 </div>
 
-<style>
-    .custom-scrollbar::-webkit-scrollbar { width: 2px; }
-    .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
-    .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(255, 215, 0, 0.2); }
-    .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #DAA520; }
-    
-    .glass-card {
-        background: rgba(255, 255, 255, 0.02);
-        backdrop-filter: blur(40px);
-        -webkit-backdrop-filter: blur(40px);
-        border: 1px solid rgba(255, 255, 255, 0.08);
-    }
-</style>
-
 <script>
-function updatePreview(artist, album, image, mojo, s1, s2, s3, url) {
-    const container = document.getElementById('preview-container');
-    const empty = document.getElementById('preview-empty');
+function sortTable(columnIndex) {
+    const list = document.getElementById('archiveList');
+    const rows = Array.from(list.getElementsByClassName('archive-row'));
     
-    // Hide empty state
-    empty.style.display = 'none';
-    
-    // Update content
-    document.getElementById('preview-artist').innerText = artist;
-    document.getElementById('preview-album').innerText = album;
-    document.getElementById('preview-art').src = '/assets/img/' + image;
-    document.getElementById('preview-mojo').innerText = mojo + '%';
-    document.getElementById('preview-s1').innerText = s1;
-    document.getElementById('preview-s2').innerText = s2;
-    document.getElementById('preview-s3').innerText = s3;
-    document.getElementById('preview-link').href = url;
-    document.getElementById('preview-bg').style.backgroundImage = 'url(/assets/img/' + image + ')';
-    document.getElementById('preview-bg').style.backgroundSize = 'cover';
+    const sortedRows = rows.sort((a, b) => {
+        const aVal = a.children[columnIndex - 1].innerText.trim();
+        const bVal = b.children[columnIndex - 1].innerText.trim();
+        
+        if (!isNaN(aVal) && !isNaN(bVal)) {
+            return parseFloat(bVal) - parseFloat(aVal);
+        }
+        return aVal.localeCompare(bVal);
+    });
 
-    // Show container with animation
-    container.classList.remove('opacity-0', 'translate-y-4');
-    container.classList.add('opacity-100', 'translate-y-0');
+    list.innerHTML = '';
+    sortedRows.forEach(row => list.appendChild(row));
 }
 </script>
+
+<style>
+    .glass-card {
+        background: rgba(255, 255, 255, 0.03);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        border-radius: 4px;
+        display: grid;
+        text-decoration: none;
+    }
+    .archive-row:hover {
+        background: rgba(218, 165, 32, 0.05);
+        transform: translateX(5px);
+    }
+</style>
