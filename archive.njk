@@ -5,94 +5,123 @@ permalink: /archive/
 ---
 
 <div class="max-w-7xl mx-auto px-6 py-20 relative z-10">
-    <header class="mb-12">
-        <h1 class="text-5xl font-black uppercase tracking-tighter text-white mb-2">Collection <span class="text-[#FFD700]">Archive</span></h1>
-        <p class="text-white/40 uppercase tracking-[0.3em] text-[10px] font-bold">Sortable by performance, production, and mojo</p>
+    <header class="mb-16 flex flex-col md:flex-row md:items-end justify-between gap-8">
+        <div>
+            <h1 class="text-5xl font-black uppercase tracking-tighter text-white mb-2">The <span class="logo-lists">Archive</span></h1>
+            <p class="text-white/30 uppercase tracking-[0.3em] text-[10px] font-bold">A visual catalog of analog fidelity</p>
+        </div>
+
+        {# Minimalist Filter Bar #}
+        <div class="flex flex-wrap gap-6 border-b border-white/10 pb-2">
+            <span class="text-[9px] uppercase tracking-widest text-white/20 font-bold self-center mr-2">Sort By:</span>
+            <button onclick="sortGallery('artist')" class="filter-link active" id="sort-artist">Artist</button>
+            <button onclick="sortGallery('album')" class="filter-link" id="sort-album">Album</button>
+            <button onclick="sortGallery('year')" class="filter-link" id="sort-year">Year</button>
+            <button onclick="sortGallery('mojo')" class="filter-link" id="sort-mojo">Mojo %</button>
+        </div>
     </header>
 
-    {# Sorting Headers #}
-    <div class="grid grid-cols-12 gap-4 px-8 mb-4 items-center">
-        <button onclick="sortTable(1)" class="col-span-3 text-left text-[10px] uppercase tracking-[0.2em] font-black text-white/40 hover:text-[#FFD700] transition-colors">Artist</button>
-        <button onclick="sortTable(2)" class="col-span-3 text-left text-[10px] uppercase tracking-[0.2em] font-black text-white/40 hover:text-[#FFD700] transition-colors">Album</button>
-        <button onclick="sortTable(3)" class="col-span-1 text-center text-[10px] uppercase tracking-[0.2em] font-black text-white/40 hover:text-[#FFD700] transition-colors">Year</button>
-        <button onclick="sortTable(4)" class="col-span-1 text-center text-[10px] uppercase tracking-[0.2em] font-black text-white/40 hover:text-[#FFD700] transition-colors">Perf</button>
-        <button onclick="sortTable(5)" class="col-span-1 text-center text-[10px] uppercase tracking-[0.2em] font-black text-white/40 hover:text-[#FFD700] transition-colors">Prod</button>
-        <button onclick="sortTable(6)" class="col-span-1 text-center text-[10px] uppercase tracking-[0.2em] font-black text-white/40 hover:text-[#FFD700] transition-colors">Dance</button>
-        <button onclick="sortTable(7)" class="col-span-2 text-right text-[10px] uppercase tracking-[0.2em] font-black text-white/40 hover:text-[#FFD700] transition-colors">Mojo %</button>
-    </div>
-
-    {# The Archive List #}
-    <div id="archiveList" class="space-y-2">
+    {# The Gallery Grid #}
+    <div id="archiveGrid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
         {% for review in collections.reviews %}
         {% set s1 = review.data.score1 | default(0) %}
         {% set s2 = review.data.score2 | default(0) %}
         {% set s3 = review.data.score3 | default(0) %}
         {% set avg = ((s1 + s2 + s3) / 3) | round %}
 
-        <a href="{{ review.url }}" class="archive-row glass-card grid grid-cols-12 gap-4 px-8 py-4 items-center group hover:border-[#FFD700]/30 transition-all duration-300">
-            <div class="col-span-3 font-bold text-white group-hover:text-[#FFD700] transition-colors">
-                {{ review.data.artist }}
-            </div>
+        <div class="archive-card group relative aspect-square glass-card overflow-hidden" 
+             data-artist="{{ review.data.artist | lower }}" 
+             data-album="{{ review.data.album | lower }}" 
+             data-year="{{ review.data.year }}" 
+             data-mojo="{{ avg }}">
             
-            <div class="col-span-3 text-white/60 text-sm">
-                {{ review.data.album }}
-            </div>
+            <a href="{{ review.url }}" class="block w-full h-full">
+                {# Album Art #}
+                <img src="/assets/img/{{ review.data.image }}" alt="{{ review.data.album }}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 group-hover:blur-sm">
+                
+                {# Corner Badge (Static) #}
+                <div class="absolute top-3 right-3 z-20">
+                    <span class="bg-black/80 backdrop-blur-md px-2 py-1 text-[10px] font-black italic text-[#DAA520] border border-white/10">
+                        {{ avg }}%
+                    </span>
+                </div>
 
-            <div class="col-span-1 text-center text-white/40 font-mono text-xs">
-                {{ review.data.year }}
-            </div>
+                {# Hover Overlay #}
+                <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-center p-6 text-center z-10">
+                    <h3 class="text-[10px] uppercase tracking-[0.2em] text-[#DAA520] font-bold mb-1">{{ review.data.artist }}</h3>
+                    <h2 class="text-sm font-bold text-white mb-4 leading-tight">{{ review.data.album }}</h2>
+                    
+                    <div class="space-y-1 text-[9px] uppercase tracking-widest text-white/60">
+                        <div class="flex justify-between border-b border-white/10 pb-1">
+                            <span>Perf</span>
+                            <span class="text-white font-bold">{{ s1 }}</span>
+                        </div>
+                        <div class="flex justify-between border-b border-white/10 pb-1">
+                            <span>Prod</span>
+                            <span class="text-white font-bold">{{ s2 }}</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>Dance</span>
+                            <span class="text-white font-bold">{{ s3 }}</span>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-4 text-[8px] font-bold text-[#DAA520] tracking-[0.3em] uppercase">View Review →</div>
+                </div>
 
-            <div class="col-span-1 text-center text-[#FFD700]/60 font-bold group-hover:text-[#FFD700]">
-                {{ s1 }}
-            </div>
-
-            <div class="col-span-1 text-center text-[#FFD700]/60 font-bold group-hover:text-[#FFD700]">
-                {{ s2 }}
-            </div>
-
-            <div class="col-span-1 text-center text-[#FFD700]/60 font-bold group-hover:text-[#FFD700]">
-                {{ s3 }}
-            </div>
-
-            <div class="col-span-2 text-right italic font-black text-[#FFD700] text-xl">
-                {{ avg }}%
-            </div>
-        </a>
+                {# Bottom Label (Always visible on mobile/small screens) #}
+                <div class="absolute bottom-0 left-0 w-full p-3 bg-gradient-to-t from-black to-transparent md:hidden">
+                    <p class="text-[9px] font-bold text-white truncate">{{ review.data.artist }}</p>
+                </div>
+            </a>
+        </div>
         {% endfor %}
     </div>
 </div>
 
-<script>
-function sortTable(columnIndex) {
-    const list = document.getElementById('archiveList');
-    const rows = Array.from(list.getElementsByClassName('archive-row'));
-    
-    const sortedRows = rows.sort((a, b) => {
-        const aVal = a.children[columnIndex - 1].innerText.trim();
-        const bVal = b.children[columnIndex - 1].innerText.trim();
-        
-        if (!isNaN(aVal) && !isNaN(bVal)) {
-            return parseFloat(bVal) - parseFloat(aVal);
-        }
-        return aVal.localeCompare(bVal);
-    });
-
-    list.innerHTML = '';
-    sortedRows.forEach(row => list.appendChild(row));
-}
-</script>
-
 <style>
-    .glass-card {
-        background: rgba(255, 255, 255, 0.03);
-        backdrop-filter: blur(10px);
-        border: 1px solid rgba(255, 255, 255, 0.05);
-        border-radius: 4px;
-        display: grid;
-        text-decoration: none;
+    .filter-link {
+        font-size: 10px;
+        text-transform: uppercase;
+        letter-spacing: 0.3em;
+        font-weight: 700;
+        color: rgba(255,255,255,0.3);
+        transition: all 0.3s ease;
+        padding-bottom: 4px;
+        border-bottom: 2px solid transparent;
     }
-    .archive-row:hover {
-        background: rgba(255, 215, 0, 0.05);
-        transform: translateX(5px);
+    .filter-link:hover, .filter-link.active {
+        color: #DAA520;
+    }
+    .filter-link.active {
+        border-bottom-color: #DAA520;
+    }
+    .archive-card {
+        border-radius: 2px;
+        border: 1px solid rgba(255,255,255,0.05);
     }
 </style>
+
+<script>
+function sortGallery(criteria) {
+    const grid = document.getElementById('archiveGrid');
+    const cards = Array.from(grid.getElementsByClassName('archive-card'));
+    
+    // Update active UI
+    document.querySelectorAll('.filter-link').forEach(link => link.classList.remove('active'));
+    document.getElementById('sort-' + criteria).classList.add('active');
+
+    const sortedCards = cards.sort((a, b) => {
+        let valA = a.getAttribute('data-' + criteria);
+        let valB = b.getAttribute('data-' + criteria);
+
+        if (criteria === 'year' || criteria === 'mojo') {
+            return parseFloat(valB) - parseFloat(valA); // Descending for numbers
+        }
+        return valA.localeCompare(valB); // Ascending for text
+    });
+
+    grid.innerHTML = '';
+    sortedCards.forEach(card => grid.appendChild(card));
+}
+</script>
