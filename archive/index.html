@@ -24,379 +24,710 @@
 
         <main class="flex-grow">
             
-<div class="max-w-7xl mx-auto px-6 py-10 h-[calc(100vh-120px)] relative z-10 overflow-hidden">
-    <div class="flex h-full gap-12">
-        
-        
-        <div class="w-full md:w-5/12 lg:w-4/12 flex flex-col h-full">
-            <header class="mb-8">
-                <h1 class="text-4xl font-black uppercase tracking-tighter text-white leading-none">The <span class="logo-lists">Archive</span></h1>
-                <p class="text-white/20 uppercase tracking-[0.4em] text-[8px] font-bold mt-2">Crate Navigation System</p>
-            </header>
+<div class="max-w-7xl mx-auto px-6 py-20 relative z-10">
+    <header class="mb-12">
+        <h1 class="text-5xl font-black uppercase tracking-tighter text-white mb-2">Collection <span class="logo-lists">Archive</span></h1>
+        <p class="text-white/40 uppercase tracking-[0.3em] text-[10px] font-bold">Sortable by performance, production, and mojo</p>
+    </header>
 
-            <div class="flex-grow overflow-y-auto pr-4 space-y-1 custom-scrollbar" id="archive-list">
-                
-                
-                
-                
-                
-                
-                <div class="archive-item group cursor-pointer py-3 px-4 border-l-2 border-transparent hover:border-[#DAA520] hover:bg-white/5 transition-all"
-                     onmouseenter="updatePreview('Trombone Shorty', 'Say That to Say This', 'saythattosaythis.jpg', '88', '95', '85', '85', '/reviews/Trombone_shorty/')">
-                    <div class="flex justify-between items-start">
-                        <div>
-                            <p class="text-[9px] uppercase tracking-widest text-white/40 group-hover:text-[#DAA520] transition-colors font-bold">Trombone Shorty</p>
-                            <h2 class="text-sm font-bold text-white leading-tight">Say That to Say This</h2>
-                        </div>
-                        <span class="font-mono text-[10px] text-white/20">2013</span>
-                    </div>
-                </div>
-                
-                
-                
-                
-                
-                
-                <div class="archive-item group cursor-pointer py-3 px-4 border-l-2 border-transparent hover:border-[#DAA520] hover:bg-white/5 transition-all"
-                     onmouseenter="updatePreview('Black Joe Lewis &amp; The Honeybears', 'Electric Slave', 'black_joe_lewis.jpg', '78', '70', '85', '80', '/reviews/black_joe_lewis/')">
-                    <div class="flex justify-between items-start">
-                        <div>
-                            <p class="text-[9px] uppercase tracking-widest text-white/40 group-hover:text-[#DAA520] transition-colors font-bold">Black Joe Lewis &amp; The Honeybears</p>
-                            <h2 class="text-sm font-bold text-white leading-tight">Electric Slave</h2>
-                        </div>
-                        <span class="font-mono text-[10px] text-white/20">2013</span>
-                    </div>
-                </div>
-                
-                
-                
-                
-                
-                
-                <div class="archive-item group cursor-pointer py-3 px-4 border-l-2 border-transparent hover:border-[#DAA520] hover:bg-white/5 transition-all"
-                     onmouseenter="updatePreview('Jonny Lang', 'Fight For My Soul', 'ffys.jpg', '70', '90', '85', '35', '/reviews/fight-for-my-soul/')">
-                    <div class="flex justify-between items-start">
-                        <div>
-                            <p class="text-[9px] uppercase tracking-widest text-white/40 group-hover:text-[#DAA520] transition-colors font-bold">Jonny Lang</p>
-                            <h2 class="text-sm font-bold text-white leading-tight">Fight For My Soul</h2>
-                        </div>
-                        <span class="font-mono text-[10px] text-white/20">2013</span>
-                    </div>
-                </div>
-                
-                
-                
-                
-                
-                
-                <div class="archive-item group cursor-pointer py-3 px-4 border-l-2 border-transparent hover:border-[#DAA520] hover:bg-white/5 transition-all"
-                     onmouseenter="updatePreview('Joe Louis Walker', 'Hornet&#39;s Nest', 'hornetsnest.jpg', '80', '80', '80', '80', '/reviews/hornets-nest/')">
-                    <div class="flex justify-between items-start">
-                        <div>
-                            <p class="text-[9px] uppercase tracking-widest text-white/40 group-hover:text-[#DAA520] transition-colors font-bold">Joe Louis Walker</p>
-                            <h2 class="text-sm font-bold text-white leading-tight">Hornet&#39;s Nest</h2>
-                        </div>
-                        <span class="font-mono text-[10px] text-white/20">2014</span>
-                    </div>
-                </div>
-                
-                
-                
-                
-                
-                
-                <div class="archive-item group cursor-pointer py-3 px-4 border-l-2 border-transparent hover:border-[#DAA520] hover:bg-white/5 transition-all"
-                     onmouseenter="updatePreview('The Monophonics', 'It&#39;s Only Us', 'itsonlyus.jpg', '87', '85', '90', '85', '/reviews/monophonics/')">
-                    <div class="flex justify-between items-start">
-                        <div>
-                            <p class="text-[9px] uppercase tracking-widest text-white/40 group-hover:text-[#DAA520] transition-colors font-bold">The Monophonics</p>
-                            <h2 class="text-sm font-bold text-white leading-tight">It&#39;s Only Us</h2>
-                        </div>
-                        <span class="font-mono text-[10px] text-white/20">2020</span>
-                    </div>
-                </div>
-                
-                
-                
-                
-                
-                
-                <div class="archive-item group cursor-pointer py-3 px-4 border-l-2 border-transparent hover:border-[#DAA520] hover:bg-white/5 transition-all"
-                     onmouseenter="updatePreview('Neal Francis', 'Changes', 'nfchanges.jpg', '95', '95', '90', '100', '/reviews/neal-francis/')">
-                    <div class="flex justify-between items-start">
-                        <div>
-                            <p class="text-[9px] uppercase tracking-widest text-white/40 group-hover:text-[#DAA520] transition-colors font-bold">Neal Francis</p>
-                            <h2 class="text-sm font-bold text-white leading-tight">Changes</h2>
-                        </div>
-                        <span class="font-mono text-[10px] text-white/20">2019</span>
-                    </div>
-                </div>
-                
-                
-                
-                
-                
-                
-                <div class="archive-item group cursor-pointer py-3 px-4 border-l-2 border-transparent hover:border-[#DAA520] hover:bg-white/5 transition-all"
-                     onmouseenter="updatePreview('No Show Ponies', 'No Show Ponies', 'noshowponies.jpg', '70', '85', '75', '50', '/reviews/no-show-ponies/')">
-                    <div class="flex justify-between items-start">
-                        <div>
-                            <p class="text-[9px] uppercase tracking-widest text-white/40 group-hover:text-[#DAA520] transition-colors font-bold">No Show Ponies</p>
-                            <h2 class="text-sm font-bold text-white leading-tight">No Show Ponies</h2>
-                        </div>
-                        <span class="font-mono text-[10px] text-white/20">2013</span>
-                    </div>
-                </div>
-                
-                
-                
-                
-                
-                
-                <div class="archive-item group cursor-pointer py-3 px-4 border-l-2 border-transparent hover:border-[#DAA520] hover:bg-white/5 transition-all"
-                     onmouseenter="updatePreview('Sharon Jones &amp; The Dap-Kings', 'Give the People What They Want', 'gtpwtw.jpg', '92', '90', '90', '95', '/reviews/sharon-jones/')">
-                    <div class="flex justify-between items-start">
-                        <div>
-                            <p class="text-[9px] uppercase tracking-widest text-white/40 group-hover:text-[#DAA520] transition-colors font-bold">Sharon Jones &amp; The Dap-Kings</p>
-                            <h2 class="text-sm font-bold text-white leading-tight">Give the People What They Want</h2>
-                        </div>
-                        <span class="font-mono text-[10px] text-white/20">2014</span>
-                    </div>
-                </div>
-                
-                
-                
-                
-                
-                
-                <div class="archive-item group cursor-pointer py-3 px-4 border-l-2 border-transparent hover:border-[#DAA520] hover:bg-white/5 transition-all"
-                     onmouseenter="updatePreview('The Bamboos', 'Medicine Man', 'feveritr.jpg', '97', '95', '95', '100', '/reviews/the-bamboos/')">
-                    <div class="flex justify-between items-start">
-                        <div>
-                            <p class="text-[9px] uppercase tracking-widest text-white/40 group-hover:text-[#DAA520] transition-colors font-bold">The Bamboos</p>
-                            <h2 class="text-sm font-bold text-white leading-tight">Medicine Man</h2>
-                        </div>
-                        <span class="font-mono text-[10px] text-white/20">2012</span>
-                    </div>
-                </div>
-                
-                
-                
-                
-                
-                
-                <div class="archive-item group cursor-pointer py-3 px-4 border-l-2 border-transparent hover:border-[#DAA520] hover:bg-white/5 transition-all"
-                     onmouseenter="updatePreview('The Nightowls', 'Good As Gold', 'goodasgold.jpg', '92', '90', '85', '100', '/reviews/the-nightowls/')">
-                    <div class="flex justify-between items-start">
-                        <div>
-                            <p class="text-[9px] uppercase tracking-widest text-white/40 group-hover:text-[#DAA520] transition-colors font-bold">The Nightowls</p>
-                            <h2 class="text-sm font-bold text-white leading-tight">Good As Gold</h2>
-                        </div>
-                        <span class="font-mono text-[10px] text-white/20">2015</span>
-                    </div>
-                </div>
-                
-                
-                
-                
-                
-                
-                <div class="archive-item group cursor-pointer py-3 px-4 border-l-2 border-transparent hover:border-[#DAA520] hover:bg-white/5 transition-all"
-                     onmouseenter="updatePreview('Tommy Castro', 'The Devil You Know', 'tdyk.jpg', '83', '85', '85', '80', '/reviews/tommy-castro/')">
-                    <div class="flex justify-between items-start">
-                        <div>
-                            <p class="text-[9px] uppercase tracking-widest text-white/40 group-hover:text-[#DAA520] transition-colors font-bold">Tommy Castro</p>
-                            <h2 class="text-sm font-bold text-white leading-tight">The Devil You Know</h2>
-                        </div>
-                        <span class="font-mono text-[10px] text-white/20">2014</span>
-                    </div>
-                </div>
-                
-                
-                
-                
-                
-                
-                <div class="archive-item group cursor-pointer py-3 px-4 border-l-2 border-transparent hover:border-[#DAA520] hover:bg-white/5 transition-all"
-                     onmouseenter="updatePreview('Voo Davis', 'Vicious Things', 'voodavis.jpg', '87', '95', '90', '75', '/reviews/voo-davis/')">
-                    <div class="flex justify-between items-start">
-                        <div>
-                            <p class="text-[9px] uppercase tracking-widest text-white/40 group-hover:text-[#DAA520] transition-colors font-bold">Voo Davis</p>
-                            <h2 class="text-sm font-bold text-white leading-tight">Vicious Things</h2>
-                        </div>
-                        <span class="font-mono text-[10px] text-white/20">2024</span>
-                    </div>
-                </div>
-                
-                
-                
-                
-                
-                
-                <div class="archive-item group cursor-pointer py-3 px-4 border-l-2 border-transparent hover:border-[#DAA520] hover:bg-white/5 transition-all"
-                     onmouseenter="updatePreview('Wily Bo Walker &amp; The Danny Flam Big Band', 'Moonshine Boogie', 'wilybo.jpg', '0', '0', '0', '0', '/reviews/wily-bo-walker/')">
-                    <div class="flex justify-between items-start">
-                        <div>
-                            <p class="text-[9px] uppercase tracking-widest text-white/40 group-hover:text-[#DAA520] transition-colors font-bold">Wily Bo Walker &amp; The Danny Flam Big Band</p>
-                            <h2 class="text-sm font-bold text-white leading-tight">Moonshine Boogie</h2>
-                        </div>
-                        <span class="font-mono text-[10px] text-white/20">2015</span>
-                    </div>
-                </div>
-                
-                
-                
-                
-                
-                
-                <div class="archive-item group cursor-pointer py-3 px-4 border-l-2 border-transparent hover:border-[#DAA520] hover:bg-white/5 transition-all"
-                     onmouseenter="updatePreview('The Soul Surfers', 'Soul Rock!', 'soulsurfers.jpg', '0', '0', '0', '0', '/reviews/soul-surfers/')">
-                    <div class="flex justify-between items-start">
-                        <div>
-                            <p class="text-[9px] uppercase tracking-widest text-white/40 group-hover:text-[#DAA520] transition-colors font-bold">The Soul Surfers</p>
-                            <h2 class="text-sm font-bold text-white leading-tight">Soul Rock!</h2>
-                        </div>
-                        <span class="font-mono text-[10px] text-white/20">2015</span>
-                    </div>
-                </div>
-                
-                
-                
-                
-                
-                
-                <div class="archive-item group cursor-pointer py-3 px-4 border-l-2 border-transparent hover:border-[#DAA520] hover:bg-white/5 transition-all"
-                     onmouseenter="updatePreview('The James Hunter Six', 'Nick Of Time', 'nickoftime.jpg', '0', '0', '0', '0', '/reviews/james-hunter-six/')">
-                    <div class="flex justify-between items-start">
-                        <div>
-                            <p class="text-[9px] uppercase tracking-widest text-white/40 group-hover:text-[#DAA520] transition-colors font-bold">The James Hunter Six</p>
-                            <h2 class="text-sm font-bold text-white leading-tight">Nick Of Time</h2>
-                        </div>
-                        <span class="font-mono text-[10px] text-white/20">2020</span>
-                    </div>
-                </div>
-                
-                
-                
-                
-                
-                
-                <div class="archive-item group cursor-pointer py-3 px-4 border-l-2 border-transparent hover:border-[#DAA520] hover:bg-white/5 transition-all"
-                     onmouseenter="updatePreview('Clarence &quot;Gatemouth&quot; Brown', 'San Antonio Ballbuster', 'gatemouth.jpg', '0', '0', '0', '0', '/reviews/gatemouth-brown/')">
-                    <div class="flex justify-between items-start">
-                        <div>
-                            <p class="text-[9px] uppercase tracking-widest text-white/40 group-hover:text-[#DAA520] transition-colors font-bold">Clarence &quot;Gatemouth&quot; Brown</p>
-                            <h2 class="text-sm font-bold text-white leading-tight">San Antonio Ballbuster</h2>
-                        </div>
-                        <span class="font-mono text-[10px] text-white/20">1960</span>
-                    </div>
-                </div>
-                
+    
+    <div class="grid grid-cols-12 gap-4 px-8 mb-4 items-center">
+        <div class="col-span-1"></div>
+        <button onclick="sortTable(2)" class="col-span-3 text-left text-[10px] uppercase tracking-[0.2em] font-black text-white/40 hover:text-[#DAA520] transition-colors">Artist</button>
+        <button onclick="sortTable(3)" class="col-span-3 text-left text-[10px] uppercase tracking-[0.2em] font-black text-white/40 hover:text-[#DAA520] transition-colors">Album</button>
+        <button onclick="sortTable(4)" class="col-span-1 text-center text-[10px] uppercase tracking-[0.2em] font-black text-white/40 hover:text-[#DAA520] transition-colors">Year</button>
+        <button onclick="sortTable(5)" class="col-span-1 text-center text-[10px] uppercase tracking-[0.2em] font-black text-white/40 hover:text-[#DAA520] transition-colors">Perf</button>
+        <button onclick="sortTable(6)" class="col-span-1 text-center text-[10px] uppercase tracking-[0.2em] font-black text-white/40 hover:text-[#DAA520] transition-colors">Prod</button>
+        <button onclick="sortTable(7)" class="col-span-1 text-center text-[10px] uppercase tracking-[0.2em] font-black text-white/40 hover:text-[#DAA520] transition-colors">Dance</button>
+        <button onclick="sortTable(8)" class="col-span-1 text-right text-[10px] uppercase tracking-[0.2em] font-black text-white/40 hover:text-[#DAA520] transition-colors">Mojo</button>
+    </div>
+
+    
+    <div id="archiveList" class="space-y-2">
+        
+        
+        
+        
+        
+
+        <a href="/reviews/Trombone_shorty/" class="archive-row glass-card grid grid-cols-12 gap-4 px-8 py-4 items-center group hover:border-[#DAA520]/30 transition-all duration-300">
+            
+            <div class="col-span-1 aspect-square overflow-hidden rounded-sm border border-white/10">
+                <img src="/assets/img/saythattosaythis.jpg" alt="Say That to Say This" class="w-full h-full object-cover">
             </div>
-        </div>
 
-        
-        <div class="hidden md:flex md:w-7/12 lg:w-8/12 h-full items-center justify-center">
-            <div id="preview-container" class="glass-card w-full max-w-2xl p-10 flex gap-10 items-center relative overflow-hidden transition-all duration-500 opacity-0 transform translate-y-4">
-                
-                
-                <div class="w-1/2 aspect-square relative z-10">
-                    <img id="preview-art" src="" alt="" class="w-full h-full object-cover shadow-2xl border border-white/10">
-                </div>
-
-                
-                <div class="w-1/2 space-y-6 relative z-10">
-                    <div>
-                        <h3 id="preview-artist" class="text-[10px] uppercase tracking-[0.3em] text-[#DAA520] font-black"></h3>
-                        <h2 id="preview-album" class="text-3xl font-black text-white leading-tight uppercase tracking-tighter"></h2>
-                    </div>
-
-                    <div class="space-y-3 py-6 border-y border-white/5">
-                        <div class="flex justify-between items-center text-[10px] uppercase tracking-widest text-white/40">
-                            <span>Performance</span>
-                            <span id="preview-s1" class="text-white font-bold"></span>
-                        </div>
-                        <div class="flex justify-between items-center text-[10px] uppercase tracking-widest text-white/40">
-                            <span>Production</span>
-                            <span id="preview-s2" class="text-white font-bold"></span>
-                        </div>
-                        <div class="flex justify-between items-center text-[10px] uppercase tracking-widest text-white/40">
-                            <span>Danceability</span>
-                            <span id="preview-s3" class="text-white font-bold"></span>
-                        </div>
-                    </div>
-
-                    <div class="flex items-center justify-between pt-4">
-                        <div class="text-center">
-                            <span id="preview-mojo" class="text-5xl font-black italic text-white leading-none"></span>
-                            <p class="text-[8px] uppercase tracking-[0.3em] text-white/30 font-bold mt-1">Mojo Rating</p>
-                        </div>
-                        <a id="preview-link" href="" class="px-8 py-3 border border-[#DAA520] text-[#DAA520] text-[10px] font-bold uppercase tracking-[0.2em] hover:bg-[#DAA520] hover:text-black transition-all">
-                            Read Review
-                        </a>
-                    </div>
-                </div>
-                
-                
-                <div id="preview-bg" class="absolute inset-0 opacity-10 blur-3xl scale-150 -z-0"></div>
+            <div class="col-span-3 font-bold text-white group-hover:text-[#DAA520] transition-colors truncate">
+                Trombone Shorty
             </div>
             
-            
-            <div id="preview-empty" class="text-center space-y-4">
-                <div class="w-16 h-[1px] bg-white/10 mx-auto"></div>
-                <p class="text-[10px] uppercase tracking-[0.5em] text-white/20">Select a record to preview</p>
-                <div class="w-16 h-[1px] bg-white/10 mx-auto"></div>
+            <div class="col-span-3 text-white/60 text-sm truncate">
+                Say That to Say This
             </div>
-        </div>
 
+            <div class="col-span-1 text-center text-white/40 font-mono text-xs">
+                2013
+            </div>
+
+            <div class="col-span-1 text-center text-[#DAA520]/60 font-bold group-hover:text-[#DAA520]">
+                95
+            </div>
+
+            <div class="col-span-1 text-center text-[#DAA520]/60 font-bold group-hover:text-[#DAA520]">
+                85
+            </div>
+
+            <div class="col-span-1 text-center text-[#DAA520]/60 font-bold group-hover:text-[#DAA520]">
+                85
+            </div>
+
+            <div class="col-span-1 text-right italic font-black text-[#DAA520] text-xl">
+                88%
+            </div>
+        </a>
+        
+        
+        
+        
+        
+
+        <a href="/reviews/black_joe_lewis/" class="archive-row glass-card grid grid-cols-12 gap-4 px-8 py-4 items-center group hover:border-[#DAA520]/30 transition-all duration-300">
+            
+            <div class="col-span-1 aspect-square overflow-hidden rounded-sm border border-white/10">
+                <img src="/assets/img/black_joe_lewis.jpg" alt="Electric Slave" class="w-full h-full object-cover">
+            </div>
+
+            <div class="col-span-3 font-bold text-white group-hover:text-[#DAA520] transition-colors truncate">
+                Black Joe Lewis &amp; The Honeybears
+            </div>
+            
+            <div class="col-span-3 text-white/60 text-sm truncate">
+                Electric Slave
+            </div>
+
+            <div class="col-span-1 text-center text-white/40 font-mono text-xs">
+                2013
+            </div>
+
+            <div class="col-span-1 text-center text-[#DAA520]/60 font-bold group-hover:text-[#DAA520]">
+                70
+            </div>
+
+            <div class="col-span-1 text-center text-[#DAA520]/60 font-bold group-hover:text-[#DAA520]">
+                85
+            </div>
+
+            <div class="col-span-1 text-center text-[#DAA520]/60 font-bold group-hover:text-[#DAA520]">
+                80
+            </div>
+
+            <div class="col-span-1 text-right italic font-black text-[#DAA520] text-xl">
+                78%
+            </div>
+        </a>
+        
+        
+        
+        
+        
+
+        <a href="/reviews/fight-for-my-soul/" class="archive-row glass-card grid grid-cols-12 gap-4 px-8 py-4 items-center group hover:border-[#DAA520]/30 transition-all duration-300">
+            
+            <div class="col-span-1 aspect-square overflow-hidden rounded-sm border border-white/10">
+                <img src="/assets/img/ffys.jpg" alt="Fight For My Soul" class="w-full h-full object-cover">
+            </div>
+
+            <div class="col-span-3 font-bold text-white group-hover:text-[#DAA520] transition-colors truncate">
+                Jonny Lang
+            </div>
+            
+            <div class="col-span-3 text-white/60 text-sm truncate">
+                Fight For My Soul
+            </div>
+
+            <div class="col-span-1 text-center text-white/40 font-mono text-xs">
+                2013
+            </div>
+
+            <div class="col-span-1 text-center text-[#DAA520]/60 font-bold group-hover:text-[#DAA520]">
+                90
+            </div>
+
+            <div class="col-span-1 text-center text-[#DAA520]/60 font-bold group-hover:text-[#DAA520]">
+                85
+            </div>
+
+            <div class="col-span-1 text-center text-[#DAA520]/60 font-bold group-hover:text-[#DAA520]">
+                35
+            </div>
+
+            <div class="col-span-1 text-right italic font-black text-[#DAA520] text-xl">
+                70%
+            </div>
+        </a>
+        
+        
+        
+        
+        
+
+        <a href="/reviews/hornets-nest/" class="archive-row glass-card grid grid-cols-12 gap-4 px-8 py-4 items-center group hover:border-[#DAA520]/30 transition-all duration-300">
+            
+            <div class="col-span-1 aspect-square overflow-hidden rounded-sm border border-white/10">
+                <img src="/assets/img/hornetsnest.jpg" alt="Hornet&#39;s Nest" class="w-full h-full object-cover">
+            </div>
+
+            <div class="col-span-3 font-bold text-white group-hover:text-[#DAA520] transition-colors truncate">
+                Joe Louis Walker
+            </div>
+            
+            <div class="col-span-3 text-white/60 text-sm truncate">
+                Hornet&#39;s Nest
+            </div>
+
+            <div class="col-span-1 text-center text-white/40 font-mono text-xs">
+                2014
+            </div>
+
+            <div class="col-span-1 text-center text-[#DAA520]/60 font-bold group-hover:text-[#DAA520]">
+                80
+            </div>
+
+            <div class="col-span-1 text-center text-[#DAA520]/60 font-bold group-hover:text-[#DAA520]">
+                80
+            </div>
+
+            <div class="col-span-1 text-center text-[#DAA520]/60 font-bold group-hover:text-[#DAA520]">
+                80
+            </div>
+
+            <div class="col-span-1 text-right italic font-black text-[#DAA520] text-xl">
+                80%
+            </div>
+        </a>
+        
+        
+        
+        
+        
+
+        <a href="/reviews/monophonics/" class="archive-row glass-card grid grid-cols-12 gap-4 px-8 py-4 items-center group hover:border-[#DAA520]/30 transition-all duration-300">
+            
+            <div class="col-span-1 aspect-square overflow-hidden rounded-sm border border-white/10">
+                <img src="/assets/img/itsonlyus.jpg" alt="It&#39;s Only Us" class="w-full h-full object-cover">
+            </div>
+
+            <div class="col-span-3 font-bold text-white group-hover:text-[#DAA520] transition-colors truncate">
+                The Monophonics
+            </div>
+            
+            <div class="col-span-3 text-white/60 text-sm truncate">
+                It&#39;s Only Us
+            </div>
+
+            <div class="col-span-1 text-center text-white/40 font-mono text-xs">
+                2020
+            </div>
+
+            <div class="col-span-1 text-center text-[#DAA520]/60 font-bold group-hover:text-[#DAA520]">
+                85
+            </div>
+
+            <div class="col-span-1 text-center text-[#DAA520]/60 font-bold group-hover:text-[#DAA520]">
+                90
+            </div>
+
+            <div class="col-span-1 text-center text-[#DAA520]/60 font-bold group-hover:text-[#DAA520]">
+                85
+            </div>
+
+            <div class="col-span-1 text-right italic font-black text-[#DAA520] text-xl">
+                87%
+            </div>
+        </a>
+        
+        
+        
+        
+        
+
+        <a href="/reviews/neal-francis/" class="archive-row glass-card grid grid-cols-12 gap-4 px-8 py-4 items-center group hover:border-[#DAA520]/30 transition-all duration-300">
+            
+            <div class="col-span-1 aspect-square overflow-hidden rounded-sm border border-white/10">
+                <img src="/assets/img/nfchanges.jpg" alt="Changes" class="w-full h-full object-cover">
+            </div>
+
+            <div class="col-span-3 font-bold text-white group-hover:text-[#DAA520] transition-colors truncate">
+                Neal Francis
+            </div>
+            
+            <div class="col-span-3 text-white/60 text-sm truncate">
+                Changes
+            </div>
+
+            <div class="col-span-1 text-center text-white/40 font-mono text-xs">
+                2019
+            </div>
+
+            <div class="col-span-1 text-center text-[#DAA520]/60 font-bold group-hover:text-[#DAA520]">
+                95
+            </div>
+
+            <div class="col-span-1 text-center text-[#DAA520]/60 font-bold group-hover:text-[#DAA520]">
+                90
+            </div>
+
+            <div class="col-span-1 text-center text-[#DAA520]/60 font-bold group-hover:text-[#DAA520]">
+                100
+            </div>
+
+            <div class="col-span-1 text-right italic font-black text-[#DAA520] text-xl">
+                95%
+            </div>
+        </a>
+        
+        
+        
+        
+        
+
+        <a href="/reviews/no-show-ponies/" class="archive-row glass-card grid grid-cols-12 gap-4 px-8 py-4 items-center group hover:border-[#DAA520]/30 transition-all duration-300">
+            
+            <div class="col-span-1 aspect-square overflow-hidden rounded-sm border border-white/10">
+                <img src="/assets/img/noshowponies.jpg" alt="No Show Ponies" class="w-full h-full object-cover">
+            </div>
+
+            <div class="col-span-3 font-bold text-white group-hover:text-[#DAA520] transition-colors truncate">
+                No Show Ponies
+            </div>
+            
+            <div class="col-span-3 text-white/60 text-sm truncate">
+                No Show Ponies
+            </div>
+
+            <div class="col-span-1 text-center text-white/40 font-mono text-xs">
+                2013
+            </div>
+
+            <div class="col-span-1 text-center text-[#DAA520]/60 font-bold group-hover:text-[#DAA520]">
+                85
+            </div>
+
+            <div class="col-span-1 text-center text-[#DAA520]/60 font-bold group-hover:text-[#DAA520]">
+                75
+            </div>
+
+            <div class="col-span-1 text-center text-[#DAA520]/60 font-bold group-hover:text-[#DAA520]">
+                50
+            </div>
+
+            <div class="col-span-1 text-right italic font-black text-[#DAA520] text-xl">
+                70%
+            </div>
+        </a>
+        
+        
+        
+        
+        
+
+        <a href="/reviews/sharon-jones/" class="archive-row glass-card grid grid-cols-12 gap-4 px-8 py-4 items-center group hover:border-[#DAA520]/30 transition-all duration-300">
+            
+            <div class="col-span-1 aspect-square overflow-hidden rounded-sm border border-white/10">
+                <img src="/assets/img/gtpwtw.jpg" alt="Give the People What They Want" class="w-full h-full object-cover">
+            </div>
+
+            <div class="col-span-3 font-bold text-white group-hover:text-[#DAA520] transition-colors truncate">
+                Sharon Jones &amp; The Dap-Kings
+            </div>
+            
+            <div class="col-span-3 text-white/60 text-sm truncate">
+                Give the People What They Want
+            </div>
+
+            <div class="col-span-1 text-center text-white/40 font-mono text-xs">
+                2014
+            </div>
+
+            <div class="col-span-1 text-center text-[#DAA520]/60 font-bold group-hover:text-[#DAA520]">
+                90
+            </div>
+
+            <div class="col-span-1 text-center text-[#DAA520]/60 font-bold group-hover:text-[#DAA520]">
+                90
+            </div>
+
+            <div class="col-span-1 text-center text-[#DAA520]/60 font-bold group-hover:text-[#DAA520]">
+                95
+            </div>
+
+            <div class="col-span-1 text-right italic font-black text-[#DAA520] text-xl">
+                92%
+            </div>
+        </a>
+        
+        
+        
+        
+        
+
+        <a href="/reviews/the-bamboos/" class="archive-row glass-card grid grid-cols-12 gap-4 px-8 py-4 items-center group hover:border-[#DAA520]/30 transition-all duration-300">
+            
+            <div class="col-span-1 aspect-square overflow-hidden rounded-sm border border-white/10">
+                <img src="/assets/img/feveritr.jpg" alt="Medicine Man" class="w-full h-full object-cover">
+            </div>
+
+            <div class="col-span-3 font-bold text-white group-hover:text-[#DAA520] transition-colors truncate">
+                The Bamboos
+            </div>
+            
+            <div class="col-span-3 text-white/60 text-sm truncate">
+                Medicine Man
+            </div>
+
+            <div class="col-span-1 text-center text-white/40 font-mono text-xs">
+                2012
+            </div>
+
+            <div class="col-span-1 text-center text-[#DAA520]/60 font-bold group-hover:text-[#DAA520]">
+                95
+            </div>
+
+            <div class="col-span-1 text-center text-[#DAA520]/60 font-bold group-hover:text-[#DAA520]">
+                95
+            </div>
+
+            <div class="col-span-1 text-center text-[#DAA520]/60 font-bold group-hover:text-[#DAA520]">
+                100
+            </div>
+
+            <div class="col-span-1 text-right italic font-black text-[#DAA520] text-xl">
+                97%
+            </div>
+        </a>
+        
+        
+        
+        
+        
+
+        <a href="/reviews/the-nightowls/" class="archive-row glass-card grid grid-cols-12 gap-4 px-8 py-4 items-center group hover:border-[#DAA520]/30 transition-all duration-300">
+            
+            <div class="col-span-1 aspect-square overflow-hidden rounded-sm border border-white/10">
+                <img src="/assets/img/goodasgold.jpg" alt="Good As Gold" class="w-full h-full object-cover">
+            </div>
+
+            <div class="col-span-3 font-bold text-white group-hover:text-[#DAA520] transition-colors truncate">
+                The Nightowls
+            </div>
+            
+            <div class="col-span-3 text-white/60 text-sm truncate">
+                Good As Gold
+            </div>
+
+            <div class="col-span-1 text-center text-white/40 font-mono text-xs">
+                2015
+            </div>
+
+            <div class="col-span-1 text-center text-[#DAA520]/60 font-bold group-hover:text-[#DAA520]">
+                90
+            </div>
+
+            <div class="col-span-1 text-center text-[#DAA520]/60 font-bold group-hover:text-[#DAA520]">
+                85
+            </div>
+
+            <div class="col-span-1 text-center text-[#DAA520]/60 font-bold group-hover:text-[#DAA520]">
+                100
+            </div>
+
+            <div class="col-span-1 text-right italic font-black text-[#DAA520] text-xl">
+                92%
+            </div>
+        </a>
+        
+        
+        
+        
+        
+
+        <a href="/reviews/tommy-castro/" class="archive-row glass-card grid grid-cols-12 gap-4 px-8 py-4 items-center group hover:border-[#DAA520]/30 transition-all duration-300">
+            
+            <div class="col-span-1 aspect-square overflow-hidden rounded-sm border border-white/10">
+                <img src="/assets/img/tdyk.jpg" alt="The Devil You Know" class="w-full h-full object-cover">
+            </div>
+
+            <div class="col-span-3 font-bold text-white group-hover:text-[#DAA520] transition-colors truncate">
+                Tommy Castro
+            </div>
+            
+            <div class="col-span-3 text-white/60 text-sm truncate">
+                The Devil You Know
+            </div>
+
+            <div class="col-span-1 text-center text-white/40 font-mono text-xs">
+                2014
+            </div>
+
+            <div class="col-span-1 text-center text-[#DAA520]/60 font-bold group-hover:text-[#DAA520]">
+                85
+            </div>
+
+            <div class="col-span-1 text-center text-[#DAA520]/60 font-bold group-hover:text-[#DAA520]">
+                85
+            </div>
+
+            <div class="col-span-1 text-center text-[#DAA520]/60 font-bold group-hover:text-[#DAA520]">
+                80
+            </div>
+
+            <div class="col-span-1 text-right italic font-black text-[#DAA520] text-xl">
+                83%
+            </div>
+        </a>
+        
+        
+        
+        
+        
+
+        <a href="/reviews/voo-davis/" class="archive-row glass-card grid grid-cols-12 gap-4 px-8 py-4 items-center group hover:border-[#DAA520]/30 transition-all duration-300">
+            
+            <div class="col-span-1 aspect-square overflow-hidden rounded-sm border border-white/10">
+                <img src="/assets/img/voodavis.jpg" alt="Vicious Things" class="w-full h-full object-cover">
+            </div>
+
+            <div class="col-span-3 font-bold text-white group-hover:text-[#DAA520] transition-colors truncate">
+                Voo Davis
+            </div>
+            
+            <div class="col-span-3 text-white/60 text-sm truncate">
+                Vicious Things
+            </div>
+
+            <div class="col-span-1 text-center text-white/40 font-mono text-xs">
+                2024
+            </div>
+
+            <div class="col-span-1 text-center text-[#DAA520]/60 font-bold group-hover:text-[#DAA520]">
+                95
+            </div>
+
+            <div class="col-span-1 text-center text-[#DAA520]/60 font-bold group-hover:text-[#DAA520]">
+                90
+            </div>
+
+            <div class="col-span-1 text-center text-[#DAA520]/60 font-bold group-hover:text-[#DAA520]">
+                75
+            </div>
+
+            <div class="col-span-1 text-right italic font-black text-[#DAA520] text-xl">
+                87%
+            </div>
+        </a>
+        
+        
+        
+        
+        
+
+        <a href="/reviews/wily-bo-walker/" class="archive-row glass-card grid grid-cols-12 gap-4 px-8 py-4 items-center group hover:border-[#DAA520]/30 transition-all duration-300">
+            
+            <div class="col-span-1 aspect-square overflow-hidden rounded-sm border border-white/10">
+                <img src="/assets/img/wilybo.jpg" alt="Moonshine Boogie" class="w-full h-full object-cover">
+            </div>
+
+            <div class="col-span-3 font-bold text-white group-hover:text-[#DAA520] transition-colors truncate">
+                Wily Bo Walker &amp; The Danny Flam Big Band
+            </div>
+            
+            <div class="col-span-3 text-white/60 text-sm truncate">
+                Moonshine Boogie
+            </div>
+
+            <div class="col-span-1 text-center text-white/40 font-mono text-xs">
+                2015
+            </div>
+
+            <div class="col-span-1 text-center text-[#DAA520]/60 font-bold group-hover:text-[#DAA520]">
+                0
+            </div>
+
+            <div class="col-span-1 text-center text-[#DAA520]/60 font-bold group-hover:text-[#DAA520]">
+                0
+            </div>
+
+            <div class="col-span-1 text-center text-[#DAA520]/60 font-bold group-hover:text-[#DAA520]">
+                0
+            </div>
+
+            <div class="col-span-1 text-right italic font-black text-[#DAA520] text-xl">
+                0%
+            </div>
+        </a>
+        
+        
+        
+        
+        
+
+        <a href="/reviews/soul-surfers/" class="archive-row glass-card grid grid-cols-12 gap-4 px-8 py-4 items-center group hover:border-[#DAA520]/30 transition-all duration-300">
+            
+            <div class="col-span-1 aspect-square overflow-hidden rounded-sm border border-white/10">
+                <img src="/assets/img/soulsurfers.jpg" alt="Soul Rock!" class="w-full h-full object-cover">
+            </div>
+
+            <div class="col-span-3 font-bold text-white group-hover:text-[#DAA520] transition-colors truncate">
+                The Soul Surfers
+            </div>
+            
+            <div class="col-span-3 text-white/60 text-sm truncate">
+                Soul Rock!
+            </div>
+
+            <div class="col-span-1 text-center text-white/40 font-mono text-xs">
+                2015
+            </div>
+
+            <div class="col-span-1 text-center text-[#DAA520]/60 font-bold group-hover:text-[#DAA520]">
+                0
+            </div>
+
+            <div class="col-span-1 text-center text-[#DAA520]/60 font-bold group-hover:text-[#DAA520]">
+                0
+            </div>
+
+            <div class="col-span-1 text-center text-[#DAA520]/60 font-bold group-hover:text-[#DAA520]">
+                0
+            </div>
+
+            <div class="col-span-1 text-right italic font-black text-[#DAA520] text-xl">
+                0%
+            </div>
+        </a>
+        
+        
+        
+        
+        
+
+        <a href="/reviews/james-hunter-six/" class="archive-row glass-card grid grid-cols-12 gap-4 px-8 py-4 items-center group hover:border-[#DAA520]/30 transition-all duration-300">
+            
+            <div class="col-span-1 aspect-square overflow-hidden rounded-sm border border-white/10">
+                <img src="/assets/img/nickoftime.jpg" alt="Nick Of Time" class="w-full h-full object-cover">
+            </div>
+
+            <div class="col-span-3 font-bold text-white group-hover:text-[#DAA520] transition-colors truncate">
+                The James Hunter Six
+            </div>
+            
+            <div class="col-span-3 text-white/60 text-sm truncate">
+                Nick Of Time
+            </div>
+
+            <div class="col-span-1 text-center text-white/40 font-mono text-xs">
+                2020
+            </div>
+
+            <div class="col-span-1 text-center text-[#DAA520]/60 font-bold group-hover:text-[#DAA520]">
+                0
+            </div>
+
+            <div class="col-span-1 text-center text-[#DAA520]/60 font-bold group-hover:text-[#DAA520]">
+                0
+            </div>
+
+            <div class="col-span-1 text-center text-[#DAA520]/60 font-bold group-hover:text-[#DAA520]">
+                0
+            </div>
+
+            <div class="col-span-1 text-right italic font-black text-[#DAA520] text-xl">
+                0%
+            </div>
+        </a>
+        
+        
+        
+        
+        
+
+        <a href="/reviews/gatemouth-brown/" class="archive-row glass-card grid grid-cols-12 gap-4 px-8 py-4 items-center group hover:border-[#DAA520]/30 transition-all duration-300">
+            
+            <div class="col-span-1 aspect-square overflow-hidden rounded-sm border border-white/10">
+                <img src="/assets/img/gatemouth.jpg" alt="San Antonio Ballbuster" class="w-full h-full object-cover">
+            </div>
+
+            <div class="col-span-3 font-bold text-white group-hover:text-[#DAA520] transition-colors truncate">
+                Clarence &quot;Gatemouth&quot; Brown
+            </div>
+            
+            <div class="col-span-3 text-white/60 text-sm truncate">
+                San Antonio Ballbuster
+            </div>
+
+            <div class="col-span-1 text-center text-white/40 font-mono text-xs">
+                1960
+            </div>
+
+            <div class="col-span-1 text-center text-[#DAA520]/60 font-bold group-hover:text-[#DAA520]">
+                0
+            </div>
+
+            <div class="col-span-1 text-center text-[#DAA520]/60 font-bold group-hover:text-[#DAA520]">
+                0
+            </div>
+
+            <div class="col-span-1 text-center text-[#DAA520]/60 font-bold group-hover:text-[#DAA520]">
+                0
+            </div>
+
+            <div class="col-span-1 text-right italic font-black text-[#DAA520] text-xl">
+                0%
+            </div>
+        </a>
+        
     </div>
 </div>
 
-<style>
-    .custom-scrollbar::-webkit-scrollbar { width: 2px; }
-    .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
-    .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(255, 215, 0, 0.2); }
-    .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #DAA520; }
-    
-    .glass-card {
-        background: rgba(255, 255, 255, 0.02);
-        backdrop-filter: blur(40px);
-        -webkit-backdrop-filter: blur(40px);
-        border: 1px solid rgba(255, 255, 255, 0.08);
-    }
-</style>
-
 <script>
-function updatePreview(artist, album, image, mojo, s1, s2, s3, url) {
-    const container = document.getElementById('preview-container');
-    const empty = document.getElementById('preview-empty');
+function sortTable(columnIndex) {
+    const list = document.getElementById('archiveList');
+    const rows = Array.from(list.getElementsByClassName('archive-row'));
     
-    // Hide empty state
-    empty.style.display = 'none';
-    
-    // Update content
-    document.getElementById('preview-artist').innerText = artist;
-    document.getElementById('preview-album').innerText = album;
-    document.getElementById('preview-art').src = '/assets/img/' + image;
-    document.getElementById('preview-mojo').innerText = mojo + '%';
-    document.getElementById('preview-s1').innerText = s1;
-    document.getElementById('preview-s2').innerText = s2;
-    document.getElementById('preview-s3').innerText = s3;
-    document.getElementById('preview-link').href = url;
-    document.getElementById('preview-bg').style.backgroundImage = 'url(/assets/img/' + image + ')';
-    document.getElementById('preview-bg').style.backgroundSize = 'cover';
+    const sortedRows = rows.sort((a, b) => {
+        const aVal = a.children[columnIndex - 1].innerText.trim();
+        const bVal = b.children[columnIndex - 1].innerText.trim();
+        
+        if (!isNaN(aVal) && !isNaN(bVal)) {
+            return parseFloat(bVal) - parseFloat(aVal);
+        }
+        return aVal.localeCompare(bVal);
+    });
 
-    // Show container with animation
-    container.classList.remove('opacity-0', 'translate-y-4');
-    container.classList.add('opacity-100', 'translate-y-0');
+    list.innerHTML = '';
+    sortedRows.forEach(row => list.appendChild(row));
 }
 </script>
+
+<style>
+    .glass-card {
+        background: rgba(255, 255, 255, 0.03);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        border-radius: 4px;
+        display: grid;
+        text-decoration: none;
+    }
+    .archive-row:hover {
+        background: rgba(218, 165, 32, 0.05);
+        transform: translateX(5px);
+    }
+</style>
         </main>
 
-        <footer class="py-20 text-center border-t border-white/5">
-            <p class="text-[9px] uppercase tracking-[0.4em] text-white/20">
-                &copy; 2026 MojoLists | High-Fidelity Soul & Funk
-            </p>
+        <footer class="border-t border-white border-opacity-10 py-12 mt-20">
+            <div class="max-w-7xl mx-auto px-6 text-center">
+                <p class="logo-mojo text-sm opacity-50">© 2026 MOJOLISTS</p>
+            </div>
         </footer>
     </div>
 </body>
