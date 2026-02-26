@@ -694,9 +694,13 @@ function sortTable(columnIndex) {
     const rows = Array.from(list.getElementsByClassName('archive-row'));
     
     const sortedRows = rows.sort((a, b) => {
-        const aVal = a.children[columnIndex - 1].innerText.trim();
-        const bVal = b.children[columnIndex - 1].innerText.trim();
+        let aVal = a.children[columnIndex - 1].innerText.trim();
+        let bVal = b.children[columnIndex - 1].innerText.trim();
         
+        // Clean numeric strings for comparison
+        if (aVal.includes('%')) aVal = aVal.replace('%', '');
+        if (bVal.includes('%')) bVal = bVal.replace('%', '');
+
         if (!isNaN(aVal) && !isNaN(bVal)) {
             return parseFloat(bVal) - parseFloat(aVal);
         }
