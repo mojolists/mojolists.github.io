@@ -5,7 +5,7 @@ artist: "Neal Francis"
 album: "Changes"
 label: "Karma Chief Records"
 year: "2019"
-image: "neal-francis.jpg"
+image: "nfchanges.jpg"
 score1: 95
 score2: 90
 score3: 100
