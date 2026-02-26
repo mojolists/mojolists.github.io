@@ -2,13 +2,15 @@
 layout: review.njk
 title: "Trombone Shorty"
 artist: "Trombone Shorty"
-album: "Say That To Say This"
-label: "Verve Records"
+album: "Say That to Say This"
+label: "Verve Forecast"
 year: "2013"
 image: "saythattosaythis.jpg"
-score: 90
+score1: 95
+score2: 85
+score3: 85
 tags: reviews
-date: 2026-02-22
+date: 2026-02-26
 ---
 
 The story of Troy ‘Trombone Shorty’ Andrews career, which started at the age of four, when he and his chosen instrument, which was twice as tall as he, stood on stage with Bo Diddly. The crowd and Mr. Diddley were blown away all those years ago and Trombone Shorty has never looked back. NOLA has never forgotten this treasure and Trombone Shorty has never forgotten from whence he came.

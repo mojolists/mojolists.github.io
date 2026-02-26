@@ -1,14 +1,16 @@
 ---
 layout: review.njk
 title: "Black Joe Lewis"
-artist: "Black Joe Lewis"
+artist: "Black Joe Lewis & The Honeybears"
 album: "Electric Slave"
 label: "Vagrant Records"
 year: "2013"
 image: "black_joe_lewis.jpg"
-score: 88
+score1: 70
+score2: 85
+score3: 80
 tags: reviews
-date: 2017-01-10
+date: 2026-02-26
 ---
 
 To hear Black Joe Lewis recorded is to strap yourself into an emotion fueled ride through his own brand of blues. To fully appreciate Lewis, however, you have to see him live, where the energy of both Lewis and his band, once known as The Honeybears, power the show on raw emotion. Whatever surrounds their live shows is completely lost to those on stage as they pour every ounce of themselves into the music and the happiness of doing so shows on their faces.

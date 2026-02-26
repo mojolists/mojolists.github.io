@@ -1,127 +1,105 @@
 ---
-permalink: /reviews/index.html
-layout: false
+layout: base.njk
+title: "Archive"
 ---
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Archive | MojoLists</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        body { 
-            font-family: 'Inter', sans-serif; 
-            background-color: #000000; 
-            color: #ffffff;
-            -webkit-font-smoothing: antialiased;
-        }
-        .logo-font { font-family: 'Cormorant Garamond', serif; font-weight: 300; }
-        .logo-red { color: #e63946; font-weight: 400; }
+
+<div class="max-w-7xl mx-auto px-6 py-20 relative z-10">
+    <header class="mb-12">
+        <h1 class="text-5xl font-black uppercase tracking-tighter text-white mb-2">Collection <span class="text-[#FFD700]">Archive</span></h1>
+        <p class="text-white/40 uppercase tracking-[0.3em] text-[10px] font-bold">Sortable by performance, production, and mojo</p>
+    </header>
+
+    {# Sorting Headers #}
+    <div class="grid grid-cols-12 gap-4 px-8 mb-4 items-center">
+        <button onclick="sortTable(1)" class="col-span-3 text-left text-[10px] uppercase tracking-[0.2em] font-black text-white/40 hover:text-[#FFD700] transition-colors">Artist</button>
+        <button onclick="sortTable(2)" class="col-span-3 text-left text-[10px] uppercase tracking-[0.2em] font-black text-white/40 hover:text-[#FFD700] transition-colors">Album</button>
+        <button onclick="sortTable(3)" class="col-span-1 text-center text-[10px] uppercase tracking-[0.2em] font-black text-white/40 hover:text-[#FFD700] transition-colors">Year</button>
+        <button onclick="sortTable(4)" class="col-span-1 text-center text-[10px] uppercase tracking-[0.2em] font-black text-white/40 hover:text-[#FFD700] transition-colors">Perf</button>
+        <button onclick="sortTable(5)" class="col-span-1 text-center text-[10px] uppercase tracking-[0.2em] font-black text-white/40 hover:text-[#FFD700] transition-colors">Prod</button>
+        <button onclick="sortTable(6)" class="col-span-1 text-center text-[10px] uppercase tracking-[0.2em] font-black text-white/40 hover:text-[#FFD700] transition-colors">Dance</button>
+        <button onclick="sortTable(7)" class="col-span-2 text-right text-[10px] uppercase tracking-[0.2em] font-black text-white/40 hover:text-[#FFD700] transition-colors">Mojo %</button>
+    </div>
+
+    {# The Archive List #}
+    <div id="archiveList" class="space-y-2">
+        {% for review in collections.reviews | reverse %}
+        {% set s1 = review.data.score1 | default(0) %}
+        {% set s2 = review.data.score2 | default(0) %}
+        {% set s3 = review.data.score3 | default(0) %}
+        {% set avg = ((s1 + s2 + s3) / 3) | round %}
+
+        <a href="{{ review.url }}" class="archive-row glass-card grid grid-cols-12 gap-4 px-8 py-4 items-center group hover:border-[#FFD700]/30 transition-all duration-300">
+            {# Artist #}
+            <div class="col-span-3 font-bold text-white group-hover:text-[#FFD700] transition-colors">
+                {{ review.data.artist }}
+            </div>
+            
+            {# Album #}
+            <div class="col-span-3 text-white/60 text-sm">
+                {{ review.data.album }}
+            </div>
+
+            {# Year #}
+            <div class="col-span-1 text-center text-white/40 font-mono text-xs">
+                {{ review.data.year }}
+            </div>
+
+            {# Score 1 #}
+            <div class="col-span-1 text-center text-[#FFD700]/60 font-bold group-hover:text-[#FFD700]">
+                {{ s1 }}
+            </div>
+
+            {# Score 2 #}
+            <div class="col-span-1 text-center text-[#FFD700]/60 font-bold group-hover:text-[#FFD700]">
+                {{ s2 }}
+            </div>
+
+            {# Score 3 #}
+            <div class="col-span-1 text-center text-[#FFD700]/60 font-bold group-hover:text-[#FFD700]">
+                {{ s3 }}
+            </div>
+
+            {# Average Mojo #}
+            <div class="col-span-2 text-right italic font-black text-[#FFD700] text-xl">
+                {{ avg }}%
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+</div>
+
+<script>
+function sortTable(columnIndex) {
+    const list = document.getElementById('archiveList');
+    const rows = Array.from(list.getElementsByClassName('archive-row'));
+    
+    const sortedRows = rows.sort((a, b) => {
+        const aVal = a.children[columnIndex - 1].innerText.trim();
+        const bVal = b.children[columnIndex - 1].innerText.trim();
         
-        .glass-card {
-            background: rgba(255, 255, 255, 0.02);
-            backdrop-filter: blur(25px);
-            -webkit-backdrop-filter: blur(25px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            transition: all 0.3s ease;
+        // Check if numeric
+        if (!isNaN(aVal) && !isNaN(bVal)) {
+            return parseFloat(bVal) - parseFloat(aVal); // Sort numbers descending
         }
-        .glass-card:hover {
-            border-color: rgba(255, 255, 255, 0.2);
-            background: rgba(255, 255, 255, 0.04);
-        }
-    </style>
-</head>
-<body class="min-h-screen pb-20">
-    <nav class="border-b border-white border-opacity-10 px-6 py-8 mb-12">
-        <div class="max-w-7xl mx-auto flex justify-between items-center">
-            <a href="/" class="text-3xl uppercase tracking-tighter logo-font">
-                MOJO<span class="logo-red">LISTS</span>
-            </a>
-            <div class="hidden md:flex space-x-12 text-[10px] font-medium uppercase tracking-[0.3em] text-gray-500">
-                <a href="/reviews/" class="text-white">Archive</a>
-                <a href="/about" class="hover:text-white transition">About</a>
-            </div>
-        </div>
-    </nav>
+        return aVal.localeCompare(bVal); // Sort text ascending
+    });
 
-    <main class="max-w-7xl mx-auto px-6">
-        <header class="mb-16 flex flex-col md:flex-row md:items-end justify-between gap-8">
-            <div>
-                <span class="text-[10px] uppercase tracking-[0.4em] text-[#e63946] font-bold mb-2 block">Collection</span>
-                <h1 class="text-5xl font-semibold uppercase tracking-tighter text-white">The Archive</h1>
-            </div>
-         
-            <div class="max-w-xs w-full relative">
-                <input type="text" id="reviewSearch" 
-                       placeholder="Filter collection..." 
-                       class="w-full bg-white/5 border border-white/10 rounded-sm py-3 px-4 text-xs text-white focus:outline-none focus:border-[#DAA520] transition-colors italic">
-            </div>
-        </header>
+    list.innerHTML = '';
+    sortedRows.forEach(row => list.appendChild(row));
+}
+</script>
 
-        <div id="cardGrid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
-            {% for review in collections.reviews | reverse %}
-                {% set imgPath = review.data.image or review.data.img or review.data.coverImage or "" %}
-                <a href="{{ review.url }}" 
-                   class="review-card-item block group" 
-                   data-title="{{ review.data.album or review.data.title }}" 
-                   data-artist="{{ review.data.artist }}">
-                    <div class="glass-card p-4 rounded-sm h-full flex flex-col">
-                        <div class="aspect-square mb-4 overflow-hidden rounded-sm bg-white/5 border border-white/5">
-                            <img src="{% if '/assets/img/' in imgPath %}{{ imgPath }}{% else %}/assets/img/{{ imgPath }}{% endif %}" 
-                                 alt="{{ review.data.artist }}" 
-                                 class="w-full h-full object-cover opacity-70 group-hover:opacity-100 transition-all duration-500 group-hover:scale-105">
-                        </div>
-                        <div class="flex-grow">
-                            <h3 class="text-white font-semibold text-xs leading-tight mb-1 group-hover:text-[#e63946] transition-colors line-clamp-2 uppercase tracking-tight">
-                                {{ review.data.album or review.data.title }}
-                            </h3>
-                            <p class="text-[9px] uppercase tracking-wider text-white/40 font-medium">
-                                {{ review.data.artist }}
-                            </p>
-                        </div>
-          
-                        <div class="mt-4 pt-3 border-t border-white/5 flex justify-between items-center">
-                            <span class="text-white font-bold italic text-lg tracking-tighter">
-                                {{ review.data.score or review.data.mojoScore or 0 }}%
-                            </span>
-                        </div>
-                    </div>
-                </a>
-            {% endfor %}
-        </div>
-
-        <div id="noResults" class="hidden py-20 text-center">
-            <p class="text-white/30 italic text-xl">No matches found in the archive.</p>
-        </div>
-    </main>
-
-    <script>
-        const searchInput = document.getElementById('reviewSearch');
-        const cards = document.querySelectorAll('.review-card-item');
-        const grid = document.getElementById('cardGrid');
-        const noResults = document.getElementById('noResults');
-
-        searchInput.addEventListener('input', (e) => {
-            const term = e.target.value.toLowerCase();
-            let hasResults = false;
-
-            cards.forEach(card => {
-                const title = (card.getAttribute('data-title') || "").toLowerCase();
-                const artist = (card.getAttribute('data-artist') || "").toLowerCase();
-
-                if (title.includes(term) || artist.includes(term)) {
-                    card.style.display = 'block';
-                    hasResults = true;
-                } else {
-                    card.style.display = 'none';
-                }
-            });
-
-            noResults.classList.toggle('hidden', hasResults);
-            grid.classList.toggle('hidden', !hasResults);
-        });
-    </script>
-</body>
-</html>
+<style>
+    .glass-card {
+        background: rgba(255, 255, 255, 0.03);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        border-radius: 4px;
+        display: grid;
+        text-decoration: none;
+    }
+    .archive-row:hover {
+        background: rgba(255, 215, 0, 0.05);
+        transform: translateX(5px);
+    }
+</style>

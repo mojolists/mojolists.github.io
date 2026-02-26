@@ -5,12 +5,13 @@ artist: "Sharon Jones & The Dap-Kings"
 album: "Give the People What They Want"
 label: "Daptone Records"
 year: "2014"
-image: "sharonjones.jpg"
-score: 95
+image: "gtpwtw.jpg"
+score1: 90
+score2: 90
+score3: 95
 tags: reviews
-date: 2014-01-17
+date: 2026-02-26
 ---
-
 Waiting for my vinyl copy of Sharon Jones and The Dap-Kings, *Give the People What They Want*, reminded me of watching the last minute tick off the clock before the final bell range in fourth grade. I preordered the stereo, plain old black vinyl copy but Daptone, Sharon’s label, offered a blue vinyl version and a mono version that probably would have gotten my money if I had noticed it when I ordered.
 
 <p class="text-xl text-gray-200 italic leading-relaxed border-l-4 border-red-600 pl-6 py-2 my-8">
