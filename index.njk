@@ -15,72 +15,84 @@ layout: false
         .logo-font { font-family: 'Cormorant Garamond', serif; }
         .motto-font { font-family: 'Cormorant Garamond', serif; font-style: italic; }
         :root { --mojo-gold: #c5a059; --mojo-red: #ef4444; }
-        .nav-link { transition: all 0.3s ease; color: #94a3b8; position: relative; }
-        .nav-link:hover { color: white; }
-        .logo-mojo { font-family: 'Cormorant Garamond', serif; font-weight: 300; color: white; }
-        .logo-lists { font-family: 'Cormorant Garamond', serif; font-weight: 400; color: #e63946; }
-        .review-card {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        .nav-link { transition: all 0.3s ease; color: #94a3b8; position: relative; padding-bottom: 4px; }
+        .nav-link:hover { color: var(--mojo-gold) !important; }
+        .review-card { 
+            background-color: #161e2e; 
+            border: 1px solid #1e293b; 
+            transition: all 0.3s ease;
+            display: flex; 
+            flex-direction: column; 
+            height: 100%;
+            width: 100%;
         }
-        .review-card:hover {
-            transform: translateY(-8px);
-            background: rgba(255, 255, 255, 0.06);
-            border-color: rgba(255, 255, 255, 0.2);
-        }
-        .stat-value { color: #DAA520; font-family: 'Cormorant Garamond', serif; }
+        .card-link:hover .review-card { border-color: rgba(197, 160, 89, 0.4); }
+        .img-container { background-color: #0f172a; aspect-ratio: 1 / 1; overflow: hidden; border: 1px solid #1e293b; }
+        .card-img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+        .card-link:hover .card-img { transform: scale(1.05); }
+        .row-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.3em; color: var(--mojo-red); margin-bottom: 12px; display: block; text-align: left; }
+        .stat-value { color: var(--mojo-gold); font-family: 'Playfair Display', serif; }
     </style>
 </head>
-<body class="text-slate-200 selection:bg-red-500 selection:text-white">
-    <nav class="fixed top-0 left-0 w-full z-50 px-8 py-10 flex justify-between items-center bg-gradient-to-b from-[#0b1120] to-transparent">
-        <div class="logo-mojo text-3xl tracking-tighter uppercase">
-            MOJO<span class="logo-lists">LISTS</span>
+<body class="text-slate-400">
+    <header class="pt-16 pb-10 text-center bg-[#0b1120]">
+        <h1 class="logo-font text-9xl text-white font-light tracking-tight mb-2">Mojo<span class="text-[#ef4444]">Lists</span></h1>
+        
+        <div class="max-w-5xl mx-auto px-8">
+            <div class="flex items-center justify-center gap-6 mt-4">
+                <div class="h-[1px] w-12 bg-white/10"></div>
+                <p class="text-2xl motto-font tracking-wide">
+                    <span class="text-white/90">The Favored Home of Crate Diggers,</span>
+                    <span class="text-[#ef4444] ml-1">Vinyl Flippers and Music Lovers</span>
+                </p>
+                <div class="h-[1px] w-12 bg-white/10"></div>
+            </div>
         </div>
-        <div class="flex space-x-12 text-[10px] font-bold uppercase tracking-[0.3em]">
-            <a href="/" class="nav-link text-white">Home</a>
+
+        <nav class="flex justify-center gap-16 mt-12 text-[14px] font-medium tracking-[0.15em] uppercase">
             <a href="/archive/" class="nav-link">Archive</a>
             <a href="/about" class="nav-link">About</a>
-        </div>
-    </nav>
+        </nav>
+    </header>
 
-    <main class="relative pt-40 px-8 pb-20 max-w-7xl mx-auto">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
+    <main class="max-w-5xl mx-auto px-8 py-10">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-x-8 gap-y-16">
             
-            <div class="lg:col-span-8 space-y-32">
-                <section>
-                    <div class="flex items-center space-x-4 mb-12">
-                        <div class="h-[1px] w-12 bg-red-600"></div>
-                        <span class="text-[10px] uppercase tracking-[0.4em] font-bold text-red-500">Fresh Rotations</span>
+            {% for review in collections.reviews | limit(6) %}
+            <div class="max-w-[300px] mx-auto w-full">
+                {% if loop.index <= 3 %}
+                <span class="row-label">
+                    {% if loop.index == 1 %}Latest Review
+                    {% elif loop.index == 2 %}Most Popular
+                    {% else %}Explore{% endif %}
+                </span>
+                {% endif %}
+                <a href="{{ review.url }}" class="card-link block h-full">
+                    <article class="review-card p-6">
+                        <div class="img-container mb-6">
+                            <img src="/assets/img/{{ review.data.image or review.data.coverImage }}" class="card-img" alt="{{ review.data.artist }} - {{ review.data.album }}">
+                        </div>
+                        <h3 class="serif text-3xl text-white mb-1">{{ review.data.artist }}</h3>
+                        <p class="text-[10px] font-bold text-red-500 uppercase tracking-widest mb-4 italic">{{ review.data.album or review.data.title }}</p>
+                        <p class="text-sm leading-relaxed text-slate-300">{{ review.templateContent | striptags | truncate(100) }}</p>
+                    </article>
+                </a>
+            </div>
+            {% endfor %}
+
+            <div class="max-w-[300px] mx-auto w-full">
+                <article class="review-card p-8 bg-slate-900/40">
+                    <h3 class="serif text-2xl text-white mb-4">Listening Rig</h3>
+                    <div class="space-y-4 text-xs tracking-wide">
+                        <div><p class="text-slate-500 uppercase font-bold text-[9px] mb-1">Turntable</p><p class="text-white">Technics SL-1200MK7</p></div>
+                        <div><p class="text-slate-500 uppercase font-bold text-[9px] mb-1">Cartridge</p><p class="text-white">Ortofon 2M Blue</p></div>
+                        <div><p class="text-slate-500 uppercase font-bold text-[9px] mb-1">Pre-Amp</p><p class="text-white">Schiit Mani 2</p></div>
+                        <div><p class="text-slate-500 uppercase font-bold text-[9px] mb-1">Speakers</p><p class="text-white">Klipsch The Fives</p></div>
                     </div>
-                    
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                        {% for review in collections.reviews | limit(4) %}
-                        <a href="{{ review.url }}" class="group">
-                            <article class="review-card rounded-sm overflow-hidden flex flex-col h-full">
-                                <div class="aspect-square overflow-hidden relative">
-                                    <img src="/assets/img/{{ review.data.image }}" alt="{{ review.data.album }}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
-                                    <div class="absolute top-4 right-4 bg-black/80 backdrop-blur-md px-3 py-1 border border-white/10">
-                                        <span class="text-[10px] font-bold tracking-widest text-[#DAA520]">{{ review.data.year }}</span>
-                                    </div>
-                                </div>
-                                <div class="p-8 flex flex-col flex-grow">
-                                    <h3 class="text-[10px] uppercase tracking-[0.3em] text-slate-500 font-bold mb-2">{{ review.data.artist }}</h3>
-                                    <h2 class="serif text-2xl text-white group-hover:text-red-500 transition-colors duration-300 leading-tight">{{ review.data.album }}</h2>
-                                    <div class="mt-6 pt-6 border-t border-white/5 flex justify-between items-center">
-                                        <span class="text-[9px] uppercase tracking-widest text-slate-500">{{ review.data.label }}</span>
-                                        <span class="text-xs font-bold text-[#DAA520] italic">{{ ((review.data.score1 + review.data.score2 + review.data.score3) / 3) | round }}%</span>
-                                    </div>
-                                </div>
-                            </article>
-                        </a>
-                        {% endfor %}
-                    </div>
-                </section>
+                </article>
             </div>
 
-            <div class="lg:col-span-4 lg:sticky lg:top-40 space-y-12 max-w-[400px] mx-auto w-full">
+            <div class="max-w-[300px] mx-auto w-full">
                 <article class="review-card p-8">
                     <div class="grid grid-cols-2 gap-4">
                         <div>
@@ -103,7 +115,8 @@ layout: false
     <footer class="py-20 text-center border-t border-slate-900 mt-20">
         <p class="text-[11px] motto-font text-center">
             <span class="text-white/50">© 2026 MOJOLISTS |</span> 
-            <span class="text-white/80">The Favored Home of Crate Diggers</span>
+            <span class="text-white/80">The Favored Home of Crate Diggers,</span> 
+            <span class="text-[#ef4444]">Vinyl Flippers and Music Lovers</span>
         </p>
     </footer>
 </body>
