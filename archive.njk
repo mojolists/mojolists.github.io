@@ -5,11 +5,25 @@ permalink: /archive/
 ---
 
 <div class="max-w-7xl mx-auto px-6 py-20 relative z-10">
-    <header class="mb-16">
+    <header class="mb-12">
         <h1 class="text-6xl font-light uppercase tracking-tighter text-white logo-mojo">
             Archive
         </h1>
     </header>
+
+    {# Search Box #}
+    <div class="mb-12 max-w-md">
+        <div class="relative">
+            <input type="text" 
+                   id="archiveSearch" 
+                   onkeyup="filterTable()" 
+                   placeholder="Search artist or album..." 
+                   class="w-full bg-white/5 border border-white/10 rounded-sm px-4 py-3 text-white text-xs tracking-widest uppercase placeholder:text-white/20 focus:outline-none focus:border-[#DAA520]/50 transition-all font-medium">
+            <div class="absolute right-4 top-1/2 -translate-y-1/2 opacity-20">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            </div>
+        </div>
+    </div>
 
     {# Sorting Headers #}
     <div class="grid grid-cols-12 gap-4 px-6 mb-6 items-center border-b border-white/10 pb-4">
@@ -32,27 +46,22 @@ permalink: /archive/
         {% set avg = ((s1 + s2 + s3) / 3) | round %}
 
         <a href="{{ review.url }}" class="archive-row glass-card grid grid-cols-12 gap-4 px-6 py-3 items-center group hover:border-[#DAA520]/40 transition-all duration-500">
-            {# Album Art #}
             <div class="col-span-1 aspect-square overflow-hidden rounded-sm border border-white/10">
                 <img src="/assets/img/{{ review.data.image }}" alt="{{ review.data.album }}" class="w-full h-full object-cover">
             </div>
 
-            {# Artist #}
-            <div class="col-span-3 text-sm font-medium text-white group-hover:text-[#DAA520] transition-colors truncate tracking-tight">
+            <div class="col-span-3 text-sm font-medium text-white group-hover:text-[#DAA520] transition-colors truncate tracking-tight artist-cell">
                 {{ review.data.artist }}
             </div>
             
-            {# Album #}
-            <div class="col-span-3 text-white/60 text-xs italic font-light truncate">
+            <div class="col-span-3 text-white/60 text-xs italic font-light truncate album-cell">
                 {{ review.data.album }}
             </div>
 
-            {# Year #}
             <div class="col-span-1 text-center text-white/50 font-light text-[10px] tracking-widest">
                 {{ review.data.year }}
             </div>
 
-            {# Technical Scores #}
             <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white">
                 {{ s1 }}
             </div>
@@ -63,7 +72,6 @@ permalink: /archive/
                 {{ s3 }}
             </div>
 
-            {# Mojo Rating #}
             <div class="col-span-1 text-right italic font-light text-[#DAA520] text-lg logo-mojo">
                 {{ avg }}%
             </div>
@@ -73,38 +81,7 @@ permalink: /archive/
 </div>
 
 <script>
-function sortTable(columnIndex) {
-    const list = document.getElementById('archiveList');
-    const rows = Array.from(list.getElementsByClassName('archive-row'));
-    
-    const sortedRows = rows.sort((a, b) => {
-        let aVal = a.children[columnIndex - 1].innerText.trim();
-        let bVal = b.children[columnIndex - 1].innerText.trim();
-        
-        if (aVal.includes('%')) aVal = aVal.replace('%', '');
-        if (bVal.includes('%')) bVal = bVal.replace('%', '');
-
-        if (!isNaN(aVal) && !isNaN(bVal)) {
-            return parseFloat(bVal) - parseFloat(aVal);
-        }
-        return aVal.localeCompare(bVal);
-    });
-
-    list.innerHTML = '';
-    sortedRows.forEach(row => list.appendChild(row));
-}
-</script>
-
-<style>
-    .glass-card {
-        background: rgba(255, 255, 255, 0.02);
-        backdrop-filter: blur(10px);
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        border-radius: 2px;
-        text-decoration: none;
-    }
-    .archive-row:hover {
-        background: rgba(255, 255, 255, 0.05);
-        transform: scale(1.002);
-    }
-</style>
+function filterTable() {
+    const input = document.getElementById('archiveSearch');
+    const filter = input.value.toLowerCase();
+    const rows = document
