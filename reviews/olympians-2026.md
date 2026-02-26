@@ -5,7 +5,7 @@ artist: "The Olympians"
 album: "In Search of a Revival"
 label: "Daptone Records / Colemine Records"
 year: "2026"
-image: "olympians-revival.jpg"
+image: "olympians.jpg"
 score1: 95
 score2: 92
 score3: 95
