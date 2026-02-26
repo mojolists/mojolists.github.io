@@ -3,12 +3,14 @@ layout: review.njk
 title: "Neal Francis"
 artist: "Neal Francis"
 album: "Changes"
-label: "Karma Chief"
+label: "Karma Chief Records"
 year: "2019"
-image: "nfchanges.jpg"
-score: 100
+image: "neal-francis.jpg"
+score1: 95
+score2: 90
+score3: 100
 tags: reviews
-date: 2020-04-07
+date: 2026-02-26
 ---
 
 Over the last few years, I slowly stopped writing and reviewing. I let the site go down and kept my thoughts to myself. I couldn’t get over the hump, I just couldn’t fight off whatever demons held me back from what I love. Neal Francis’s new album “Changes” touched me, it was a hand reaching down into the murky depths of my malaise and giving me something I really wanted to share, something I wanted everyone to hear.
