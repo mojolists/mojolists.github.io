@@ -2,13 +2,15 @@
 layout: review.njk
 title: "The Bamboos"
 artist: "The Bamboos"
-album: "Fever In The Road"
-label: "Pacific Theatre"
-year: "2013"
+album: "Medicine Man"
+label: "Tru Thoughts"
+year: "2012"
 image: "feveritr.jpg"
-score: 92
+score1: 95
+score2: 95
+score3: 100
 tags: reviews
-date: 2013-11-24
+date: 2026-02-26
 ---
 
 The Bamboos have always gotten a lot of love from me and I expect a lot when they have a new release. *Fever In The Road* hits on all cylinders and for those new to The Bamboos, they are an Australian funk/soul band that has miraculously managed to do more than simply survive, they have thrived doing what they love. Even with the resurgence in the genre, it is impressive to release a sixth full-length album.  It isn’t just luck that got them here, it is talent and love on a colossal scale.

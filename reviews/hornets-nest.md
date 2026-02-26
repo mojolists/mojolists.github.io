@@ -2,13 +2,15 @@
 layout: review.njk
 title: "Joe Louis Walker"
 artist: "Joe Louis Walker"
-album: "Hornet’s Nest"
+album: "Hornet's Nest"
 label: "Alligator Records"
 year: "2014"
 image: "hornetsnest.jpg"
-score: 89
+score1: 80
+score2: 80
+score3: 80
 tags: reviews
-date: 2014-03-04
+date: 2026-02-26
 ---
 
 Joe Louis Walker has been guitar slinging for more than 30 years and could easily rest on his six string laurels but instead remains one of the most prolific song writing, blues guitarists around. You can’t listen to just one of Walkers albums and understand him the way you can so many traveling blues guitarists. Walker continues to grow lyrically and artistically while still highlighting the lightning in his fingers.

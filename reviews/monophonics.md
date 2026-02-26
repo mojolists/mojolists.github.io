@@ -2,13 +2,15 @@
 layout: review.njk
 title: "The Monophonics"
 artist: "The Monophonics"
-album: "It’s Only Us"
+album: "It's Only Us"
 label: "Colemine Records"
 year: "2020"
 image: "itsonlyus.jpg"
-score: 93
+score1: 85
+score2: 90
+score3: 85
 tags: reviews
-date: 2020-03-16
+date: 2026-02-26
 ---
 
 The Monophonics have captivated me since I first heard their psychedelic funk masterpiece, *In Your Brain* all the way back in 2012. This new album, *It’s only Us*, carries on the dance your ass of tradition with hard hitting numbers like “Chances” and “Run For Your Life” but manages to sprinkle in a few more slow grinders. 

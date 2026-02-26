@@ -3,12 +3,14 @@ layout: review.njk
 title: "Voo Davis"
 artist: "Voo Davis"
 album: "Vicious Things"
-label: "Independent"
-year: "2013"
+label: "Self-Released"
+year: "2024"
 image: "voodavis.jpg"
-score: 92
+score1: 95
+score2: 90
+score3: 75
 tags: reviews
-date: 2020-03-11
+date: 2026-02-26
 ---
 
 I have been anxiously awaiting the arrival of the new Voo Davis album since I listened to his first one, A Place for Secrets. His initial offering showed a talent that was on the verge of full bloom. The recording was raw, the song writing strong but still somewhat unpolished. It was filled with promises.

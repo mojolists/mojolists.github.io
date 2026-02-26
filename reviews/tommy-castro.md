@@ -1,14 +1,16 @@
 ---
 layout: review.njk
-title: "The Devil You Know"
-artist: "Tommy Castro & The Painkillers"
+title: "Tommy Castro"
+artist: "Tommy Castro"
 album: "The Devil You Know"
 label: "Alligator Records"
 year: "2014"
 image: "tdyk.jpg"
-score: 90
+score1: 85
+score2: 85
+score3: 80
 tags: reviews
-date: 2026-02-25
+date: 2026-02-26
 ---
 
 Tommy Castro is known for awesome guitar driven blues and with the help of his band, the Painkillers, he delivers in spades. In his new release, *The Devil You Know*, Castro plays beside some other great blues guitarists you may have heard of, like Joe Bonamassa tossing some serious guitar riffs on “I’m Tired” and Tab Benoit providing guitar and vocals on “When I Cross The Mississippi.”
