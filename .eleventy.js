@@ -1,48 +1,23 @@
 const Image = require("@11ty/eleventy-img");
 const path = require("path");
 
-async function imageShortcode(src, alt, sizes = "100vw") {
-  let metadata = await Image(src, {
-    widths: [400, 800, 1200],
-    formats: ["webp", "jpeg"],
-    outputDir: "./_site/img/",
-    urlPath: "/img/",
-    filenameFormat: function (id, src, width, format, options) {
-      const extension = path.extname(src);
-      const name = path.basename(src, extension);
-      return `${name}-${width}w.${format}`;
-    }
-  });
-
-  let imageAttributes = {
-    alt,
-    sizes,
-    loading: "lazy",
-    decoding: "async",
-    class: "w-full h-full object-cover",
-  };
-
-  return Image.generateHTML(metadata, imageAttributes);
-}
-
 module.exports = function(eleventyConfig) {
-    // Image and Asset Passthrough
+    // 1. FORCE ELEVENTY TO BUILD ALL POSTS REGARDLESS OF DATE
+    eleventyConfig.addGlobalData("eleventyComputed.permalink", function() {
+        return (data) => data.permalink;
+    });
+
     eleventyConfig.addPassthroughCopy("assets/img");
     eleventyConfig.addPassthroughCopy("assets/css");
-    
-    // Critical fix to preserve the custom domain during GitHub Actions deployment
     eleventyConfig.addPassthroughCopy("CNAME");
 
-    // Filters
     eleventyConfig.addFilter("limit", function(array, limit) {
         return array.slice(0, limit);
     });
 
-    // Shortcodes
-    eleventyConfig.addNunjucksAsyncShortcode("image", imageShortcode);
-
-    // Collections: Reviews sorted by date
+    // 2. ROBUST COLLECTION LOGIC
     eleventyConfig.addCollection("reviews", function(collectionApi) {
+        // This grabs EVERYTHING in the reviews folder regardless of date
         return collectionApi.getFilteredByGlob("reviews/*.md").sort((a, b) => {
             return b.date - a.date;
         });
@@ -51,9 +26,10 @@ module.exports = function(eleventyConfig) {
     return {
         dir: {
             input: ".",
-            includes: "_includes", // This tells Eleventy to look here for base.njk
+            includes: "_includes",
             output: "_site"
         },
+        // 3. ENSURE NUNJUCKS IS THE ENGINE FOR EVERYTHING
         markdownTemplateEngine: "njk",
         htmlTemplateEngine: "njk",
         templateFormats: ["html", "njk", "md"]
