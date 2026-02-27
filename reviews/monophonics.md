@@ -10,7 +10,7 @@ score1: 85
 score2: 90
 score3: 85
 tags: reviews
-date: 2026-02-26
+date: 2026-02-25
 ---
 
 The Monophonics have captivated me since I first heard their psychedelic funk masterpiece, *In Your Brain* all the way back in 2012. This new album, *It’s only Us*, carries on the dance your ass of tradition with hard hitting numbers like “Chances” and “Run For Your Life” but manages to sprinkle in a few more slow grinders. 

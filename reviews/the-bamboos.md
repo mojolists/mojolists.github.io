@@ -10,7 +10,7 @@ score1: 95
 score2: 95
 score3: 100
 tags: reviews
-date: 2026-02-26
+date: 2026-02-25
 ---
 
 The Bamboos have always gotten a lot of love from me and I expect a lot when they have a new release. *Fever In The Road* hits on all cylinders and for those new to The Bamboos, they are an Australian funk/soul band that has miraculously managed to do more than simply survive, they have thrived doing what they love. Even with the resurgence in the genre, it is impressive to release a sixth full-length album.  It isn’t just luck that got them here, it is talent and love on a colossal scale.

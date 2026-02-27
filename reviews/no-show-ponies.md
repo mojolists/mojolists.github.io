@@ -10,7 +10,7 @@ score1: 85
 score2: 75
 score3: 50
 tags: reviews
-date: 2026-02-26
+date: 2026-02-25
 ---
 
 No Show Ponies are one of a thousand Austin bands trying to find their place and their sound among the many live music venues across this Texas city. Breaking out of the pack here takes more than playing follow the leader, you have to have something new and do it very well. Anything less and Austin will be more than happy to let you scratch out a living playing a rotation of small time, beer swilling joints for as long as you can stand.

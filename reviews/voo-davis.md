@@ -10,7 +10,7 @@ score1: 95
 score2: 90
 score3: 75
 tags: reviews
-date: 2026-02-26
+date: 2026-02-25
 ---
 
 I have been anxiously awaiting the arrival of the new Voo Davis album since I listened to his first one, A Place for Secrets. His initial offering showed a talent that was on the verge of full bloom. The recording was raw, the song writing strong but still somewhat unpolished. It was filled with promises.

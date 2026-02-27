@@ -10,7 +10,7 @@ score1: 90
 score2: 90
 score3: 95
 tags: reviews
-date: 2026-02-26
+date: 2026-02-25
 ---
 Waiting for my vinyl copy of Sharon Jones and The Dap-Kings, *Give the People What They Want*, reminded me of watching the last minute tick off the clock before the final bell range in fourth grade. I preordered the stereo, plain old black vinyl copy but Daptone, Sharon’s label, offered a blue vinyl version and a mono version that probably would have gotten my money if I had noticed it when I ordered.
 

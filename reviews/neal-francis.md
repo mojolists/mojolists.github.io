@@ -10,7 +10,7 @@ score1: 95
 score2: 90
 score3: 100
 tags: reviews
-date: 2026-02-26
+date: 2026-02-25
 ---
 
 Over the last few years, I slowly stopped writing and reviewing. I let the site go down and kept my thoughts to myself. I couldn’t get over the hump, I just couldn’t fight off whatever demons held me back from what I love. Neal Francis’s new album “Changes” touched me, it was a hand reaching down into the murky depths of my malaise and giving me something I really wanted to share, something I wanted everyone to hear.
