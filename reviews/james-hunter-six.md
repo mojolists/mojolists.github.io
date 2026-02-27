@@ -6,7 +6,9 @@ album: "Nick Of Time"
 label: "Daptone Records"
 year: "2020"
 image: "nickoftime.jpg"
-score: 91
+score1: 95
+score2: 90
+score3: 90
 tags: reviews
 date: 2020-03-20
 ---

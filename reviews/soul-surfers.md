@@ -6,7 +6,9 @@ album: "Soul Rock!"
 label: "Ubiquity Records"
 year: "2015"
 image: "soulsurfers.jpg"
-score: 90
+score1: 85
+score2: 90
+score3: 100
 tags: reviews
 date: 2026-02-22
 ---

@@ -6,7 +6,9 @@ album: "San Antonio Ballbuster"
 label: "Charly Records"
 year: "1960"
 image: "gatemouth.jpg"
-score: 94
+score1: 85
+score2: 70
+score3: 40
 tags: reviews
 date: 2017-01-11
 ---

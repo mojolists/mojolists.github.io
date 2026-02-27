@@ -6,7 +6,9 @@ album: "Moonshine Boogie"
 label: "Mescal Canyon Records"
 year: "2015"
 image: "wilybo.jpg"
-score: 90
+score1: 85
+score2: 80
+score3: 80
 tags: reviews
 date: 2026-02-25
 ---
