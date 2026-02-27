@@ -28,13 +28,13 @@ permalink: /archive/
     {# Sorting Headers #}
     <div class="grid grid-cols-12 gap-4 px-6 mb-6 items-center border-b border-white/10 pb-4">
         <div class="col-span-1"></div>
-        <button onclick="sortTable(2)" class="col-span-3 text-left text-[9px] uppercase tracking-[0.2em] font-bold text-white/50 hover:text-[#DAA520] transition-colors">Artist</button>
-        <button onclick="sortTable(3)" class="col-span-3 text-left text-[9px] uppercase tracking-[0.2em] font-bold text-white/50 hover:text-[#DAA520] transition-colors">Album</button>
-        <button onclick="sortTable(4)" class="col-span-1 text-center text-[9px] uppercase tracking-[0.2em] font-bold text-white/50 hover:text-[#DAA520] transition-colors">Year</button>
-        <button onclick="sortTable(5)" class="col-span-1 text-center text-[9px] uppercase tracking-[0.2em] font-bold text-white/50 hover:text-[#DAA520] transition-colors">Perf</button>
-        <button onclick="sortTable(6)" class="col-span-1 text-center text-[9px] uppercase tracking-[0.2em] font-bold text-white/50 hover:text-[#DAA520] transition-colors">Prod</button>
-        <button onclick="sortTable(7)" class="col-span-1 text-center text-[9px] uppercase tracking-[0.2em] font-bold text-white/50 hover:text-[#DAA520] transition-colors">Dance</button>
-        <button onclick="sortTable(8)" class="col-span-1 text-right text-[9px] uppercase tracking-[0.2em] font-bold text-white/50 hover:text-[#DAA520] transition-colors">Mojo</button>
+        <button onclick="sortTable(1)" class="col-span-3 text-left text-[9px] uppercase tracking-[0.2em] font-bold text-white/50 hover:text-[#DAA520] transition-colors">Artist</button>
+        <button onclick="sortTable(2)" class="col-span-3 text-left text-[9px] uppercase tracking-[0.2em] font-bold text-white/50 hover:text-[#DAA520] transition-colors">Album</button>
+        <button onclick="sortTable(3)" class="col-span-1 text-center text-[9px] uppercase tracking-[0.2em] font-bold text-white/50 hover:text-[#DAA520] transition-colors">Year</button>
+        <button onclick="sortTable(4)" class="col-span-1 text-center text-[9px] uppercase tracking-[0.2em] font-bold text-white/50 hover:text-[#DAA520] transition-colors">Perf</button>
+        <button onclick="sortTable(5)" class="col-span-1 text-center text-[9px] uppercase tracking-[0.2em] font-bold text-white/50 hover:text-[#DAA520] transition-colors">Prod</button>
+        <button onclick="sortTable(6)" class="col-span-1 text-center text-[9px] uppercase tracking-[0.2em] font-bold text-white/50 hover:text-[#DAA520] transition-colors">Dance</button>
+        <button onclick="sortTable(7)" class="col-span-1 text-right text-[9px] uppercase tracking-[0.2em] font-bold text-white/50 hover:text-[#DAA520] transition-colors">Mojo</button>
     </div>
 
     {# The Archive List #}
@@ -58,21 +58,21 @@ permalink: /archive/
                 {{ review.data.album }}
             </div>
 
-            <div class="col-span-1 text-center text-white/50 font-light text-[10px] tracking-widest">
+            <div class="col-span-1 text-center text-white/50 font-light text-[10px] tracking-widest year-cell">
                 {{ review.data.year }}
             </div>
 
-            <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white">
+            <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white s1-cell">
                 {{ s1 }}
             </div>
-            <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white">
+            <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white s2-cell">
                 {{ s2 }}
             </div>
-            <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white">
+            <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white s3-cell">
                 {{ s3 }}
             </div>
 
-            <div class="col-span-1 text-right italic font-light text-[#DAA520] text-lg logo-mojo">
+            <div class="col-span-1 text-right italic font-light text-[#DAA520] text-lg logo-mojo mojo-cell">
                 {{ avg }}%
             </div>
         </a>
@@ -81,7 +81,72 @@ permalink: /archive/
 </div>
 
 <script>
+let sortDirections = {};
+
 function filterTable() {
     const input = document.getElementById('archiveSearch');
     const filter = input.value.toLowerCase();
-    const rows = document
+    const rows = document.getElementsByClassName('archive-row');
+
+    for (let i = 0; i < rows.length; i++) {
+        const artist = rows[i].querySelector('.artist-cell').innerText.toLowerCase();
+        const album = rows[i].querySelector('.album-cell').innerText.toLowerCase();
+        
+        if (artist.includes(filter) || album.includes(filter)) {
+            rows[i].style.display = "";
+        } else {
+            rows[i].style.display = "none";
+        }
+    }
+}
+
+function sortTable(columnIndex) {
+    const list = document.getElementById('archiveList');
+    const rows = Array.from(list.getElementsByClassName('archive-row'));
+    
+    // Toggle direction
+    sortDirections[columnIndex] = !sortDirections[columnIndex];
+    const isAscending = sortDirections[columnIndex];
+
+    const sortedRows = rows.sort((a, b) => {
+        // Map column indices to their actual content cells
+        const selectors = [
+            '.artist-cell', '.album-cell', '.year-cell', 
+            '.s1-cell', '.s2-cell', '.s3-cell', '.mojo-cell'
+        ];
+        
+        let aVal = a.querySelector(selectors[columnIndex - 1]).innerText.trim();
+        let bVal = b.querySelector(selectors[columnIndex - 1]).innerText.trim();
+        
+        // Clean percentages for numeric sorting
+        if (aVal.includes('%')) aVal = aVal.replace('%', '');
+        if (bVal.includes('%')) bVal = bVal.replace('%', '');
+
+        // Determine if numeric or string
+        const isNumeric = !isNaN(aVal) && !isNaN(bVal);
+        
+        if (isNumeric) {
+            return isAscending ? parseFloat(aVal) - parseFloat(bVal) : parseFloat(bVal) - parseFloat(aVal);
+        } else {
+            return isAscending ? aVal.localeCompare(bVal) : bVal.localeCompare(aVal);
+        }
+    });
+
+    list.innerHTML = '';
+    sortedRows.forEach(row => list.appendChild(row));
+}
+</script>
+
+<style>
+    .glass-card {
+        background: rgba(255, 255, 255, 0.02);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 2px;
+        text-decoration: none;
+    }
+    .archive-row:hover {
+        background: rgba(255, 255, 255, 0.05);
+        transform: scale(1.002);
+    }
+</style>
