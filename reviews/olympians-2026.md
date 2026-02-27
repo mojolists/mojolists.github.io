@@ -10,7 +10,7 @@ score1: 85
 score2: 92
 score3: 92
 tags: reviews
-date: "2026-02-24"
+date: "2026-01-01"
 youtubeId: "vBvP6V9XW2w"
 ---
 
