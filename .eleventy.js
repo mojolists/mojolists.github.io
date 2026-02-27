@@ -43,19 +43,19 @@ module.exports = function(eleventyConfig) {
 
     // Collections: Reviews sorted by date
     eleventyConfig.addCollection("reviews", function(collectionApi) {
-        return collectionApi.getFilteredByGlob("reviews/*.{md,markdown}").sort((a, b) => {
-            const dateA = new Date(a.date);
-            const dateB = new Date(b.date);
-            return dateB - dateA;
+        return collectionApi.getFilteredByGlob("reviews/*.md").sort((a, b) => {
+            return b.date - a.date;
         });
     });
 
     return {
         dir: {
             input: ".",
-            output: "_site",
-            includes: "_includes",
-            layouts: "_includes/layouts"
-        }
+            includes: "_includes", // This tells Eleventy to look here for base.njk
+            output: "_site"
+        },
+        markdownTemplateEngine: "njk",
+        htmlTemplateEngine: "njk",
+        templateFormats: ["html", "njk", "md"]
     };
 };
