@@ -19,7 +19,7 @@ async function imageShortcode(src, alt, sizes = "100vw") {
     sizes,
     loading: "lazy",
     decoding: "async",
-    class: "w-full h-full object-cover", // Keeps your current styling
+    class: "w-full h-full object-cover",
   };
 
   return Image.generateHTML(metadata, imageAttributes);
@@ -43,19 +43,19 @@ module.exports = function(eleventyConfig) {
 
     // Collections: Reviews sorted by date
     eleventyConfig.addCollection("reviews", function(collectionApi) {
-        return collectionApi.getFilteredByGlob("reviews/*.md").sort((a, b) => {
-            return b.date - a.date;
+        return collectionApi.getFilteredByGlob("reviews/*.{md,markdown}").sort((a, b) => {
+            const dateA = new Date(a.date);
+            const dateB = new Date(b.date);
+            return dateB - dateA;
         });
     });
 
     return {
         dir: {
             input: ".",
+            output: "_site",
             includes: "_includes",
-            output: "_site"
-        },
-        markdownTemplateEngine: "njk",
-        htmlTemplateEngine: "njk",
-        templateFormats: ["html", "njk", "md"]
+            layouts: "_includes/layouts"
+        }
     };
 };
