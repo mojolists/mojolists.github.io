@@ -10,91 +10,184 @@
 </head>
 <body class="bg-black text-white min-h-screen font-sans selection:bg-[#DAA520] selection:text-black">
     <div class="min-h-screen flex flex-col">
-        <nav class="border-b border-white border-opacity-10 px-6 py-8">
+        <nav class="border-b border-white border-opacity-10 px-6 py-8 relative z-50">
             <div class="max-w-7xl mx-auto flex justify-between items-center">
                 <a href="/" class="text-3xl uppercase tracking-tighter logo-mojo">
                     MOJO<span class="logo-lists">LISTS</span>
                 </a>
+                <!-- Desktop nav -->
                 <div class="hidden md:flex space-x-12 text-xs font-medium uppercase tracking-[0.2em] text-gray-300">
                     <a href="/archive/" class="hover:text-white transition">Archive</a>
                     <a href="/about" class="hover:text-white transition">About</a>
                 </div>
+                <!-- Mobile hamburger -->
+                <button id="menu-btn" class="md:hidden flex flex-col justify-center items-center w-8 h-8 gap-1.5 group" onclick="toggleMobileMenu()" aria-label="Menu">
+                    <span id="bar1" class="block w-6 h-px bg-white transition-all duration-300"></span>
+                    <span id="bar2" class="block w-6 h-px bg-white transition-all duration-300"></span>
+                    <span id="bar3" class="block w-4 h-px bg-white transition-all duration-300 self-end"></span>
+                </button>
             </div>
         </nav>
+
+        <!-- Mobile menu overlay -->
+        <div id="mobile-menu" class="hidden fixed inset-0 bg-black z-40 flex flex-col items-center justify-center gap-12">
+            <a href="/archive/" onclick="toggleMobileMenu()" class="text-4xl uppercase tracking-[0.3em] font-light logo-mojo text-white hover:text-[#DAA520] transition-colors">Archive</a>
+            <a href="/about" onclick="toggleMobileMenu()" class="text-4xl uppercase tracking-[0.3em] font-light logo-mojo text-white hover:text-[#DAA520] transition-colors">About</a>
+            <div class="absolute bottom-12 text-[10px] uppercase tracking-widest text-white/20">MojoLists</div>
+        </div>
+
+        <script>
+            function toggleMobileMenu() {
+                const menu = document.getElementById('mobile-menu');
+                const bar1 = document.getElementById('bar1');
+                const bar2 = document.getElementById('bar2');
+                const bar3 = document.getElementById('bar3');
+                const isOpen = !menu.classList.contains('hidden');
+                menu.classList.toggle('hidden');
+                // Animate bars into X
+                if (!isOpen) {
+                    bar1.style.transform = 'translateY(6px) rotate(45deg)';
+                    bar2.style.opacity = '0';
+                    bar3.style.transform = 'translateY(-6px) rotate(-45deg)';
+                    bar3.style.width = '1.5rem';
+                    bar3.style.alignSelf = 'auto';
+                } else {
+                    bar1.style.transform = '';
+                    bar2.style.opacity = '';
+                    bar3.style.transform = '';
+                    bar3.style.width = '';
+                    bar3.style.alignSelf = '';
+                }
+            }
+        </script>
 
         <main class="flex-grow">
             
 <div class="max-w-7xl mx-auto px-6 py-20 relative z-10">
-    <header class="mb-12">
-        <h1 class="text-6xl font-light uppercase tracking-tighter text-white logo-mojo">
-            Archive
-        </h1>
-    </header>
 
-    
-    <div class="mb-12 max-w-md">
+    <!-- ── HEADER ROW ─────────────────────────────────────────────────── -->
+    <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-12">
+        <h1 class="text-6xl font-light uppercase tracking-tighter text-white logo-mojo">Archive</h1>
+
+        <!-- View toggle icons -->
+        <div class="flex items-center gap-1 bg-white/5 border border-white/10 rounded-sm p-1">
+
+            <!-- Carousel view -->
+            <button id="btn-carousel" onclick="setView('carousel')" title="Carousel view"
+                class="view-btn p-2 rounded-sm transition-all" aria-label="Carousel view">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="5" y="3" width="8" height="12" rx="0.5" fill="currentColor"/>
+                    <rect x="1" y="5" width="4" height="8" rx="0.5" fill="currentColor" opacity="0.5"/>
+                    <rect x="13" y="5" width="4" height="8" rx="0.5" fill="currentColor" opacity="0.5"/>
+                </svg>
+            </button>
+
+            <!-- Preview view -->
+            <button id="btn-preview" onclick="setView('preview')" title="Preview view"
+                class="view-btn p-2 rounded-sm transition-all" aria-label="Preview view">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="1" y="2" width="7" height="7" rx="0.5" fill="currentColor"/>
+                    <rect x="10" y="3" width="7" height="1.5" rx="0.5" fill="currentColor" opacity="0.7"/>
+                    <rect x="10" y="6" width="5" height="1.5" rx="0.5" fill="currentColor" opacity="0.4"/>
+                    <rect x="1" y="11" width="7" height="7" rx="0.5" fill="currentColor" opacity="0.6"/>
+                    <rect x="10" y="12" width="7" height="1.5" rx="0.5" fill="currentColor" opacity="0.7"/>
+                    <rect x="10" y="15" width="5" height="1.5" rx="0.5" fill="currentColor" opacity="0.4"/>
+                </svg>
+            </button>
+
+            <!-- Crate/grid view -->
+            <button id="btn-crate" onclick="setView('crate')" title="Crate view"
+                class="view-btn p-2 rounded-sm transition-all" aria-label="Crate view">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="1" y="1" width="7" height="7" rx="0.5" fill="currentColor"/>
+                    <rect x="10" y="1" width="7" height="7" rx="0.5" fill="currentColor" opacity="0.7"/>
+                    <rect x="1" y="10" width="7" height="7" rx="0.5" fill="currentColor" opacity="0.5"/>
+                    <rect x="10" y="10" width="7" height="7" rx="0.5" fill="currentColor" opacity="0.3"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- ── SEARCH ─────────────────────────────────────────────────────── -->
+    <div class="mb-8 max-w-md" id="search-bar">
         <div class="relative">
-            <input type="text" 
-                   id="archiveSearch" 
-                   onkeyup="filterTable()" 
-                   placeholder="Search artist or album..." 
-                   class="w-full bg-white/5 border border-white/10 rounded-sm px-4 py-3 text-white text-xs tracking-widest uppercase placeholder:text-white/20 focus:outline-none focus:border-[#DAA520]/50 transition-all font-medium">
+            <input type="text" id="archiveSearch" onkeyup="filterAll()"
+                placeholder="Search artist or album..."
+                class="w-full bg-white/5 border border-white/10 rounded-sm px-4 py-3 text-white text-xs tracking-widest uppercase placeholder:text-white/20 focus:outline-none focus:border-[#DAA520]/50 transition-all font-medium">
             <div class="absolute right-4 top-1/2 -translate-y-1/2 opacity-20">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
             </div>
         </div>
     </div>
 
-    
-    <div class="grid grid-cols-12 gap-4 px-6 mb-6 items-center border-b border-white/10 pb-4">
-        <div class="col-span-1"></div>
-        <button onclick="sortTable(1)" class="col-span-3 text-left text-[9px] uppercase tracking-[0.2em] font-bold text-white/50 hover:text-[#DAA520] transition-colors">Artist</button>
-        <button onclick="sortTable(2)" class="col-span-3 text-left text-[9px] uppercase tracking-[0.2em] font-bold text-white/50 hover:text-[#DAA520] transition-colors">Album</button>
-        <button onclick="sortTable(3)" class="col-span-1 text-center text-[9px] uppercase tracking-[0.2em] font-bold text-white/50 hover:text-[#DAA520] transition-colors">Year</button>
-        <button onclick="sortTable(4)" class="col-span-1 text-center text-[9px] uppercase tracking-[0.2em] font-bold text-white/50 hover:text-[#DAA520] transition-colors">Perf</button>
-        <button onclick="sortTable(5)" class="col-span-1 text-center text-[9px] uppercase tracking-[0.2em] font-bold text-white/50 hover:text-[#DAA520] transition-colors">Prod</button>
-        <button onclick="sortTable(6)" class="col-span-1 text-center text-[9px] uppercase tracking-[0.2em] font-bold text-white/50 hover:text-[#DAA520] transition-colors">Dance</button>
-        <button onclick="sortTable(7)" class="col-span-1 text-right text-[9px] uppercase tracking-[0.2em] font-bold text-white/50 hover:text-[#DAA520] transition-colors">Mojo</button>
+    <!-- ── VIEW 1: CAROUSEL ────────────────────────────────────────────── -->
+    <div id="archive-carousel" style="display:none">
+
+        <!-- Stage -->
+        <div id="carousel-wrapper">
+            <button class="carousel-arrow" id="carousel-prev" onclick="carouselNav(-1)" aria-label="Previous">&#8592;</button>
+            <button class="carousel-arrow" id="carousel-next" onclick="carouselNav(1)"  aria-label="Next">&#8594;</button>
+
+            <div id="carousel-stage">
+                <div class="c-slot" id="c-slot-0"><img src="" alt=""></div>
+                <div class="c-slot" id="c-slot-1"><img src="" alt=""></div>
+                <div class="c-slot" id="c-slot-2"><img src="" alt=""></div>
+                <div class="c-slot" id="c-slot-3"><img src="" alt=""></div>
+                <div class="c-slot" id="c-slot-4"><img src="" alt=""></div>
+            </div>
+        </div>
+
+        <!-- Info strip below carousel -->
+        <div id="carousel-info">
+            <p id="c-artist"></p>
+            <p id="c-album"></p>
+            <div style="display:flex;align-items:baseline;justify-content:center;gap:20px;margin-top:8px;">
+                <span id="c-score"></span>
+                <a id="c-link" href="#">Read Review &#8594;</a>
+            </div>
+            <p id="c-counter"></p>
+        </div>
+
     </div>
 
-    
-    <div id="archiveList" class="space-y-1">
+    <!-- ── SORT HEADERS (preview view only) ────────────────────────────── -->
+    <div id="sort-headers" class="grid grid-cols-12 gap-4 px-6 mb-6 items-center border-b border-white/10 pb-4" style="display:none">
+        <div class="col-span-1"></div>
+        <button onclick="sortTable(1)" id="hdr-1" class="col-span-3 text-left text-xs uppercase tracking-[0.15em] font-bold hover:text-[#DAA520] transition-colors flex items-center gap-1" style="color:rgba(255,255,255,0.5)">Artist <span class="sort-arrow" style="color:#DAA520;display:none"></span></button>
+        <button onclick="sortTable(2)" id="hdr-2" class="col-span-3 text-left text-xs uppercase tracking-[0.15em] font-bold hover:text-[#DAA520] transition-colors flex items-center gap-1" style="color:rgba(255,255,255,0.5)">Album <span class="sort-arrow" style="color:#DAA520;display:none"></span></button>
+        <button onclick="sortTable(3)" id="hdr-3" class="col-span-1 text-center text-xs uppercase tracking-[0.15em] font-bold hover:text-[#DAA520] transition-colors flex items-center justify-center gap-1" style="color:rgba(255,255,255,0.5)">Year <span class="sort-arrow" style="color:#DAA520;display:none"></span></button>
+        <button onclick="sortTable(4)" id="hdr-4" class="col-span-1 text-center text-xs uppercase tracking-[0.15em] font-bold hover:text-[#DAA520] transition-colors flex items-center justify-center gap-1" style="color:rgba(255,255,255,0.5)">Perf <span class="sort-arrow" style="color:#DAA520;display:none"></span></button>
+        <button onclick="sortTable(5)" id="hdr-5" class="col-span-1 text-center text-xs uppercase tracking-[0.15em] font-bold hover:text-[#DAA520] transition-colors flex items-center justify-center gap-1" style="color:rgba(255,255,255,0.5)">Prod <span class="sort-arrow" style="color:#DAA520;display:none"></span></button>
+        <button onclick="sortTable(6)" id="hdr-6" class="col-span-1 text-center text-xs uppercase tracking-[0.15em] font-bold hover:text-[#DAA520] transition-colors flex items-center justify-center gap-1" style="color:rgba(255,255,255,0.5)">Dance <span class="sort-arrow" style="color:#DAA520;display:none"></span></button>
+        <button onclick="sortTable(7)" id="hdr-7" class="col-span-1 text-right text-xs uppercase tracking-[0.15em] font-bold hover:text-[#DAA520] transition-colors flex items-center justify-end gap-1" style="color:rgba(255,255,255,0.5)">Mojo <span class="sort-arrow" style="color:#DAA520;display:none"></span></button>
+    </div>
+
+    <!-- ── VIEW 2: TABLE ROWS (preview mode) ──────────────────────────── -->
+    <div id="archive-table" class="space-y-1" style="display:none">
         
         
         
         
         
 
-        <a href="/reviews/olympians-2026/" class="archive-row glass-card grid grid-cols-12 gap-4 px-6 py-3 items-center group hover:border-[#DAA520]/40 transition-all duration-500">
+        <a href="/reviews/King Crimson/"
+           class="archive-row glass-card grid grid-cols-12 gap-4 px-6 py-3 items-center group hover:border-[#DAA520]/40 transition-all duration-300"
+           data-artist="King Crimson"
+           data-album="In the Court of the Crimson King"
+           data-image="https://i.imgur.com/5d0F8yf.jpg"
+           data-avg="0"
+           data-excerpt="&amp;quot;King Crimson&#39;s magnum opus, In the Court of the Crimson King, is a game-changing album that defies genre classification. This 1973 release marked the...">
+
             <div class="col-span-1 aspect-square overflow-hidden rounded-sm border border-white/10">
-                <img src="/assets/img/olympians.jpg" alt="In Search of a Revival" class="w-full h-full object-cover">
+                <img src="/assets/img/https://i.imgur.com/5d0F8yf.jpg" alt="In the Court of the Crimson King" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
             </div>
-
-            <div class="col-span-3 text-sm font-medium text-white group-hover:text-[#DAA520] transition-colors truncate tracking-tight artist-cell">
-                The Olympians
-            </div>
-            
-            <div class="col-span-3 text-white/60 text-xs italic font-light truncate album-cell">
-                In Search of a Revival
-            </div>
-
-            <div class="col-span-1 text-center text-white/50 font-light text-[10px] tracking-widest year-cell">
-                2026
-            </div>
-
-            <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white s1-cell">
-                85
-            </div>
-            <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white s2-cell">
-                92
-            </div>
-            <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white s3-cell">
-                92
-            </div>
-
-            <div class="col-span-1 text-right italic font-light text-[#DAA520] text-lg logo-mojo mojo-cell">
-                90%
-            </div>
+            <div class="col-span-3 text-sm font-medium text-white group-hover:text-[#DAA520] transition-colors truncate tracking-tight artist-cell">King Crimson</div>
+            <div class="col-span-3 text-white/60 text-xs italic font-light truncate album-cell">In the Court of the Crimson King</div>
+            <div class="col-span-1 text-center text-white/50 font-light text-[10px] tracking-widest year-cell"></div>
+            <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white s1-cell">0</div>
+            <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white s2-cell">0</div>
+            <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white s3-cell">0</div>
+            <div class="col-span-1 text-right italic font-light text-[#DAA520] text-lg logo-mojo mojo-cell">0%</div>
         </a>
         
         
@@ -102,36 +195,24 @@
         
         
 
-        <a href="/reviews/Trombone_shorty/" class="archive-row glass-card grid grid-cols-12 gap-4 px-6 py-3 items-center group hover:border-[#DAA520]/40 transition-all duration-500">
+        <a href="/reviews/olympians-2026/"
+           class="archive-row glass-card grid grid-cols-12 gap-4 px-6 py-3 items-center group hover:border-[#DAA520]/40 transition-all duration-300"
+           data-artist="The Olympians"
+           data-album="In Search of a Revival"
+           data-image="olympians.jpg"
+           data-avg="90"
+           data-excerpt="Ten years is a long time to wait for a sequel, but Toby Pazner and his 17-piece ensemble haven’t been idle. Since their 2016 debut, Pazner has been deep in the...">
+
             <div class="col-span-1 aspect-square overflow-hidden rounded-sm border border-white/10">
-                <img src="/assets/img/saythattosaythis.jpg" alt="Say That to Say This" class="w-full h-full object-cover">
+                <img src="/assets/img/olympians.jpg" alt="In Search of a Revival" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
             </div>
-
-            <div class="col-span-3 text-sm font-medium text-white group-hover:text-[#DAA520] transition-colors truncate tracking-tight artist-cell">
-                Trombone Shorty
-            </div>
-            
-            <div class="col-span-3 text-white/60 text-xs italic font-light truncate album-cell">
-                Say That to Say This
-            </div>
-
-            <div class="col-span-1 text-center text-white/50 font-light text-[10px] tracking-widest year-cell">
-                2013
-            </div>
-
-            <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white s1-cell">
-                95
-            </div>
-            <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white s2-cell">
-                85
-            </div>
-            <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white s3-cell">
-                85
-            </div>
-
-            <div class="col-span-1 text-right italic font-light text-[#DAA520] text-lg logo-mojo mojo-cell">
-                88%
-            </div>
+            <div class="col-span-3 text-sm font-medium text-white group-hover:text-[#DAA520] transition-colors truncate tracking-tight artist-cell">The Olympians</div>
+            <div class="col-span-3 text-white/60 text-xs italic font-light truncate album-cell">In Search of a Revival</div>
+            <div class="col-span-1 text-center text-white/50 font-light text-[10px] tracking-widest year-cell">2026</div>
+            <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white s1-cell">85</div>
+            <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white s2-cell">92</div>
+            <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white s3-cell">92</div>
+            <div class="col-span-1 text-right italic font-light text-[#DAA520] text-lg logo-mojo mojo-cell">90%</div>
         </a>
         
         
@@ -139,36 +220,24 @@
         
         
 
-        <a href="/reviews/black_joe_lewis/" class="archive-row glass-card grid grid-cols-12 gap-4 px-6 py-3 items-center group hover:border-[#DAA520]/40 transition-all duration-500">
+        <a href="/reviews/Trombone_shorty/"
+           class="archive-row glass-card grid grid-cols-12 gap-4 px-6 py-3 items-center group hover:border-[#DAA520]/40 transition-all duration-300"
+           data-artist="Trombone Shorty"
+           data-album="Say That to Say This"
+           data-image="saythattosaythis.jpg"
+           data-avg="88"
+           data-excerpt="The story of Troy ‘Trombone Shorty’ Andrews career, which started at the age of four, when he and his chosen instrument, which was twice as tall as he, stood on...">
+
             <div class="col-span-1 aspect-square overflow-hidden rounded-sm border border-white/10">
-                <img src="/assets/img/black_joe_lewis.jpg" alt="Electric Slave" class="w-full h-full object-cover">
+                <img src="/assets/img/saythattosaythis.jpg" alt="Say That to Say This" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
             </div>
-
-            <div class="col-span-3 text-sm font-medium text-white group-hover:text-[#DAA520] transition-colors truncate tracking-tight artist-cell">
-                Black Joe Lewis &amp; The Honeybears
-            </div>
-            
-            <div class="col-span-3 text-white/60 text-xs italic font-light truncate album-cell">
-                Electric Slave
-            </div>
-
-            <div class="col-span-1 text-center text-white/50 font-light text-[10px] tracking-widest year-cell">
-                2013
-            </div>
-
-            <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white s1-cell">
-                70
-            </div>
-            <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white s2-cell">
-                85
-            </div>
-            <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white s3-cell">
-                80
-            </div>
-
-            <div class="col-span-1 text-right italic font-light text-[#DAA520] text-lg logo-mojo mojo-cell">
-                78%
-            </div>
+            <div class="col-span-3 text-sm font-medium text-white group-hover:text-[#DAA520] transition-colors truncate tracking-tight artist-cell">Trombone Shorty</div>
+            <div class="col-span-3 text-white/60 text-xs italic font-light truncate album-cell">Say That to Say This</div>
+            <div class="col-span-1 text-center text-white/50 font-light text-[10px] tracking-widest year-cell">2013</div>
+            <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white s1-cell">95</div>
+            <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white s2-cell">85</div>
+            <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white s3-cell">85</div>
+            <div class="col-span-1 text-right italic font-light text-[#DAA520] text-lg logo-mojo mojo-cell">88%</div>
         </a>
         
         
@@ -176,36 +245,24 @@
         
         
 
-        <a href="/reviews/fight-for-my-soul/" class="archive-row glass-card grid grid-cols-12 gap-4 px-6 py-3 items-center group hover:border-[#DAA520]/40 transition-all duration-500">
+        <a href="/reviews/black_joe_lewis/"
+           class="archive-row glass-card grid grid-cols-12 gap-4 px-6 py-3 items-center group hover:border-[#DAA520]/40 transition-all duration-300"
+           data-artist="Black Joe Lewis &amp; The Honeybears"
+           data-album="Electric Slave"
+           data-image="black_joe_lewis.jpg"
+           data-avg="78"
+           data-excerpt="To hear Black Joe Lewis recorded is to strap yourself into an emotion fueled ride through his own brand of blues. To fully appreciate Lewis, however, you have...">
+
             <div class="col-span-1 aspect-square overflow-hidden rounded-sm border border-white/10">
-                <img src="/assets/img/ffys.jpg" alt="Fight For My Soul" class="w-full h-full object-cover">
+                <img src="/assets/img/black_joe_lewis.jpg" alt="Electric Slave" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
             </div>
-
-            <div class="col-span-3 text-sm font-medium text-white group-hover:text-[#DAA520] transition-colors truncate tracking-tight artist-cell">
-                Jonny Lang
-            </div>
-            
-            <div class="col-span-3 text-white/60 text-xs italic font-light truncate album-cell">
-                Fight For My Soul
-            </div>
-
-            <div class="col-span-1 text-center text-white/50 font-light text-[10px] tracking-widest year-cell">
-                2013
-            </div>
-
-            <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white s1-cell">
-                90
-            </div>
-            <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white s2-cell">
-                85
-            </div>
-            <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white s3-cell">
-                35
-            </div>
-
-            <div class="col-span-1 text-right italic font-light text-[#DAA520] text-lg logo-mojo mojo-cell">
-                70%
-            </div>
+            <div class="col-span-3 text-sm font-medium text-white group-hover:text-[#DAA520] transition-colors truncate tracking-tight artist-cell">Black Joe Lewis &amp; The Honeybears</div>
+            <div class="col-span-3 text-white/60 text-xs italic font-light truncate album-cell">Electric Slave</div>
+            <div class="col-span-1 text-center text-white/50 font-light text-[10px] tracking-widest year-cell">2013</div>
+            <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white s1-cell">70</div>
+            <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white s2-cell">85</div>
+            <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white s3-cell">80</div>
+            <div class="col-span-1 text-right italic font-light text-[#DAA520] text-lg logo-mojo mojo-cell">78%</div>
         </a>
         
         
@@ -213,36 +270,24 @@
         
         
 
-        <a href="/reviews/hornets-nest/" class="archive-row glass-card grid grid-cols-12 gap-4 px-6 py-3 items-center group hover:border-[#DAA520]/40 transition-all duration-500">
+        <a href="/reviews/fight-for-my-soul/"
+           class="archive-row glass-card grid grid-cols-12 gap-4 px-6 py-3 items-center group hover:border-[#DAA520]/40 transition-all duration-300"
+           data-artist="Jonny Lang"
+           data-album="Fight For My Soul"
+           data-image="ffys.jpg"
+           data-avg="70"
+           data-excerpt="When you are gifted with the guitar playing abilities and natural blues voice of Jonny Lang, there are expectations that would cripple most 16 year olds, but he...">
+
             <div class="col-span-1 aspect-square overflow-hidden rounded-sm border border-white/10">
-                <img src="/assets/img/hornetsnest.jpg" alt="Hornet&#39;s Nest" class="w-full h-full object-cover">
+                <img src="/assets/img/ffys.jpg" alt="Fight For My Soul" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
             </div>
-
-            <div class="col-span-3 text-sm font-medium text-white group-hover:text-[#DAA520] transition-colors truncate tracking-tight artist-cell">
-                Joe Louis Walker
-            </div>
-            
-            <div class="col-span-3 text-white/60 text-xs italic font-light truncate album-cell">
-                Hornet&#39;s Nest
-            </div>
-
-            <div class="col-span-1 text-center text-white/50 font-light text-[10px] tracking-widest year-cell">
-                2014
-            </div>
-
-            <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white s1-cell">
-                80
-            </div>
-            <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white s2-cell">
-                80
-            </div>
-            <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white s3-cell">
-                80
-            </div>
-
-            <div class="col-span-1 text-right italic font-light text-[#DAA520] text-lg logo-mojo mojo-cell">
-                80%
-            </div>
+            <div class="col-span-3 text-sm font-medium text-white group-hover:text-[#DAA520] transition-colors truncate tracking-tight artist-cell">Jonny Lang</div>
+            <div class="col-span-3 text-white/60 text-xs italic font-light truncate album-cell">Fight For My Soul</div>
+            <div class="col-span-1 text-center text-white/50 font-light text-[10px] tracking-widest year-cell">2013</div>
+            <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white s1-cell">90</div>
+            <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white s2-cell">85</div>
+            <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white s3-cell">35</div>
+            <div class="col-span-1 text-right italic font-light text-[#DAA520] text-lg logo-mojo mojo-cell">70%</div>
         </a>
         
         
@@ -250,36 +295,24 @@
         
         
 
-        <a href="/reviews/monophonics/" class="archive-row glass-card grid grid-cols-12 gap-4 px-6 py-3 items-center group hover:border-[#DAA520]/40 transition-all duration-500">
+        <a href="/reviews/hornets-nest/"
+           class="archive-row glass-card grid grid-cols-12 gap-4 px-6 py-3 items-center group hover:border-[#DAA520]/40 transition-all duration-300"
+           data-artist="Joe Louis Walker"
+           data-album="Hornet&#39;s Nest"
+           data-image="hornetsnest.jpg"
+           data-avg="80"
+           data-excerpt="Joe Louis Walker has been guitar slinging for more than 30 years and could easily rest on his six string laurels but instead remains one of the most prolific...">
+
             <div class="col-span-1 aspect-square overflow-hidden rounded-sm border border-white/10">
-                <img src="/assets/img/itsonlyus.jpg" alt="It&#39;s Only Us" class="w-full h-full object-cover">
+                <img src="/assets/img/hornetsnest.jpg" alt="Hornet&#39;s Nest" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
             </div>
-
-            <div class="col-span-3 text-sm font-medium text-white group-hover:text-[#DAA520] transition-colors truncate tracking-tight artist-cell">
-                The Monophonics
-            </div>
-            
-            <div class="col-span-3 text-white/60 text-xs italic font-light truncate album-cell">
-                It&#39;s Only Us
-            </div>
-
-            <div class="col-span-1 text-center text-white/50 font-light text-[10px] tracking-widest year-cell">
-                2020
-            </div>
-
-            <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white s1-cell">
-                85
-            </div>
-            <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white s2-cell">
-                90
-            </div>
-            <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white s3-cell">
-                85
-            </div>
-
-            <div class="col-span-1 text-right italic font-light text-[#DAA520] text-lg logo-mojo mojo-cell">
-                87%
-            </div>
+            <div class="col-span-3 text-sm font-medium text-white group-hover:text-[#DAA520] transition-colors truncate tracking-tight artist-cell">Joe Louis Walker</div>
+            <div class="col-span-3 text-white/60 text-xs italic font-light truncate album-cell">Hornet&#39;s Nest</div>
+            <div class="col-span-1 text-center text-white/50 font-light text-[10px] tracking-widest year-cell">2014</div>
+            <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white s1-cell">80</div>
+            <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white s2-cell">80</div>
+            <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white s3-cell">80</div>
+            <div class="col-span-1 text-right italic font-light text-[#DAA520] text-lg logo-mojo mojo-cell">80%</div>
         </a>
         
         
@@ -287,36 +320,24 @@
         
         
 
-        <a href="/reviews/neal-francis/" class="archive-row glass-card grid grid-cols-12 gap-4 px-6 py-3 items-center group hover:border-[#DAA520]/40 transition-all duration-500">
+        <a href="/reviews/monophonics/"
+           class="archive-row glass-card grid grid-cols-12 gap-4 px-6 py-3 items-center group hover:border-[#DAA520]/40 transition-all duration-300"
+           data-artist="The Monophonics"
+           data-album="It&#39;s Only Us"
+           data-image="itsonlyus.jpg"
+           data-avg="87"
+           data-excerpt="The Monophonics have captivated me since I first heard their psychedelic funk masterpiece, In Your Brain all the way back in 2012. This new album, It’s only Us,...">
+
             <div class="col-span-1 aspect-square overflow-hidden rounded-sm border border-white/10">
-                <img src="/assets/img/nfchanges.jpg" alt="Changes" class="w-full h-full object-cover">
+                <img src="/assets/img/itsonlyus.jpg" alt="It&#39;s Only Us" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
             </div>
-
-            <div class="col-span-3 text-sm font-medium text-white group-hover:text-[#DAA520] transition-colors truncate tracking-tight artist-cell">
-                Neal Francis
-            </div>
-            
-            <div class="col-span-3 text-white/60 text-xs italic font-light truncate album-cell">
-                Changes
-            </div>
-
-            <div class="col-span-1 text-center text-white/50 font-light text-[10px] tracking-widest year-cell">
-                2019
-            </div>
-
-            <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white s1-cell">
-                95
-            </div>
-            <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white s2-cell">
-                90
-            </div>
-            <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white s3-cell">
-                100
-            </div>
-
-            <div class="col-span-1 text-right italic font-light text-[#DAA520] text-lg logo-mojo mojo-cell">
-                95%
-            </div>
+            <div class="col-span-3 text-sm font-medium text-white group-hover:text-[#DAA520] transition-colors truncate tracking-tight artist-cell">The Monophonics</div>
+            <div class="col-span-3 text-white/60 text-xs italic font-light truncate album-cell">It&#39;s Only Us</div>
+            <div class="col-span-1 text-center text-white/50 font-light text-[10px] tracking-widest year-cell">2020</div>
+            <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white s1-cell">85</div>
+            <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white s2-cell">90</div>
+            <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white s3-cell">85</div>
+            <div class="col-span-1 text-right italic font-light text-[#DAA520] text-lg logo-mojo mojo-cell">87%</div>
         </a>
         
         
@@ -324,36 +345,24 @@
         
         
 
-        <a href="/reviews/no-show-ponies/" class="archive-row glass-card grid grid-cols-12 gap-4 px-6 py-3 items-center group hover:border-[#DAA520]/40 transition-all duration-500">
+        <a href="/reviews/neal-francis/"
+           class="archive-row glass-card grid grid-cols-12 gap-4 px-6 py-3 items-center group hover:border-[#DAA520]/40 transition-all duration-300"
+           data-artist="Neal Francis"
+           data-album="Changes"
+           data-image="nfchanges.jpg"
+           data-avg="95"
+           data-excerpt="Over the last few years, I slowly stopped writing and reviewing. I let the site go down and kept my thoughts to myself. I couldn’t get over the hump, I just...">
+
             <div class="col-span-1 aspect-square overflow-hidden rounded-sm border border-white/10">
-                <img src="/assets/img/noshowponies.jpg" alt="No Show Ponies" class="w-full h-full object-cover">
+                <img src="/assets/img/nfchanges.jpg" alt="Changes" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
             </div>
-
-            <div class="col-span-3 text-sm font-medium text-white group-hover:text-[#DAA520] transition-colors truncate tracking-tight artist-cell">
-                No Show Ponies
-            </div>
-            
-            <div class="col-span-3 text-white/60 text-xs italic font-light truncate album-cell">
-                No Show Ponies
-            </div>
-
-            <div class="col-span-1 text-center text-white/50 font-light text-[10px] tracking-widest year-cell">
-                2013
-            </div>
-
-            <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white s1-cell">
-                85
-            </div>
-            <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white s2-cell">
-                75
-            </div>
-            <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white s3-cell">
-                50
-            </div>
-
-            <div class="col-span-1 text-right italic font-light text-[#DAA520] text-lg logo-mojo mojo-cell">
-                70%
-            </div>
+            <div class="col-span-3 text-sm font-medium text-white group-hover:text-[#DAA520] transition-colors truncate tracking-tight artist-cell">Neal Francis</div>
+            <div class="col-span-3 text-white/60 text-xs italic font-light truncate album-cell">Changes</div>
+            <div class="col-span-1 text-center text-white/50 font-light text-[10px] tracking-widest year-cell">2019</div>
+            <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white s1-cell">95</div>
+            <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white s2-cell">90</div>
+            <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white s3-cell">100</div>
+            <div class="col-span-1 text-right italic font-light text-[#DAA520] text-lg logo-mojo mojo-cell">95%</div>
         </a>
         
         
@@ -361,36 +370,24 @@
         
         
 
-        <a href="/reviews/sharon-jones/" class="archive-row glass-card grid grid-cols-12 gap-4 px-6 py-3 items-center group hover:border-[#DAA520]/40 transition-all duration-500">
+        <a href="/reviews/no-show-ponies/"
+           class="archive-row glass-card grid grid-cols-12 gap-4 px-6 py-3 items-center group hover:border-[#DAA520]/40 transition-all duration-300"
+           data-artist="No Show Ponies"
+           data-album="No Show Ponies"
+           data-image="noshowponies.jpg"
+           data-avg="70"
+           data-excerpt="No Show Ponies are one of a thousand Austin bands trying to find their place and their sound among the many live music venues across this Texas city. Breaking...">
+
             <div class="col-span-1 aspect-square overflow-hidden rounded-sm border border-white/10">
-                <img src="/assets/img/gtpwtw.jpg" alt="Give the People What They Want" class="w-full h-full object-cover">
+                <img src="/assets/img/noshowponies.jpg" alt="No Show Ponies" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
             </div>
-
-            <div class="col-span-3 text-sm font-medium text-white group-hover:text-[#DAA520] transition-colors truncate tracking-tight artist-cell">
-                Sharon Jones &amp; The Dap-Kings
-            </div>
-            
-            <div class="col-span-3 text-white/60 text-xs italic font-light truncate album-cell">
-                Give the People What They Want
-            </div>
-
-            <div class="col-span-1 text-center text-white/50 font-light text-[10px] tracking-widest year-cell">
-                2014
-            </div>
-
-            <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white s1-cell">
-                90
-            </div>
-            <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white s2-cell">
-                90
-            </div>
-            <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white s3-cell">
-                95
-            </div>
-
-            <div class="col-span-1 text-right italic font-light text-[#DAA520] text-lg logo-mojo mojo-cell">
-                92%
-            </div>
+            <div class="col-span-3 text-sm font-medium text-white group-hover:text-[#DAA520] transition-colors truncate tracking-tight artist-cell">No Show Ponies</div>
+            <div class="col-span-3 text-white/60 text-xs italic font-light truncate album-cell">No Show Ponies</div>
+            <div class="col-span-1 text-center text-white/50 font-light text-[10px] tracking-widest year-cell">2013</div>
+            <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white s1-cell">85</div>
+            <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white s2-cell">75</div>
+            <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white s3-cell">50</div>
+            <div class="col-span-1 text-right italic font-light text-[#DAA520] text-lg logo-mojo mojo-cell">70%</div>
         </a>
         
         
@@ -398,36 +395,24 @@
         
         
 
-        <a href="/reviews/the-bamboos/" class="archive-row glass-card grid grid-cols-12 gap-4 px-6 py-3 items-center group hover:border-[#DAA520]/40 transition-all duration-500">
+        <a href="/reviews/sharon-jones/"
+           class="archive-row glass-card grid grid-cols-12 gap-4 px-6 py-3 items-center group hover:border-[#DAA520]/40 transition-all duration-300"
+           data-artist="Sharon Jones &amp; The Dap-Kings"
+           data-album="Give the People What They Want"
+           data-image="gtpwtw.jpg"
+           data-avg="92"
+           data-excerpt="Waiting for my vinyl copy of Sharon Jones and The Dap-Kings, Give the People What They Want, reminded me of watching the last minute tick off the clock before...">
+
             <div class="col-span-1 aspect-square overflow-hidden rounded-sm border border-white/10">
-                <img src="/assets/img/feveritr.jpg" alt="Medicine Man" class="w-full h-full object-cover">
+                <img src="/assets/img/gtpwtw.jpg" alt="Give the People What They Want" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
             </div>
-
-            <div class="col-span-3 text-sm font-medium text-white group-hover:text-[#DAA520] transition-colors truncate tracking-tight artist-cell">
-                The Bamboos
-            </div>
-            
-            <div class="col-span-3 text-white/60 text-xs italic font-light truncate album-cell">
-                Medicine Man
-            </div>
-
-            <div class="col-span-1 text-center text-white/50 font-light text-[10px] tracking-widest year-cell">
-                2012
-            </div>
-
-            <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white s1-cell">
-                95
-            </div>
-            <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white s2-cell">
-                95
-            </div>
-            <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white s3-cell">
-                100
-            </div>
-
-            <div class="col-span-1 text-right italic font-light text-[#DAA520] text-lg logo-mojo mojo-cell">
-                97%
-            </div>
+            <div class="col-span-3 text-sm font-medium text-white group-hover:text-[#DAA520] transition-colors truncate tracking-tight artist-cell">Sharon Jones &amp; The Dap-Kings</div>
+            <div class="col-span-3 text-white/60 text-xs italic font-light truncate album-cell">Give the People What They Want</div>
+            <div class="col-span-1 text-center text-white/50 font-light text-[10px] tracking-widest year-cell">2014</div>
+            <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white s1-cell">90</div>
+            <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white s2-cell">90</div>
+            <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white s3-cell">95</div>
+            <div class="col-span-1 text-right italic font-light text-[#DAA520] text-lg logo-mojo mojo-cell">92%</div>
         </a>
         
         
@@ -435,36 +420,24 @@
         
         
 
-        <a href="/reviews/the-nightowls/" class="archive-row glass-card grid grid-cols-12 gap-4 px-6 py-3 items-center group hover:border-[#DAA520]/40 transition-all duration-500">
+        <a href="/reviews/the-bamboos/"
+           class="archive-row glass-card grid grid-cols-12 gap-4 px-6 py-3 items-center group hover:border-[#DAA520]/40 transition-all duration-300"
+           data-artist="The Bamboos"
+           data-album="Medicine Man"
+           data-image="feveritr.jpg"
+           data-avg="97"
+           data-excerpt="The Bamboos have always gotten a lot of love from me and I expect a lot when they have a new release. Fever In The Road hits on all cylinders and for those new...">
+
             <div class="col-span-1 aspect-square overflow-hidden rounded-sm border border-white/10">
-                <img src="/assets/img/goodasgold.jpg" alt="Good As Gold" class="w-full h-full object-cover">
+                <img src="/assets/img/feveritr.jpg" alt="Medicine Man" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
             </div>
-
-            <div class="col-span-3 text-sm font-medium text-white group-hover:text-[#DAA520] transition-colors truncate tracking-tight artist-cell">
-                The Nightowls
-            </div>
-            
-            <div class="col-span-3 text-white/60 text-xs italic font-light truncate album-cell">
-                Good As Gold
-            </div>
-
-            <div class="col-span-1 text-center text-white/50 font-light text-[10px] tracking-widest year-cell">
-                2015
-            </div>
-
-            <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white s1-cell">
-                90
-            </div>
-            <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white s2-cell">
-                85
-            </div>
-            <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white s3-cell">
-                100
-            </div>
-
-            <div class="col-span-1 text-right italic font-light text-[#DAA520] text-lg logo-mojo mojo-cell">
-                92%
-            </div>
+            <div class="col-span-3 text-sm font-medium text-white group-hover:text-[#DAA520] transition-colors truncate tracking-tight artist-cell">The Bamboos</div>
+            <div class="col-span-3 text-white/60 text-xs italic font-light truncate album-cell">Medicine Man</div>
+            <div class="col-span-1 text-center text-white/50 font-light text-[10px] tracking-widest year-cell">2012</div>
+            <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white s1-cell">95</div>
+            <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white s2-cell">95</div>
+            <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white s3-cell">100</div>
+            <div class="col-span-1 text-right italic font-light text-[#DAA520] text-lg logo-mojo mojo-cell">97%</div>
         </a>
         
         
@@ -472,36 +445,24 @@
         
         
 
-        <a href="/reviews/tommy-castro/" class="archive-row glass-card grid grid-cols-12 gap-4 px-6 py-3 items-center group hover:border-[#DAA520]/40 transition-all duration-500">
+        <a href="/reviews/the-nightowls/"
+           class="archive-row glass-card grid grid-cols-12 gap-4 px-6 py-3 items-center group hover:border-[#DAA520]/40 transition-all duration-300"
+           data-artist="The Nightowls"
+           data-album="Good As Gold"
+           data-image="goodasgold.jpg"
+           data-avg="92"
+           data-excerpt="If you hang around Mojolists at all, you know that soul and funk are enjoying a huge revival. You also know that we support every damn last one the folks who...">
+
             <div class="col-span-1 aspect-square overflow-hidden rounded-sm border border-white/10">
-                <img src="/assets/img/tdyk.jpg" alt="The Devil You Know" class="w-full h-full object-cover">
+                <img src="/assets/img/goodasgold.jpg" alt="Good As Gold" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
             </div>
-
-            <div class="col-span-3 text-sm font-medium text-white group-hover:text-[#DAA520] transition-colors truncate tracking-tight artist-cell">
-                Tommy Castro
-            </div>
-            
-            <div class="col-span-3 text-white/60 text-xs italic font-light truncate album-cell">
-                The Devil You Know
-            </div>
-
-            <div class="col-span-1 text-center text-white/50 font-light text-[10px] tracking-widest year-cell">
-                2014
-            </div>
-
-            <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white s1-cell">
-                85
-            </div>
-            <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white s2-cell">
-                85
-            </div>
-            <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white s3-cell">
-                80
-            </div>
-
-            <div class="col-span-1 text-right italic font-light text-[#DAA520] text-lg logo-mojo mojo-cell">
-                83%
-            </div>
+            <div class="col-span-3 text-sm font-medium text-white group-hover:text-[#DAA520] transition-colors truncate tracking-tight artist-cell">The Nightowls</div>
+            <div class="col-span-3 text-white/60 text-xs italic font-light truncate album-cell">Good As Gold</div>
+            <div class="col-span-1 text-center text-white/50 font-light text-[10px] tracking-widest year-cell">2015</div>
+            <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white s1-cell">90</div>
+            <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white s2-cell">85</div>
+            <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white s3-cell">100</div>
+            <div class="col-span-1 text-right italic font-light text-[#DAA520] text-lg logo-mojo mojo-cell">92%</div>
         </a>
         
         
@@ -509,36 +470,24 @@
         
         
 
-        <a href="/reviews/voo-davis/" class="archive-row glass-card grid grid-cols-12 gap-4 px-6 py-3 items-center group hover:border-[#DAA520]/40 transition-all duration-500">
+        <a href="/reviews/tommy-castro/"
+           class="archive-row glass-card grid grid-cols-12 gap-4 px-6 py-3 items-center group hover:border-[#DAA520]/40 transition-all duration-300"
+           data-artist="Tommy Castro"
+           data-album="The Devil You Know"
+           data-image="tdyk.jpg"
+           data-avg="83"
+           data-excerpt="Tommy Castro is known for awesome guitar driven blues and with the help of his band, the Painkillers, he delivers in spades. In his new release, The Devil You...">
+
             <div class="col-span-1 aspect-square overflow-hidden rounded-sm border border-white/10">
-                <img src="/assets/img/voodavis.jpg" alt="Vicious Things" class="w-full h-full object-cover">
+                <img src="/assets/img/tdyk.jpg" alt="The Devil You Know" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
             </div>
-
-            <div class="col-span-3 text-sm font-medium text-white group-hover:text-[#DAA520] transition-colors truncate tracking-tight artist-cell">
-                Voo Davis
-            </div>
-            
-            <div class="col-span-3 text-white/60 text-xs italic font-light truncate album-cell">
-                Vicious Things
-            </div>
-
-            <div class="col-span-1 text-center text-white/50 font-light text-[10px] tracking-widest year-cell">
-                2024
-            </div>
-
-            <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white s1-cell">
-                95
-            </div>
-            <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white s2-cell">
-                90
-            </div>
-            <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white s3-cell">
-                75
-            </div>
-
-            <div class="col-span-1 text-right italic font-light text-[#DAA520] text-lg logo-mojo mojo-cell">
-                87%
-            </div>
+            <div class="col-span-3 text-sm font-medium text-white group-hover:text-[#DAA520] transition-colors truncate tracking-tight artist-cell">Tommy Castro</div>
+            <div class="col-span-3 text-white/60 text-xs italic font-light truncate album-cell">The Devil You Know</div>
+            <div class="col-span-1 text-center text-white/50 font-light text-[10px] tracking-widest year-cell">2014</div>
+            <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white s1-cell">85</div>
+            <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white s2-cell">85</div>
+            <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white s3-cell">80</div>
+            <div class="col-span-1 text-right italic font-light text-[#DAA520] text-lg logo-mojo mojo-cell">83%</div>
         </a>
         
         
@@ -546,36 +495,24 @@
         
         
 
-        <a href="/reviews/wily-bo-walker/" class="archive-row glass-card grid grid-cols-12 gap-4 px-6 py-3 items-center group hover:border-[#DAA520]/40 transition-all duration-500">
+        <a href="/reviews/voo-davis/"
+           class="archive-row glass-card grid grid-cols-12 gap-4 px-6 py-3 items-center group hover:border-[#DAA520]/40 transition-all duration-300"
+           data-artist="Voo Davis"
+           data-album="Vicious Things"
+           data-image="voodavis.jpg"
+           data-avg="87"
+           data-excerpt="I have been anxiously awaiting the arrival of the new Voo Davis album since I listened to his first one, A Place for Secrets. His initial offering showed a...">
+
             <div class="col-span-1 aspect-square overflow-hidden rounded-sm border border-white/10">
-                <img src="/assets/img/wilybo.jpg" alt="Moonshine Boogie" class="w-full h-full object-cover">
+                <img src="/assets/img/voodavis.jpg" alt="Vicious Things" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
             </div>
-
-            <div class="col-span-3 text-sm font-medium text-white group-hover:text-[#DAA520] transition-colors truncate tracking-tight artist-cell">
-                Wily Bo Walker &amp; The Danny Flam Big Band
-            </div>
-            
-            <div class="col-span-3 text-white/60 text-xs italic font-light truncate album-cell">
-                Moonshine Boogie
-            </div>
-
-            <div class="col-span-1 text-center text-white/50 font-light text-[10px] tracking-widest year-cell">
-                2015
-            </div>
-
-            <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white s1-cell">
-                85
-            </div>
-            <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white s2-cell">
-                80
-            </div>
-            <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white s3-cell">
-                80
-            </div>
-
-            <div class="col-span-1 text-right italic font-light text-[#DAA520] text-lg logo-mojo mojo-cell">
-                82%
-            </div>
+            <div class="col-span-3 text-sm font-medium text-white group-hover:text-[#DAA520] transition-colors truncate tracking-tight artist-cell">Voo Davis</div>
+            <div class="col-span-3 text-white/60 text-xs italic font-light truncate album-cell">Vicious Things</div>
+            <div class="col-span-1 text-center text-white/50 font-light text-[10px] tracking-widest year-cell">2024</div>
+            <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white s1-cell">95</div>
+            <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white s2-cell">90</div>
+            <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white s3-cell">75</div>
+            <div class="col-span-1 text-right italic font-light text-[#DAA520] text-lg logo-mojo mojo-cell">87%</div>
         </a>
         
         
@@ -583,36 +520,24 @@
         
         
 
-        <a href="/reviews/soul-surfers/" class="archive-row glass-card grid grid-cols-12 gap-4 px-6 py-3 items-center group hover:border-[#DAA520]/40 transition-all duration-500">
+        <a href="/reviews/wily-bo-walker/"
+           class="archive-row glass-card grid grid-cols-12 gap-4 px-6 py-3 items-center group hover:border-[#DAA520]/40 transition-all duration-300"
+           data-artist="Wily Bo Walker &amp; The Danny Flam Big Band"
+           data-album="Moonshine Boogie"
+           data-image="wilybo.jpg"
+           data-avg="82"
+           data-excerpt="I have heard of Wily Bo Walker only peripherally but being a fan of horns and a big band sound I couldn’t resist his new album, Wily Bo Walker and The Danny...">
+
             <div class="col-span-1 aspect-square overflow-hidden rounded-sm border border-white/10">
-                <img src="/assets/img/soulsurfers.jpg" alt="Soul Rock!" class="w-full h-full object-cover">
+                <img src="/assets/img/wilybo.jpg" alt="Moonshine Boogie" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
             </div>
-
-            <div class="col-span-3 text-sm font-medium text-white group-hover:text-[#DAA520] transition-colors truncate tracking-tight artist-cell">
-                The Soul Surfers
-            </div>
-            
-            <div class="col-span-3 text-white/60 text-xs italic font-light truncate album-cell">
-                Soul Rock!
-            </div>
-
-            <div class="col-span-1 text-center text-white/50 font-light text-[10px] tracking-widest year-cell">
-                2015
-            </div>
-
-            <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white s1-cell">
-                85
-            </div>
-            <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white s2-cell">
-                90
-            </div>
-            <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white s3-cell">
-                100
-            </div>
-
-            <div class="col-span-1 text-right italic font-light text-[#DAA520] text-lg logo-mojo mojo-cell">
-                92%
-            </div>
+            <div class="col-span-3 text-sm font-medium text-white group-hover:text-[#DAA520] transition-colors truncate tracking-tight artist-cell">Wily Bo Walker &amp; The Danny Flam Big Band</div>
+            <div class="col-span-3 text-white/60 text-xs italic font-light truncate album-cell">Moonshine Boogie</div>
+            <div class="col-span-1 text-center text-white/50 font-light text-[10px] tracking-widest year-cell">2015</div>
+            <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white s1-cell">85</div>
+            <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white s2-cell">80</div>
+            <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white s3-cell">80</div>
+            <div class="col-span-1 text-right italic font-light text-[#DAA520] text-lg logo-mojo mojo-cell">82%</div>
         </a>
         
         
@@ -620,36 +545,24 @@
         
         
 
-        <a href="/reviews/james-hunter-six/" class="archive-row glass-card grid grid-cols-12 gap-4 px-6 py-3 items-center group hover:border-[#DAA520]/40 transition-all duration-500">
+        <a href="/reviews/soul-surfers/"
+           class="archive-row glass-card grid grid-cols-12 gap-4 px-6 py-3 items-center group hover:border-[#DAA520]/40 transition-all duration-300"
+           data-artist="The Soul Surfers"
+           data-album="Soul Rock!"
+           data-image="soulsurfers.jpg"
+           data-avg="92"
+           data-excerpt="I have several of their singles and had high hopes for their first album. The Soul Surfers did not disappoint, this is a kick ass album in every funky way...">
+
             <div class="col-span-1 aspect-square overflow-hidden rounded-sm border border-white/10">
-                <img src="/assets/img/nickoftime.jpg" alt="Nick Of Time" class="w-full h-full object-cover">
+                <img src="/assets/img/soulsurfers.jpg" alt="Soul Rock!" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
             </div>
-
-            <div class="col-span-3 text-sm font-medium text-white group-hover:text-[#DAA520] transition-colors truncate tracking-tight artist-cell">
-                The James Hunter Six
-            </div>
-            
-            <div class="col-span-3 text-white/60 text-xs italic font-light truncate album-cell">
-                Nick Of Time
-            </div>
-
-            <div class="col-span-1 text-center text-white/50 font-light text-[10px] tracking-widest year-cell">
-                2020
-            </div>
-
-            <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white s1-cell">
-                95
-            </div>
-            <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white s2-cell">
-                90
-            </div>
-            <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white s3-cell">
-                90
-            </div>
-
-            <div class="col-span-1 text-right italic font-light text-[#DAA520] text-lg logo-mojo mojo-cell">
-                92%
-            </div>
+            <div class="col-span-3 text-sm font-medium text-white group-hover:text-[#DAA520] transition-colors truncate tracking-tight artist-cell">The Soul Surfers</div>
+            <div class="col-span-3 text-white/60 text-xs italic font-light truncate album-cell">Soul Rock!</div>
+            <div class="col-span-1 text-center text-white/50 font-light text-[10px] tracking-widest year-cell">2015</div>
+            <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white s1-cell">85</div>
+            <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white s2-cell">90</div>
+            <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white s3-cell">100</div>
+            <div class="col-span-1 text-right italic font-light text-[#DAA520] text-lg logo-mojo mojo-cell">92%</div>
         </a>
         
         
@@ -657,111 +570,1253 @@
         
         
 
-        <a href="/reviews/gatemouth-brown/" class="archive-row glass-card grid grid-cols-12 gap-4 px-6 py-3 items-center group hover:border-[#DAA520]/40 transition-all duration-500">
+        <a href="/reviews/james-hunter-six/"
+           class="archive-row glass-card grid grid-cols-12 gap-4 px-6 py-3 items-center group hover:border-[#DAA520]/40 transition-all duration-300"
+           data-artist="The James Hunter Six"
+           data-album="Nick Of Time"
+           data-image="nickoftime.jpg"
+           data-avg="92"
+           data-excerpt="Somewhere during his musical travels, including bandleader for Van Morrison, James Hunter was bitten by a radioactive hamster. James immediately gained the...">
+
             <div class="col-span-1 aspect-square overflow-hidden rounded-sm border border-white/10">
-                <img src="/assets/img/gatemouth.jpg" alt="San Antonio Ballbuster" class="w-full h-full object-cover">
+                <img src="/assets/img/nickoftime.jpg" alt="Nick Of Time" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
             </div>
-
-            <div class="col-span-3 text-sm font-medium text-white group-hover:text-[#DAA520] transition-colors truncate tracking-tight artist-cell">
-                Clarence &quot;Gatemouth&quot; Brown
-            </div>
-            
-            <div class="col-span-3 text-white/60 text-xs italic font-light truncate album-cell">
-                San Antonio Ballbuster
-            </div>
-
-            <div class="col-span-1 text-center text-white/50 font-light text-[10px] tracking-widest year-cell">
-                1960
-            </div>
-
-            <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white s1-cell">
-                85
-            </div>
-            <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white s2-cell">
-                70
-            </div>
-            <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white s3-cell">
-                40
-            </div>
-
-            <div class="col-span-1 text-right italic font-light text-[#DAA520] text-lg logo-mojo mojo-cell">
-                65%
-            </div>
+            <div class="col-span-3 text-sm font-medium text-white group-hover:text-[#DAA520] transition-colors truncate tracking-tight artist-cell">The James Hunter Six</div>
+            <div class="col-span-3 text-white/60 text-xs italic font-light truncate album-cell">Nick Of Time</div>
+            <div class="col-span-1 text-center text-white/50 font-light text-[10px] tracking-widest year-cell">2020</div>
+            <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white s1-cell">95</div>
+            <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white s2-cell">90</div>
+            <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white s3-cell">90</div>
+            <div class="col-span-1 text-right italic font-light text-[#DAA520] text-lg logo-mojo mojo-cell">92%</div>
         </a>
         
+        
+        
+        
+        
+
+        <a href="/reviews/gatemouth-brown/"
+           class="archive-row glass-card grid grid-cols-12 gap-4 px-6 py-3 items-center group hover:border-[#DAA520]/40 transition-all duration-300"
+           data-artist="Clarence &quot;Gatemouth&quot; Brown"
+           data-album="San Antonio Ballbuster"
+           data-image="gatemouth.jpg"
+           data-avg="65"
+           data-excerpt="It wasn’t easy deciding which of the great bluesmen I should write about first for this new series. I could go way back and dig through some of the whorehouse...">
+
+            <div class="col-span-1 aspect-square overflow-hidden rounded-sm border border-white/10">
+                <img src="/assets/img/gatemouth.jpg" alt="San Antonio Ballbuster" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+            </div>
+            <div class="col-span-3 text-sm font-medium text-white group-hover:text-[#DAA520] transition-colors truncate tracking-tight artist-cell">Clarence &quot;Gatemouth&quot; Brown</div>
+            <div class="col-span-3 text-white/60 text-xs italic font-light truncate album-cell">San Antonio Ballbuster</div>
+            <div class="col-span-1 text-center text-white/50 font-light text-[10px] tracking-widest year-cell">1960</div>
+            <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white s1-cell">85</div>
+            <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white s2-cell">70</div>
+            <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white s3-cell">40</div>
+            <div class="col-span-1 text-right italic font-light text-[#DAA520] text-lg logo-mojo mojo-cell">65%</div>
+        </a>
+        
+    </div>
+
+    <!-- ── VIEW 3: CRATE GRID ─────────────────────────────────────────── -->
+    <div id="archive-crate" style="display:none">
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3">
+            
+            
+            
+            
+            
+
+            <div class="crate-card"
+                 data-artist="King Crimson"
+                 data-album="In the Court of the Crimson King"
+                 onclick="flipCard(this)">
+                <div class="crate-inner">
+                    <div class="crate-front">
+                        <img src="/assets/img/https://i.imgur.com/5d0F8yf.jpg"
+                             alt="King Crimson"
+                             class="w-full h-full object-cover">
+                    </div>
+                    <div class="crate-back">
+                        <div class="flex flex-col h-full justify-between p-3">
+                            <div>
+                                <p class="text-white font-semibold text-xs leading-tight mb-1 uppercase tracking-tight">King Crimson</p>
+                                <p class="text-white/50 text-[10px] italic leading-tight">In the Court of the Crimson King</p>
+                            </div>
+                            <div>
+                                <p class="text-[#DAA520] logo-mojo text-2xl italic font-light">0%</p>
+                                <a href="/reviews/King Crimson/"
+                                   onclick="event.stopPropagation()"
+                                   class="inline-block mt-2 text-[9px] uppercase tracking-widest font-bold text-white/40 hover:text-[#DAA520] transition-colors border-b border-white/10 hover:border-[#DAA520] pb-px">
+                                    Read Review →
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            
+            
+            
+            
+
+            <div class="crate-card"
+                 data-artist="The Olympians"
+                 data-album="In Search of a Revival"
+                 onclick="flipCard(this)">
+                <div class="crate-inner">
+                    <div class="crate-front">
+                        <img src="/assets/img/olympians.jpg"
+                             alt="The Olympians"
+                             class="w-full h-full object-cover">
+                    </div>
+                    <div class="crate-back">
+                        <div class="flex flex-col h-full justify-between p-3">
+                            <div>
+                                <p class="text-white font-semibold text-xs leading-tight mb-1 uppercase tracking-tight">The Olympians</p>
+                                <p class="text-white/50 text-[10px] italic leading-tight">In Search of a Revival</p>
+                            </div>
+                            <div>
+                                <p class="text-[#DAA520] logo-mojo text-2xl italic font-light">90%</p>
+                                <a href="/reviews/olympians-2026/"
+                                   onclick="event.stopPropagation()"
+                                   class="inline-block mt-2 text-[9px] uppercase tracking-widest font-bold text-white/40 hover:text-[#DAA520] transition-colors border-b border-white/10 hover:border-[#DAA520] pb-px">
+                                    Read Review →
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            
+            
+            
+            
+
+            <div class="crate-card"
+                 data-artist="Trombone Shorty"
+                 data-album="Say That to Say This"
+                 onclick="flipCard(this)">
+                <div class="crate-inner">
+                    <div class="crate-front">
+                        <img src="/assets/img/saythattosaythis.jpg"
+                             alt="Trombone Shorty"
+                             class="w-full h-full object-cover">
+                    </div>
+                    <div class="crate-back">
+                        <div class="flex flex-col h-full justify-between p-3">
+                            <div>
+                                <p class="text-white font-semibold text-xs leading-tight mb-1 uppercase tracking-tight">Trombone Shorty</p>
+                                <p class="text-white/50 text-[10px] italic leading-tight">Say That to Say This</p>
+                            </div>
+                            <div>
+                                <p class="text-[#DAA520] logo-mojo text-2xl italic font-light">88%</p>
+                                <a href="/reviews/Trombone_shorty/"
+                                   onclick="event.stopPropagation()"
+                                   class="inline-block mt-2 text-[9px] uppercase tracking-widest font-bold text-white/40 hover:text-[#DAA520] transition-colors border-b border-white/10 hover:border-[#DAA520] pb-px">
+                                    Read Review →
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            
+            
+            
+            
+
+            <div class="crate-card"
+                 data-artist="Black Joe Lewis &amp; The Honeybears"
+                 data-album="Electric Slave"
+                 onclick="flipCard(this)">
+                <div class="crate-inner">
+                    <div class="crate-front">
+                        <img src="/assets/img/black_joe_lewis.jpg"
+                             alt="Black Joe Lewis &amp; The Honeybears"
+                             class="w-full h-full object-cover">
+                    </div>
+                    <div class="crate-back">
+                        <div class="flex flex-col h-full justify-between p-3">
+                            <div>
+                                <p class="text-white font-semibold text-xs leading-tight mb-1 uppercase tracking-tight">Black Joe Lewis &amp; The Honeybears</p>
+                                <p class="text-white/50 text-[10px] italic leading-tight">Electric Slave</p>
+                            </div>
+                            <div>
+                                <p class="text-[#DAA520] logo-mojo text-2xl italic font-light">78%</p>
+                                <a href="/reviews/black_joe_lewis/"
+                                   onclick="event.stopPropagation()"
+                                   class="inline-block mt-2 text-[9px] uppercase tracking-widest font-bold text-white/40 hover:text-[#DAA520] transition-colors border-b border-white/10 hover:border-[#DAA520] pb-px">
+                                    Read Review →
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            
+            
+            
+            
+
+            <div class="crate-card"
+                 data-artist="Jonny Lang"
+                 data-album="Fight For My Soul"
+                 onclick="flipCard(this)">
+                <div class="crate-inner">
+                    <div class="crate-front">
+                        <img src="/assets/img/ffys.jpg"
+                             alt="Jonny Lang"
+                             class="w-full h-full object-cover">
+                    </div>
+                    <div class="crate-back">
+                        <div class="flex flex-col h-full justify-between p-3">
+                            <div>
+                                <p class="text-white font-semibold text-xs leading-tight mb-1 uppercase tracking-tight">Jonny Lang</p>
+                                <p class="text-white/50 text-[10px] italic leading-tight">Fight For My Soul</p>
+                            </div>
+                            <div>
+                                <p class="text-[#DAA520] logo-mojo text-2xl italic font-light">70%</p>
+                                <a href="/reviews/fight-for-my-soul/"
+                                   onclick="event.stopPropagation()"
+                                   class="inline-block mt-2 text-[9px] uppercase tracking-widest font-bold text-white/40 hover:text-[#DAA520] transition-colors border-b border-white/10 hover:border-[#DAA520] pb-px">
+                                    Read Review →
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            
+            
+            
+            
+
+            <div class="crate-card"
+                 data-artist="Joe Louis Walker"
+                 data-album="Hornet&#39;s Nest"
+                 onclick="flipCard(this)">
+                <div class="crate-inner">
+                    <div class="crate-front">
+                        <img src="/assets/img/hornetsnest.jpg"
+                             alt="Joe Louis Walker"
+                             class="w-full h-full object-cover">
+                    </div>
+                    <div class="crate-back">
+                        <div class="flex flex-col h-full justify-between p-3">
+                            <div>
+                                <p class="text-white font-semibold text-xs leading-tight mb-1 uppercase tracking-tight">Joe Louis Walker</p>
+                                <p class="text-white/50 text-[10px] italic leading-tight">Hornet&#39;s Nest</p>
+                            </div>
+                            <div>
+                                <p class="text-[#DAA520] logo-mojo text-2xl italic font-light">80%</p>
+                                <a href="/reviews/hornets-nest/"
+                                   onclick="event.stopPropagation()"
+                                   class="inline-block mt-2 text-[9px] uppercase tracking-widest font-bold text-white/40 hover:text-[#DAA520] transition-colors border-b border-white/10 hover:border-[#DAA520] pb-px">
+                                    Read Review →
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            
+            
+            
+            
+
+            <div class="crate-card"
+                 data-artist="The Monophonics"
+                 data-album="It&#39;s Only Us"
+                 onclick="flipCard(this)">
+                <div class="crate-inner">
+                    <div class="crate-front">
+                        <img src="/assets/img/itsonlyus.jpg"
+                             alt="The Monophonics"
+                             class="w-full h-full object-cover">
+                    </div>
+                    <div class="crate-back">
+                        <div class="flex flex-col h-full justify-between p-3">
+                            <div>
+                                <p class="text-white font-semibold text-xs leading-tight mb-1 uppercase tracking-tight">The Monophonics</p>
+                                <p class="text-white/50 text-[10px] italic leading-tight">It&#39;s Only Us</p>
+                            </div>
+                            <div>
+                                <p class="text-[#DAA520] logo-mojo text-2xl italic font-light">87%</p>
+                                <a href="/reviews/monophonics/"
+                                   onclick="event.stopPropagation()"
+                                   class="inline-block mt-2 text-[9px] uppercase tracking-widest font-bold text-white/40 hover:text-[#DAA520] transition-colors border-b border-white/10 hover:border-[#DAA520] pb-px">
+                                    Read Review →
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            
+            
+            
+            
+
+            <div class="crate-card"
+                 data-artist="Neal Francis"
+                 data-album="Changes"
+                 onclick="flipCard(this)">
+                <div class="crate-inner">
+                    <div class="crate-front">
+                        <img src="/assets/img/nfchanges.jpg"
+                             alt="Neal Francis"
+                             class="w-full h-full object-cover">
+                    </div>
+                    <div class="crate-back">
+                        <div class="flex flex-col h-full justify-between p-3">
+                            <div>
+                                <p class="text-white font-semibold text-xs leading-tight mb-1 uppercase tracking-tight">Neal Francis</p>
+                                <p class="text-white/50 text-[10px] italic leading-tight">Changes</p>
+                            </div>
+                            <div>
+                                <p class="text-[#DAA520] logo-mojo text-2xl italic font-light">95%</p>
+                                <a href="/reviews/neal-francis/"
+                                   onclick="event.stopPropagation()"
+                                   class="inline-block mt-2 text-[9px] uppercase tracking-widest font-bold text-white/40 hover:text-[#DAA520] transition-colors border-b border-white/10 hover:border-[#DAA520] pb-px">
+                                    Read Review →
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            
+            
+            
+            
+
+            <div class="crate-card"
+                 data-artist="No Show Ponies"
+                 data-album="No Show Ponies"
+                 onclick="flipCard(this)">
+                <div class="crate-inner">
+                    <div class="crate-front">
+                        <img src="/assets/img/noshowponies.jpg"
+                             alt="No Show Ponies"
+                             class="w-full h-full object-cover">
+                    </div>
+                    <div class="crate-back">
+                        <div class="flex flex-col h-full justify-between p-3">
+                            <div>
+                                <p class="text-white font-semibold text-xs leading-tight mb-1 uppercase tracking-tight">No Show Ponies</p>
+                                <p class="text-white/50 text-[10px] italic leading-tight">No Show Ponies</p>
+                            </div>
+                            <div>
+                                <p class="text-[#DAA520] logo-mojo text-2xl italic font-light">70%</p>
+                                <a href="/reviews/no-show-ponies/"
+                                   onclick="event.stopPropagation()"
+                                   class="inline-block mt-2 text-[9px] uppercase tracking-widest font-bold text-white/40 hover:text-[#DAA520] transition-colors border-b border-white/10 hover:border-[#DAA520] pb-px">
+                                    Read Review →
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            
+            
+            
+            
+
+            <div class="crate-card"
+                 data-artist="Sharon Jones &amp; The Dap-Kings"
+                 data-album="Give the People What They Want"
+                 onclick="flipCard(this)">
+                <div class="crate-inner">
+                    <div class="crate-front">
+                        <img src="/assets/img/gtpwtw.jpg"
+                             alt="Sharon Jones &amp; The Dap-Kings"
+                             class="w-full h-full object-cover">
+                    </div>
+                    <div class="crate-back">
+                        <div class="flex flex-col h-full justify-between p-3">
+                            <div>
+                                <p class="text-white font-semibold text-xs leading-tight mb-1 uppercase tracking-tight">Sharon Jones &amp; The Dap-Kings</p>
+                                <p class="text-white/50 text-[10px] italic leading-tight">Give the People What They Want</p>
+                            </div>
+                            <div>
+                                <p class="text-[#DAA520] logo-mojo text-2xl italic font-light">92%</p>
+                                <a href="/reviews/sharon-jones/"
+                                   onclick="event.stopPropagation()"
+                                   class="inline-block mt-2 text-[9px] uppercase tracking-widest font-bold text-white/40 hover:text-[#DAA520] transition-colors border-b border-white/10 hover:border-[#DAA520] pb-px">
+                                    Read Review →
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            
+            
+            
+            
+
+            <div class="crate-card"
+                 data-artist="The Bamboos"
+                 data-album="Medicine Man"
+                 onclick="flipCard(this)">
+                <div class="crate-inner">
+                    <div class="crate-front">
+                        <img src="/assets/img/feveritr.jpg"
+                             alt="The Bamboos"
+                             class="w-full h-full object-cover">
+                    </div>
+                    <div class="crate-back">
+                        <div class="flex flex-col h-full justify-between p-3">
+                            <div>
+                                <p class="text-white font-semibold text-xs leading-tight mb-1 uppercase tracking-tight">The Bamboos</p>
+                                <p class="text-white/50 text-[10px] italic leading-tight">Medicine Man</p>
+                            </div>
+                            <div>
+                                <p class="text-[#DAA520] logo-mojo text-2xl italic font-light">97%</p>
+                                <a href="/reviews/the-bamboos/"
+                                   onclick="event.stopPropagation()"
+                                   class="inline-block mt-2 text-[9px] uppercase tracking-widest font-bold text-white/40 hover:text-[#DAA520] transition-colors border-b border-white/10 hover:border-[#DAA520] pb-px">
+                                    Read Review →
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            
+            
+            
+            
+
+            <div class="crate-card"
+                 data-artist="The Nightowls"
+                 data-album="Good As Gold"
+                 onclick="flipCard(this)">
+                <div class="crate-inner">
+                    <div class="crate-front">
+                        <img src="/assets/img/goodasgold.jpg"
+                             alt="The Nightowls"
+                             class="w-full h-full object-cover">
+                    </div>
+                    <div class="crate-back">
+                        <div class="flex flex-col h-full justify-between p-3">
+                            <div>
+                                <p class="text-white font-semibold text-xs leading-tight mb-1 uppercase tracking-tight">The Nightowls</p>
+                                <p class="text-white/50 text-[10px] italic leading-tight">Good As Gold</p>
+                            </div>
+                            <div>
+                                <p class="text-[#DAA520] logo-mojo text-2xl italic font-light">92%</p>
+                                <a href="/reviews/the-nightowls/"
+                                   onclick="event.stopPropagation()"
+                                   class="inline-block mt-2 text-[9px] uppercase tracking-widest font-bold text-white/40 hover:text-[#DAA520] transition-colors border-b border-white/10 hover:border-[#DAA520] pb-px">
+                                    Read Review →
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            
+            
+            
+            
+
+            <div class="crate-card"
+                 data-artist="Tommy Castro"
+                 data-album="The Devil You Know"
+                 onclick="flipCard(this)">
+                <div class="crate-inner">
+                    <div class="crate-front">
+                        <img src="/assets/img/tdyk.jpg"
+                             alt="Tommy Castro"
+                             class="w-full h-full object-cover">
+                    </div>
+                    <div class="crate-back">
+                        <div class="flex flex-col h-full justify-between p-3">
+                            <div>
+                                <p class="text-white font-semibold text-xs leading-tight mb-1 uppercase tracking-tight">Tommy Castro</p>
+                                <p class="text-white/50 text-[10px] italic leading-tight">The Devil You Know</p>
+                            </div>
+                            <div>
+                                <p class="text-[#DAA520] logo-mojo text-2xl italic font-light">83%</p>
+                                <a href="/reviews/tommy-castro/"
+                                   onclick="event.stopPropagation()"
+                                   class="inline-block mt-2 text-[9px] uppercase tracking-widest font-bold text-white/40 hover:text-[#DAA520] transition-colors border-b border-white/10 hover:border-[#DAA520] pb-px">
+                                    Read Review →
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            
+            
+            
+            
+
+            <div class="crate-card"
+                 data-artist="Voo Davis"
+                 data-album="Vicious Things"
+                 onclick="flipCard(this)">
+                <div class="crate-inner">
+                    <div class="crate-front">
+                        <img src="/assets/img/voodavis.jpg"
+                             alt="Voo Davis"
+                             class="w-full h-full object-cover">
+                    </div>
+                    <div class="crate-back">
+                        <div class="flex flex-col h-full justify-between p-3">
+                            <div>
+                                <p class="text-white font-semibold text-xs leading-tight mb-1 uppercase tracking-tight">Voo Davis</p>
+                                <p class="text-white/50 text-[10px] italic leading-tight">Vicious Things</p>
+                            </div>
+                            <div>
+                                <p class="text-[#DAA520] logo-mojo text-2xl italic font-light">87%</p>
+                                <a href="/reviews/voo-davis/"
+                                   onclick="event.stopPropagation()"
+                                   class="inline-block mt-2 text-[9px] uppercase tracking-widest font-bold text-white/40 hover:text-[#DAA520] transition-colors border-b border-white/10 hover:border-[#DAA520] pb-px">
+                                    Read Review →
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            
+            
+            
+            
+
+            <div class="crate-card"
+                 data-artist="Wily Bo Walker &amp; The Danny Flam Big Band"
+                 data-album="Moonshine Boogie"
+                 onclick="flipCard(this)">
+                <div class="crate-inner">
+                    <div class="crate-front">
+                        <img src="/assets/img/wilybo.jpg"
+                             alt="Wily Bo Walker &amp; The Danny Flam Big Band"
+                             class="w-full h-full object-cover">
+                    </div>
+                    <div class="crate-back">
+                        <div class="flex flex-col h-full justify-between p-3">
+                            <div>
+                                <p class="text-white font-semibold text-xs leading-tight mb-1 uppercase tracking-tight">Wily Bo Walker &amp; The Danny Flam Big Band</p>
+                                <p class="text-white/50 text-[10px] italic leading-tight">Moonshine Boogie</p>
+                            </div>
+                            <div>
+                                <p class="text-[#DAA520] logo-mojo text-2xl italic font-light">82%</p>
+                                <a href="/reviews/wily-bo-walker/"
+                                   onclick="event.stopPropagation()"
+                                   class="inline-block mt-2 text-[9px] uppercase tracking-widest font-bold text-white/40 hover:text-[#DAA520] transition-colors border-b border-white/10 hover:border-[#DAA520] pb-px">
+                                    Read Review →
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            
+            
+            
+            
+
+            <div class="crate-card"
+                 data-artist="The Soul Surfers"
+                 data-album="Soul Rock!"
+                 onclick="flipCard(this)">
+                <div class="crate-inner">
+                    <div class="crate-front">
+                        <img src="/assets/img/soulsurfers.jpg"
+                             alt="The Soul Surfers"
+                             class="w-full h-full object-cover">
+                    </div>
+                    <div class="crate-back">
+                        <div class="flex flex-col h-full justify-between p-3">
+                            <div>
+                                <p class="text-white font-semibold text-xs leading-tight mb-1 uppercase tracking-tight">The Soul Surfers</p>
+                                <p class="text-white/50 text-[10px] italic leading-tight">Soul Rock!</p>
+                            </div>
+                            <div>
+                                <p class="text-[#DAA520] logo-mojo text-2xl italic font-light">92%</p>
+                                <a href="/reviews/soul-surfers/"
+                                   onclick="event.stopPropagation()"
+                                   class="inline-block mt-2 text-[9px] uppercase tracking-widest font-bold text-white/40 hover:text-[#DAA520] transition-colors border-b border-white/10 hover:border-[#DAA520] pb-px">
+                                    Read Review →
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            
+            
+            
+            
+
+            <div class="crate-card"
+                 data-artist="The James Hunter Six"
+                 data-album="Nick Of Time"
+                 onclick="flipCard(this)">
+                <div class="crate-inner">
+                    <div class="crate-front">
+                        <img src="/assets/img/nickoftime.jpg"
+                             alt="The James Hunter Six"
+                             class="w-full h-full object-cover">
+                    </div>
+                    <div class="crate-back">
+                        <div class="flex flex-col h-full justify-between p-3">
+                            <div>
+                                <p class="text-white font-semibold text-xs leading-tight mb-1 uppercase tracking-tight">The James Hunter Six</p>
+                                <p class="text-white/50 text-[10px] italic leading-tight">Nick Of Time</p>
+                            </div>
+                            <div>
+                                <p class="text-[#DAA520] logo-mojo text-2xl italic font-light">92%</p>
+                                <a href="/reviews/james-hunter-six/"
+                                   onclick="event.stopPropagation()"
+                                   class="inline-block mt-2 text-[9px] uppercase tracking-widest font-bold text-white/40 hover:text-[#DAA520] transition-colors border-b border-white/10 hover:border-[#DAA520] pb-px">
+                                    Read Review →
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            
+            
+            
+            
+
+            <div class="crate-card"
+                 data-artist="Clarence &quot;Gatemouth&quot; Brown"
+                 data-album="San Antonio Ballbuster"
+                 onclick="flipCard(this)">
+                <div class="crate-inner">
+                    <div class="crate-front">
+                        <img src="/assets/img/gatemouth.jpg"
+                             alt="Clarence &quot;Gatemouth&quot; Brown"
+                             class="w-full h-full object-cover">
+                    </div>
+                    <div class="crate-back">
+                        <div class="flex flex-col h-full justify-between p-3">
+                            <div>
+                                <p class="text-white font-semibold text-xs leading-tight mb-1 uppercase tracking-tight">Clarence &quot;Gatemouth&quot; Brown</p>
+                                <p class="text-white/50 text-[10px] italic leading-tight">San Antonio Ballbuster</p>
+                            </div>
+                            <div>
+                                <p class="text-[#DAA520] logo-mojo text-2xl italic font-light">65%</p>
+                                <a href="/reviews/gatemouth-brown/"
+                                   onclick="event.stopPropagation()"
+                                   class="inline-block mt-2 text-[9px] uppercase tracking-widest font-bold text-white/40 hover:text-[#DAA520] transition-colors border-b border-white/10 hover:border-[#DAA520] pb-px">
+                                    Read Review →
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+</div>
+
+<!-- ── HOVER PREVIEW CARD (carousel & preview modes) ──────────────────── -->
+<div id="preview-card">
+    <div class="preview-art">
+        <img id="preview-img" src="" alt="">
+    </div>
+    <div class="preview-info">
+        <p id="preview-artist" class="text-white text-sm font-semibold uppercase tracking-tight mb-1"></p>
+        <p id="preview-album" class="text-[#e63946] text-[10px] uppercase tracking-widest italic mb-3"></p>
+        <p id="preview-excerpt" class="text-white/50 text-xs leading-relaxed"></p>
+        <p id="preview-score" class="text-[#DAA520] logo-mojo text-3xl italic font-light mt-3"></p>
     </div>
 </div>
 
-<script>
-let sortDirections = {};
-
-function filterTable() {
-    const input = document.getElementById('archiveSearch');
-    const filter = input.value.toLowerCase();
-    const rows = document.getElementsByClassName('archive-row');
-
-    for (let i = 0; i < rows.length; i++) {
-        const artist = rows[i].querySelector('.artist-cell').innerText.toLowerCase();
-        const album = rows[i].querySelector('.album-cell').innerText.toLowerCase();
-        
-        if (artist.includes(filter) || album.includes(filter)) {
-            rows[i].style.display = "";
-        } else {
-            rows[i].style.display = "none";
-        }
-    }
-}
-
-function sortTable(columnIndex) {
-    const list = document.getElementById('archiveList');
-    const rows = Array.from(list.getElementsByClassName('archive-row'));
-    
-    // Toggle direction
-    sortDirections[columnIndex] = !sortDirections[columnIndex];
-    const isAscending = sortDirections[columnIndex];
-
-    const sortedRows = rows.sort((a, b) => {
-        // Map column indices to their actual content cells
-        const selectors = [
-            '.artist-cell', '.album-cell', '.year-cell', 
-            '.s1-cell', '.s2-cell', '.s3-cell', '.mojo-cell'
-        ];
-        
-        let aVal = a.querySelector(selectors[columnIndex - 1]).innerText.trim();
-        let bVal = b.querySelector(selectors[columnIndex - 1]).innerText.trim();
-        
-        // Clean percentages for numeric sorting
-        if (aVal.includes('%')) aVal = aVal.replace('%', '');
-        if (bVal.includes('%')) bVal = bVal.replace('%', '');
-
-        // Determine if numeric or string
-        const isNumeric = !isNaN(aVal) && !isNaN(bVal);
-        
-        if (isNumeric) {
-            return isAscending ? parseFloat(aVal) - parseFloat(bVal) : parseFloat(bVal) - parseFloat(aVal);
-        } else {
-            return isAscending ? aVal.localeCompare(bVal) : bVal.localeCompare(aVal);
-        }
-    });
-
-    list.innerHTML = '';
-    sortedRows.forEach(row => list.appendChild(row));
-}
-</script>
-
 <style>
+    /* ── Glass card (table rows) ── */
     .glass-card {
-        background: rgba(255, 255, 255, 0.02);
+        background: rgba(255,255,255,0.02);
         backdrop-filter: blur(10px);
-        border: 1px solid rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255,255,255,0.08);
         border-radius: 2px;
         text-decoration: none;
     }
-    .archive-row:hover {
-        background: rgba(255, 255, 255, 0.05);
-        transform: scale(1.002);
+    .archive-row:hover { background: rgba(255,255,255,0.05); }
+
+    /* ── View toggle buttons ── */
+    .view-btn { color: rgba(255,255,255,0.3); }
+    .view-btn:hover { color: rgba(255,255,255,0.7); background: rgba(255,255,255,0.05); }
+    .view-btn.active { color: #DAA520; background: rgba(218,165,32,0.1); }
+
+    /* ── Hover preview card ── */
+    #preview-card {
+        position: fixed;
+        width: 320px;
+        background: #111;
+        border: 1px solid rgba(255,255,255,0.1);
+        border-radius: 2px;
+        display: none;
+        pointer-events: none;
+        z-index: 100;
+        overflow: hidden;
+        box-shadow: 0 24px 60px rgba(0,0,0,0.8);
+    }
+    .preview-art { width: 100%; aspect-ratio: 1/1; overflow: hidden; }
+    .preview-art img { width: 100%; height: 100%; object-fit: cover; }
+    .preview-info { padding: 16px; }
+
+    /* ── Crate cards ── */
+    .crate-card {
+        aspect-ratio: 1/1;
+        cursor: pointer;
+        perspective: 800px;
+    }
+    .crate-inner {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        transform-style: preserve-3d;
+        transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .crate-card.flipped .crate-inner { transform: rotateY(180deg); }
+    .crate-front, .crate-back {
+        position: absolute;
+        inset: 0;
+        backface-visibility: hidden;
+        -webkit-backface-visibility: hidden;
+        border: 1px solid rgba(255,255,255,0.08);
+    }
+    .crate-back {
+        transform: rotateY(180deg);
+        background: #111;
+    }
+    .crate-front img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+    /* ── Carousel ─────────────────────────────────────────────────────── */
+    #carousel-wrapper {
+        position: relative;
+        width: 100%;
+        height: 440px;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        perspective: 1400px;
+        cursor: grab;
+        user-select: none;
+        -webkit-user-select: none;
+    }
+    #carousel-wrapper.is-dragging { cursor: grabbing; }
+    #carousel-stage {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        transform-style: preserve-3d;
+    }
+
+    /* Base slot — transforms are driven entirely by JS via inline styles */
+    .c-slot {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 320px;
+        height: 320px;
+        margin-left: -160px;
+        margin-top: -160px;
+        overflow: hidden;
+        border: 1px solid rgba(255,255,255,0.1);
+        border-radius: 2px;
+        cursor: pointer;
+        /* only non-transform properties transition via CSS */
+        transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    .c-slot img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        pointer-events: none;
+        transition: transform 0.35s ease;
+    }
+    /* Center-slot hover: slight image zoom */
+    .c-slot.c-center { border-color: rgba(197,160,89,0.35); box-shadow: 0 24px 64px rgba(0,0,0,0.85); }
+    .c-slot.c-center:hover { border-color: rgba(197,160,89,0.65); box-shadow: 0 28px 72px rgba(0,0,0,0.9), 0 0 32px rgba(197,160,89,0.15); }
+    .c-slot.c-center:hover img { transform: scale(1.04); }
+
+    /* Navigation arrows */
+    .carousel-arrow {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 10;
+        background: rgba(0,0,0,0.75);
+        border: 1px solid rgba(255,255,255,0.14);
+        color: #DAA520;
+        width: 42px;
+        height: 42px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 18px;
+        cursor: pointer;
+        transition: all 0.2s;
+        border-radius: 2px;
+        line-height: 1;
+    }
+    .carousel-arrow:hover { background: rgba(218,165,32,0.12); border-color: rgba(218,165,32,0.5); color: #fff; }
+    #carousel-prev { left: 8px; }
+    #carousel-next { right: 8px; }
+
+    /* Info strip */
+    #carousel-info { text-align: center; padding: 32px 16px 0; }
+    #c-artist {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 2.2rem; font-weight: 300; color: #fff;
+        margin-bottom: 4px; letter-spacing: -0.02em;
+    }
+    #c-album { font-size: 10px; font-weight: 700; color: #e63946; text-transform: uppercase; letter-spacing: 0.35em; font-style: italic; }
+    #c-score { font-family: 'Cormorant Garamond', serif; font-size: 1.7rem; font-style: italic; color: #DAA520; }
+    #c-link  { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.3em; color: rgba(255,255,255,0.28); text-decoration: none; transition: color 0.2s; }
+    #c-link:hover { color: #DAA520; }
+    #c-counter { font-size: 9px; text-transform: uppercase; letter-spacing: 0.35em; color: rgba(255,255,255,0.18); margin-top: 14px; }
+
+    /* Mobile carousel — only slot SIZE is CSS; positions are JS */
+    @media (max-width: 640px) {
+        #carousel-wrapper { height: 300px; }
+        .c-slot { width: 210px; height: 210px; margin-left: -105px; margin-top: -105px; }
+        .carousel-arrow { width: 34px; height: 34px; font-size: 14px; }
+        #c-artist { font-size: 1.5rem; }
     }
 </style>
+
+<script>
+/* ════════════════════════════════════════════════════════════════════
+   CAROUSEL — viewOffset-driven physics
+   viewOffset is a float:
+     0   = stable (carouselIndex is at center)
+    +1   = one album forward  (left-drag completes → carouselIndex++)
+    -1   = one album backward (right-drag completes → carouselIndex--)
+   renderCarousel() reads viewOffset and applies interpolated transforms
+   to every slot. All animation goes through animateViewOffset() which
+   uses rAF, so the rotation/scale/opacity transition continuously.
+   ════════════════════════════════════════════════════════════════════ */
+
+/* ── Per-position properties (index 0 = pos -3, index 6 = pos +3) ── */
+const C_PROPS_D = [ // desktop (slot spacing ~265 px)
+    { x:-630, sc:0.46, ry: 52, op:0.08, br:0.30 },
+    { x:-450, sc:0.58, ry: 42, op:0.28, br:0.45 },
+    { x:-265, sc:0.76, ry: 24, op:0.60, br:0.65 },
+    { x:   0, sc:1.00, ry:  0, op:1.00, br:1.00 },
+    { x: 265, sc:0.76, ry:-24, op:0.60, br:0.65 },
+    { x: 450, sc:0.58, ry:-42, op:0.28, br:0.45 },
+    { x: 630, sc:0.46, ry:-52, op:0.08, br:0.30 },
+];
+const C_PROPS_M = [ // mobile (slot spacing ~175 px)
+    { x:-390, sc:0.46, ry: 52, op:0.08, br:0.30 },
+    { x:-295, sc:0.58, ry: 42, op:0.28, br:0.45 },
+    { x:-175, sc:0.76, ry: 24, op:0.60, br:0.65 },
+    { x:   0, sc:1.00, ry:  0, op:1.00, br:1.00 },
+    { x: 175, sc:0.76, ry:-24, op:0.60, br:0.65 },
+    { x: 295, sc:0.58, ry:-42, op:0.28, br:0.45 },
+    { x: 390, sc:0.46, ry:-52, op:0.08, br:0.30 },
+];
+function cProps()   { return window.innerWidth <= 640 ? C_PROPS_M : C_PROPS_D; }
+function cSpacing() { return window.innerWidth <= 640 ? 175 : 265; }
+
+function lerp(a, b, t) { return a + (b - a) * t; }
+
+/* Interpolate properties for a float position (-3…+3) */
+function propsAt(p) {
+    const props   = cProps();
+    const clamped = Math.max(-3, Math.min(3, p));
+    const lo      = Math.max(-3, Math.floor(clamped));
+    const hi      = Math.min( 3, lo + 1);
+    const t       = clamped - lo;
+    const a       = props[lo + 3];
+    const b       = props[hi + 3];
+    if (lo === hi) return a;
+    return {
+        x:  lerp(a.x,  b.x,  t),
+        sc: lerp(a.sc, b.sc, t),
+        ry: lerp(a.ry, b.ry, t),
+        op: lerp(a.op, b.op, t),
+        br: lerp(a.br, b.br, t),
+    };
+}
+
+/* ── State ───────────────────────────────────────────────────────────── */
+const carouselData = [];
+let carouselIndex  = 0;
+let viewOffset     = 0;   // float, drives all renders
+let cRafId         = null;
+let sortDirections = {};
+let currentView    = localStorage.getItem('mojoArchiveView') || 'carousel';
+if (currentView === 'table') currentView = 'carousel';
+
+/* ── Apply transforms to all 5 slots ───────────────────────────────── */
+function renderCarousel() {
+    for (let k = -2; k <= 2; k++) {
+        const slot = document.getElementById('c-slot-' + (k + 2));
+        if (!slot) continue;
+        const p = propsAt(k - viewOffset);
+        slot.style.transform = `translateX(${p.x}px) scale(${p.sc}) rotateY(${p.ry}deg)`;
+        slot.style.opacity   = p.op;
+        slot.style.filter    = `brightness(${p.br})`;
+        slot.style.zIndex    = Math.abs(k - viewOffset) < 0.5 ? 5 : (Math.abs(k - viewOffset) < 1.5 ? 2 : 1);
+        // Mark the visual center slot for CSS hover rules
+        const isCenter = (k === 0) && Math.abs(viewOffset) < 0.1;
+        slot.classList.toggle('c-center', isCenter);
+    }
+}
+
+/* ── Update slot content (which album each slot displays) ───────────── */
+function updateCarouselContent() {
+    const total = carouselData.length;
+    if (!total) return;
+    for (let k = -2; k <= 2; k++) {
+        const slot = document.getElementById('c-slot-' + (k + 2));
+        if (!slot) continue;
+        const idx  = ((carouselIndex + k) % total + total) % total;
+        const item = carouselData[idx];
+        slot.dataset.idx = String(idx);
+        const img = slot.querySelector('img');
+        img.src = '/assets/img/' + item.image;
+        img.alt = item.artist + ' – ' + item.album;
+    }
+}
+
+/* ── Update the info strip below the carousel ───────────────────────── */
+function updateInfoStrip() {
+    const total = carouselData.length;
+    if (!total) return;
+    const cur = carouselData[carouselIndex];
+    document.getElementById('c-artist').textContent  = cur.artist;
+    document.getElementById('c-album').textContent   = cur.album;
+    document.getElementById('c-score').textContent   = cur.avg + '%';
+    document.getElementById('c-link').href           = cur.url;
+    document.getElementById('c-counter').textContent = (carouselIndex + 1) + ' / ' + total;
+}
+
+/* ── Full refresh (content + render + strip) ────────────────────────── */
+function updateCarousel() {
+    updateCarouselContent();
+    renderCarousel();
+    updateInfoStrip();
+}
+
+/* ── rAF-based viewOffset animation ────────────────────────────────── */
+function easeOutCubic(t) { return 1 - Math.pow(1 - t, 3); }
+function easeOutBack(t)  {
+    const c1 = 1.70158, c3 = c1 + 1;
+    return 1 + c3 * Math.pow(t - 1, 3) + c1 * Math.pow(t - 1, 2);
+}
+
+function animateViewOffset(from, to, ms, onComplete) {
+    if (cRafId) { cancelAnimationFrame(cRafId); cRafId = null; }
+    const start   = performance.now();
+    const isNav   = Math.abs(to) >= 0.9;
+    const easeFn  = isNav ? easeOutCubic : easeOutBack;
+    function frame(now) {
+        const t    = Math.min((now - start) / ms, 1);
+        viewOffset = lerp(from, to, easeFn(t));
+        renderCarousel();
+        if (t < 1) {
+            cRafId = requestAnimationFrame(frame);
+        } else {
+            viewOffset = to;
+            renderCarousel();
+            cRafId = null;
+            if (onComplete) onComplete();
+        }
+    }
+    cRafId = requestAnimationFrame(frame);
+}
+
+/* ── Navigate one step (arrow buttons, keyboard, side-slot click) ─── */
+function carouselNav(dir) {
+    if (cRafId) { cancelAnimationFrame(cRafId); cRafId = null; }
+    const from = viewOffset;
+    const to   = dir;  // +1 = forward (left), -1 = backward (right)
+    const ms   = Math.max(220, Math.abs(to - from) * 360);
+    animateViewOffset(from, to, ms, () => {
+        carouselIndex = ((carouselIndex + dir + carouselData.length) % carouselData.length);
+        viewOffset    = 0;
+        updateCarouselContent();
+        renderCarousel();
+        updateInfoStrip();
+    });
+}
+
+/* ── Slot interaction wiring ────────────────────────────────────────── */
+function initCarouselSlots() {
+    const wrapper    = document.getElementById('carousel-wrapper');
+    const centerSlot = document.getElementById('c-slot-2');
+
+    /* Center slot: hover → preview popup; click → go to review */
+    centerSlot.addEventListener('mouseenter', function(e) {
+        const idx  = parseInt(this.dataset.idx);
+        if (isNaN(idx)) return;
+        const item = carouselData[idx];
+        document.getElementById('preview-img').src             = '/assets/img/' + item.image;
+        document.getElementById('preview-artist').textContent  = item.artist;
+        document.getElementById('preview-album').textContent   = item.album;
+        document.getElementById('preview-excerpt').textContent = item.excerpt;
+        document.getElementById('preview-score').textContent   = item.avg + '%';
+        previewCard.style.display = 'block';
+        positionCard(e);
+    });
+    centerSlot.addEventListener('mousemove',  movePreview);
+    centerSlot.addEventListener('mouseleave', hidePreview);
+    centerSlot.addEventListener('click', function() {
+        if (dragMoved) return;
+        const idx = parseInt(this.dataset.idx);
+        if (!isNaN(idx)) window.location.href = carouselData[idx].url;
+    });
+
+    /* Side slots: click to spin toward that side */
+    [0, 1, 3, 4].forEach(si => {
+        document.getElementById('c-slot-' + si).addEventListener('click', function() {
+            if (dragMoved) return;
+            carouselNav(si < 2 ? -1 : 1);
+        });
+    });
+
+    /* ── Touch swipe ──────────────────────────────────────────────── */
+    let touchStartX = 0;
+    wrapper.addEventListener('touchstart', e => {
+        if (cRafId) { cancelAnimationFrame(cRafId); cRafId = null; }
+        touchStartX = e.touches[0].clientX;
+    }, { passive: true });
+    wrapper.addEventListener('touchmove', e => {
+        const dx = e.touches[0].clientX - touchStartX;
+        viewOffset = -dx / cSpacing();
+        renderCarousel();
+    }, { passive: true });
+    wrapper.addEventListener('touchend', e => {
+        const dx = e.changedTouches[0].clientX - touchStartX;
+        if (Math.abs(viewOffset) >= 0.28) {
+            carouselNav(viewOffset > 0 ? 1 : -1);
+        } else {
+            animateViewOffset(viewOffset, 0, Math.max(220, Math.abs(viewOffset) * 500), null);
+        }
+    }, { passive: true });
+
+    /* ── Mouse drag ───────────────────────────────────────────────── */
+    let dragStartX = 0;
+    let isDragging = false;
+    /* dragMoved is module-level so click handlers can read it */
+
+    wrapper.addEventListener('mousedown', e => {
+        if (e.button !== 0) return;
+        if (cRafId) { cancelAnimationFrame(cRafId); cRafId = null; }
+        isDragging = true;
+        dragMoved  = false;
+        dragStartX = e.clientX;
+        wrapper.classList.add('is-dragging');
+        e.preventDefault();
+    });
+
+    window.addEventListener('mousemove', e => {
+        if (!isDragging) return;
+        const raw = -(e.clientX - dragStartX) / cSpacing();
+        if (Math.abs(raw * cSpacing()) > 6) dragMoved = true;
+        /* Soft resistance past ±1 so it doesn't feel like it flies away */
+        const abs = Math.abs(raw);
+        viewOffset = Math.sign(raw) * (abs <= 1 ? abs : 1 + (abs - 1) * 0.25);
+        renderCarousel();
+    });
+
+    window.addEventListener('mouseup', () => {
+        if (!isDragging) return;
+        isDragging = false;
+        wrapper.classList.remove('is-dragging');
+        if (Math.abs(viewOffset) >= 0.28) {
+            carouselNav(viewOffset > 0 ? 1 : -1);
+        } else {
+            /* Spring back with a little overshoot */
+            animateViewOffset(viewOffset, 0, Math.max(220, Math.abs(viewOffset) * 550), null);
+        }
+    });
+
+    /* Suppress accidental clicks after a drag */
+    wrapper.addEventListener('click', e => {
+        if (dragMoved) { e.stopImmediatePropagation(); dragMoved = false; }
+    }, true);
+}
+
+/* dragMoved needs to be readable by slot click handlers */
+let dragMoved = false;
+
+/* ── Keyboard navigation ────────────────────────────────────────────── */
+document.addEventListener('keydown', function(e) {
+    if (currentView !== 'carousel') return;
+    if (e.key === 'ArrowLeft')  carouselNav(-1);
+    if (e.key === 'ArrowRight') carouselNav(1);
+});
+
+/* ── View switching ─────────────────────────────────────────────────── */
+function setView(view) {
+    currentView = view;
+    localStorage.setItem('mojoArchiveView', view);
+
+    document.getElementById('archive-carousel').style.display = 'none';
+    document.getElementById('archive-table').style.display    = 'none';
+    document.getElementById('archive-crate').style.display    = 'none';
+    document.getElementById('sort-headers').style.display     = 'none';
+    previewCard.style.display = 'none';
+    removePreviewListeners();
+
+    ['carousel','preview','crate'].forEach(v =>
+        document.getElementById('btn-' + v).classList.remove('active'));
+    document.getElementById('btn-' + view).classList.add('active');
+
+    if (view === 'carousel') {
+        document.getElementById('archive-carousel').style.display = 'block';
+        updateCarousel();
+    } else if (view === 'preview') {
+        document.getElementById('archive-table').style.display  = 'block';
+        document.getElementById('sort-headers').style.display   = 'grid';
+        addPreviewListeners();
+    } else if (view === 'crate') {
+        document.getElementById('archive-crate').style.display = 'block';
+        filterCrate();
+    }
+}
+
+/* ── Hover preview (table rows in preview mode) ─────────────────────── */
+function addPreviewListeners() {
+    document.querySelectorAll('.archive-row').forEach(row => {
+        row.addEventListener('mouseenter', showRowPreview);
+        row.addEventListener('mousemove',  movePreview);
+        row.addEventListener('mouseleave', hidePreview);
+    });
+}
+function removePreviewListeners() {
+    document.querySelectorAll('.archive-row').forEach(row => {
+        row.removeEventListener('mouseenter', showRowPreview);
+        row.removeEventListener('mousemove',  movePreview);
+        row.removeEventListener('mouseleave', hidePreview);
+    });
+}
+
+const previewCard = document.getElementById('preview-card');
+
+function showRowPreview(e) {
+    const row = e.currentTarget;
+    document.getElementById('preview-img').src             = '/assets/img/' + row.dataset.image;
+    document.getElementById('preview-artist').textContent  = row.dataset.artist;
+    document.getElementById('preview-album').textContent   = row.dataset.album;
+    document.getElementById('preview-excerpt').textContent = row.dataset.excerpt;
+    document.getElementById('preview-score').textContent   = row.dataset.avg + '%';
+    previewCard.style.display = 'block';
+    positionCard(e);
+}
+function movePreview(e) { positionCard(e); }
+function hidePreview()  { previewCard.style.display = 'none'; }
+function positionCard(e) {
+    const margin = 16, cw = previewCard.offsetWidth || 320, ch = previewCard.offsetHeight || 400;
+    let x = e.clientX + margin, y = e.clientY + margin;
+    if (x + cw > window.innerWidth  - margin) x = e.clientX - cw - margin;
+    if (y + ch > window.innerHeight - margin) y = e.clientY - ch - margin;
+    previewCard.style.left = x + 'px';
+    previewCard.style.top  = y + 'px';
+}
+
+/* ── Crate flip ─────────────────────────────────────────────────────── */
+function flipCard(el) { el.classList.toggle('flipped'); }
+
+/* ── Search ─────────────────────────────────────────────────────────── */
+function filterAll() {
+    const filter = document.getElementById('archiveSearch').value.toLowerCase();
+    document.querySelectorAll('.archive-row').forEach(row => {
+        const match = row.dataset.artist.toLowerCase().includes(filter) ||
+                      row.dataset.album.toLowerCase().includes(filter);
+        row.style.display = match ? '' : 'none';
+    });
+    filterCrate(filter);
+    if (filter && carouselData.length && currentView === 'carousel') {
+        const idx = carouselData.findIndex(item =>
+            item.artist.toLowerCase().includes(filter) ||
+            item.album.toLowerCase().includes(filter));
+        if (idx >= 0) { carouselIndex = idx; viewOffset = 0; updateCarousel(); }
+    }
+}
+function filterCrate(filter) {
+    filter = filter !== undefined ? filter : document.getElementById('archiveSearch').value.toLowerCase();
+    document.querySelectorAll('.crate-card').forEach(c => {
+        const match = c.dataset.artist.toLowerCase().includes(filter) ||
+                      c.dataset.album.toLowerCase().includes(filter);
+        c.style.display = match ? '' : 'none';
+    });
+}
+
+/* ── Sort (preview mode only) ───────────────────────────────────────── */
+function sortTable(columnIndex) {
+    const list = document.getElementById('archive-table');
+    const rows = Array.from(list.getElementsByClassName('archive-row'));
+    sortDirections[columnIndex] = !sortDirections[columnIndex];
+    const asc = sortDirections[columnIndex];
+    for (let i = 1; i <= 7; i++) {
+        const h = document.getElementById('hdr-' + i);
+        if (!h) continue;
+        h.style.color = 'rgba(255,255,255,0.5)';
+        const ar = h.querySelector('.sort-arrow');
+        if (ar) { ar.textContent = ''; ar.style.display = 'none'; }
+    }
+    const ah = document.getElementById('hdr-' + columnIndex);
+    if (ah) {
+        ah.style.color = '#DAA520';
+        const ar = ah.querySelector('.sort-arrow');
+        if (ar) { ar.textContent = asc ? '↑' : '↓'; ar.style.display = 'inline'; }
+    }
+    const sel = ['.artist-cell','.album-cell','.year-cell','.s1-cell','.s2-cell','.s3-cell','.mojo-cell'];
+    rows.sort((a, b) => {
+        let av = a.querySelector(sel[columnIndex-1]).innerText.trim().replace('%','');
+        let bv = b.querySelector(sel[columnIndex-1]).innerText.trim().replace('%','');
+        const num = !isNaN(av) && !isNaN(bv);
+        if (num) return asc ? parseFloat(av)-parseFloat(bv) : parseFloat(bv)-parseFloat(av);
+        return asc ? av.localeCompare(bv) : bv.localeCompare(av);
+    });
+    list.innerHTML = '';
+    rows.forEach(r => list.appendChild(r));
+}
+
+/* ── Init ───────────────────────────────────────────────────────────── */
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.archive-row').forEach(function(row) {
+        carouselData.push({
+            url:     row.getAttribute('href'),
+            artist:  row.dataset.artist  || '',
+            album:   row.dataset.album   || '',
+            image:   row.dataset.image   || '',
+            avg:     parseInt(row.dataset.avg) || 0,
+            excerpt: row.dataset.excerpt || ''
+        });
+    });
+    initCarouselSlots();
+    setView(currentView);
+});
+</script>
+
         </main>
 
         <footer class="border-t border-white border-opacity-10 py-12 mt-20">
