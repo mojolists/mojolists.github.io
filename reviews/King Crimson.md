@@ -4,11 +4,11 @@ title: "King Crimson"
 artist: "King Crimson"
 album: "In the Court of the Crimson King"
 label: ""
-year: ""
+year: "1973"
 image: "kingCrimson.jpg"
-score1: 0
-score2: 0
-score3: 0
+score1: 95
+score2: 90
+score3: 30
 tags: reviews
 date: 2026-03-05
 ---
@@ -19,6 +19,10 @@ The album features seven epic tracks, each one showcasing the band's musical com
 
 One of the standout features of this album is the musicianship of the band members. Robert Fripp's guitar work is breathtaking, and Greg Lake's vocals are both powerful and emotive. The rhythm section of Ian McDonald and Michael Giles provides a solid foundation for the music, while Peter Sinfield's lyrics add an extra layer of depth to the songs.
 
-In the Court of the Crimson King is an album that will appeal to fans of progressive rock, but it's also accessible to those who enjoy more mainstream music. The album has been widely influential and has inspired countless musicians over the years. If you're looking for a musical experience that will challenge your ears and expand your mind, then In the Court of the Crimson King is the perfect choice.
+In the Court of the Crimson King is an album that will appeal to fans of progressive rock, but it's also accessible to those who enjoy more mainstream music. The album has been widely influential and has inspired countless musicians over the years.
+
+The impact of In the Court of the Crimson King cannot be overstated. This album helped shape the sound of progressive rock and paved the way for bands like Yes, Genesis, and Emerson, Lake & Palmer. Its influence can still be heard in modern music today, with artists like Tool, Porcupine Tree, and Radiohead citing King Crimson as a major inspiration.
+
+In fact, many musicians have covered or been influenced by King Crimson's songs, including Metallica, who has covered "21st Century Schizoid Man," and Iron Maiden, who has referenced the song in their lyrics. The album's influence can also be seen in its use of complex time signatures, polyrhythms, and classical influences, which have become hallmarks of progressive rock.
 
 Overall, I highly recommend In the Court of the Crimson King to anyone who loves good music. It's an album that will reward repeated listens and will continue to inspire new generations of musicians and fans alike."
