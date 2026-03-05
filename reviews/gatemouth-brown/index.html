@@ -15,7 +15,7 @@
                 <a href="/" class="text-3xl uppercase tracking-tighter logo-mojo">
                     MOJO<span class="logo-lists">LISTS</span>
                 </a>
-                <div class="hidden md:flex space-x-12 text-[10px] font-medium uppercase tracking-[0.3em] text-gray-500">
+                <div class="hidden md:flex space-x-12 text-xs font-medium uppercase tracking-[0.2em] text-gray-300">
                     <a href="/archive/" class="hover:text-white transition">Archive</a>
                     <a href="/about" class="hover:text-white transition">About</a>
                 </div>
@@ -155,6 +155,31 @@
         text-shadow: 0 0 20px rgba(255, 215, 0, 0.2);
     }
 </style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const card = document.querySelector('.glass-card');
+        const heading = card ? card.querySelector('.artist-heading') : null;
+        const subheading = card ? card.querySelector('.album-subheading') : null;
+        if (!card || !heading) return;
+
+        // Step down artist name font size until card stops overflowing
+        let size = parseFloat(window.getComputedStyle(heading).fontSize);
+        while (card.scrollHeight > card.clientHeight && size > 14) {
+            size -= 0.5;
+            heading.style.fontSize = size + 'px';
+        }
+
+        // If still overflowing, step down album title too
+        if (subheading) {
+            let subSize = parseFloat(window.getComputedStyle(subheading).fontSize);
+            while (card.scrollHeight > card.clientHeight && subSize > 11) {
+                subSize -= 0.5;
+                subheading.style.fontSize = subSize + 'px';
+            }
+        }
+    });
+</script>
         </main>
 
         <footer class="border-t border-white border-opacity-10 py-12 mt-20">
