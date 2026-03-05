@@ -10,17 +10,56 @@
 </head>
 <body class="bg-black text-white min-h-screen font-sans selection:bg-[#DAA520] selection:text-black">
     <div class="min-h-screen flex flex-col">
-        <nav class="border-b border-white border-opacity-10 px-6 py-8">
+        <nav class="border-b border-white border-opacity-10 px-6 py-8 relative z-50">
             <div class="max-w-7xl mx-auto flex justify-between items-center">
                 <a href="/" class="text-3xl uppercase tracking-tighter logo-mojo">
                     MOJO<span class="logo-lists">LISTS</span>
                 </a>
+                <!-- Desktop nav -->
                 <div class="hidden md:flex space-x-12 text-xs font-medium uppercase tracking-[0.2em] text-gray-300">
                     <a href="/archive/" class="hover:text-white transition">Archive</a>
                     <a href="/about" class="hover:text-white transition">About</a>
                 </div>
+                <!-- Mobile hamburger -->
+                <button id="menu-btn" class="md:hidden flex flex-col justify-center items-center w-8 h-8 gap-1.5 group" onclick="toggleMobileMenu()" aria-label="Menu">
+                    <span id="bar1" class="block w-6 h-px bg-white transition-all duration-300"></span>
+                    <span id="bar2" class="block w-6 h-px bg-white transition-all duration-300"></span>
+                    <span id="bar3" class="block w-4 h-px bg-white transition-all duration-300 self-end"></span>
+                </button>
             </div>
         </nav>
+
+        <!-- Mobile menu overlay -->
+        <div id="mobile-menu" class="hidden fixed inset-0 bg-black z-40 flex flex-col items-center justify-center gap-12">
+            <a href="/archive/" onclick="toggleMobileMenu()" class="text-4xl uppercase tracking-[0.3em] font-light logo-mojo text-white hover:text-[#DAA520] transition-colors">Archive</a>
+            <a href="/about" onclick="toggleMobileMenu()" class="text-4xl uppercase tracking-[0.3em] font-light logo-mojo text-white hover:text-[#DAA520] transition-colors">About</a>
+            <div class="absolute bottom-12 text-[10px] uppercase tracking-widest text-white/20">MojoLists</div>
+        </div>
+
+        <script>
+            function toggleMobileMenu() {
+                const menu = document.getElementById('mobile-menu');
+                const bar1 = document.getElementById('bar1');
+                const bar2 = document.getElementById('bar2');
+                const bar3 = document.getElementById('bar3');
+                const isOpen = !menu.classList.contains('hidden');
+                menu.classList.toggle('hidden');
+                // Animate bars into X
+                if (!isOpen) {
+                    bar1.style.transform = 'translateY(6px) rotate(45deg)';
+                    bar2.style.opacity = '0';
+                    bar3.style.transform = 'translateY(-6px) rotate(-45deg)';
+                    bar3.style.width = '1.5rem';
+                    bar3.style.alignSelf = 'auto';
+                } else {
+                    bar1.style.transform = '';
+                    bar2.style.opacity = '';
+                    bar3.style.transform = '';
+                    bar3.style.width = '';
+                    bar3.style.alignSelf = '';
+                }
+            }
+        </script>
 
         <main class="flex-grow">
             {{ content | safe }}
