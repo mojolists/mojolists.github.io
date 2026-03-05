@@ -5,7 +5,7 @@ artist: "King Crimson"
 album: "In the Court of the Crimson King"
 label: ""
 year: ""
-image: "https://i.imgur.com/5d0F8yf.jpg"
+image: "kingCrimson.jpg"
 score1: 0
 score2: 0
 score3: 0
