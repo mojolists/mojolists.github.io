@@ -136,3 +136,28 @@ layout: base.njk
         text-shadow: 0 0 20px rgba(255, 215, 0, 0.2);
     }
 </style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const card = document.querySelector('.glass-card');
+        const heading = card ? card.querySelector('.artist-heading') : null;
+        const subheading = card ? card.querySelector('.album-subheading') : null;
+        if (!card || !heading) return;
+
+        // Step down artist name font size until card stops overflowing
+        let size = parseFloat(window.getComputedStyle(heading).fontSize);
+        while (card.scrollHeight > card.clientHeight && size > 14) {
+            size -= 0.5;
+            heading.style.fontSize = size + 'px';
+        }
+
+        // If still overflowing, step down album title too
+        if (subheading) {
+            let subSize = parseFloat(window.getComputedStyle(subheading).fontSize);
+            while (card.scrollHeight > card.clientHeight && subSize > 11) {
+                subSize -= 0.5;
+                subheading.style.fontSize = subSize + 'px';
+            }
+        }
+    });
+</script>
