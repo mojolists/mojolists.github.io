@@ -14,10 +14,12 @@ layout: base.njk
 <div class="absolute top-0 left-0 w-full h-[700px] overflow-hidden -z-10 pointer-events-none">
     <img src="/assets/img/{{ image }}" class="w-full h-full object-cover object-top opacity-40 blur-sm" alt="">
     <div class="absolute inset-0 bg-gradient-to-b from-black/0 via-black/70 to-[#000000]"></div>
+    <!-- Subtle gold tint overlay to differentiate Re-Play visually -->
+    <div class="absolute inset-0 bg-gradient-to-br from-[#c5a059]/5 via-transparent to-transparent"></div>
 </div>
 
 <article class="max-w-6xl mx-auto px-6 py-12 relative">
-    
+
     {# Desktop Navigation Arrows #}
     {% if previousPost %}
     <a href="{{ previousPost.url }}" class="fixed left-8 top-1/2 -translate-y-1/2 hidden xl:flex flex-col items-start group z-50">
@@ -38,22 +40,33 @@ layout: base.njk
     {% endif %}
 
     <header class="flex flex-col lg:flex-row gap-8 justify-center items-end mb-20 relative z-10">
-        
+
         {# Left Block: Album Art #}
-        <div class="fixed-square">
-            <img src="/assets/img/{{ image }}" alt="{{ artist }} - {{ album }}" class="w-full h-full object-cover border border-white/20 rounded-sm shadow-2xl">
+        <div class="fixed-square relative">
+            <img src="/assets/img/{{ image }}" alt="{{ artist }} - {{ album }}" class="w-full h-full object-cover border border-[#c5a059]/30 rounded-sm shadow-2xl">
+            <!-- Re-Play corner badge on the art -->
+            <div class="absolute top-3 left-3 flex items-center gap-1.5 bg-black/80 border border-[#c5a059]/50 px-2.5 py-1.5">
+                <span class="text-[8px] font-bold uppercase tracking-[0.4em] text-[#c5a059]">Re-Play</span>
+            </div>
         </div>
-        
-        {# Right Block: Glass Info Card #}
-        <div class="glass-card fixed-square relative overflow-hidden">
+
+        {# Right Block: Glass Info Card — gold-accented for Re-Play #}
+        <div class="glass-card fixed-square relative overflow-hidden replay-glass">
             <div class="flex flex-col h-full">
-                
+
+                <!-- Re-Play identity header -->
+                <div class="flex items-center gap-3 mb-5">
+                    <div class="h-px flex-1 bg-[#c5a059]/30"></div>
+                    <span class="text-[9px] font-bold uppercase tracking-[0.45em] text-[#c5a059]">Re-Play</span>
+                    <div class="h-px flex-1 bg-[#c5a059]/30"></div>
+                </div>
+
                 <div class="mb-auto">
                     <h1 class="artist-heading text-white mb-1">
                         {{ artist }}
                     </h1>
-                    
-                    <h2 class="album-subheading mb-4">
+
+                    <h2 class="album-subheading mb-4" style="color: #c5a059;">
                         {{ album }}
                     </h2>
 
@@ -68,7 +81,7 @@ layout: base.njk
                         </div>
 
                         {# Visual Separator #}
-                        <div class="border-t border-white/20 my-6"></div>
+                        <div class="border-t border-[#c5a059]/20 my-6"></div>
 
                         <div class="metadata-row">
                             <span class="metadata-label font-bold text-[#FFD700]">Performance</span>
@@ -85,7 +98,7 @@ layout: base.njk
                     </div>
                 </div>
 
-                {# Mojo Rating: Inline Label and Score, both Brighter Gold #}
+                {# Mojo Rating #}
                 <div class="pt-6 flex items-baseline gap-4">
                     <span class="metadata-label text-[#FFD700] font-bold uppercase tracking-[0.3em] text-[11px]">Mojo Rating</span>
                     <div class="mojo-rating italic font-black text-[#FFD700]">
@@ -96,36 +109,23 @@ layout: base.njk
         </div>
     </header>
 
-    {# Featured quote #}
-    {% if featuredQuote %}
+    {# Re-Play explanation callout — sits above the review body #}
     <div class="max-w-3xl mx-auto mb-12 relative z-10">
-        <p class="text-xl text-white/80 italic leading-relaxed border-l-4 border-[#e63946] pl-6 py-2">
-            "{{ featuredQuote }}"
-        </p>
+        <div class="border-l-2 border-[#c5a059]/60 pl-5 py-1">
+            <p class="text-[9px] font-bold uppercase tracking-[0.4em] text-[#c5a059] mb-2">About This Review</p>
+            <p class="text-sm italic text-white/45 leading-relaxed">
+                Re-Play reviews look back at landmark albums — how they were received at the time of release, the influence they've had on music in the years since, and where they stand today.
+            </p>
+        </div>
     </div>
-    {% endif %}
 
+    {# Review body — quote, buy button and video are placed inline within the content #}
     <div class="max-w-3xl mx-auto review-content space-y-8 relative z-10 text-white font-light leading-[1.85]">
         {{ content | safe }}
     </div>
 
-    {% if youtubeId %}
-    <div class="max-w-5xl mx-auto my-16 aspect-video border border-white/10 rounded-sm overflow-hidden shadow-2xl relative z-10">
-        <iframe class="w-full h-full" src="https://www.youtube.com/embed/{{ youtubeId }}" frameborder="0" allowfullscreen></iframe>
-    </div>
-    {% endif %}
-
-    {# Buy link #}
-    {% if buyLink %}
-    <div class="max-w-3xl mx-auto mt-12 pt-10 border-t border-white/10 relative z-10">
-        <a href="{{ buyLink }}" target="_blank" class="px-10 py-4 border border-[#c5a059] text-[#c5a059] font-bold uppercase tracking-[0.2em] text-xs hover:bg-[#c5a059] hover:text-black transition-all duration-300 text-center inline-block">
-            Buy Album
-        </a>
-    </div>
-    {% endif %}
-
     {# Mobile Navigation Footer #}
-    <div class="xl:hidden flex justify-between items-center mt-20 pt-10 border-t border-white/10 relative z-10">
+    <div class="xl:hidden flex justify-between items-center mt-20 pt-10 border-t border-[#c5a059]/20 relative z-10">
         {% if previousPost %}
         <a href="{{ previousPost.url }}" class="flex flex-col">
             <span class="text-[#FFD700] text-[10px] font-bold uppercase tracking-widest mb-1">← Previous</span>
@@ -153,6 +153,59 @@ layout: base.njk
         font-size: 2.75rem;
         text-shadow: 0 0 20px rgba(255, 215, 0, 0.2);
     }
+    /* Subtle gold border tint on the Re-Play glass card */
+    .replay-glass {
+        border-color: rgba(197, 160, 89, 0.25) !important;
+    }
+    /* Re-Play section headers — Cormorant Garamond italic in gold */
+    .review-content h2 {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 1.85rem;
+        font-weight: 300;
+        font-style: italic;
+        color: #c5a059;
+        letter-spacing: 0.03em;
+        margin-top: 3.5rem;
+        margin-bottom: 1.25rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 1px solid rgba(197, 160, 89, 0.2);
+        line-height: 1.2;
+    }
+    .review-content h2:first-child { margin-top: 0; }
+    /* Inline quote styling */
+    .review-content .inline-quote {
+        border-left: 3px solid #c5a059;
+        padding: 0.25rem 0 0.25rem 1.5rem;
+        margin: 2.5rem 0;
+        font-style: italic;
+        font-size: 1.2rem;
+        color: rgba(255,255,255,0.8);
+        line-height: 1.7;
+    }
+    /* Inline buy button */
+    .review-content .buy-btn {
+        display: inline-block;
+        padding: 13px 36px;
+        border: 1px solid #c5a059;
+        color: #c5a059;
+        font-size: 10px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.25em;
+        text-decoration: none;
+        transition: background 0.2s, color 0.2s;
+        margin: 2rem 0;
+    }
+    .review-content .buy-btn:hover { background: #c5a059; color: #000; }
+    /* Inline video */
+    .review-content .inline-video {
+        margin: 2.5rem 0;
+        aspect-ratio: 16/9;
+        max-width: 520px;
+        border: 1px solid rgba(197,160,89,0.2);
+        overflow: hidden;
+    }
+    .review-content .inline-video iframe { width: 100%; height: 100%; display: block; }
 </style>
 
 <script>
@@ -162,14 +215,12 @@ layout: base.njk
         const subheading = card ? card.querySelector('.album-subheading') : null;
         if (!card || !heading) return;
 
-        // Step down artist name font size until card stops overflowing
         let size = parseFloat(window.getComputedStyle(heading).fontSize);
         while (card.scrollHeight > card.clientHeight && size > 14) {
             size -= 0.5;
             heading.style.fontSize = size + 'px';
         }
 
-        // If still overflowing, step down album title too
         if (subheading) {
             let subSize = parseFloat(window.getComputedStyle(subheading).fontSize);
             while (card.scrollHeight > card.clientHeight && subSize > 11) {

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>King Crimson — Re-Play Preview | MojoLists</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        body { background-color: #000; color: #fff; font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; }
+        .logo-mojo { font-family: 'Cormorant Garamond', serif; font-weight: 300; color: white; }
+        .logo-lists { font-family: 'Cormorant Garamond', serif; font-weight: 400; color: #e63946; }
+        .fixed-square { width: 400px !important; height: 400px !important; flex-shrink: 0; }
+        .glass-card { background: rgba(255,255,255,0.02); backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px); border: 1px solid rgba(255,255,255,0.08); padding: 3rem; }
+        .replay-glass { border-color: rgba(197,160,89,0.25) !important; }
+        .artist-heading { font-family: 'Inter', sans-serif !important; font-weight: 600; text-transform: uppercase; line-height: 1.05; letter-spacing: -0.03em; font-size: clamp(1.4rem, 4vw, 2.1rem); }
+        .album-subheading { font-family: 'Inter', sans-serif !important; font-weight: 500; font-size: 1.1rem; letter-spacing: -0.01em; text-transform: uppercase; }
+        .metadata-row { display: flex; justify-content: space-between; align-items: baseline; font-size: 10px; text-transform: uppercase; letter-spacing: 0.15em; }
+        .metadata-label { font-weight: 300; opacity: 0.35; }
+        .metadata-value { font-weight: 400; color: rgba(255,255,255,0.9); }
+        .mojo-rating { font-family: 'Inter', sans-serif !important; font-weight: 600; font-style: italic; font-size: 4rem; color: #FFD700; line-height: 1; letter-spacing: -0.05em; text-shadow: 0 0 20px rgba(255,215,0,0.2); }
+        .vertical-text { writing-mode: vertical-rl; text-orientation: mixed; }
+
+        /* Review body */
+        .review-content { font-family: 'Inter', sans-serif !important; font-size: 1.125rem; line-height: 1.9; color: rgba(255,255,255,0.75); font-weight: 300; }
+        .review-content p { margin-bottom: 2rem; }
+
+        /* Section headers — gold Cormorant Garamond italic */
+        .review-content h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.85rem;
+            font-weight: 300;
+            font-style: italic;
+            color: #c5a059;
+            letter-spacing: 0.03em;
+            margin-top: 3.5rem;
+            margin-bottom: 1.25rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid rgba(197,160,89,0.2);
+            line-height: 1.2;
+        }
+        .review-content h2:first-child { margin-top: 0; }
+
+        /* Inline quote */
+        .inline-quote {
+            border-left: 3px solid #c5a059;
+            padding: 0.25rem 0 0.25rem 1.5rem;
+            margin: 2.5rem 0;
+            font-style: italic;
+            font-size: 1.2rem;
+            color: rgba(255,255,255,0.8);
+            line-height: 1.7;
+        }
+
+        /* Inline buy button */
+        .buy-btn {
+            display: inline-block;
+            padding: 13px 36px;
+            border: 1px solid #c5a059;
+            color: #c5a059;
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.25em;
+            text-decoration: none;
+            transition: background 0.2s, color 0.2s;
+            margin: 2rem 0;
+        }
+        .buy-btn:hover { background: #c5a059; color: #000; }
+    </style>
+</head>
+<body class="min-h-screen">
+
+<nav class="border-b border-white/10 px-6 py-8 relative z-50">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+        <a href="#" class="text-3xl uppercase tracking-tighter logo-mojo">MOJO<span class="logo-lists">LISTS</span></a>
+        <div class="hidden md:flex space-x-12 text-xs font-medium uppercase tracking-[0.2em] text-gray-300">
+            <a href="#" class="hover:text-white transition">Archive</a>
+            <a href="#" class="hover:text-white transition">About</a>
+        </div>
+    </div>
+</nav>
+
+<div class="absolute top-0 left-0 w-full h-[700px] overflow-hidden -z-10 pointer-events-none">
+    <img src="/sessions/friendly-wonderful-noether/mnt/mojolists.github.io/assets/img/kingCrimson.jpg" class="w-full h-full object-cover object-top opacity-40 blur-sm" alt="">
+    <div class="absolute inset-0 bg-gradient-to-b from-black/0 via-black/70 to-[#000000]"></div>
+    <div class="absolute inset-0 bg-gradient-to-br from-[#c5a059]/5 via-transparent to-transparent"></div>
+</div>
+
+<main>
+<article class="max-w-6xl mx-auto px-6 py-12 relative">
+
+    <a href="#" class="fixed left-8 top-1/2 -translate-y-1/2 hidden xl:flex flex-col items-start group z-50">
+        <span class="text-[#FFD700] text-4xl font-light mb-2">←</span>
+        <span class="text-[#FFD700] text-[10px] font-bold uppercase tracking-[0.3em] vertical-text opacity-60">Previous</span>
+    </a>
+    <a href="#" class="fixed right-8 top-1/2 -translate-y-1/2 hidden xl:flex flex-col items-end group z-50">
+        <span class="text-[#FFD700] text-4xl font-light mb-2">→</span>
+        <span class="text-[#FFD700] text-[10px] font-bold uppercase tracking-[0.3em] vertical-text opacity-60">Next</span>
+    </a>
+
+    <!-- HEADER -->
+    <header class="flex flex-col lg:flex-row gap-8 justify-center items-end mb-20 relative z-10">
+        <div class="fixed-square relative">
+            <img src="/sessions/friendly-wonderful-noether/mnt/mojolists.github.io/assets/img/kingCrimson.jpg"
+                 alt="King Crimson"
+                 class="w-full h-full object-cover border border-[#c5a059]/30 rounded-sm shadow-2xl">
+            <div class="absolute top-3 left-3 flex items-center gap-1.5 bg-black/80 border border-[#c5a059]/50 px-2.5 py-1.5">
+                <span class="text-[8px] font-bold uppercase tracking-[0.4em] text-[#c5a059]">Re-Play</span>
+            </div>
+        </div>
+
+        <div class="glass-card fixed-square relative overflow-hidden replay-glass">
+            <div class="flex flex-col h-full">
+                <div class="flex items-center gap-3 mb-5">
+                    <div class="h-px flex-1 bg-[#c5a059]/30"></div>
+                    <span class="text-[9px] font-bold uppercase tracking-[0.45em] text-[#c5a059]">Re-Play</span>
+                    <div class="h-px flex-1 bg-[#c5a059]/30"></div>
+                </div>
+                <div class="mb-auto">
+                    <h1 class="artist-heading text-white mb-1">King Crimson</h1>
+                    <div class="album-subheading mb-4" style="color:#c5a059; font-size:1.1rem; font-weight:500; text-transform:uppercase; letter-spacing:-0.01em;">In the Court of the Crimson King</div>
+                    <div class="space-y-3">
+                        <div class="metadata-row"><span class="metadata-label">Label</span><span class="metadata-value">Island Records</span></div>
+                        <div class="metadata-row"><span class="metadata-label">Released</span><span class="metadata-value">1969</span></div>
+                        <div class="border-t border-[#c5a059]/20 my-6"></div>
+                        <div class="metadata-row"><span class="metadata-label font-bold text-[#FFD700]" style="opacity:1">Performance</span><span class="metadata-value text-[#FFD700] font-black">95</span></div>
+                        <div class="metadata-row"><span class="metadata-label font-bold text-[#FFD700]" style="opacity:1">Production</span><span class="metadata-value text-[#FFD700] font-black">90</span></div>
+                        <div class="metadata-row"><span class="metadata-label font-bold text-[#FFD700]" style="opacity:1">Danceability</span><span class="metadata-value text-[#FFD700] font-black">30</span></div>
+                    </div>
+                </div>
+                <div class="pt-6 flex items-baseline gap-4">
+                    <span style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.3em;color:#FFD700;opacity:0.35">Mojo Rating</span>
+                    <div class="mojo-rating">72%</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- About This Review -->
+    <div class="max-w-3xl mx-auto mb-16 relative z-10">
+        <div class="border-l-2 border-[#c5a059]/60 pl-5 py-1">
+            <p class="text-[9px] font-bold uppercase tracking-[0.4em] text-[#c5a059] mb-2">About This Review</p>
+            <p class="text-sm italic text-white/45 leading-relaxed">Re-Play reviews look back at landmark albums — how they were received at the time of release, the influence they've had on music in the years since, and where they stand today.</p>
+        </div>
+    </div>
+
+    <!-- Review body -->
+    <div class="max-w-3xl mx-auto review-content space-y-8 relative z-10">
+
+        <h2>At Release</h2>
+
+        <p>Nobody in October 1969 had heard anything quite like it. <em>In the Court of the Crimson King</em> arrived at the tail end of the psychedelic era, when rock was still finding the edges of what it could be — and King Crimson promptly blew those edges apart. The album entered the UK charts at number five in its first week, a remarkable debut for a band that had only existed for a matter of months. In America it reached number 28, respectable by any measure but far short of reflecting what was actually happening musically.</p>
+
+        <p class="inline-quote">"The album that made progressive rock inevitable — and everything that followed possible."</p>
+
+        <p>Critics were immediately alert to something significant. The <em>New Musical Express</em> called it one of the albums of the year. Pete Townshend, who had been handed a copy by a mutual acquaintance, famously described it as "an uncanny masterpiece." The opening track, "21st Century Schizoid Man," was a visceral shock: angular, violent, drenched in fuzz and treated vocals, closer in spirit to free jazz and avant-garde noise than anything on the radio. And then the title track closed the album in the opposite direction entirely, all sweeping mellotron and mythological imagery, like something composed for a medieval court.</p>
+
+        <p>The lineup that made it was barely holding together even as the record shipped. Ian McDonald and Michael Giles would depart before the band could tour America. What remained was Robert Fripp's creative core and a question about what King Crimson was actually going to become — a question the band would spend the next five decades productively failing to answer.</p>
+
+        <h2>The Influence</h2>
+
+        <p>The legacy of this album is almost impossibly large, to the point where tracing it becomes an exercise in mapping half of progressive rock. Yes, Genesis, Emerson Lake &amp; Palmer, Rush, Kansas, Van der Graaf Generator — the founding generation of prog either heard it early or heard it loudly, and built large portions of their sound in its shadow. The mellotron, already a niche instrument before this record, became the signature sound of an entire genre largely because of what McDonald did with it here.</p>
+
+        <p>But the influence runs deeper than prog. The opening riff of "21st Century Schizoid Man" is one of the heaviest things committed to tape before heavy metal existed as a category. Metallica covered it for good reason — it belongs in their lineage as much as Black Sabbath does. Peter Sinfield's surrealist lyrics, dense with imagery and divorced from conventional pop meaning, anticipated art rock and post-punk by a decade. Robert Fripp's guitar approach — disciplined, dissonant, never showy for its own sake — influenced generations of players who wanted to express something that conventional blues-rock vocabulary couldn't reach.</p>
+
+        <p>Tool, Porcupine Tree, Radiohead, Steven Wilson — when they discuss their influences, King Crimson comes up early. The album is cited in music schools. It appears on every serious list of essential listening. Its fingerprints are on records made by people who have never consciously thought about where they picked up a particular habit or texture.</p>
+
+        <a href="https://www.amazon.com/Court-Crimson-King-50th-Anniversary/dp/B07WFPM9PT" target="_blank" class="buy-btn">Buy Album</a>
+
+        <h2>Where It Stands Today</h2>
+
+        <p>Over fifty years on, <em>In the Court of the Crimson King</em> sounds less like a period document than a permanent fact. It has not aged in the way most 1969 records have aged. Play it back-to-back with its contemporaries and the gap is startling — not because those records are lesser, but because this one seems to exist outside of the moment that produced it.</p>
+
+        <p>The 2019 fiftieth anniversary edition, remixed from the original tapes by Steven Wilson and Robert Fripp, introduced the album to a new generation and reminded older listeners how much had been buried in the original mix. It appears in Rolling Stone's 500 Greatest Albums list, the BBC's polls, and virtually every credible critical canon assembled in the last three decades.</p>
+
+        <p>What makes it endure is not the historical significance but the emotional one. The album is genuinely strange, genuinely ambitious, and genuinely moving in a way that defies easy explanation. "Epitaph," in particular, with Greg Lake's voice carrying Sinfield's bleak but beautiful words over a swell of mellotron, remains one of the most affecting pieces of music rock has produced. It doesn't need a heritage argument. It simply works — every time, on anybody willing to sit still long enough to let it.</p>
+
+    </div>
+
+</article>
+</main>
+
+<footer class="border-t border-white/5 py-12 mt-20">
+    <div class="max-w-7xl mx-auto px-6 text-center">
+        <p class="logo-mojo text-sm opacity-20 uppercase tracking-widest">© 2026 MojoLists</p>
+    </div>
+</footer>
+
+</body>
+</html>

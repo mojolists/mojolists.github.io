@@ -100,14 +100,15 @@ layout: false
     </header>
 
     <!-- ── REVIEW GRID ────────────────────────────────────────────────── -->
-    <main class="max-w-5xl mx-auto px-8 py-16">
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-x-8 gap-y-16">
+    <main class="max-w-6xl mx-auto px-8 py-16">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-x-10 gap-y-16">
 
             {% for review in collections.reviews | limit(6) %}
-            <div class="max-w-[300px] mx-auto w-full">
+            <div class="w-full">
                 {% if loop.index <= 3 %}
                 <span class="row-label">
                     {% if loop.index == 1 %}Latest Review
+                    {% elif review.data.type == 'replay' %}Re-Play
                     {% elif loop.index == 2 %}Recent
                     {% else %}Explore{% endif %}
                 </span>
@@ -119,44 +120,20 @@ layout: false
                                  class="card-img"
                                  alt="{{ review.data.artist }} - {{ review.data.album }}">
                         </div>
+                        {% if review.data.type == 'replay' %}
+                        <div class="flex items-center gap-2 mb-3">
+                            <div class="h-px w-5 bg-[#c5a059]/50"></div>
+                            <span class="text-[8px] font-bold uppercase tracking-[0.4em] text-[#c5a059]">Re-Play</span>
+                            <div class="h-px w-5 bg-[#c5a059]/50"></div>
+                        </div>
+                        {% endif %}
                         <h3 class="logo-mojo text-3xl text-white mb-1">{{ review.data.artist }}</h3>
-                        <p class="text-[10px] font-bold text-[#e63946] uppercase tracking-widest mb-4 italic">{{ review.data.album or review.data.title }}</p>
+                        <p class="text-[10px] font-bold uppercase tracking-widest mb-4 italic {% if review.data.type == 'replay' %}text-[#c5a059]{% else %}text-[#e63946]{% endif %}">{{ review.data.album or review.data.title }}</p>
                         <p class="text-sm leading-relaxed text-white/50">{{ review.templateContent | striptags | truncate(100) }}</p>
                     </article>
                 </a>
             </div>
             {% endfor %}
-
-            <!-- Listening Rig card -->
-            <div class="max-w-[300px] mx-auto w-full">
-                <article class="review-card p-8">
-                    <h3 class="logo-mojo text-2xl text-white mb-6">Listening Rig</h3>
-                    <div class="space-y-4 text-xs tracking-wide">
-                        <div><p class="text-white/30 uppercase font-bold text-[9px] mb-1 tracking-widest">Turntable</p><p class="text-white">Technics SL-1200MK7</p></div>
-                        <div><p class="text-white/30 uppercase font-bold text-[9px] mb-1 tracking-widest">Cartridge</p><p class="text-white">Ortofon 2M Blue</p></div>
-                        <div><p class="text-white/30 uppercase font-bold text-[9px] mb-1 tracking-widest">Pre-Amp</p><p class="text-white">Schiit Mani 2</p></div>
-                        <div><p class="text-white/30 uppercase font-bold text-[9px] mb-1 tracking-widest">Speakers</p><p class="text-white">Klipsch The Fives</p></div>
-                    </div>
-                </article>
-            </div>
-
-            <!-- Stats card -->
-            <div class="max-w-[300px] mx-auto w-full">
-                <article class="review-card p-8">
-                    <div class="grid grid-cols-2 gap-4 mb-6">
-                        <div>
-                            <span class="stat-value text-4xl font-bold">13k+</span>
-                            <p class="text-[9px] uppercase tracking-tighter text-white/30 font-bold mt-1">Unique Albums</p>
-                        </div>
-                        <div>
-                            <span class="stat-value text-4xl font-bold">100%</span>
-                            <p class="text-[9px] uppercase tracking-tighter text-white/30 font-bold mt-1">Analog Love</p>
-                        </div>
-                    </div>
-                    <p class="text-xs leading-relaxed text-white/50 mb-6">A living archive of vinyl, CD and digital reviews updated regularly.</p>
-                    <a href="/archive/" class="text-[10px] font-bold uppercase tracking-widest text-[#c5a059] hover:text-white transition-colors">Browse All →</a>
-                </article>
-            </div>
 
         </div>
     </main>

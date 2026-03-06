@@ -139,6 +139,7 @@
 
         <!-- Info strip below carousel -->
         <div id="carousel-info">
+            <p id="c-replay-badge" style="display:none;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:0.4em;color:#c5a059;margin-bottom:6px;">&#9670; Re-Play &#9670;</p>
             <p id="c-artist"></p>
             <p id="c-album"></p>
             <div style="display:flex;align-items:baseline;justify-content:center;gap:20px;margin-top:8px;">
@@ -171,19 +172,28 @@
         
 
         <a href="/reviews/King Crimson/"
-           class="archive-row glass-card grid grid-cols-12 gap-4 px-6 py-3 items-center group hover:border-[#DAA520]/40 transition-all duration-300"
+           class="archive-row glass-card grid grid-cols-12 gap-4 px-6 py-3 items-center group hover:border-[#DAA520]/40 transition-all duration-300 replay-row"
            data-artist="King Crimson"
            data-album="In the Court of the Crimson King"
            data-image="kingCrimson.jpg"
            data-avg="72"
-           data-excerpt="&amp;quot;King Crimson&#39;s magnum opus, In the Court of the Crimson King, is a game-changing album that defies genre classification. This 1973 release marked the...">
+           data-type="replay"
+           data-excerpt="At Release Nobody in October 1969 had heard anything quite like it. In the Court of the Crimson King arrived at the tail end of the psychedelic era, right when...">
 
-            <div class="col-span-1 aspect-square overflow-hidden rounded-sm border border-white/10">
+            <div class="col-span-1 aspect-square overflow-hidden rounded-sm border border-[#c5a059]/30 relative">
                 <img src="/assets/img/kingCrimson.jpg" alt="In the Court of the Crimson King" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                
+                <div class="absolute bottom-0 left-0 right-0 bg-[#c5a059]/90 px-1 py-px text-center">
+                    <span class="text-[6px] font-black uppercase tracking-[0.3em] text-black">Re-Play</span>
+                </div>
+                
             </div>
-            <div class="col-span-3 text-sm font-medium text-white group-hover:text-[#DAA520] transition-colors truncate tracking-tight artist-cell">King Crimson</div>
+            <div class="col-span-3 text-sm font-medium text-white group-hover:text-[#DAA520] transition-colors truncate tracking-tight artist-cell">
+                King Crimson
+                <span class="ml-2 text-[7px] font-black uppercase tracking-[0.3em] text-[#c5a059] border border-[#c5a059]/40 px-1.5 py-0.5 align-middle">RP</span>
+            </div>
             <div class="col-span-3 text-white/60 text-xs italic font-light truncate album-cell">In the Court of the Crimson King</div>
-            <div class="col-span-1 text-center text-white/50 font-light text-[10px] tracking-widest year-cell">1973</div>
+            <div class="col-span-1 text-center text-white/50 font-light text-[10px] tracking-widest year-cell">1969</div>
             <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white s1-cell">95</div>
             <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white s2-cell">90</div>
             <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white s3-cell">30</div>
@@ -201,12 +211,17 @@
            data-album="In Search of a Revival"
            data-image="olympians.jpg"
            data-avg="90"
+           data-type=""
            data-excerpt="Ten years is a long time to wait for a sequel, but Toby Pazner and his 17-piece ensemble haven’t been idle. Since their 2016 debut, Pazner has been deep in the...">
 
-            <div class="col-span-1 aspect-square overflow-hidden rounded-sm border border-white/10">
+            <div class="col-span-1 aspect-square overflow-hidden rounded-sm border border-white/10 relative">
                 <img src="/assets/img/olympians.jpg" alt="In Search of a Revival" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                
             </div>
-            <div class="col-span-3 text-sm font-medium text-white group-hover:text-[#DAA520] transition-colors truncate tracking-tight artist-cell">The Olympians</div>
+            <div class="col-span-3 text-sm font-medium text-white group-hover:text-[#DAA520] transition-colors truncate tracking-tight artist-cell">
+                The Olympians
+                
+            </div>
             <div class="col-span-3 text-white/60 text-xs italic font-light truncate album-cell">In Search of a Revival</div>
             <div class="col-span-1 text-center text-white/50 font-light text-[10px] tracking-widest year-cell">2026</div>
             <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white s1-cell">85</div>
@@ -226,12 +241,17 @@
            data-album="Electric Slave"
            data-image="black_joe_lewis.jpg"
            data-avg="78"
+           data-type=""
            data-excerpt="To hear Black Joe Lewis recorded is to strap yourself into an emotion fueled ride through his own brand of blues. To fully appreciate Lewis, however, you have...">
 
-            <div class="col-span-1 aspect-square overflow-hidden rounded-sm border border-white/10">
+            <div class="col-span-1 aspect-square overflow-hidden rounded-sm border border-white/10 relative">
                 <img src="/assets/img/black_joe_lewis.jpg" alt="Electric Slave" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                
             </div>
-            <div class="col-span-3 text-sm font-medium text-white group-hover:text-[#DAA520] transition-colors truncate tracking-tight artist-cell">Black Joe Lewis &amp; The Honeybears</div>
+            <div class="col-span-3 text-sm font-medium text-white group-hover:text-[#DAA520] transition-colors truncate tracking-tight artist-cell">
+                Black Joe Lewis &amp; The Honeybears
+                
+            </div>
             <div class="col-span-3 text-white/60 text-xs italic font-light truncate album-cell">Electric Slave</div>
             <div class="col-span-1 text-center text-white/50 font-light text-[10px] tracking-widest year-cell">2013</div>
             <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white s1-cell">70</div>
@@ -251,12 +271,17 @@
            data-album="Fight For My Soul"
            data-image="ffys.jpg"
            data-avg="70"
+           data-type=""
            data-excerpt="When you are gifted with the guitar playing abilities and natural blues voice of Jonny Lang, there are expectations that would cripple most 16 year olds, but he...">
 
-            <div class="col-span-1 aspect-square overflow-hidden rounded-sm border border-white/10">
+            <div class="col-span-1 aspect-square overflow-hidden rounded-sm border border-white/10 relative">
                 <img src="/assets/img/ffys.jpg" alt="Fight For My Soul" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                
             </div>
-            <div class="col-span-3 text-sm font-medium text-white group-hover:text-[#DAA520] transition-colors truncate tracking-tight artist-cell">Jonny Lang</div>
+            <div class="col-span-3 text-sm font-medium text-white group-hover:text-[#DAA520] transition-colors truncate tracking-tight artist-cell">
+                Jonny Lang
+                
+            </div>
             <div class="col-span-3 text-white/60 text-xs italic font-light truncate album-cell">Fight For My Soul</div>
             <div class="col-span-1 text-center text-white/50 font-light text-[10px] tracking-widest year-cell">2013</div>
             <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white s1-cell">90</div>
@@ -276,12 +301,17 @@
            data-album="Hornet&#39;s Nest"
            data-image="hornetsnest.jpg"
            data-avg="80"
+           data-type=""
            data-excerpt="Joe Louis Walker has been guitar slinging for more than 30 years and could easily rest on his six string laurels but instead remains one of the most prolific...">
 
-            <div class="col-span-1 aspect-square overflow-hidden rounded-sm border border-white/10">
+            <div class="col-span-1 aspect-square overflow-hidden rounded-sm border border-white/10 relative">
                 <img src="/assets/img/hornetsnest.jpg" alt="Hornet&#39;s Nest" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                
             </div>
-            <div class="col-span-3 text-sm font-medium text-white group-hover:text-[#DAA520] transition-colors truncate tracking-tight artist-cell">Joe Louis Walker</div>
+            <div class="col-span-3 text-sm font-medium text-white group-hover:text-[#DAA520] transition-colors truncate tracking-tight artist-cell">
+                Joe Louis Walker
+                
+            </div>
             <div class="col-span-3 text-white/60 text-xs italic font-light truncate album-cell">Hornet&#39;s Nest</div>
             <div class="col-span-1 text-center text-white/50 font-light text-[10px] tracking-widest year-cell">2014</div>
             <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white s1-cell">80</div>
@@ -301,12 +331,17 @@
            data-album="It&#39;s Only Us"
            data-image="itsonlyus.jpg"
            data-avg="87"
+           data-type=""
            data-excerpt="The Monophonics have captivated me since I first heard their psychedelic funk masterpiece, In Your Brain all the way back in 2012. This new album, It’s only Us,...">
 
-            <div class="col-span-1 aspect-square overflow-hidden rounded-sm border border-white/10">
+            <div class="col-span-1 aspect-square overflow-hidden rounded-sm border border-white/10 relative">
                 <img src="/assets/img/itsonlyus.jpg" alt="It&#39;s Only Us" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                
             </div>
-            <div class="col-span-3 text-sm font-medium text-white group-hover:text-[#DAA520] transition-colors truncate tracking-tight artist-cell">The Monophonics</div>
+            <div class="col-span-3 text-sm font-medium text-white group-hover:text-[#DAA520] transition-colors truncate tracking-tight artist-cell">
+                The Monophonics
+                
+            </div>
             <div class="col-span-3 text-white/60 text-xs italic font-light truncate album-cell">It&#39;s Only Us</div>
             <div class="col-span-1 text-center text-white/50 font-light text-[10px] tracking-widest year-cell">2020</div>
             <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white s1-cell">85</div>
@@ -326,12 +361,17 @@
            data-album="Changes"
            data-image="nfchanges.jpg"
            data-avg="95"
+           data-type=""
            data-excerpt="Over the last few years, I slowly stopped writing and reviewing. I let the site go down and kept my thoughts to myself. I couldn’t get over the hump, I just...">
 
-            <div class="col-span-1 aspect-square overflow-hidden rounded-sm border border-white/10">
+            <div class="col-span-1 aspect-square overflow-hidden rounded-sm border border-white/10 relative">
                 <img src="/assets/img/nfchanges.jpg" alt="Changes" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                
             </div>
-            <div class="col-span-3 text-sm font-medium text-white group-hover:text-[#DAA520] transition-colors truncate tracking-tight artist-cell">Neal Francis</div>
+            <div class="col-span-3 text-sm font-medium text-white group-hover:text-[#DAA520] transition-colors truncate tracking-tight artist-cell">
+                Neal Francis
+                
+            </div>
             <div class="col-span-3 text-white/60 text-xs italic font-light truncate album-cell">Changes</div>
             <div class="col-span-1 text-center text-white/50 font-light text-[10px] tracking-widest year-cell">2019</div>
             <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white s1-cell">95</div>
@@ -351,12 +391,17 @@
            data-album="No Show Ponies"
            data-image="noshowponies.jpg"
            data-avg="70"
+           data-type=""
            data-excerpt="No Show Ponies are one of a thousand Austin bands trying to find their place and their sound among the many live music venues across this Texas city. Breaking...">
 
-            <div class="col-span-1 aspect-square overflow-hidden rounded-sm border border-white/10">
+            <div class="col-span-1 aspect-square overflow-hidden rounded-sm border border-white/10 relative">
                 <img src="/assets/img/noshowponies.jpg" alt="No Show Ponies" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                
             </div>
-            <div class="col-span-3 text-sm font-medium text-white group-hover:text-[#DAA520] transition-colors truncate tracking-tight artist-cell">No Show Ponies</div>
+            <div class="col-span-3 text-sm font-medium text-white group-hover:text-[#DAA520] transition-colors truncate tracking-tight artist-cell">
+                No Show Ponies
+                
+            </div>
             <div class="col-span-3 text-white/60 text-xs italic font-light truncate album-cell">No Show Ponies</div>
             <div class="col-span-1 text-center text-white/50 font-light text-[10px] tracking-widest year-cell">2013</div>
             <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white s1-cell">85</div>
@@ -376,12 +421,17 @@
            data-album="Give the People What They Want"
            data-image="gtpwtw.jpg"
            data-avg="92"
+           data-type=""
            data-excerpt="Waiting for my vinyl copy of Sharon Jones and The Dap-Kings, Give the People What They Want, reminded me of watching the last minute tick off the clock before...">
 
-            <div class="col-span-1 aspect-square overflow-hidden rounded-sm border border-white/10">
+            <div class="col-span-1 aspect-square overflow-hidden rounded-sm border border-white/10 relative">
                 <img src="/assets/img/gtpwtw.jpg" alt="Give the People What They Want" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                
             </div>
-            <div class="col-span-3 text-sm font-medium text-white group-hover:text-[#DAA520] transition-colors truncate tracking-tight artist-cell">Sharon Jones &amp; The Dap-Kings</div>
+            <div class="col-span-3 text-sm font-medium text-white group-hover:text-[#DAA520] transition-colors truncate tracking-tight artist-cell">
+                Sharon Jones &amp; The Dap-Kings
+                
+            </div>
             <div class="col-span-3 text-white/60 text-xs italic font-light truncate album-cell">Give the People What They Want</div>
             <div class="col-span-1 text-center text-white/50 font-light text-[10px] tracking-widest year-cell">2014</div>
             <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white s1-cell">90</div>
@@ -401,12 +451,17 @@
            data-album="Medicine Man"
            data-image="feveritr.jpg"
            data-avg="97"
+           data-type=""
            data-excerpt="The Bamboos have always gotten a lot of love from me and I expect a lot when they have a new release. Fever In The Road hits on all cylinders and for those new...">
 
-            <div class="col-span-1 aspect-square overflow-hidden rounded-sm border border-white/10">
+            <div class="col-span-1 aspect-square overflow-hidden rounded-sm border border-white/10 relative">
                 <img src="/assets/img/feveritr.jpg" alt="Medicine Man" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                
             </div>
-            <div class="col-span-3 text-sm font-medium text-white group-hover:text-[#DAA520] transition-colors truncate tracking-tight artist-cell">The Bamboos</div>
+            <div class="col-span-3 text-sm font-medium text-white group-hover:text-[#DAA520] transition-colors truncate tracking-tight artist-cell">
+                The Bamboos
+                
+            </div>
             <div class="col-span-3 text-white/60 text-xs italic font-light truncate album-cell">Medicine Man</div>
             <div class="col-span-1 text-center text-white/50 font-light text-[10px] tracking-widest year-cell">2012</div>
             <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white s1-cell">95</div>
@@ -426,12 +481,17 @@
            data-album="Good As Gold"
            data-image="goodasgold.jpg"
            data-avg="92"
+           data-type=""
            data-excerpt="If you hang around Mojolists at all, you know that soul and funk are enjoying a huge revival. You also know that we support every damn last one the folks who...">
 
-            <div class="col-span-1 aspect-square overflow-hidden rounded-sm border border-white/10">
+            <div class="col-span-1 aspect-square overflow-hidden rounded-sm border border-white/10 relative">
                 <img src="/assets/img/goodasgold.jpg" alt="Good As Gold" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                
             </div>
-            <div class="col-span-3 text-sm font-medium text-white group-hover:text-[#DAA520] transition-colors truncate tracking-tight artist-cell">The Nightowls</div>
+            <div class="col-span-3 text-sm font-medium text-white group-hover:text-[#DAA520] transition-colors truncate tracking-tight artist-cell">
+                The Nightowls
+                
+            </div>
             <div class="col-span-3 text-white/60 text-xs italic font-light truncate album-cell">Good As Gold</div>
             <div class="col-span-1 text-center text-white/50 font-light text-[10px] tracking-widest year-cell">2015</div>
             <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white s1-cell">90</div>
@@ -451,12 +511,17 @@
            data-album="The Devil You Know"
            data-image="tdyk.jpg"
            data-avg="83"
+           data-type=""
            data-excerpt="Tommy Castro is known for awesome guitar driven blues and with the help of his band, the Painkillers, he delivers in spades. In his new release, The Devil You...">
 
-            <div class="col-span-1 aspect-square overflow-hidden rounded-sm border border-white/10">
+            <div class="col-span-1 aspect-square overflow-hidden rounded-sm border border-white/10 relative">
                 <img src="/assets/img/tdyk.jpg" alt="The Devil You Know" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                
             </div>
-            <div class="col-span-3 text-sm font-medium text-white group-hover:text-[#DAA520] transition-colors truncate tracking-tight artist-cell">Tommy Castro</div>
+            <div class="col-span-3 text-sm font-medium text-white group-hover:text-[#DAA520] transition-colors truncate tracking-tight artist-cell">
+                Tommy Castro
+                
+            </div>
             <div class="col-span-3 text-white/60 text-xs italic font-light truncate album-cell">The Devil You Know</div>
             <div class="col-span-1 text-center text-white/50 font-light text-[10px] tracking-widest year-cell">2014</div>
             <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white s1-cell">85</div>
@@ -476,12 +541,17 @@
            data-album="Say That to Say This"
            data-image="saythattosaythis.jpg"
            data-avg="88"
+           data-type=""
            data-excerpt="The story of Troy ‘Trombone Shorty’ Andrews career, which started at the age of four, when he and his chosen instrument, which was twice as tall as he, stood on...">
 
-            <div class="col-span-1 aspect-square overflow-hidden rounded-sm border border-white/10">
+            <div class="col-span-1 aspect-square overflow-hidden rounded-sm border border-white/10 relative">
                 <img src="/assets/img/saythattosaythis.jpg" alt="Say That to Say This" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                
             </div>
-            <div class="col-span-3 text-sm font-medium text-white group-hover:text-[#DAA520] transition-colors truncate tracking-tight artist-cell">Trombone Shorty</div>
+            <div class="col-span-3 text-sm font-medium text-white group-hover:text-[#DAA520] transition-colors truncate tracking-tight artist-cell">
+                Trombone Shorty
+                
+            </div>
             <div class="col-span-3 text-white/60 text-xs italic font-light truncate album-cell">Say That to Say This</div>
             <div class="col-span-1 text-center text-white/50 font-light text-[10px] tracking-widest year-cell">2013</div>
             <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white s1-cell">95</div>
@@ -501,12 +571,17 @@
            data-album="Vicious Things"
            data-image="voodavis.jpg"
            data-avg="87"
+           data-type=""
            data-excerpt="I have been anxiously awaiting the arrival of the new Voo Davis album since I listened to his first one, A Place for Secrets. His initial offering showed a...">
 
-            <div class="col-span-1 aspect-square overflow-hidden rounded-sm border border-white/10">
+            <div class="col-span-1 aspect-square overflow-hidden rounded-sm border border-white/10 relative">
                 <img src="/assets/img/voodavis.jpg" alt="Vicious Things" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                
             </div>
-            <div class="col-span-3 text-sm font-medium text-white group-hover:text-[#DAA520] transition-colors truncate tracking-tight artist-cell">Voo Davis</div>
+            <div class="col-span-3 text-sm font-medium text-white group-hover:text-[#DAA520] transition-colors truncate tracking-tight artist-cell">
+                Voo Davis
+                
+            </div>
             <div class="col-span-3 text-white/60 text-xs italic font-light truncate album-cell">Vicious Things</div>
             <div class="col-span-1 text-center text-white/50 font-light text-[10px] tracking-widest year-cell">2024</div>
             <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white s1-cell">95</div>
@@ -526,12 +601,17 @@
            data-album="Moonshine Boogie"
            data-image="wilybo.jpg"
            data-avg="82"
+           data-type=""
            data-excerpt="I have heard of Wily Bo Walker only peripherally but being a fan of horns and a big band sound I couldn’t resist his new album, Wily Bo Walker and The Danny...">
 
-            <div class="col-span-1 aspect-square overflow-hidden rounded-sm border border-white/10">
+            <div class="col-span-1 aspect-square overflow-hidden rounded-sm border border-white/10 relative">
                 <img src="/assets/img/wilybo.jpg" alt="Moonshine Boogie" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                
             </div>
-            <div class="col-span-3 text-sm font-medium text-white group-hover:text-[#DAA520] transition-colors truncate tracking-tight artist-cell">Wily Bo Walker &amp; The Danny Flam Big Band</div>
+            <div class="col-span-3 text-sm font-medium text-white group-hover:text-[#DAA520] transition-colors truncate tracking-tight artist-cell">
+                Wily Bo Walker &amp; The Danny Flam Big Band
+                
+            </div>
             <div class="col-span-3 text-white/60 text-xs italic font-light truncate album-cell">Moonshine Boogie</div>
             <div class="col-span-1 text-center text-white/50 font-light text-[10px] tracking-widest year-cell">2015</div>
             <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white s1-cell">85</div>
@@ -551,12 +631,17 @@
            data-album="Soul Rock!"
            data-image="soulsurfers.jpg"
            data-avg="92"
+           data-type=""
            data-excerpt="I have several of their singles and had high hopes for their first album. The Soul Surfers did not disappoint, this is a kick ass album in every funky way...">
 
-            <div class="col-span-1 aspect-square overflow-hidden rounded-sm border border-white/10">
+            <div class="col-span-1 aspect-square overflow-hidden rounded-sm border border-white/10 relative">
                 <img src="/assets/img/soulsurfers.jpg" alt="Soul Rock!" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                
             </div>
-            <div class="col-span-3 text-sm font-medium text-white group-hover:text-[#DAA520] transition-colors truncate tracking-tight artist-cell">The Soul Surfers</div>
+            <div class="col-span-3 text-sm font-medium text-white group-hover:text-[#DAA520] transition-colors truncate tracking-tight artist-cell">
+                The Soul Surfers
+                
+            </div>
             <div class="col-span-3 text-white/60 text-xs italic font-light truncate album-cell">Soul Rock!</div>
             <div class="col-span-1 text-center text-white/50 font-light text-[10px] tracking-widest year-cell">2015</div>
             <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white s1-cell">85</div>
@@ -576,12 +661,17 @@
            data-album="Nick Of Time"
            data-image="nickoftime.jpg"
            data-avg="92"
+           data-type=""
            data-excerpt="Somewhere during his musical travels, including bandleader for Van Morrison, James Hunter was bitten by a radioactive hamster. James immediately gained the...">
 
-            <div class="col-span-1 aspect-square overflow-hidden rounded-sm border border-white/10">
+            <div class="col-span-1 aspect-square overflow-hidden rounded-sm border border-white/10 relative">
                 <img src="/assets/img/nickoftime.jpg" alt="Nick Of Time" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                
             </div>
-            <div class="col-span-3 text-sm font-medium text-white group-hover:text-[#DAA520] transition-colors truncate tracking-tight artist-cell">The James Hunter Six</div>
+            <div class="col-span-3 text-sm font-medium text-white group-hover:text-[#DAA520] transition-colors truncate tracking-tight artist-cell">
+                The James Hunter Six
+                
+            </div>
             <div class="col-span-3 text-white/60 text-xs italic font-light truncate album-cell">Nick Of Time</div>
             <div class="col-span-1 text-center text-white/50 font-light text-[10px] tracking-widest year-cell">2020</div>
             <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white s1-cell">95</div>
@@ -601,12 +691,17 @@
            data-album="San Antonio Ballbuster"
            data-image="gatemouth.jpg"
            data-avg="65"
+           data-type=""
            data-excerpt="It wasn’t easy deciding which of the great bluesmen I should write about first for this new series. I could go way back and dig through some of the whorehouse...">
 
-            <div class="col-span-1 aspect-square overflow-hidden rounded-sm border border-white/10">
+            <div class="col-span-1 aspect-square overflow-hidden rounded-sm border border-white/10 relative">
                 <img src="/assets/img/gatemouth.jpg" alt="San Antonio Ballbuster" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                
             </div>
-            <div class="col-span-3 text-sm font-medium text-white group-hover:text-[#DAA520] transition-colors truncate tracking-tight artist-cell">Clarence &quot;Gatemouth&quot; Brown</div>
+            <div class="col-span-3 text-sm font-medium text-white group-hover:text-[#DAA520] transition-colors truncate tracking-tight artist-cell">
+                Clarence &quot;Gatemouth&quot; Brown
+                
+            </div>
             <div class="col-span-3 text-white/60 text-xs italic font-light truncate album-cell">San Antonio Ballbuster</div>
             <div class="col-span-1 text-center text-white/50 font-light text-[10px] tracking-widest year-cell">1960</div>
             <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white s1-cell">85</div>
@@ -629,12 +724,18 @@
             <div class="crate-card"
                  data-artist="King Crimson"
                  data-album="In the Court of the Crimson King"
+                 data-type="replay"
                  onclick="flipCard(this)">
                 <div class="crate-inner">
                     <div class="crate-front">
                         <img src="/assets/img/kingCrimson.jpg"
                              alt="King Crimson"
                              class="w-full h-full object-cover">
+                        
+                        <div class="absolute top-0 left-0 right-0 bg-[#c5a059]/90 px-2 py-1 text-center">
+                            <span class="text-[7px] font-black uppercase tracking-[0.35em] text-black">Re-Play</span>
+                        </div>
+                        
                     </div>
                     <div class="crate-back">
                         <div class="flex flex-col h-full justify-between p-3">
@@ -663,12 +764,14 @@
             <div class="crate-card"
                  data-artist="The Olympians"
                  data-album="In Search of a Revival"
+                 data-type=""
                  onclick="flipCard(this)">
                 <div class="crate-inner">
                     <div class="crate-front">
                         <img src="/assets/img/olympians.jpg"
                              alt="The Olympians"
                              class="w-full h-full object-cover">
+                        
                     </div>
                     <div class="crate-back">
                         <div class="flex flex-col h-full justify-between p-3">
@@ -697,12 +800,14 @@
             <div class="crate-card"
                  data-artist="Black Joe Lewis &amp; The Honeybears"
                  data-album="Electric Slave"
+                 data-type=""
                  onclick="flipCard(this)">
                 <div class="crate-inner">
                     <div class="crate-front">
                         <img src="/assets/img/black_joe_lewis.jpg"
                              alt="Black Joe Lewis &amp; The Honeybears"
                              class="w-full h-full object-cover">
+                        
                     </div>
                     <div class="crate-back">
                         <div class="flex flex-col h-full justify-between p-3">
@@ -731,12 +836,14 @@
             <div class="crate-card"
                  data-artist="Jonny Lang"
                  data-album="Fight For My Soul"
+                 data-type=""
                  onclick="flipCard(this)">
                 <div class="crate-inner">
                     <div class="crate-front">
                         <img src="/assets/img/ffys.jpg"
                              alt="Jonny Lang"
                              class="w-full h-full object-cover">
+                        
                     </div>
                     <div class="crate-back">
                         <div class="flex flex-col h-full justify-between p-3">
@@ -765,12 +872,14 @@
             <div class="crate-card"
                  data-artist="Joe Louis Walker"
                  data-album="Hornet&#39;s Nest"
+                 data-type=""
                  onclick="flipCard(this)">
                 <div class="crate-inner">
                     <div class="crate-front">
                         <img src="/assets/img/hornetsnest.jpg"
                              alt="Joe Louis Walker"
                              class="w-full h-full object-cover">
+                        
                     </div>
                     <div class="crate-back">
                         <div class="flex flex-col h-full justify-between p-3">
@@ -799,12 +908,14 @@
             <div class="crate-card"
                  data-artist="The Monophonics"
                  data-album="It&#39;s Only Us"
+                 data-type=""
                  onclick="flipCard(this)">
                 <div class="crate-inner">
                     <div class="crate-front">
                         <img src="/assets/img/itsonlyus.jpg"
                              alt="The Monophonics"
                              class="w-full h-full object-cover">
+                        
                     </div>
                     <div class="crate-back">
                         <div class="flex flex-col h-full justify-between p-3">
@@ -833,12 +944,14 @@
             <div class="crate-card"
                  data-artist="Neal Francis"
                  data-album="Changes"
+                 data-type=""
                  onclick="flipCard(this)">
                 <div class="crate-inner">
                     <div class="crate-front">
                         <img src="/assets/img/nfchanges.jpg"
                              alt="Neal Francis"
                              class="w-full h-full object-cover">
+                        
                     </div>
                     <div class="crate-back">
                         <div class="flex flex-col h-full justify-between p-3">
@@ -867,12 +980,14 @@
             <div class="crate-card"
                  data-artist="No Show Ponies"
                  data-album="No Show Ponies"
+                 data-type=""
                  onclick="flipCard(this)">
                 <div class="crate-inner">
                     <div class="crate-front">
                         <img src="/assets/img/noshowponies.jpg"
                              alt="No Show Ponies"
                              class="w-full h-full object-cover">
+                        
                     </div>
                     <div class="crate-back">
                         <div class="flex flex-col h-full justify-between p-3">
@@ -901,12 +1016,14 @@
             <div class="crate-card"
                  data-artist="Sharon Jones &amp; The Dap-Kings"
                  data-album="Give the People What They Want"
+                 data-type=""
                  onclick="flipCard(this)">
                 <div class="crate-inner">
                     <div class="crate-front">
                         <img src="/assets/img/gtpwtw.jpg"
                              alt="Sharon Jones &amp; The Dap-Kings"
                              class="w-full h-full object-cover">
+                        
                     </div>
                     <div class="crate-back">
                         <div class="flex flex-col h-full justify-between p-3">
@@ -935,12 +1052,14 @@
             <div class="crate-card"
                  data-artist="The Bamboos"
                  data-album="Medicine Man"
+                 data-type=""
                  onclick="flipCard(this)">
                 <div class="crate-inner">
                     <div class="crate-front">
                         <img src="/assets/img/feveritr.jpg"
                              alt="The Bamboos"
                              class="w-full h-full object-cover">
+                        
                     </div>
                     <div class="crate-back">
                         <div class="flex flex-col h-full justify-between p-3">
@@ -969,12 +1088,14 @@
             <div class="crate-card"
                  data-artist="The Nightowls"
                  data-album="Good As Gold"
+                 data-type=""
                  onclick="flipCard(this)">
                 <div class="crate-inner">
                     <div class="crate-front">
                         <img src="/assets/img/goodasgold.jpg"
                              alt="The Nightowls"
                              class="w-full h-full object-cover">
+                        
                     </div>
                     <div class="crate-back">
                         <div class="flex flex-col h-full justify-between p-3">
@@ -1003,12 +1124,14 @@
             <div class="crate-card"
                  data-artist="Tommy Castro"
                  data-album="The Devil You Know"
+                 data-type=""
                  onclick="flipCard(this)">
                 <div class="crate-inner">
                     <div class="crate-front">
                         <img src="/assets/img/tdyk.jpg"
                              alt="Tommy Castro"
                              class="w-full h-full object-cover">
+                        
                     </div>
                     <div class="crate-back">
                         <div class="flex flex-col h-full justify-between p-3">
@@ -1037,12 +1160,14 @@
             <div class="crate-card"
                  data-artist="Trombone Shorty"
                  data-album="Say That to Say This"
+                 data-type=""
                  onclick="flipCard(this)">
                 <div class="crate-inner">
                     <div class="crate-front">
                         <img src="/assets/img/saythattosaythis.jpg"
                              alt="Trombone Shorty"
                              class="w-full h-full object-cover">
+                        
                     </div>
                     <div class="crate-back">
                         <div class="flex flex-col h-full justify-between p-3">
@@ -1071,12 +1196,14 @@
             <div class="crate-card"
                  data-artist="Voo Davis"
                  data-album="Vicious Things"
+                 data-type=""
                  onclick="flipCard(this)">
                 <div class="crate-inner">
                     <div class="crate-front">
                         <img src="/assets/img/voodavis.jpg"
                              alt="Voo Davis"
                              class="w-full h-full object-cover">
+                        
                     </div>
                     <div class="crate-back">
                         <div class="flex flex-col h-full justify-between p-3">
@@ -1105,12 +1232,14 @@
             <div class="crate-card"
                  data-artist="Wily Bo Walker &amp; The Danny Flam Big Band"
                  data-album="Moonshine Boogie"
+                 data-type=""
                  onclick="flipCard(this)">
                 <div class="crate-inner">
                     <div class="crate-front">
                         <img src="/assets/img/wilybo.jpg"
                              alt="Wily Bo Walker &amp; The Danny Flam Big Band"
                              class="w-full h-full object-cover">
+                        
                     </div>
                     <div class="crate-back">
                         <div class="flex flex-col h-full justify-between p-3">
@@ -1139,12 +1268,14 @@
             <div class="crate-card"
                  data-artist="The Soul Surfers"
                  data-album="Soul Rock!"
+                 data-type=""
                  onclick="flipCard(this)">
                 <div class="crate-inner">
                     <div class="crate-front">
                         <img src="/assets/img/soulsurfers.jpg"
                              alt="The Soul Surfers"
                              class="w-full h-full object-cover">
+                        
                     </div>
                     <div class="crate-back">
                         <div class="flex flex-col h-full justify-between p-3">
@@ -1173,12 +1304,14 @@
             <div class="crate-card"
                  data-artist="The James Hunter Six"
                  data-album="Nick Of Time"
+                 data-type=""
                  onclick="flipCard(this)">
                 <div class="crate-inner">
                     <div class="crate-front">
                         <img src="/assets/img/nickoftime.jpg"
                              alt="The James Hunter Six"
                              class="w-full h-full object-cover">
+                        
                     </div>
                     <div class="crate-back">
                         <div class="flex flex-col h-full justify-between p-3">
@@ -1207,12 +1340,14 @@
             <div class="crate-card"
                  data-artist="Clarence &quot;Gatemouth&quot; Brown"
                  data-album="San Antonio Ballbuster"
+                 data-type=""
                  onclick="flipCard(this)">
                 <div class="crate-inner">
                     <div class="crate-front">
                         <img src="/assets/img/gatemouth.jpg"
                              alt="Clarence &quot;Gatemouth&quot; Brown"
                              class="w-full h-full object-cover">
+                        
                     </div>
                     <div class="crate-back">
                         <div class="flex flex-col h-full justify-between p-3">
@@ -1304,6 +1439,13 @@
         backface-visibility: hidden;
         -webkit-backface-visibility: hidden;
         border: 1px solid rgba(255,255,255,0.08);
+    }
+    .crate-card[data-type="replay"] .crate-front {
+        border-color: rgba(197, 160, 89, 0.35);
+    }
+    /* Subtle left border accent on Re-Play table rows */
+    .replay-row {
+        border-left: 2px solid rgba(197, 160, 89, 0.4) !important;
     }
     .crate-back {
         transform: rotateY(180deg);
@@ -1509,6 +1651,8 @@ function updateInfoStrip() {
     const total = carouselData.length;
     if (!total) return;
     const cur = carouselData[carouselIndex];
+    const badge = document.getElementById('c-replay-badge');
+    if (badge) badge.style.display = cur.type === 'replay' ? 'block' : 'none';
     document.getElementById('c-artist').textContent  = cur.artist;
     document.getElementById('c-album').textContent   = cur.album;
     document.getElementById('c-score').textContent   = cur.avg + '%';
@@ -1809,7 +1953,8 @@ document.addEventListener('DOMContentLoaded', function() {
             album:   row.dataset.album   || '',
             image:   row.dataset.image   || '',
             avg:     parseInt(row.dataset.avg) || 0,
-            excerpt: row.dataset.excerpt || ''
+            excerpt: row.dataset.excerpt || '',
+            type:    row.dataset.type    || ''
         });
     });
     initCarouselSlots();
