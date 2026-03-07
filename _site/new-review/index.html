@@ -39,28 +39,28 @@
         /* Form fields */
         .field-label {
             display: block;
-            font-size: 9px;
+            font-size: 11px;
             font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 0.3em;
-            color: rgba(255,255,255,0.35);
-            margin-bottom: 7px;
+            letter-spacing: 0.2em;
+            color: rgba(255,255,255,0.65);
+            margin-bottom: 8px;
         }
         .field-input {
             width: 100%;
-            background: rgba(255,255,255,0.04);
-            border: 1px solid rgba(255,255,255,0.1);
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.18);
             color: #fff;
             font-family: 'Inter', sans-serif;
-            font-size: 13px;
-            padding: 10px 14px;
+            font-size: 14px;
+            padding: 11px 14px;
             outline: none;
             transition: border-color 0.2s;
             border-radius: 2px;
         }
-        .field-input:focus { border-color: rgba(197,160,89,0.5); }
-        .field-input::placeholder { color: rgba(255,255,255,0.18); }
-        textarea.field-input { resize: vertical; min-height: 120px; line-height: 1.6; }
+        .field-input:focus { border-color: rgba(197,160,89,0.7); background: rgba(255,255,255,0.08); }
+        .field-input::placeholder { color: rgba(255,255,255,0.32); }
+        textarea.field-input { resize: vertical; min-height: 120px; line-height: 1.7; }
 
         /* Score inputs */
         .score-track {
@@ -98,29 +98,29 @@
 
         /* Section divider */
         .section-title {
-            font-size: 9px;
+            font-size: 10px;
             font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 0.4em;
-            color: rgba(255,255,255,0.2);
+            letter-spacing: 0.35em;
+            color: rgba(255,255,255,0.5);
             display: flex;
             align-items: center;
             gap: 12px;
             margin-bottom: 20px;
         }
-        .section-title::after { content: ''; flex: 1; height: 1px; background: rgba(255,255,255,0.06); }
+        .section-title::after { content: ''; flex: 1; height: 1px; background: rgba(255,255,255,0.12); }
 
         /* Output */
         #output-box {
-            background: rgba(255,255,255,0.03);
-            border: 1px solid rgba(255,255,255,0.08);
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.15);
             border-radius: 2px;
             padding: 20px;
             font-family: 'Courier New', monospace;
-            font-size: 12px;
-            color: rgba(255,255,255,0.7);
+            font-size: 13px;
+            color: rgba(255,255,255,0.88);
             white-space: pre-wrap;
-            line-height: 1.7;
+            line-height: 1.75;
             min-height: 200px;
         }
 
@@ -184,7 +184,7 @@
     <!-- Page header -->
     <div class="mb-12">
         <h1 class="logo-mojo text-5xl text-white font-light mb-3">Create Review</h1>
-        <p class="text-xs text-white/30 uppercase tracking-widest">Fill in the fields — your .md file is generated at the bottom</p>
+        <p class="text-xs text-white/55 uppercase tracking-widest">Fill in the fields — your .md file is generated at the bottom</p>
     </div>
 
     <!-- Review Type Toggle -->
@@ -194,7 +194,7 @@
             <button class="type-btn active-regular" id="btn-regular" onclick="setType('regular')">Regular Review</button>
             <button class="type-btn" id="btn-replay" onclick="setType('replay')">Re-Play</button>
         </div>
-        <p id="type-description" class="text-xs text-white/30 mt-3 italic">Standard album review.</p>
+        <p id="type-description" class="text-xs text-white/55 mt-3 italic">Standard album review.</p>
     </div>
 
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
@@ -227,7 +227,7 @@
                     <div>
                         <label class="field-label">Cover Image Filename *</label>
                         <input class="field-input" id="f-image" type="text" placeholder="e.g. sharon-jones.jpg" oninput="generate()">
-                        <p class="text-[10px] text-white/20 mt-2 tracking-wide">Place the image in /assets/img/ before publishing</p>
+                        <p class="text-[10px] text-white/45 mt-2 tracking-wide">Place the image in /assets/img/ before publishing</p>
                     </div>
                     <div>
                         <label class="field-label">Publish Date</label>
@@ -280,7 +280,7 @@
                     <div>
                         <label class="field-label">YouTube Video ID</label>
                         <input class="field-input" id="f-youtube" type="text" placeholder="e.g. dQw4w9WgXcQ" oninput="generate()">
-                        <p class="text-[10px] text-white/20 mt-2 tracking-wide">The part after youtube.com/watch?v=</p>
+                        <p class="text-[10px] text-white/45 mt-2 tracking-wide">The part after youtube.com/watch?v=</p>
                         <div id="youtube-placement-wrap" style="display:none; margin-top:12px">
                             <label class="field-label">Place Video After</label>
                             <select class="field-input" id="f-youtube-placement" onchange="generate()">
@@ -327,7 +327,7 @@
             <!-- Re-Play specific section -->
             <div id="replay-section">
                 <p class="section-title" style="color: rgba(197,160,89,0.5)">Re-Play Structure</p>
-                <p class="text-xs text-white/30 italic mb-5 leading-relaxed">These three sections form the Re-Play narrative. Write each as a paragraph — they'll be assembled into the review body with section headers.</p>
+                <p class="text-xs text-white/55 italic mb-5 leading-relaxed">These three sections form the Re-Play narrative. Write each as a paragraph — they'll be assembled into the review body with section headers.</p>
                 <div class="space-y-5">
                     <div>
                         <label class="field-label" style="color: rgba(197,160,89,0.5)">At Release <span class="normal-case tracking-normal font-normal" style="opacity:0.5">— how it landed when it came out</span></label>
