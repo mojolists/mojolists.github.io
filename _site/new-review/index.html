@@ -256,7 +256,7 @@
                     </div>
                     <div>
                         <div class="flex justify-between items-baseline mb-1">
-                            <label class="field-label" style="margin:0">Danceability</label>
+                            <label class="field-label" style="margin:0" id="score3-label">Danceability</label>
                             <span id="v-score3" class="text-sm font-bold text-white">75</span>
                         </div>
                         <input type="range" id="f-score3" min="0" max="100" value="75" oninput="updateScore(3);generate()">
@@ -274,10 +274,6 @@
                 <p class="section-title">Links</p>
                 <div class="space-y-5">
                     <div>
-                        <label class="field-label">Buy Link</label>
-                        <input class="field-input" id="f-buylink" type="url" placeholder="https://www.amazon.com/..." oninput="generate()">
-                    </div>
-                    <div>
                         <label class="field-label">Spotify / Listen Link</label>
                         <input class="field-input" id="f-listenlink" type="url" placeholder="https://open.spotify.com/..." oninput="generate()">
                     </div>
@@ -285,6 +281,26 @@
                         <label class="field-label">YouTube Video ID</label>
                         <input class="field-input" id="f-youtube" type="text" placeholder="e.g. dQw4w9WgXcQ" oninput="generate()">
                         <p class="text-[10px] text-white/20 mt-2 tracking-wide">The part after youtube.com/watch?v=</p>
+                        <div id="youtube-placement-wrap" style="display:none; margin-top:12px">
+                            <label class="field-label">Place Video After</label>
+                            <select class="field-input" id="f-youtube-placement" onchange="generate()">
+                                <option value="atrelease">At Release</option>
+                                <option value="influence" selected>The Influence</option>
+                                <option value="today">Where It Stands Today</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="field-label">Buy Link</label>
+                        <input class="field-input" id="f-buylink" type="url" placeholder="https://www.amazon.com/..." oninput="generate()">
+                        <div id="buylink-placement-wrap" style="display:none; margin-top:12px">
+                            <label class="field-label">Place Buy Button After</label>
+                            <select class="field-input" id="f-buylink-placement" onchange="generate()">
+                                <option value="atrelease">At Release</option>
+                                <option value="influence">The Influence</option>
+                                <option value="today" selected>Where It Stands Today</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -292,9 +308,19 @@
             <!-- Quote -->
             <div>
                 <p class="section-title">Featured Quote</p>
-                <div>
-                    <label class="field-label">Pull Quote <span class="normal-case tracking-normal font-normal opacity-50">(optional — shown above review body)</span></label>
-                    <textarea class="field-input" id="f-quote" placeholder="A single striking sentence from the review..." style="min-height:80px" oninput="generate()"></textarea>
+                <div class="space-y-4">
+                    <div>
+                        <label class="field-label">Pull Quote <span class="normal-case tracking-normal font-normal opacity-50">(optional — placed inline in the review body)</span></label>
+                        <textarea class="field-input" id="f-quote" placeholder="A single striking sentence from the review..." style="min-height:80px" oninput="generate()"></textarea>
+                    </div>
+                    <div id="quote-placement-wrap" style="display:none">
+                        <label class="field-label">Place Quote After</label>
+                        <select class="field-input" id="f-quote-placement" onchange="generate()">
+                            <option value="atrelease">At Release</option>
+                            <option value="influence">The Influence</option>
+                            <option value="today">Where It Stands Today</option>
+                        </select>
+                    </div>
                 </div>
             </div>
 
@@ -366,8 +392,17 @@
         const desc = document.getElementById('type-description');
         const replaySection = document.getElementById('replay-section');
         const regularSection = document.getElementById('regular-section');
+        const isReplay = type === 'replay';
 
-        if (type === 'regular') {
+        // Show/hide placement dropdowns (only relevant for Re-Play structured sections)
+        ['quote-placement-wrap', 'youtube-placement-wrap', 'buylink-placement-wrap'].forEach(id => {
+            document.getElementById(id).style.display = isReplay ? 'block' : 'none';
+        });
+
+        // Swap score3 label
+        document.getElementById('score3-label').textContent = isReplay ? 'Impact' : 'Danceability';
+
+        if (!isReplay) {
             btnR.className = 'type-btn active-regular';
             btnP.className = 'type-btn';
             desc.textContent = 'Standard album review.';
@@ -411,22 +446,27 @@
     }
 
     function generate() {
-        const artist   = val('f-artist');
-        const album    = val('f-album');
-        const label    = val('f-label');
-        const year     = val('f-year');
-        const image    = val('f-image');
-        const date     = val('f-date');
-        const s1       = document.getElementById('f-score1').value;
-        const s2       = document.getElementById('f-score2').value;
-        const s3       = document.getElementById('f-score3').value;
-        const buyLink  = val('f-buylink');
+        const artist     = val('f-artist');
+        const album      = val('f-album');
+        const label      = val('f-label');
+        const year       = val('f-year');
+        const image      = val('f-image');
+        const date       = val('f-date');
+        const s1         = document.getElementById('f-score1').value;
+        const s2         = document.getElementById('f-score2').value;
+        const s3         = document.getElementById('f-score3').value;
+        const buyLink    = val('f-buylink');
         const listenLink = val('f-listenlink');
-        const youtube  = val('f-youtube');
-        const quote    = val('f-quote');
-        const isReplay = currentType === 'replay';
+        const youtube    = val('f-youtube');
+        const quote      = val('f-quote');
+        const isReplay   = currentType === 'replay';
 
-        // Build frontmatter
+        // Placement prefs (Re-Play only)
+        const quotePlacement   = document.getElementById('f-quote-placement').value;
+        const youtubePlacement = document.getElementById('f-youtube-placement').value;
+        const buylinkPlacement = document.getElementById('f-buylink-placement').value;
+
+        // Build frontmatter — quote/buyLink/youtubeId belong in the body, not here
         let fm = `---\n`;
         fm += `layout: ${isReplay ? 'replay' : 'review'}.njk\n`;
         fm += `title: "${artist || 'Artist'}"\n`;
@@ -441,11 +481,28 @@
         fm += `tags: reviews\n`;
         if (isReplay) fm += `type: replay\n`;
         fm += `date: ${date}\n`;
-        if (quote)      fm += `featuredQuote: "${quote.replace(/"/g, '\\"')}"\n`;
-        if (buyLink)    fm += `buyLink: "${buyLink}"\n`;
         if (listenLink) fm += `listenLink: "${listenLink}"\n`;
-        if (youtube)    fm += `youtubeId: "${youtube}"\n`;
         fm += `---\n`;
+
+        // Build inline HTML snippets
+        const quoteHtml = quote
+            ? `\n<p class="inline-quote">${quote}</p>\n`
+            : '';
+        const videoHtml = youtube
+            ? `\n<div class="inline-video"><iframe src="https://www.youtube.com/embed/${youtube}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>\n`
+            : '';
+        const buyHtml = buyLink
+            ? `\n<a href="${buyLink}" target="_blank" class="buy-btn">Buy Album</a>\n`
+            : '';
+
+        // Helper: collect extras for a given section key
+        function extrasFor(key) {
+            let out = '';
+            if (quote      && quotePlacement   === key) out += quoteHtml;
+            if (youtube    && youtubePlacement  === key) out += videoHtml;
+            if (buyLink    && buylinkPlacement  === key) out += buyHtml;
+            return out;
+        }
 
         // Build body
         let body = '';
@@ -454,10 +511,17 @@
             const influence  = val('f-influence');
             const today      = val('f-today');
 
-            if (atRelease) body += `## At Release\n\n${atRelease}\n\n`;
-            if (influence)  body += `## The Influence\n\n${influence}\n\n`;
-            if (today)      body += `## Where It Stands Today\n\n${today}\n\n`;
-            if (!atRelease && !influence && !today) body = `## At Release\n\n\n\n## The Influence\n\n\n\n## Where It Stands Today\n\n`;
+            body += `## At Release\n\n`;
+            if (atRelease) body += `${atRelease}\n`;
+            body += extrasFor('atrelease') + '\n';
+
+            body += `## The Influence\n\n`;
+            if (influence) body += `${influence}\n`;
+            body += extrasFor('influence') + '\n';
+
+            body += `## Where It Stands Today\n\n`;
+            if (today) body += `${today}\n`;
+            body += extrasFor('today') + '\n';
         } else {
             body = val('f-body') || '';
         }
