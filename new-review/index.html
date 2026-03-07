@@ -256,7 +256,7 @@
                     </div>
                     <div>
                         <div class="flex justify-between items-baseline mb-1">
-                            <label class="field-label" style="margin:0">Danceability</label>
+                            <label class="field-label" style="margin:0" id="score3-label">Danceability</label>
                             <span id="v-score3" class="text-sm font-bold text-white">75</span>
                         </div>
                         <input type="range" id="f-score3" min="0" max="100" value="75" oninput="updateScore(3);generate()">
@@ -297,8 +297,8 @@
                             <label class="field-label">Place Buy Button After</label>
                             <select class="field-input" id="f-buylink-placement" onchange="generate()">
                                 <option value="atrelease">At Release</option>
-                                <option value="influence" selected>The Influence</option>
-                                <option value="today">Where It Stands Today</option>
+                                <option value="influence">The Influence</option>
+                                <option value="today" selected>Where It Stands Today</option>
                             </select>
                         </div>
                     </div>
@@ -398,6 +398,9 @@
         ['quote-placement-wrap', 'youtube-placement-wrap', 'buylink-placement-wrap'].forEach(id => {
             document.getElementById(id).style.display = isReplay ? 'block' : 'none';
         });
+
+        // Swap score3 label
+        document.getElementById('score3-label').textContent = isReplay ? 'Impact' : 'Danceability';
 
         if (!isReplay) {
             btnR.className = 'type-btn active-regular';
