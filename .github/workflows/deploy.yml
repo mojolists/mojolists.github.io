@@ -2,7 +2,7 @@ name: Build & Deploy
 
 on:
   push:
-    branches: [main]          # deploy on every push to main
+    branches: [master]        # deploy on every push to master
   schedule:
     - cron: '0 8 * * *'       # also rebuild daily at 8am UTC
                                # so scheduled reviews go live on their date
