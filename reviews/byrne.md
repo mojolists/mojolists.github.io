@@ -10,7 +10,9 @@ score1: 88
 score2: 96
 score3: 95
 tags: reviews
+genre: ["Art Rock", "New Wave", "Experimental"]
 type: replay
+series: classics
 date: 2026-03-10
 ---
 

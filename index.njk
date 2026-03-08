@@ -36,6 +36,7 @@ layout: false
         .card-img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
         .card-link:hover .card-img { transform: scale(1.05); }
         .row-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.3em; color: var(--mojo-red); margin-bottom: 12px; display: block; }
+        .row-label-replay { color: var(--mojo-gold); }
         .stat-value { color: var(--mojo-gold); font-family: 'Cormorant Garamond', serif; font-weight: 400; }
 
         /* Nav */
@@ -52,7 +53,17 @@ layout: false
                 MOJO<span class="logo-lists">LISTS</span>
             </a>
             <!-- Desktop -->
-            <div class="hidden md:flex gap-12">
+            <div class="hidden md:flex gap-12 items-center">
+                <!-- Re-Play dropdown -->
+                <div class="relative group">
+                    <button class="nav-link flex items-center gap-1.5 bg-transparent border-0 p-0 cursor-pointer">Re-Play <span class="text-[8px] opacity-50">▾</span></button>
+                    <div class="absolute top-full left-0 pt-3 hidden group-hover:block z-50">
+                        <div class="bg-black border border-white/10 py-2 min-w-[140px]">
+                            <a href="/archive/?series=classics" class="block px-4 py-2 text-[11px] uppercase tracking-[0.2em] text-white/60 hover:text-[#c5a059] transition whitespace-nowrap">Classics</a>
+                            <a href="/archive/?series=new-wave" class="block px-4 py-2 text-[11px] uppercase tracking-[0.2em] text-white/60 hover:text-[#c5a059] transition whitespace-nowrap">New Wave</a>
+                        </div>
+                    </div>
+                </div>
                 <a href="/archive/" class="nav-link">Archive</a>
                 <a href="/about" class="nav-link">About</a>
             </div>
@@ -66,7 +77,13 @@ layout: false
     </nav>
 
     <!-- Mobile menu overlay -->
-    <div id="mobile-menu" class="hidden fixed inset-0 bg-black z-40 flex flex-col items-center justify-center gap-12">
+    <div id="mobile-menu" class="hidden fixed inset-0 bg-black z-40 flex flex-col items-center justify-center gap-8">
+        <div class="flex flex-col items-center gap-3">
+            <span class="text-[9px] uppercase tracking-[0.4em] text-[#c5a059]">Re-Play</span>
+            <a href="/archive/?series=classics" onclick="toggleMobileMenu()" class="logo-mojo text-2xl uppercase tracking-[0.3em] text-white hover:text-[#c5a059] transition-colors">Classics</a>
+            <a href="/archive/?series=new-wave" onclick="toggleMobileMenu()" class="logo-mojo text-2xl uppercase tracking-[0.3em] text-white hover:text-[#c5a059] transition-colors">New Wave</a>
+        </div>
+        <div class="h-px w-16 bg-white/10"></div>
         <a href="/archive/" onclick="toggleMobileMenu()" class="logo-mojo text-4xl uppercase tracking-[0.3em] text-white hover:text-[#DAA520] transition-colors">Archive</a>
         <a href="/about" onclick="toggleMobileMenu()" class="logo-mojo text-4xl uppercase tracking-[0.3em] text-white hover:text-[#DAA520] transition-colors">About</a>
         <div class="absolute bottom-12 text-[10px] uppercase tracking-widest text-white/20">MojoLists</div>
@@ -103,16 +120,32 @@ layout: false
     <main class="max-w-6xl mx-auto px-8 py-16">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-x-10 gap-y-16">
 
-            {% for review in collections.reviews | limit(6) %}
+            {#
+              Row 1 (cards 1-3): the 3 most recently published reviews, any type.
+              Row 2 (cards 4-6): smart variety pick via buildRow2 filter —
+                priority order: latest current → latest Classic → latest New Wave
+                → any other replay → fill. Scales automatically as new series are added.
+            #}
+            {% set row1 = collections.reviews | limit(3) %}
+            {% set row2 = collections.reviews | buildRow2(row1) %}
+
+            {# ── Row 1 ── #}
+            {% for review in row1 %}
+            {% if review.data.type == 'replay' %}
+                {% if review.data.series == 'new-wave' %}{% set sName = 'New Wave' %}
+                {% elif review.data.series == 'disco' %}{% set sName = 'Disco' %}
+                {% elif review.data.series == 'punk' %}{% set sName = 'Punk' %}
+                {% elif review.data.series == 'rap' %}{% set sName = 'Rap' %}
+                {% elif review.data.series == 'grunge' %}{% set sName = 'Grunge' %}
+                {% else %}{% set sName = 'Classic' %}{% endif %}
+                {% set cardLabel = 'Re-Play ' + sName %}
+            {% elif loop.index == 1 %}
+                {% set cardLabel = 'Just In' %}
+            {% else %}
+                {% set cardLabel = 'New Tunes' %}
+            {% endif %}
             <div class="w-full">
-                {% if loop.index <= 3 %}
-                <span class="row-label">
-                    {% if loop.index == 1 %}Latest Review
-                    {% elif review.data.type == 'replay' %}Re-Play
-                    {% elif loop.index == 2 %}Recent
-                    {% else %}Explore{% endif %}
-                </span>
-                {% endif %}
+                <span class="row-label{% if review.data.type == 'replay' %} row-label-replay{% endif %}">{{ cardLabel }}</span>
                 <a href="{{ review.url }}" class="card-link block h-full">
                     <article class="review-card p-6">
                         <div class="img-container mb-6">
@@ -128,7 +161,44 @@ layout: false
                         </div>
                         {% endif %}
                         <h3 class="logo-mojo text-3xl text-white mb-1">{{ review.data.artist }}</h3>
-                        <p class="text-[10px] font-bold uppercase tracking-widest mb-4 italic {% if review.data.type == 'replay' %}text-[#c5a059]{% else %}text-[#e63946]{% endif %}">{{ review.data.album or review.data.title }}</p>
+                        <p class="text-[10px] font-bold uppercase tracking-widests mb-4 italic {% if review.data.type == 'replay' %}text-[#c5a059]{% else %}text-[#e63946]{% endif %}">{{ review.data.album or review.data.title }}</p>
+                        <p class="text-sm leading-relaxed text-white/50">{{ review.templateContent | striptags | truncate(100) }}</p>
+                    </article>
+                </a>
+            </div>
+            {% endfor %}
+
+            {# ── Row 2 ── #}
+            {% for review in row2 %}
+            {% if review.data.type == 'replay' %}
+                {% if review.data.series == 'new-wave' %}{% set sName = 'New Wave' %}
+                {% elif review.data.series == 'disco' %}{% set sName = 'Disco' %}
+                {% elif review.data.series == 'punk' %}{% set sName = 'Punk' %}
+                {% elif review.data.series == 'rap' %}{% set sName = 'Rap' %}
+                {% elif review.data.series == 'grunge' %}{% set sName = 'Grunge' %}
+                {% else %}{% set sName = 'Classic' %}{% endif %}
+                {% set cardLabel = 'Re-Play ' + sName %}
+            {% else %}
+                {% set cardLabel = 'New Tunes' %}
+            {% endif %}
+            <div class="w-full">
+                <span class="row-label{% if review.data.type == 'replay' %} row-label-replay{% endif %}">{{ cardLabel }}</span>
+                <a href="{{ review.url }}" class="card-link block h-full">
+                    <article class="review-card p-6">
+                        <div class="img-container mb-6">
+                            <img src="/assets/img/{{ review.data.image or review.data.coverImage }}"
+                                 class="card-img"
+                                 alt="{{ review.data.artist }} - {{ review.data.album }}">
+                        </div>
+                        {% if review.data.type == 'replay' %}
+                        <div class="flex items-center gap-2 mb-3">
+                            <div class="h-px w-5 bg-[#c5a059]/50"></div>
+                            <span class="text-[8px] font-bold uppercase tracking-[0.4em] text-[#c5a059]">Re-Play</span>
+                            <div class="h-px w-5 bg-[#c5a059]/50"></div>
+                        </div>
+                        {% endif %}
+                        <h3 class="logo-mojo text-3xl text-white mb-1">{{ review.data.artist }}</h3>
+                        <p class="text-[10px] font-bold uppercase tracking-widests mb-4 italic {% if review.data.type == 'replay' %}text-[#c5a059]{% else %}text-[#e63946]{% endif %}">{{ review.data.album or review.data.title }}</p>
                         <p class="text-sm leading-relaxed text-white/50">{{ review.templateContent | striptags | truncate(100) }}</p>
                     </article>
                 </a>

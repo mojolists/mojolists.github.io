@@ -10,6 +10,7 @@ score1: 85
 score2: 92
 score3: 92
 tags: reviews
+genre: ["Funk", "Soul"]
 date: 2026-02-26
 youtubeId: "vBvP6V9XW2w"
 ---

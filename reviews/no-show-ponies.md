@@ -10,6 +10,7 @@ score1: 85
 score2: 75
 score3: 50
 tags: reviews
+genre: ["Americana", "Roots Rock"]
 date: 2026-02-25
 ---
 

@@ -1,29 +1,45 @@
-name: Deploy MojoLists
+name: Build & Deploy
 
 on:
   push:
-    branches: ["*"] # This triggers on every single push to any branch
+    branches: [main]          # deploy on every push to main
+  schedule:
+    - cron: '0 8 * * *'       # also rebuild daily at 8am UTC
+                               # so scheduled reviews go live on their date
 
 jobs:
-  build-and-deploy:
+  build-deploy:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
     steps:
-      - name: Checkout Repository
+      - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
+      - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: '20'
+          cache: 'npm'
 
-      - name: Install Dependencies
-        run: npm install
+      - name: Install dependencies
+        run: npm ci
 
-      - name: Build Eleventy Site
-        run: npx @11ty/eleventy
+      - name: Build site
+        run: npm run build
+
+      - name: Upload to GitHub Pages
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./_site
 
       - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./_site
+        id: deployment
+        uses: actions/deploy-pages@v4

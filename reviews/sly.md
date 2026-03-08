@@ -10,7 +10,9 @@ score1: 95
 score2: 93
 score3: 96
 tags: reviews
+genre: ["Funk", "Soul"]
 type: replay
+series: classics
 date: 2026-03-07
 ---
 

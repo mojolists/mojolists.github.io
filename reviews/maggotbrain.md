@@ -10,7 +10,9 @@ score1: 96
 score2: 88
 score3: 95
 tags: reviews
+genre: ["Funk", "Psychedelic"]
 type: replay
+series: classics
 date: 2026-03-08
 ---
 

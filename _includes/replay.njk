@@ -79,6 +79,12 @@ layout: base.njk
                             <span class="metadata-label font-medium text-white/90">Released</span>
                             <span class="metadata-value text-white">{{ year }}</span>
                         </div>
+                        {% if genre %}
+                        <div class="metadata-row">
+                            <span class="metadata-label font-medium text-white/90">Genre</span>
+                            <span class="metadata-value text-white">{{ genre | join(' · ') }}</span>
+                        </div>
+                        {% endif %}
 
                         {# Visual Separator #}
                         <div class="border-t border-[#c5a059]/20 my-6"></div>

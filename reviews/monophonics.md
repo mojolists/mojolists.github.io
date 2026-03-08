@@ -10,6 +10,7 @@ score1: 85
 score2: 90
 score3: 85
 tags: reviews
+genre: ["Soul", "Psychedelic"]
 date: 2026-02-25
 ---
 

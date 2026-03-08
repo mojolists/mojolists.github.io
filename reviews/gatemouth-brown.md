@@ -10,6 +10,7 @@ score1: 85
 score2: 70
 score3: 40
 tags: reviews
+genre: ["Blues", "Country", "Jazz"]
 date: 2017-01-11
 ---
 

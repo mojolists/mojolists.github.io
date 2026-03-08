@@ -10,7 +10,9 @@ score1: 90
 score2: 85
 score3: 91
 tags: reviews
+genre: ["Classic Rock"]
 type: replay
+series: classics
 date: 2026-03-07
 ---
 

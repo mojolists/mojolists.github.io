@@ -61,6 +61,24 @@ permalink: /archive/
         </div>
     </div>
 
+    <!-- ── SERIES BANNER ─────────────────────────────────────────────── -->
+    <div id="series-banner"></div>
+
+    <!-- ── GENRE FILTER PILLS ──────────────────────────────────────────── -->
+    <div id="genre-filter-bar" class="mb-8 flex flex-wrap gap-2 items-center">
+        <button onclick="setGenreFilter('')" id="pill-all"
+            class="genre-pill active text-[9px] font-bold uppercase tracking-[0.25em] px-3 py-1.5 border transition-all duration-200">All</button>
+        <!-- pills injected by JS -->
+    </div>
+
+    <!-- ── ERA FILTER PILLS ───────────────────────────────────────────── -->
+    <div id="era-filter-bar" class="mb-10 flex flex-wrap gap-2 items-center">
+        <span class="text-[8px] font-bold uppercase tracking-[0.35em] text-white/20 mr-1">Era</span>
+        <button onclick="setEraFilter('')" id="pill-era-all"
+            class="genre-pill active text-[9px] font-bold uppercase tracking-[0.25em] px-3 py-1.5 border transition-all duration-200">All</button>
+        <!-- era pills injected by JS -->
+    </div>
+
     <!-- ── VIEW 1: CAROUSEL ────────────────────────────────────────────── -->
     <div id="archive-carousel" style="display:none">
 
@@ -83,6 +101,7 @@ permalink: /archive/
             <p id="c-replay-badge" style="display:none;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:0.4em;color:#c5a059;margin-bottom:6px;">&#9670; Re-Play &#9670;</p>
             <p id="c-artist"></p>
             <p id="c-album"></p>
+            <p id="c-genre" style="font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:0.3em;color:rgba(255,255,255,0.25);margin-top:4px;"></p>
             <div style="display:flex;align-items:baseline;justify-content:center;gap:20px;margin-top:8px;">
                 <span id="c-score"></span>
                 <a id="c-link" href="#">Read Review &#8594;</a>
@@ -96,12 +115,13 @@ permalink: /archive/
     <div id="sort-headers" class="grid grid-cols-12 gap-4 px-6 mb-6 items-center border-b border-white/10 pb-4" style="display:none">
         <div class="col-span-1"></div>
         <button onclick="sortTable(1)" id="hdr-1" class="col-span-3 text-left text-xs uppercase tracking-[0.15em] font-bold hover:text-[#DAA520] transition-colors flex items-center gap-1" style="color:rgba(255,255,255,0.5)">Artist <span class="sort-arrow" style="color:#DAA520;display:none"></span></button>
-        <button onclick="sortTable(2)" id="hdr-2" class="col-span-3 text-left text-xs uppercase tracking-[0.15em] font-bold hover:text-[#DAA520] transition-colors flex items-center gap-1" style="color:rgba(255,255,255,0.5)">Album <span class="sort-arrow" style="color:#DAA520;display:none"></span></button>
+        <button onclick="sortTable(2)" id="hdr-2" class="col-span-2 text-left text-xs uppercase tracking-[0.15em] font-bold hover:text-[#DAA520] transition-colors flex items-center gap-1" style="color:rgba(255,255,255,0.5)">Album <span class="sort-arrow" style="color:#DAA520;display:none"></span></button>
         <button onclick="sortTable(3)" id="hdr-3" class="col-span-1 text-center text-xs uppercase tracking-[0.15em] font-bold hover:text-[#DAA520] transition-colors flex items-center justify-center gap-1" style="color:rgba(255,255,255,0.5)">Year <span class="sort-arrow" style="color:#DAA520;display:none"></span></button>
         <button onclick="sortTable(4)" id="hdr-4" class="col-span-1 text-center text-xs uppercase tracking-[0.15em] font-bold hover:text-[#DAA520] transition-colors flex items-center justify-center gap-1" style="color:rgba(255,255,255,0.5)">Perf <span class="sort-arrow" style="color:#DAA520;display:none"></span></button>
         <button onclick="sortTable(5)" id="hdr-5" class="col-span-1 text-center text-xs uppercase tracking-[0.15em] font-bold hover:text-[#DAA520] transition-colors flex items-center justify-center gap-1" style="color:rgba(255,255,255,0.5)">Prod <span class="sort-arrow" style="color:#DAA520;display:none"></span></button>
         <button onclick="sortTable(6)" id="hdr-6" class="col-span-1 text-center text-xs uppercase tracking-[0.15em] font-bold hover:text-[#DAA520] transition-colors flex items-center justify-center gap-1" style="color:rgba(255,255,255,0.5)">Dance <span class="sort-arrow" style="color:#DAA520;display:none"></span></button>
-        <button onclick="sortTable(7)" id="hdr-7" class="col-span-1 text-right text-xs uppercase tracking-[0.15em] font-bold hover:text-[#DAA520] transition-colors flex items-center justify-end gap-1" style="color:rgba(255,255,255,0.5)">Mojo <span class="sort-arrow" style="color:#DAA520;display:none"></span></button>
+        <button onclick="sortTable(7)" id="hdr-7" class="col-span-1 text-center text-xs uppercase tracking-[0.15em] font-bold hover:text-[#DAA520] transition-colors flex items-center justify-center gap-1" style="color:rgba(255,255,255,0.5)">Impact <span class="sort-arrow" style="color:#DAA520;display:none"></span></button>
+        <button onclick="sortTable(8)" id="hdr-8" class="col-span-1 text-right text-xs uppercase tracking-[0.15em] font-bold hover:text-[#DAA520] transition-colors flex items-center justify-end gap-1" style="color:rgba(255,255,255,0.5)">Mojo <span class="sort-arrow" style="color:#DAA520;display:none"></span></button>
     </div>
 
     <!-- ── VIEW 2: TABLE ROWS (preview mode) ──────────────────────────── -->
@@ -119,6 +139,9 @@ permalink: /archive/
            data-image="{{ review.data.image }}"
            data-avg="{{ avg }}"
            data-type="{{ review.data.type }}"
+           data-genre="{{ review.data.genre | join(', ') }}"
+           data-series="{{ review.data.series }}"
+           data-year="{{ review.data.year }}"
            data-excerpt="{{ review.templateContent | striptags | truncate(160) }}">
 
             <div class="col-span-1 aspect-square overflow-hidden rounded-sm border {% if review.data.type == 'replay' %}border-[#c5a059]/30{% else %}border-white/10{% endif %} relative">
@@ -129,15 +152,16 @@ permalink: /archive/
                 </div>
                 {% endif %}
             </div>
-            <div class="col-span-3 text-sm font-medium text-white group-hover:text-[#DAA520] transition-colors truncate tracking-tight artist-cell">
-                {{ review.data.artist }}
-                {% if review.data.type == 'replay' %}<span class="ml-2 text-[7px] font-black uppercase tracking-[0.3em] text-[#c5a059] border border-[#c5a059]/40 px-1.5 py-0.5 align-middle">RP</span>{% endif %}
+            <div class="col-span-3 tracking-tight artist-cell">
+                <div class="text-sm font-medium text-white group-hover:text-[#DAA520] transition-colors truncate">{{ review.data.artist }}{% if review.data.type == 'replay' %}<span class="ml-2 text-[7px] font-black uppercase tracking-[0.3em] text-[#c5a059] border border-[#c5a059]/40 px-1.5 py-0.5 align-middle">RP</span>{% endif %}</div>
+                {% if review.data.genre %}<div class="text-[9px] uppercase tracking-[0.2em] text-white/30 truncate mt-0.5">{{ review.data.genre | join(' · ') }}</div>{% endif %}
             </div>
-            <div class="col-span-3 text-white/60 text-xs italic font-light truncate album-cell">{{ review.data.album }}</div>
+            <div class="col-span-2 text-white/60 text-xs italic font-light truncate album-cell">{{ review.data.album }}</div>
             <div class="col-span-1 text-center text-white/50 font-light text-[10px] tracking-widest year-cell">{{ review.data.year }}</div>
             <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white s1-cell">{{ s1 }}</div>
             <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white s2-cell">{{ s2 }}</div>
-            <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white s3-cell">{{ s3 }}</div>
+            <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white dance-cell">{% if review.data.type != 'replay' %}{{ s3 }}{% else %}<span class="text-white/20">—</span>{% endif %}</div>
+            <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white impact-cell">{% if review.data.type == 'replay' %}{{ s3 }}{% else %}<span class="text-white/20">—</span>{% endif %}</div>
             <div class="col-span-1 text-right italic font-light text-[#DAA520] text-lg logo-mojo mojo-cell">{{ avg }}%</div>
         </a>
         {% endfor %}
@@ -156,6 +180,9 @@ permalink: /archive/
                  data-artist="{{ review.data.artist }}"
                  data-album="{{ review.data.album }}"
                  data-type="{{ review.data.type }}"
+                 data-genre="{{ review.data.genre | join(', ') }}"
+                 data-series="{{ review.data.series }}"
+                 data-year="{{ review.data.year }}"
                  onclick="flipCard(this)">
                 <div class="crate-inner">
                     <div class="crate-front">
@@ -173,6 +200,7 @@ permalink: /archive/
                             <div>
                                 <p class="text-white font-semibold text-xs leading-tight mb-1 uppercase tracking-tight">{{ review.data.artist }}</p>
                                 <p class="text-white/50 text-[10px] italic leading-tight">{{ review.data.album }}</p>
+                                {% if review.data.genre %}<p class="text-white/25 text-[8px] uppercase tracking-[0.2em] leading-tight mt-1">{{ review.data.genre | join(' · ') }}</p>{% endif %}
                             </div>
                             <div>
                                 <p class="text-[#DAA520] logo-mojo text-2xl italic font-light">{{ avg }}%</p>
@@ -206,6 +234,29 @@ permalink: /archive/
 </div>
 
 <style>
+    /* ── Genre filter pills ── */
+    .genre-pill {
+        color: rgba(255,255,255,0.35);
+        border-color: rgba(255,255,255,0.1);
+        background: transparent;
+        cursor: pointer;
+    }
+    .genre-pill:hover { color: rgba(255,255,255,0.7); border-color: rgba(255,255,255,0.25); }
+    .genre-pill.active { color: #c5a059; border-color: rgba(197,160,89,0.5); background: rgba(197,160,89,0.06); }
+
+    /* ── Series banner ── */
+    #series-banner {
+        display: none;
+        font-size: 9px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.35em;
+        color: #c5a059;
+        margin-bottom: 20px;
+    }
+    #series-banner a { color: rgba(255,255,255,0.3); margin-left: 12px; text-decoration: none; }
+    #series-banner a:hover { color: #fff; }
+
     /* ── Glass card (table rows) ── */
     .glass-card {
         background: rgba(255,255,255,0.02);
@@ -474,6 +525,9 @@ function updateInfoStrip() {
     if (badge) badge.style.display = cur.type === 'replay' ? 'block' : 'none';
     document.getElementById('c-artist').textContent  = cur.artist;
     document.getElementById('c-album').textContent   = cur.album;
+    const genreEl = document.getElementById('c-genre');
+    const era = decadeFromYear(cur.year);
+    if (genreEl) genreEl.textContent = [cur.genre, era].filter(Boolean).join('  ·  ');
     document.getElementById('c-score').textContent   = cur.avg + '%';
     document.getElementById('c-link').href           = cur.url;
     document.getElementById('c-counter').textContent = (carouselIndex + 1) + ' / ' + total;
@@ -708,29 +762,8 @@ function positionCard(e) {
 function flipCard(el) { el.classList.toggle('flipped'); }
 
 /* ── Search ─────────────────────────────────────────────────────────── */
-function filterAll() {
-    const filter = document.getElementById('archiveSearch').value.toLowerCase();
-    document.querySelectorAll('.archive-row').forEach(row => {
-        const match = row.dataset.artist.toLowerCase().includes(filter) ||
-                      row.dataset.album.toLowerCase().includes(filter);
-        row.style.display = match ? '' : 'none';
-    });
-    filterCrate(filter);
-    if (filter && carouselData.length && currentView === 'carousel') {
-        const idx = carouselData.findIndex(item =>
-            item.artist.toLowerCase().includes(filter) ||
-            item.album.toLowerCase().includes(filter));
-        if (idx >= 0) { carouselIndex = idx; viewOffset = 0; updateCarousel(); }
-    }
-}
-function filterCrate(filter) {
-    filter = filter !== undefined ? filter : document.getElementById('archiveSearch').value.toLowerCase();
-    document.querySelectorAll('.crate-card').forEach(c => {
-        const match = c.dataset.artist.toLowerCase().includes(filter) ||
-                      c.dataset.album.toLowerCase().includes(filter);
-        c.style.display = match ? '' : 'none';
-    });
-}
+function filterAll() { applyFilters(); }
+function filterCrate(filter) { applyFiltersCrate(filter); }
 
 /* ── Sort (preview mode only) ───────────────────────────────────────── */
 function sortTable(columnIndex) {
@@ -738,7 +771,7 @@ function sortTable(columnIndex) {
     const rows = Array.from(list.getElementsByClassName('archive-row'));
     sortDirections[columnIndex] = !sortDirections[columnIndex];
     const asc = sortDirections[columnIndex];
-    for (let i = 1; i <= 7; i++) {
+    for (let i = 1; i <= 8; i++) {
         const h = document.getElementById('hdr-' + i);
         if (!h) continue;
         h.style.color = 'rgba(255,255,255,0.5)';
@@ -751,7 +784,7 @@ function sortTable(columnIndex) {
         const ar = ah.querySelector('.sort-arrow');
         if (ar) { ar.textContent = asc ? '↑' : '↓'; ar.style.display = 'inline'; }
     }
-    const sel = ['.artist-cell','.album-cell','.year-cell','.s1-cell','.s2-cell','.s3-cell','.mojo-cell'];
+    const sel = ['.artist-cell','.album-cell','.year-cell','.s1-cell','.s2-cell','.dance-cell','.impact-cell','.mojo-cell'];
     rows.sort((a, b) => {
         let av = a.querySelector(sel[columnIndex-1]).innerText.trim().replace('%','');
         let bv = b.querySelector(sel[columnIndex-1]).innerText.trim().replace('%','');
@@ -761,6 +794,127 @@ function sortTable(columnIndex) {
     });
     list.innerHTML = '';
     rows.forEach(r => list.appendChild(r));
+}
+
+/* ── Genre + Era filter state ───────────────────────────────────────── */
+let activeGenre  = '';
+let activeSeries = '';
+let activeEra    = '';
+
+function decadeFromYear(year) {
+    const y = parseInt(year);
+    if (isNaN(y)) return '';
+    const decade = Math.floor(y / 10) * 10;
+    return decade + 's';
+}
+
+function buildEraPills() {
+    const eraSet = new Set();
+    document.querySelectorAll('.archive-row').forEach(row => {
+        const era = decadeFromYear(row.dataset.year);
+        if (era) eraSet.add(era);
+    });
+    const bar = document.getElementById('era-filter-bar');
+    [...eraSet].sort().forEach(era => {
+        const btn = document.createElement('button');
+        btn.className = 'genre-pill text-[9px] font-bold uppercase tracking-[0.25em] px-3 py-1.5 border transition-all duration-200';
+        btn.textContent = era;
+        btn.dataset.era = era;
+        btn.onclick = () => setEraFilter(era);
+        bar.appendChild(btn);
+    });
+}
+
+function setEraFilter(era) {
+    activeEra = era;
+    document.querySelectorAll('#era-filter-bar .genre-pill').forEach(p => {
+        const isAll  = p.id === 'pill-era-all';
+        const active = isAll ? era === '' : p.dataset.era === era;
+        p.classList.toggle('active', active);
+    });
+    applyFilters();
+}
+
+function buildGenrePills() {
+    const genreSet = new Set();
+    document.querySelectorAll('.archive-row').forEach(row => {
+        (row.dataset.genre || '').split(',').forEach(g => {
+            const t = g.trim();
+            if (t) genreSet.add(t);
+        });
+    });
+    const bar = document.getElementById('genre-filter-bar');
+    [...genreSet].sort().forEach(genre => {
+        const btn = document.createElement('button');
+        btn.className = 'genre-pill text-[9px] font-bold uppercase tracking-[0.25em] px-3 py-1.5 border transition-all duration-200';
+        btn.textContent = genre;
+        btn.onclick = () => setGenreFilter(genre);
+        bar.appendChild(btn);
+    });
+}
+
+function setGenreFilter(genre) {
+    activeGenre = genre;
+    document.querySelectorAll('.genre-pill').forEach(p => {
+        const isAll  = p.id === 'pill-all';
+        const active = isAll ? genre === '' : p.textContent === genre;
+        p.classList.toggle('active', active);
+    });
+    applyFilters();
+}
+
+function applyFilters() {
+    const searchVal = document.getElementById('archiveSearch').value.toLowerCase();
+    document.querySelectorAll('.archive-row').forEach(row => {
+        const matchSearch = !searchVal ||
+            row.dataset.artist.toLowerCase().includes(searchVal) ||
+            row.dataset.album.toLowerCase().includes(searchVal) ||
+            row.dataset.genre.toLowerCase().includes(searchVal);
+        const matchGenre  = !activeGenre || row.dataset.genre.toLowerCase().includes(activeGenre.toLowerCase());
+        const matchSeries = !activeSeries || row.dataset.series === activeSeries;
+        const matchEra    = !activeEra || decadeFromYear(row.dataset.year) === activeEra;
+        row.style.display = (matchSearch && matchGenre && matchSeries && matchEra) ? '' : 'none';
+    });
+    applyFiltersCrate(searchVal);
+    if (currentView === 'carousel') {
+        const visible = carouselData.filter(item => {
+            const matchSearch = !searchVal || item.artist.toLowerCase().includes(searchVal) || item.album.toLowerCase().includes(searchVal) || item.genre.toLowerCase().includes(searchVal);
+            const matchGenre  = !activeGenre || item.genre.toLowerCase().includes(activeGenre.toLowerCase());
+            const matchSeries = !activeSeries || item.series === activeSeries;
+            const matchEra    = !activeEra || decadeFromYear(item.year) === activeEra;
+            return matchSearch && matchGenre && matchSeries && matchEra;
+        });
+        if (visible.length && (activeGenre || activeSeries)) {
+            const idx = carouselData.indexOf(visible[0]);
+            if (idx >= 0) { carouselIndex = idx; viewOffset = 0; updateCarousel(); }
+        }
+    }
+}
+
+function applyFiltersCrate(searchVal) {
+    searchVal = searchVal !== undefined ? searchVal : document.getElementById('archiveSearch').value.toLowerCase();
+    document.querySelectorAll('.crate-card').forEach(c => {
+        const matchSearch = !searchVal || c.dataset.artist.toLowerCase().includes(searchVal) || c.dataset.album.toLowerCase().includes(searchVal) || c.dataset.genre.toLowerCase().includes(searchVal);
+        const matchGenre  = !activeGenre || c.dataset.genre.toLowerCase().includes(activeGenre.toLowerCase());
+        const matchSeries = !activeSeries || c.dataset.series === activeSeries;
+        const matchEra    = !activeEra || decadeFromYear(c.dataset.year) === activeEra;
+        c.style.display = (matchSearch && matchGenre && matchSeries && matchEra) ? '' : 'none';
+    });
+}
+
+function checkSeriesParam() {
+    const params = new URLSearchParams(window.location.search);
+    const series = params.get('series');
+    if (!series) return;
+    activeSeries = series;
+    const labels = { 'classics': 'Classics', 'new-wave': 'New Wave' };
+    const label  = labels[series] || series;
+    const banner = document.getElementById('series-banner');
+    if (banner) {
+        banner.style.display = 'block';
+        banner.innerHTML = '&#9670; Re-Play: ' + label + ' <a href="/archive/">View All &#8594;</a>';
+    }
+    applyFilters();
 }
 
 /* ── Init ───────────────────────────────────────────────────────────── */
@@ -773,10 +927,16 @@ document.addEventListener('DOMContentLoaded', function() {
             image:   row.dataset.image   || '',
             avg:     parseInt(row.dataset.avg) || 0,
             excerpt: row.dataset.excerpt || '',
-            type:    row.dataset.type    || ''
+            type:    row.dataset.type    || '',
+            genre:   row.dataset.genre   || '',
+            series:  row.dataset.series  || '',
+            year:    row.dataset.year    || ''
         });
     });
+    buildGenrePills();
+    buildEraPills();
     initCarouselSlots();
     setView(currentView);
+    checkSeriesParam();
 });
 </script>

@@ -10,7 +10,9 @@ score1: 94
 score2: 92
 score3: 93
 tags: reviews
+genre: ["Krautrock", "Psychedelic", "Experimental"]
 type: replay
+series: classics
 date: 2026-03-07
 ---
 

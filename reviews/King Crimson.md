@@ -10,7 +10,9 @@ score1: 95
 score2: 90
 score3: 95
 tags: reviews
+genre: ["Prog Rock", "Psychedelic"]
 type: replay
+series: classics
 date: 2026-03-05
 ---
 

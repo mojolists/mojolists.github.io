@@ -10,7 +10,9 @@ score1: 92
 score2: 69
 score3: 95
 tags: reviews
+genre: ["Americana", "Folk Rock"]
 type: replay
+series: classics
 date: 2026-03-06
 ---
 

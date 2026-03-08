@@ -16,7 +16,17 @@
                     MOJO<span class="logo-lists">LISTS</span>
                 </a>
                 <!-- Desktop nav -->
-                <div class="hidden md:flex space-x-12 text-xs font-medium uppercase tracking-[0.2em] text-gray-300">
+                <div class="hidden md:flex space-x-12 text-xs font-medium uppercase tracking-[0.2em] text-gray-300 items-center">
+                    <!-- Re-Play dropdown -->
+                    <div class="relative group">
+                        <button class="hover:text-white transition flex items-center gap-1.5 text-xs font-medium uppercase tracking-[0.2em] bg-transparent border-0 p-0 cursor-pointer">Re-Play <span class="text-[8px] opacity-50">▾</span></button>
+                        <div class="absolute top-full left-0 pt-3 hidden group-hover:block z-50">
+                            <div class="bg-black border border-white/10 py-2 min-w-[140px]">
+                                <a href="/archive/?series=classics" class="block px-4 py-2 text-[11px] uppercase tracking-[0.2em] text-gray-300 hover:text-[#c5a059] transition whitespace-nowrap">Classics</a>
+                                <a href="/archive/?series=new-wave" class="block px-4 py-2 text-[11px] uppercase tracking-[0.2em] text-gray-300 hover:text-[#c5a059] transition whitespace-nowrap">New Wave</a>
+                            </div>
+                        </div>
+                    </div>
                     <a href="/archive/" class="hover:text-white transition">Archive</a>
                     <a href="/about" class="hover:text-white transition">About</a>
                 </div>
@@ -30,7 +40,13 @@
         </nav>
 
         <!-- Mobile menu overlay -->
-        <div id="mobile-menu" class="hidden fixed inset-0 bg-black z-40 flex flex-col items-center justify-center gap-12">
+        <div id="mobile-menu" class="hidden fixed inset-0 bg-black z-40 flex flex-col items-center justify-center gap-8">
+            <div class="flex flex-col items-center gap-3">
+                <span class="text-[9px] uppercase tracking-[0.4em] text-[#c5a059]">Re-Play</span>
+                <a href="/archive/?series=classics" onclick="toggleMobileMenu()" class="text-2xl uppercase tracking-[0.3em] font-light logo-mojo text-white hover:text-[#c5a059] transition-colors">Classics</a>
+                <a href="/archive/?series=new-wave" onclick="toggleMobileMenu()" class="text-2xl uppercase tracking-[0.3em] font-light logo-mojo text-white hover:text-[#c5a059] transition-colors">New Wave</a>
+            </div>
+            <div class="h-px w-16 bg-white/10"></div>
             <a href="/archive/" onclick="toggleMobileMenu()" class="text-4xl uppercase tracking-[0.3em] font-light logo-mojo text-white hover:text-[#DAA520] transition-colors">Archive</a>
             <a href="/about" onclick="toggleMobileMenu()" class="text-4xl uppercase tracking-[0.3em] font-light logo-mojo text-white hover:text-[#DAA520] transition-colors">About</a>
             <div class="absolute bottom-12 text-[10px] uppercase tracking-widest text-white/20">MojoLists</div>
@@ -138,6 +154,12 @@
                             <span class="metadata-label font-medium text-white/90">Released</span>
                             <span class="metadata-value text-white">1971</span>
                         </div>
+                        
+                        <div class="metadata-row">
+                            <span class="metadata-label font-medium text-white/90">Genre</span>
+                            <span class="metadata-value text-white">Krautrock · Psychedelic · Experimental</span>
+                        </div>
+                        
 
                         
                         <div class="border-t border-[#c5a059]/20 my-6"></div>

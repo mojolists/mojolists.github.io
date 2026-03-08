@@ -10,7 +10,9 @@ score1: 93
 score2: 90
 score3: 94
 tags: reviews
+genre: ["Jazz", "Jazz Fusion"]
 type: replay
+series: classics
 date: 2026-03-12
 ---
 

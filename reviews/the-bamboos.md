@@ -10,6 +10,7 @@ score1: 95
 score2: 95
 score3: 100
 tags: reviews
+genre: ["Soul", "Funk"]
 date: 2026-02-25
 ---
 

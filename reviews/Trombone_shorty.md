@@ -10,6 +10,7 @@ score1: 95
 score2: 85
 score3: 85
 tags: reviews
+genre: ["Jazz", "Funk", "Soul"]
 date: 2026-02-25
 ---
 

@@ -10,7 +10,9 @@ score1: 94
 score2: 91
 score3: 92
 tags: reviews
+genre: ["Post-Punk", "New Wave"]
 type: replay
+series: classics
 date: 2026-03-09
 ---
 

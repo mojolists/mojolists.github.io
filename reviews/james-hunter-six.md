@@ -10,6 +10,7 @@ score1: 95
 score2: 90
 score3: 90
 tags: reviews
+genre: ["Soul", "R&B"]
 date: 2020-03-20
 ---
 

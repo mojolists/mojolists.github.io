@@ -33,6 +33,7 @@
         .card-img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
         .card-link:hover .card-img { transform: scale(1.05); }
         .row-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.3em; color: var(--mojo-red); margin-bottom: 12px; display: block; }
+        .row-label-replay { color: var(--mojo-gold); }
         .stat-value { color: var(--mojo-gold); font-family: 'Cormorant Garamond', serif; font-weight: 400; }
 
         /* Nav */
@@ -49,7 +50,17 @@
                 MOJO<span class="logo-lists">LISTS</span>
             </a>
             <!-- Desktop -->
-            <div class="hidden md:flex gap-12">
+            <div class="hidden md:flex gap-12 items-center">
+                <!-- Re-Play dropdown -->
+                <div class="relative group">
+                    <button class="nav-link flex items-center gap-1.5 bg-transparent border-0 p-0 cursor-pointer">Re-Play <span class="text-[8px] opacity-50">▾</span></button>
+                    <div class="absolute top-full left-0 pt-3 hidden group-hover:block z-50">
+                        <div class="bg-black border border-white/10 py-2 min-w-[140px]">
+                            <a href="/archive/?series=classics" class="block px-4 py-2 text-[11px] uppercase tracking-[0.2em] text-white/60 hover:text-[#c5a059] transition whitespace-nowrap">Classics</a>
+                            <a href="/archive/?series=new-wave" class="block px-4 py-2 text-[11px] uppercase tracking-[0.2em] text-white/60 hover:text-[#c5a059] transition whitespace-nowrap">New Wave</a>
+                        </div>
+                    </div>
+                </div>
                 <a href="/archive/" class="nav-link">Archive</a>
                 <a href="/about" class="nav-link">About</a>
             </div>
@@ -63,7 +74,13 @@
     </nav>
 
     <!-- Mobile menu overlay -->
-    <div id="mobile-menu" class="hidden fixed inset-0 bg-black z-40 flex flex-col items-center justify-center gap-12">
+    <div id="mobile-menu" class="hidden fixed inset-0 bg-black z-40 flex flex-col items-center justify-center gap-8">
+        <div class="flex flex-col items-center gap-3">
+            <span class="text-[9px] uppercase tracking-[0.4em] text-[#c5a059]">Re-Play</span>
+            <a href="/archive/?series=classics" onclick="toggleMobileMenu()" class="logo-mojo text-2xl uppercase tracking-[0.3em] text-white hover:text-[#c5a059] transition-colors">Classics</a>
+            <a href="/archive/?series=new-wave" onclick="toggleMobileMenu()" class="logo-mojo text-2xl uppercase tracking-[0.3em] text-white hover:text-[#c5a059] transition-colors">New Wave</a>
+        </div>
+        <div class="h-px w-16 bg-white/10"></div>
         <a href="/archive/" onclick="toggleMobileMenu()" class="logo-mojo text-4xl uppercase tracking-[0.3em] text-white hover:text-[#DAA520] transition-colors">Archive</a>
         <a href="/about" onclick="toggleMobileMenu()" class="logo-mojo text-4xl uppercase tracking-[0.3em] text-white hover:text-[#DAA520] transition-colors">About</a>
         <div class="absolute bottom-12 text-[10px] uppercase tracking-widest text-white/20">MojoLists</div>
@@ -101,13 +118,17 @@
         <div class="grid grid-cols-1 md:grid-cols-3 gap-x-10 gap-y-16">
 
             
+            
+            
+
+            
+            
+            
+                
+                
+            
             <div class="w-full">
-                
-                <span class="row-label">
-                    Latest Review
-                    
-                </span>
-                
+                <span class="row-label row-label-replay">Re-Play Classic</span>
                 <a href="/reviews/miles/" class="card-link block h-full">
                     <article class="review-card p-6">
                         <div class="img-container mb-6">
@@ -123,19 +144,18 @@
                         </div>
                         
                         <h3 class="logo-mojo text-3xl text-white mb-1">Miles Davis</h3>
-                        <p class="text-[10px] font-bold uppercase tracking-widest mb-4 italic text-[#c5a059]">On the Corner</p>
+                        <p class="text-[10px] font-bold uppercase tracking-widests mb-4 italic text-[#c5a059]">On the Corner</p>
                         <p class="text-sm leading-relaxed text-white/50">At Release Jazz purists were absolutely furious when they dropped the needle on this one. By 1972,...</p>
                     </article>
                 </a>
             </div>
             
+            
+                
+                
+            
             <div class="w-full">
-                
-                <span class="row-label">
-                    Re-Play
-                    
-                </span>
-                
+                <span class="row-label row-label-replay">Re-Play Classic</span>
                 <a href="/reviews/byrne/" class="card-link block h-full">
                     <article class="review-card p-6">
                         <div class="img-container mb-6">
@@ -151,19 +171,18 @@
                         </div>
                         
                         <h3 class="logo-mojo text-3xl text-white mb-1">Brian Eno &amp; David Byrne</h3>
-                        <p class="text-[10px] font-bold uppercase tracking-widest mb-4 italic text-[#c5a059]">My Life in the Bush of Ghosts</p>
+                        <p class="text-[10px] font-bold uppercase tracking-widests mb-4 italic text-[#c5a059]">My Life in the Bush of Ghosts</p>
                         <p class="text-sm leading-relaxed text-white/50">At Release This collaborative project was a major head-scratcher for a lot of people in 1981. Fresh...</p>
                     </article>
                 </a>
             </div>
             
+            
+                
+                
+            
             <div class="w-full">
-                
-                <span class="row-label">
-                    Re-Play
-                    
-                </span>
-                
+                <span class="row-label row-label-replay">Re-Play Classic</span>
                 <a href="/reviews/television/" class="card-link block h-full">
                     <article class="review-card p-6">
                         <div class="img-container mb-6">
@@ -179,14 +198,41 @@
                         </div>
                         
                         <h3 class="logo-mojo text-3xl text-white mb-1">Television</h3>
-                        <p class="text-[10px] font-bold uppercase tracking-widest mb-4 italic text-[#c5a059]">Marquee Moon</p>
+                        <p class="text-[10px] font-bold uppercase tracking-widests mb-4 italic text-[#c5a059]">Marquee Moon</p>
                         <p class="text-sm leading-relaxed text-white/50">At Release Emerging from the gritty CBGB punk scene in New York, audiences naturally expected this...</p>
                     </article>
                 </a>
             </div>
             
-            <div class="w-full">
+
+            
+            
+            
                 
+            
+            <div class="w-full">
+                <span class="row-label">New Tunes</span>
+                <a href="/reviews/olympians-2026/" class="card-link block h-full">
+                    <article class="review-card p-6">
+                        <div class="img-container mb-6">
+                            <img src="/assets/img/olympians.jpg"
+                                 class="card-img"
+                                 alt="The Olympians - In Search of a Revival">
+                        </div>
+                        
+                        <h3 class="logo-mojo text-3xl text-white mb-1">The Olympians</h3>
+                        <p class="text-[10px] font-bold uppercase tracking-widests mb-4 italic text-[#e63946]">In Search of a Revival</p>
+                        <p class="text-sm leading-relaxed text-white/50">Ten years is a long time to wait for a sequel, but Toby Pazner and his 17-piece ensemble haven’t...</p>
+                    </article>
+                </a>
+            </div>
+            
+            
+                
+                
+            
+            <div class="w-full">
+                <span class="row-label row-label-replay">Re-Play Classic</span>
                 <a href="/reviews/maggotbrain/" class="card-link block h-full">
                     <article class="review-card p-6">
                         <div class="img-container mb-6">
@@ -202,14 +248,18 @@
                         </div>
                         
                         <h3 class="logo-mojo text-3xl text-white mb-1">Funkadelic</h3>
-                        <p class="text-[10px] font-bold uppercase tracking-widest mb-4 italic text-[#c5a059]">Maggot Brain</p>
+                        <p class="text-[10px] font-bold uppercase tracking-widests mb-4 italic text-[#c5a059]">Maggot Brain</p>
                         <p class="text-sm leading-relaxed text-white/50">At Release Critics were deeply polarized by the aggressive mix of spaced-out acid rock, layered...</p>
                     </article>
                 </a>
             </div>
             
-            <div class="w-full">
+            
                 
+                
+            
+            <div class="w-full">
+                <span class="row-label row-label-replay">Re-Play Classic</span>
                 <a href="/reviews/can/" class="card-link block h-full">
                     <article class="review-card p-6">
                         <div class="img-container mb-6">
@@ -225,31 +275,8 @@
                         </div>
                         
                         <h3 class="logo-mojo text-3xl text-white mb-1">Can</h3>
-                        <p class="text-[10px] font-bold uppercase tracking-widest mb-4 italic text-[#c5a059]">Tago Mago</p>
+                        <p class="text-[10px] font-bold uppercase tracking-widests mb-4 italic text-[#c5a059]">Tago Mago</p>
                         <p class="text-sm leading-relaxed text-white/50">At Release This was certainly not an easy listen for the average record buyer in 1971. Arriving as a...</p>
-                    </article>
-                </a>
-            </div>
-            
-            <div class="w-full">
-                
-                <a href="/reviews/kinks/" class="card-link block h-full">
-                    <article class="review-card p-6">
-                        <div class="img-container mb-6">
-                            <img src="/assets/img/kinks.jpg"
-                                 class="card-img"
-                                 alt="The Kinks - The Kinks Are the Village Green Preservation Society">
-                        </div>
-                        
-                        <div class="flex items-center gap-2 mb-3">
-                            <div class="h-px w-5 bg-[#c5a059]/50"></div>
-                            <span class="text-[8px] font-bold uppercase tracking-[0.4em] text-[#c5a059]">Re-Play</span>
-                            <div class="h-px w-5 bg-[#c5a059]/50"></div>
-                        </div>
-                        
-                        <h3 class="logo-mojo text-3xl text-white mb-1">The Kinks</h3>
-                        <p class="text-[10px] font-bold uppercase tracking-widest mb-4 italic text-[#c5a059]">The Kinks Are the Village Green Preservation Society</p>
-                        <p class="text-sm leading-relaxed text-white/50">At Release While the rest of the rock world was turning up their amplifiers and experimenting with...</p>
                     </article>
                 </a>
             </div>

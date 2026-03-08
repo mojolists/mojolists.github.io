@@ -10,6 +10,7 @@ score1: 70
 score2: 85
 score3: 80
 tags: reviews
+genre: ["Blues", "Soul", "Rock"]
 date: 2026-02-25
 ---
 
