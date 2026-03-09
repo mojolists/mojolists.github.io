@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Joy Division | MojoLists</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/main.css">
+</head>
+<body class="bg-black text-white min-h-screen font-sans selection:bg-[#DAA520] selection:text-black">
+    <div class="min-h-screen flex flex-col">
+        <nav class="border-b border-white border-opacity-10 px-6 py-8 relative z-50">
+            <div class="max-w-7xl mx-auto flex justify-between items-center">
+                <a href="/" class="text-3xl uppercase tracking-tighter logo-mojo">
+                    MOJO<span class="logo-lists">LISTS</span>
+                </a>
+                <!-- Desktop nav -->
+                <div class="hidden md:flex space-x-12 text-xs font-medium uppercase tracking-[0.2em] text-gray-300 items-center">
+                    <!-- Re-Play dropdown -->
+                    <div class="relative group">
+                        <button class="hover:text-white transition flex items-center gap-1.5 text-xs font-medium uppercase tracking-[0.2em] bg-transparent border-0 p-0 cursor-pointer">Re-Play <span class="text-[8px] opacity-50">▾</span></button>
+                        <div class="absolute top-full left-0 pt-3 hidden group-hover:block z-50">
+                            <div class="bg-black border border-white/10 py-2 min-w-[140px]">
+                                <a href="/archive/?series=classics" class="block px-4 py-2 text-[11px] uppercase tracking-[0.2em] text-gray-300 hover:text-[#c5a059] transition whitespace-nowrap">Classics</a>
+                                <a href="/archive/?series=new-wave" class="block px-4 py-2 text-[11px] uppercase tracking-[0.2em] text-gray-300 hover:text-[#c5a059] transition whitespace-nowrap">New Wave</a>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="/archive/" class="hover:text-white transition">Archive</a>
+                    <a href="/about" class="hover:text-white transition">About</a>
+                </div>
+                <!-- Mobile hamburger -->
+                <button id="menu-btn" class="md:hidden flex flex-col justify-center items-center w-8 h-8 gap-1.5 group" onclick="toggleMobileMenu()" aria-label="Menu">
+                    <span id="bar1" class="block w-6 h-px bg-white transition-all duration-300"></span>
+                    <span id="bar2" class="block w-6 h-px bg-white transition-all duration-300"></span>
+                    <span id="bar3" class="block w-4 h-px bg-white transition-all duration-300 self-end"></span>
+                </button>
+            </div>
+        </nav>
+
+        <!-- Mobile menu overlay -->
+        <div id="mobile-menu" class="hidden fixed inset-0 bg-black z-40 flex flex-col items-center justify-center gap-8">
+            <div class="flex flex-col items-center gap-3">
+                <span class="text-[9px] uppercase tracking-[0.4em] text-[#c5a059]">Re-Play</span>
+                <a href="/archive/?series=classics" onclick="toggleMobileMenu()" class="text-2xl uppercase tracking-[0.3em] font-light logo-mojo text-white hover:text-[#c5a059] transition-colors">Classics</a>
+                <a href="/archive/?series=new-wave" onclick="toggleMobileMenu()" class="text-2xl uppercase tracking-[0.3em] font-light logo-mojo text-white hover:text-[#c5a059] transition-colors">New Wave</a>
+            </div>
+            <div class="h-px w-16 bg-white/10"></div>
+            <a href="/archive/" onclick="toggleMobileMenu()" class="text-4xl uppercase tracking-[0.3em] font-light logo-mojo text-white hover:text-[#DAA520] transition-colors">Archive</a>
+            <a href="/about" onclick="toggleMobileMenu()" class="text-4xl uppercase tracking-[0.3em] font-light logo-mojo text-white hover:text-[#DAA520] transition-colors">About</a>
+            <div class="absolute bottom-12 text-[10px] uppercase tracking-widest text-white/20">MojoLists</div>
+        </div>
+
+        <script>
+            function toggleMobileMenu() {
+                const menu = document.getElementById('mobile-menu');
+                const bar1 = document.getElementById('bar1');
+                const bar2 = document.getElementById('bar2');
+                const bar3 = document.getElementById('bar3');
+                const isOpen = !menu.classList.contains('hidden');
+                menu.classList.toggle('hidden');
+                // Animate bars into X
+                if (!isOpen) {
+                    bar1.style.transform = 'translateY(6px) rotate(45deg)';
+                    bar2.style.opacity = '0';
+                    bar3.style.transform = 'translateY(-6px) rotate(-45deg)';
+                    bar3.style.width = '1.5rem';
+                    bar3.style.alignSelf = 'auto';
+                } else {
+                    bar1.style.transform = '';
+                    bar2.style.opacity = '';
+                    bar3.style.transform = '';
+                    bar3.style.width = '';
+                    bar3.style.alignSelf = '';
+                }
+            }
+        </script>
+
+        <main class="flex-grow">
+            
+
+
+
+
+
+
+
+<div class="absolute top-0 left-0 w-full h-[700px] overflow-hidden -z-10 pointer-events-none">
+    <img src="/assets/img/joy.jpg" class="w-full h-full object-cover object-top opacity-40 blur-sm" alt="">
+    <div class="absolute inset-0 bg-gradient-to-b from-black/0 via-black/70 to-[#000000]"></div>
+    <!-- Subtle gold tint overlay to differentiate Re-Play visually -->
+    <div class="absolute inset-0 bg-gradient-to-br from-[#c5a059]/5 via-transparent to-transparent"></div>
+</div>
+
+<article class="max-w-6xl mx-auto px-6 py-12 relative">
+
+    
+    
+
+    
+
+    <header class="flex flex-col lg:flex-row gap-8 justify-center items-end mb-20 relative z-10">
+
+        
+        <div class="fixed-square relative">
+            <img src="/assets/img/joy.jpg" alt="Joy Division - Unknown Pleasures" class="w-full h-full object-cover border border-[#c5a059]/30 rounded-sm shadow-2xl">
+            <!-- Re-Play corner badge on the art -->
+            <div class="absolute top-3 left-3 flex items-center gap-1.5 bg-black/80 border border-[#c5a059]/50 px-2.5 py-1.5">
+                <span class="text-[8px] font-bold uppercase tracking-[0.4em] text-[#c5a059]">Re-Play</span>
+            </div>
+        </div>
+
+        
+        <div class="glass-card fixed-square relative overflow-hidden replay-glass">
+            <div class="flex flex-col h-full">
+
+                <!-- Re-Play identity header -->
+                <div class="flex items-center gap-3 mb-5">
+                    <div class="h-px flex-1 bg-[#c5a059]/30"></div>
+                    <span class="text-[9px] font-bold uppercase tracking-[0.45em] text-[#c5a059]">Re-Play</span>
+                    <div class="h-px flex-1 bg-[#c5a059]/30"></div>
+                </div>
+
+                <div class="mb-auto">
+                    <h1 class="artist-heading text-white mb-1">
+                        Joy Division
+                    </h1>
+
+                    <h2 class="album-subheading mb-4" style="color: #c5a059;">
+                        Unknown Pleasures
+                    </h2>
+
+                    <div class="space-y-3">
+                        <div class="metadata-row">
+                            <span class="metadata-label font-medium text-white/90">Label</span>
+                            <span class="metadata-value text-white">Factory Records</span>
+                        </div>
+                        <div class="metadata-row">
+                            <span class="metadata-label font-medium text-white/90">Released</span>
+                            <span class="metadata-value text-white">1979</span>
+                        </div>
+                        
+                        <div class="metadata-row">
+                            <span class="metadata-label font-medium text-white/90">Genre</span>
+                            <span class="metadata-value text-white">New Wave · Classic Rock</span>
+                        </div>
+                        
+
+                        
+                        <div class="border-t border-[#c5a059]/20 my-6"></div>
+
+                        <div class="metadata-row">
+                            <span class="metadata-label font-bold text-[#FFD700]">Performance</span>
+                            <span class="metadata-value text-[#FFD700] font-black">86</span>
+                        </div>
+                        <div class="metadata-row">
+                            <span class="metadata-label font-bold text-[#FFD700]">Production</span>
+                            <span class="metadata-value text-[#FFD700] font-black">91</span>
+                        </div>
+                        <div class="metadata-row">
+                            <span class="metadata-label font-bold text-[#FFD700]">Impact</span>
+                            <span class="metadata-value text-[#FFD700] font-black">95</span>
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div class="pt-6 flex items-baseline gap-4">
+                    <span class="metadata-label text-[#FFD700] font-bold uppercase tracking-[0.3em] text-[11px]">Mojo Rating</span>
+                    <div class="mojo-rating italic font-black text-[#FFD700]">
+                        91%
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    
+    <div class="max-w-3xl mx-auto mb-12 relative z-10">
+        <div class="border-l-2 border-[#c5a059]/60 pl-5 py-1">
+            <p class="text-[9px] font-bold uppercase tracking-[0.4em] text-[#c5a059] mb-2">About This Review</p>
+            <p class="text-sm italic text-white/45 leading-relaxed">
+                Re-Play reviews look back at landmark albums — how they were received at the time of release, the influence they've had on music in the years since, and where they stand today.
+            </p>
+        </div>
+    </div>
+
+    
+    <div class="max-w-3xl mx-auto review-content space-y-8 relative z-10 text-white font-light leading-[1.85]">
+        <h2>At Release</h2>
+<p>When Factory Records pressed the first run of Unknown Pleasures in June 1979, few outside of Manchester's fervent underground scene had any idea what to make of it. John Peel played it on BBC Radio 1, and those who tuned in reported the experience as something close to disorientation — a record that seemed to have arrived from a frequency nobody had previously identified. The music press in Britain was cautious, complimentary in the manner of people who sense they are in the presence of something significant but cannot yet locate the right vocabulary. Sounds magazine called it &quot;stark&quot; and &quot;compelling.&quot; NME was more enthusiastic but still struggled to situate it in any known tradition.
+Producer Martin Hannett was the critical hidden variable. His approach to recording the band, which had been playing raw and loud in the clubs, was to disassemble their live sound and rebuild it from component parts, adding vast reverb chambers, treating drummer Stephen Morris's kit with electronics that made each strike sound both immediate and impossibly distant, and pushing Ian Curtis's baritone into a space that was simultaneously intimate and cavernous. The band themselves were reportedly bewildered and furious at the result. Bernard Sumner described it as &quot;cold&quot; in a way that implied dissatisfaction. He was not wrong about the coldness; he was wrong to object to it.
+The album did not chart. It sold modestly. Outside of those who had been watching Joy Division at the Haçienda and the lesser venues that preceded it, the record existed mostly as a rumor circulating among people who made music or thought seriously about it. It was never a mainstream artifact, and nobody at the time would have predicted it would eventually become one of the most recognizable album covers in history.</p>
+<p class="inline-quote">Its sonic architecture — bass-led compositions, drums processed to near-abstraction, guitar functioning as texture rather than melody — became the foundational grammar of post-punk.</p>
+<h2>The Influence</h2>
+<p>The aftershocks of Unknown Pleasures have never fully stopped. Its sonic architecture — bass-led compositions, drums processed to near-abstraction, guitar functioning as texture rather than melody, vocals positioned as just another instrument in a dense and often oppressive mix — became the foundational grammar of post-punk and subsequently of every guitar-and-synthesizer hybrid that followed. The Cure, Bauhaus, Siouxsie and the Banshees, and later Nine Inch Nails, Interpol, She Wants Revenge, and dozens of others all drew directly from the well Hannett dug in Strawberry Studios in 1978.
+Curtis's lyrical approach was equally generative. He wrote about industrial decline, psychological fracture, and romantic collapse without recourse to the obvious confessional mode. His imagery was oblique, even literary — shaped by Dostoevsky, Ballard, and Burroughs rather than by the singer-songwriter tradition. This gave a generation of subsequent writers permission to pursue abstraction and ambiguity over the direct emotional declaration that pop had always prized. The influence on how thoughtful rock musicians approached language in the 1980s and beyond is difficult to overstate.</p>
+<div class="inline-video"><iframe src="https://www.youtube.com/embed/2oOC31P3KFc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
+<h2>Where It Stands Today</h2>
+<p>Unknown Pleasures does not feel like a period document. The production, which seemed alien and clinical in 1979, now registers as prescient — it anticipated the sonic environments that electronic music would spend the next two decades constructing from the other direction. The album is frequently introduced to young listeners who discover it without any prior knowledge of Joy Division and react with the same confusion their predecessors showed in 1979, except that the confusion is now inflected with recognition: it sounds like music they already know, even hearing it for the first time.
+Ian Curtis died in May 1980, eleven months after Unknown Pleasures was released and the night before Joy Division's first American tour was to begin. His absence, and the mythology that has grown up around it, could have turned the album into an untouchable relic — a thing you approach with ceremony rather than genuine curiosity. Somehow it has avoided that fate. People still argue about it. They argue about which pressing sounds best, about Hannett's choices, about what Curtis meant and whether the darkness was theatrical or confessional. That ongoing argument is the surest sign of lasting vitality.</p>
+<p><a href="https://www.amazon.com/s?k=Joy+Division+Unknown+Pleasures+vinyl" target="_blank" class="buy-btn">Buy Album</a></p>
+
+    </div>
+
+    
+    <div class="xl:hidden flex justify-between items-center mt-20 pt-10 border-t border-[#c5a059]/20 relative z-10">
+        
+        <div></div>
+        
+
+        
+    </div>
+</article>
+
+<style>
+    .vertical-text {
+        writing-mode: vertical-rl;
+        text-orientation: mixed;
+    }
+    .mojo-rating {
+        font-size: 2.75rem;
+        text-shadow: 0 0 20px rgba(255, 215, 0, 0.2);
+    }
+    /* Subtle gold border tint on the Re-Play glass card */
+    .replay-glass {
+        border-color: rgba(197, 160, 89, 0.25) !important;
+    }
+    /* Re-Play section headers — Cormorant Garamond italic in gold */
+    .review-content h2 {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 1.85rem;
+        font-weight: 300;
+        font-style: italic;
+        color: #c5a059;
+        letter-spacing: 0.03em;
+        margin-top: 3.5rem;
+        margin-bottom: 1.25rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 1px solid rgba(197, 160, 89, 0.2);
+        line-height: 1.2;
+    }
+    .review-content h2:first-child { margin-top: 0; }
+    /* Inline quote styling */
+    .review-content .inline-quote {
+        border-left: 3px solid #c5a059;
+        padding: 0.25rem 0 0.25rem 1.5rem;
+        margin: 2.5rem 0;
+        font-style: italic;
+        font-size: 1.2rem;
+        color: rgba(255,255,255,0.8);
+        line-height: 1.7;
+    }
+    /* Inline buy button */
+    .review-content .buy-btn {
+        display: inline-block;
+        padding: 13px 36px;
+        border: 1px solid #c5a059;
+        color: #c5a059;
+        font-size: 10px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.25em;
+        text-decoration: none;
+        transition: background 0.2s, color 0.2s;
+        margin: 2rem 0;
+    }
+    .review-content .buy-btn:hover { background: #c5a059; color: #000; }
+    /* Inline video */
+    .review-content .inline-video {
+        margin: 2.5rem 0;
+        aspect-ratio: 16/9;
+        max-width: 520px;
+        border: 1px solid rgba(197,160,89,0.2);
+        overflow: hidden;
+    }
+    .review-content .inline-video iframe { width: 100%; height: 100%; display: block; }
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const card = document.querySelector('.glass-card');
+        const heading = card ? card.querySelector('.artist-heading') : null;
+        const subheading = card ? card.querySelector('.album-subheading') : null;
+        if (!card || !heading) return;
+
+        let size = parseFloat(window.getComputedStyle(heading).fontSize);
+        while (card.scrollHeight > card.clientHeight && size > 14) {
+            size -= 0.5;
+            heading.style.fontSize = size + 'px';
+        }
+
+        if (subheading) {
+            let subSize = parseFloat(window.getComputedStyle(subheading).fontSize);
+            while (card.scrollHeight > card.clientHeight && subSize > 11) {
+                subSize -= 0.5;
+                subheading.style.fontSize = subSize + 'px';
+            }
+        }
+    });
+</script>
+
+        </main>
+
+        <footer class="border-t border-white border-opacity-10 py-12 mt-20">
+            <div class="max-w-7xl mx-auto px-6 text-center">
+                <p class="logo-mojo text-sm opacity-50">© 2026 MOJOLISTS</p>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
