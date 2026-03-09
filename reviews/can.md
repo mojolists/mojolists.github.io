@@ -34,7 +34,7 @@ Can's influence is so thoroughly dispersed through the history of subsequent mus
 The influence on hip-hop and electronic dance music is less frequently acknowledged but equally substantial. The principle that a groove could be sustained without development — that repetition itself was a compositional strategy rather than a failure of invention — was something Can demonstrated for rock musicians at roughly the same time that James Brown was demonstrating it for funk. The two traditions arrived at the same conclusion from entirely different origins, and their convergence in subsequent decades produced the rhythmic architecture of virtually all contemporary dance music. When a producer today loops a four-bar pattern for eight minutes, they are working from premises that Can's music helped establish as artistically serious.
 
 
-<div class="inline-video"><iframe src="https://www.youtube.com/embed/PLjtxOIF4SP1lP4Jk6gCK8veiM7q5O4kSL" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
+<div class="inline-video"><iframe src="https://www.youtube.com/embed/videoseries?list=PLjtxOIF4SP1lP4Jk6gCK8veiM7q5O4kSL" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
 
 ## Where It Stands Today
 

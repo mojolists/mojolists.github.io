@@ -230,6 +230,11 @@
                         <p class="text-[10px] text-white/45 mt-2 tracking-wide">Place the image in /assets/img/ before publishing</p>
                     </div>
                     <div>
+                        <label class="field-label">Genre <span class="normal-case tracking-normal font-normal opacity-50">(comma-separated)</span></label>
+                        <input class="field-input" id="f-genre" type="text" placeholder='e.g. New Wave, Post-Punk' oninput="generate()">
+                        <p class="text-[10px] text-white/45 mt-2 tracking-wide">Becomes a YAML array — e.g. ["New Wave", "Post-Punk"]</p>
+                    </div>
+                    <div>
                         <label class="field-label">Publish Date</label>
                         <input class="field-input" id="f-date" type="date" oninput="generate()">
                     </div>
@@ -327,6 +332,16 @@
             <!-- Re-Play specific section -->
             <div id="replay-section">
                 <p class="section-title" style="color: rgba(197,160,89,0.5)">Re-Play Structure</p>
+
+                <!-- Series selector -->
+                <div class="mb-6">
+                    <label class="field-label" style="color: rgba(197,160,89,0.5)">Series</label>
+                    <select class="field-input" id="f-series" onchange="generate()">
+                        <!-- Options populated by SERIES config in JS -->
+                    </select>
+                    <p class="text-[10px] text-white/45 mt-2 tracking-wide">Adds <code>series:</code> to frontmatter for site filtering</p>
+                </div>
+
                 <p class="text-xs text-white/55 italic mb-5 leading-relaxed">These three sections form the Re-Play narrative. Write each as a paragraph — they'll be assembled into the review body with section headers.</p>
                 <div class="space-y-5">
                     <div>
@@ -381,6 +396,26 @@
 
 <script>
     let currentType = 'regular';
+
+    // ─── Series config ────────────────────────────────────────────────────────
+    // To add a new Re-Play series, just append an entry here.
+    const SERIES = [
+        { value: '',          label: '— None —' },
+        { value: 'classics',  label: 'Classics' },
+        { value: 'newwave',   label: 'New Wave' },
+        { value: 'disco',     label: 'Disco' },
+    ];
+
+    // Populate series dropdown from config
+    (function buildSeriesDropdown() {
+        const sel = document.getElementById('f-series');
+        SERIES.forEach(s => {
+            const opt = document.createElement('option');
+            opt.value = s.value;
+            opt.textContent = s.label;
+            sel.appendChild(opt);
+        });
+    })();
 
     // Set today as default date
     document.getElementById('f-date').value = new Date().toISOString().split('T')[0];
@@ -461,6 +496,18 @@
         const quote      = val('f-quote');
         const isReplay   = currentType === 'replay';
 
+        // Genre — parse comma-separated into YAML array
+        const genreRaw = val('f-genre');
+        const genreArray = genreRaw
+            ? genreRaw.split(',').map(g => g.trim()).filter(Boolean)
+            : [];
+        const genreYaml = genreArray.length
+            ? '[' + genreArray.map(g => `"${g}"`).join(', ') + ']'
+            : '';
+
+        // Series (Re-Play only)
+        const series = val('f-series');
+
         // Placement prefs (Re-Play only)
         const quotePlacement   = document.getElementById('f-quote-placement').value;
         const youtubePlacement = document.getElementById('f-youtube-placement').value;
@@ -479,7 +526,11 @@
         fm += `score2: ${s2}\n`;
         fm += `score3: ${s3}\n`;
         fm += `tags: reviews\n`;
-        if (isReplay) fm += `type: replay\n`;
+        if (genreYaml) fm += `genre: ${genreYaml}\n`;
+        if (isReplay) {
+            fm += `type: replay\n`;
+            if (series) fm += `series: ${series}\n`;
+        }
         fm += `date: ${date}\n`;
         if (listenLink) fm += `listenLink: "${listenLink}"\n`;
         fm += `---\n`;

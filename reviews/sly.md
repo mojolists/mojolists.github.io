@@ -34,7 +34,7 @@ There's a Riot Goin' On is one of the most generatively pessimistic records ever
 The album's influence on hip-hop is foundational in a way that is difficult to overstate. Its drum machine rhythms and its deliberate engagement with degraded sound quality anticipated the aesthetic of sample-based production by more than a decade. When Public Enemy, Wu-Tang Clan, or J Dilla reached for a lo-fi, dusty, claustrophobic sonic environment as a political and emotional statement, they were working from principles that Stone had established in a home studio in Los Angeles in 1971. The album also modeled the idea that an artist could respond to commercial expectation with principled refusal without surrendering commercial viability — a posture that subsequent generations of artists have found consistently useful.
 
 
-<div class="inline-video"><iframe src="https://www.youtube.com/embed/PLrVoteC1udtGrfwYK1AcGJ3rGT8t1OPod" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
+<div class="inline-video"><iframe src="https://www.youtube.com/embed/videoseries?list=PLrVoteC1udtGrfwYK1AcGJ3rGT8t1OPod" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
 
 ## Where It Stands Today
 

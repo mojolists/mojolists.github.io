@@ -33,7 +33,7 @@ My Life in the Bush of Ghosts did not merely anticipate sampling culture — it 
 The specific influence on world music, electronica, and what would later be called global bass is equally foundational. The record's rhythmic vocabulary — drawn from Gnawa trance music, Nigerian Afrobeat, Egyptian percussion traditions — was not deployed as decoration but as structural architecture. This approach to non-Western rhythm as a compositional resource rather than an exotic color was absorbed by a generation of producers working in the space between electronic music and African and Asian traditions: from Transglobal Underground in the early 1990s through to Diplo, M.I.A., and the entire ecosystem of global club music that has defined the past two decades. Each generation has had to rediscover the album, and each has found that it had already solved the problems they were trying to work out.
 
 
-<div class="inline-video"><iframe src="https://www.youtube.com/embed/PLGwE1ohMHeyJigj9sX9hIv5a_yYlZgTrp" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
+<div class="inline-video"><iframe src="https://www.youtube.com/embed/videoseries?list=PLGwE1ohMHeyJigj9sX9hIv5a_yYlZgTrp" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
 
 ## Where It Stands Today
 
