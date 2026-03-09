@@ -195,6 +195,18 @@
             <button class="type-btn" id="btn-replay" onclick="setType('replay')">Re-Play</button>
         </div>
         <p id="type-description" class="text-xs text-white/55 mt-3 italic">Standard album review.</p>
+
+        <!-- Series dropdown — only shown in Re-Play mode -->
+        <!-- To add a new series: add an <option> here AND an entry in the SERIES array below -->
+        <div id="series-wrap" style="display:none; margin-top:16px; max-width:260px;">
+            <label class="field-label" style="color: rgba(197,160,89,0.6)">Series</label>
+            <select class="field-input" id="f-series" onchange="generate()">
+                <option value="">— None —</option>
+                <option value="classics">Classics</option>
+                <option value="newwave">New Wave</option>
+                <option value="disco">Disco</option>
+            </select>
+        </div>
     </div>
 
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
@@ -332,16 +344,6 @@
             <!-- Re-Play specific section -->
             <div id="replay-section">
                 <p class="section-title" style="color: rgba(197,160,89,0.5)">Re-Play Structure</p>
-
-                <!-- Series selector -->
-                <div class="mb-6">
-                    <label class="field-label" style="color: rgba(197,160,89,0.5)">Series</label>
-                    <select class="field-input" id="f-series" onchange="generate()">
-                        <!-- Options populated by SERIES config in JS -->
-                    </select>
-                    <p class="text-[10px] text-white/45 mt-2 tracking-wide">Adds <code>series:</code> to frontmatter for site filtering</p>
-                </div>
-
                 <p class="text-xs text-white/55 italic mb-5 leading-relaxed">These three sections form the Re-Play narrative. Write each as a paragraph — they'll be assembled into the review body with section headers.</p>
                 <div class="space-y-5">
                     <div>
@@ -397,25 +399,9 @@
 <script>
     let currentType = 'regular';
 
-    // ─── Series config ────────────────────────────────────────────────────────
-    // To add a new Re-Play series, just append an entry here.
-    const SERIES = [
-        { value: '',          label: '— None —' },
-        { value: 'classics',  label: 'Classics' },
-        { value: 'newwave',   label: 'New Wave' },
-        { value: 'disco',     label: 'Disco' },
-    ];
-
-    // Populate series dropdown from config
-    (function buildSeriesDropdown() {
-        const sel = document.getElementById('f-series');
-        SERIES.forEach(s => {
-            const opt = document.createElement('option');
-            opt.value = s.value;
-            opt.textContent = s.label;
-            sel.appendChild(opt);
-        });
-    })();
+    // ─── To add a new Re-Play series ─────────────────────────────────────────
+    // 1. Add an <option> in the #f-series <select> above in the HTML.
+    // 2. That's it — the value you give the option becomes the `series:` key.
 
     // Set today as default date
     document.getElementById('f-date').value = new Date().toISOString().split('T')[0];
@@ -436,6 +422,9 @@
 
         // Swap score3 label
         document.getElementById('score3-label').textContent = isReplay ? 'Impact' : 'Danceability';
+
+        // Show/hide series dropdown
+        document.getElementById('series-wrap').style.display = isReplay ? 'block' : 'none';
 
         if (!isReplay) {
             btnR.className = 'type-btn active-regular';
