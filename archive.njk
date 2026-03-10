@@ -156,8 +156,8 @@ permalink: /archive/
                 <div class="text-sm font-medium text-white group-hover:text-[#DAA520] transition-colors truncate">{{ review.data.artist }}{% if review.data.type == 'replay' %}<span class="ml-2 text-[7px] font-black uppercase tracking-[0.3em] text-[#c5a059] border border-[#c5a059]/40 px-1.5 py-0.5 align-middle">RP</span>{% endif %}</div>
                 {% if review.data.genre %}<div class="text-[9px] uppercase tracking-[0.2em] text-white/30 truncate mt-0.5">{{ review.data.genre | join(' · ') }}</div>{% endif %}
             </div>
-            <div class="col-span-2 text-white/60 text-xs italic font-light truncate album-cell">{{ review.data.album }}</div>
-            <div class="col-span-1 text-center text-white/50 font-light text-[10px] tracking-widest year-cell">{{ review.data.year }}</div>
+            <div class="col-span-2 text-white/70 text-sm italic font-light truncate album-cell">{{ review.data.album }}</div>
+            <div class="col-span-1 text-center text-white/60 font-light text-xs tracking-widest year-cell">{{ review.data.year }}</div>
             <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white s1-cell">{{ s1 }}</div>
             <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white s2-cell">{{ s2 }}</div>
             <div class="col-span-1 text-center text-white/70 text-xs font-medium group-hover:text-white dance-cell">{% if review.data.type != 'replay' %}{{ s3 }}{% else %}<span class="text-white/20">—</span>{% endif %}</div>
