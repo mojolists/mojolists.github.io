@@ -13,14 +13,13 @@ async function imageShortcode(src, alt, sizes = "100vw") {
       return `${name}-${width}w.${format}`;
     }
   });
-h
   let imageAttributes = {
     alt,
     sizes,
     loading: "lazy",
     decoding: "async",
     class: "w-full h-full object-cover",
-  };h
+  };
 
   return Image.generateHTML(metadata, imageAttributes);
 }
