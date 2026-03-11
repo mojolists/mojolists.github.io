@@ -14,7 +14,7 @@ genre: ["Afrobeat", "Funk", "Jazz"]
 date: 2026-03-11
 ---
 
-For close to a decade, every single time I had a chance to see The Atibalas live, I would be thwarted by life. In a moment of desperation, I found out they were opening for Lettuce in Denver. It didn't take a lot to convince my wife and our good friend to travel from Austin for the show. In addition to an amazing show from the Antibala, Lettuce was incredible and I was introduced to a band I would soon be playing as part of any road trip mix., Andy Frasco. It was however, The Antibalas who pushed me even deeper down the afrobeat rabbit hole than I already was. 
+For close to a decade, every single time I had a chance to see The Atibalas live, I would be thwarted by life. In a moment of desperation, I found out they were opening for Lettuce in Denver. It didn't take a lot to convince my wife and our good friends to travel from Austin for the show. In addition to an amazing show from the Antibala, Lettuce was incredible and I was introduced to a band I would soon be playing as part of any road trip mix, Andy Frasco. It was however, The Antibalas who pushed me even deeper down the afrobeat rabbit hole than I already was. 
 
 <p class="text-xl text-gray-200 italic leading-relaxed border-l-4 border-red-600 pl-6 py-2 my-8">
   "Antibalas doesn't need words. They never really did."
