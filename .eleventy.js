@@ -34,6 +34,7 @@ module.exports = function(eleventyConfig) {
     eleventyConfig.addPassthroughCopy("assets/img");
     eleventyConfig.addPassthroughCopy("assets/css");
     eleventyConfig.addPassthroughCopy("CNAME");
+    eleventyConfig.addPassthroughCopy("admin");
 
     eleventyConfig.addFilter("limit", function(array, limit) {
         return array.slice(0, limit);
