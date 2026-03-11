@@ -7,6 +7,10 @@ on:
     - cron: '0 8 * * *'       # also rebuild daily at 8am UTC
                                # so scheduled reviews go live on their date
 
+concurrency:
+  group: pages
+    cancel-in-progress: true
+    
 jobs:
   build-deploy:
     runs-on: ubuntu-latest
