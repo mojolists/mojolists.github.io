@@ -13,14 +13,14 @@ async function imageShortcode(src, alt, sizes = "100vw") {
       return `${name}-${width}w.${format}`;
     }
   });
-
+h
   let imageAttributes = {
     alt,
     sizes,
     loading: "lazy",
     decoding: "async",
     class: "w-full h-full object-cover",
-  };
+  };h
 
   return Image.generateHTML(metadata, imageAttributes);
 }
@@ -77,7 +77,7 @@ module.exports = function(eleventyConfig) {
     const isPublished = (item) => {
         if (item.data.draft) return false;
         const pub = new Date(item.data.date || item.date);
-        pub.setHours(23, 59, 59, 999); // treat the publish date as end-of-day
+      pub.setUTCHours(0, 0, 0, 0); // normalize to UTC midnight so today's reviews publish immediately
         return pub <= new Date();
     };
 
