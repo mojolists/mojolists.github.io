@@ -12,8 +12,8 @@ score3: 89
 tags: reviews
 genre: ["New Wave"]
 type: replay
-series: newwave
-date: 2026-03-20
+series: new-wave
+date: 2026-03-11
 ---
 
 ## At Release

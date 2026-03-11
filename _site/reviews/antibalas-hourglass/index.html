@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Antibalas | MojoLists</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/main.css">
+</head>
+<body class="bg-black text-white min-h-screen font-sans selection:bg-[#DAA520] selection:text-black">
+    <div class="min-h-screen flex flex-col">
+        <nav class="border-b border-white border-opacity-10 px-6 py-8 relative z-50">
+            <div class="max-w-7xl mx-auto flex justify-between items-center">
+                <a href="/" class="text-3xl uppercase tracking-tighter logo-mojo">
+                    MOJO<span class="logo-lists">LISTS</span>
+                </a>
+                <!-- Desktop nav -->
+                <div class="hidden md:flex space-x-12 text-xs font-medium uppercase tracking-[0.2em] text-gray-300 items-center">
+                    <!-- Re-Play dropdown -->
+                    <div class="relative group">
+                        <button class="hover:text-white transition flex items-center gap-1.5 text-xs font-medium uppercase tracking-[0.2em] bg-transparent border-0 p-0 cursor-pointer">Re-Play <span class="text-[8px] opacity-50">▾</span></button>
+                        <div class="absolute top-full left-0 pt-3 hidden group-hover:block z-50">
+                            <div class="bg-black border border-white/10 py-2 min-w-[140px]">
+                                <a href="/archive/?series=classics" class="block px-4 py-2 text-[11px] uppercase tracking-[0.2em] text-gray-300 hover:text-[#c5a059] transition whitespace-nowrap">Classics</a>
+                                <a href="/archive/?series=new-wave" class="block px-4 py-2 text-[11px] uppercase tracking-[0.2em] text-gray-300 hover:text-[#c5a059] transition whitespace-nowrap">New Wave</a>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="/archive/" class="hover:text-white transition">Archive</a>
+                    <a href="/about" class="hover:text-white transition">About</a>
+                </div>
+                <!-- Mobile hamburger -->
+                <button id="menu-btn" class="md:hidden flex flex-col justify-center items-center w-8 h-8 gap-1.5 group" onclick="toggleMobileMenu()" aria-label="Menu">
+                    <span id="bar1" class="block w-6 h-px bg-white transition-all duration-300"></span>
+                    <span id="bar2" class="block w-6 h-px bg-white transition-all duration-300"></span>
+                    <span id="bar3" class="block w-4 h-px bg-white transition-all duration-300 self-end"></span>
+                </button>
+            </div>
+        </nav>
+
+        <!-- Mobile menu overlay -->
+        <div id="mobile-menu" class="hidden fixed inset-0 bg-black z-40 flex flex-col items-center justify-center gap-8">
+            <div class="flex flex-col items-center gap-3">
+                <span class="text-[9px] uppercase tracking-[0.4em] text-[#c5a059]">Re-Play</span>
+                <a href="/archive/?series=classics" onclick="toggleMobileMenu()" class="text-2xl uppercase tracking-[0.3em] font-light logo-mojo text-white hover:text-[#c5a059] transition-colors">Classics</a>
+                <a href="/archive/?series=new-wave" onclick="toggleMobileMenu()" class="text-2xl uppercase tracking-[0.3em] font-light logo-mojo text-white hover:text-[#c5a059] transition-colors">New Wave</a>
+            </div>
+            <div class="h-px w-16 bg-white/10"></div>
+            <a href="/archive/" onclick="toggleMobileMenu()" class="text-4xl uppercase tracking-[0.3em] font-light logo-mojo text-white hover:text-[#DAA520] transition-colors">Archive</a>
+            <a href="/about" onclick="toggleMobileMenu()" class="text-4xl uppercase tracking-[0.3em] font-light logo-mojo text-white hover:text-[#DAA520] transition-colors">About</a>
+            <div class="absolute bottom-12 text-[10px] uppercase tracking-widest text-white/20">MojoLists</div>
+        </div>
+
+        <script>
+            function toggleMobileMenu() {
+                const menu = document.getElementById('mobile-menu');
+                const bar1 = document.getElementById('bar1');
+                const bar2 = document.getElementById('bar2');
+                const bar3 = document.getElementById('bar3');
+                const isOpen = !menu.classList.contains('hidden');
+                menu.classList.toggle('hidden');
+                // Animate bars into X
+                if (!isOpen) {
+                    bar1.style.transform = 'translateY(6px) rotate(45deg)';
+                    bar2.style.opacity = '0';
+                    bar3.style.transform = 'translateY(-6px) rotate(-45deg)';
+                    bar3.style.width = '1.5rem';
+                    bar3.style.alignSelf = 'auto';
+                } else {
+                    bar1.style.transform = '';
+                    bar2.style.opacity = '';
+                    bar3.style.transform = '';
+                    bar3.style.width = '';
+                    bar3.style.alignSelf = '';
+                }
+            }
+        </script>
+
+        <main class="flex-grow">
+            
+
+
+
+
+
+
+
+<div class="absolute top-0 left-0 w-full h-[700px] overflow-hidden -z-10 pointer-events-none">
+    <img src="/assets/img/antibalas-hourglass.jpg" class="w-full h-full object-cover object-top opacity-40 blur-sm" alt="">
+    <div class="absolute inset-0 bg-gradient-to-b from-black/0 via-black/70 to-[#000000]"></div>
+</div>
+
+<article class="max-w-6xl mx-auto px-6 py-12 relative">
+    
+    
+    
+
+    
+    <a href="/reviews/crocodiles/" class="fixed right-8 top-1/2 -translate-y-1/2 hidden xl:flex flex-col items-end group z-50">
+        <span class="text-[#FFD700] text-4xl font-light mb-2 transition-transform group-hover:translate-x-2">→</span>
+        <span class="text-[#FFD700] text-[10px] font-bold uppercase tracking-[0.3em] vertical-text opacity-60 group-hover:opacity-100 transition-opacity">
+            Echo &amp; the Bunnymen
+        </span>
+    </a>
+    
+
+    <header class="flex flex-col lg:flex-row gap-8 justify-center items-end mb-20 relative z-10">
+        
+        
+        <div class="fixed-square">
+            <img src="/assets/img/antibalas-hourglass.jpg" alt="Antibalas - Hourglass" class="w-full h-full object-cover border border-white/20 rounded-sm shadow-2xl">
+        </div>
+        
+        
+        <div class="glass-card fixed-square relative overflow-hidden">
+            <div class="flex flex-col h-full">
+                
+                <div class="mb-auto">
+                    <h1 class="artist-heading text-white mb-1">
+                        Antibalas
+                    </h1>
+                    
+                    <h2 class="album-subheading mb-4">
+                        Hourglass
+                    </h2>
+
+                    <div class="space-y-3">
+                        <div class="metadata-row">
+                            <span class="metadata-label font-medium text-white/90">Label</span>
+                            <span class="metadata-value text-white">Daptone Records</span>
+                        </div>
+                        <div class="metadata-row">
+                            <span class="metadata-label font-medium text-white/90">Released</span>
+                            <span class="metadata-value text-white">2025</span>
+                        </div>
+                        
+                        <div class="metadata-row">
+                            <span class="metadata-label font-medium text-white/90">Genre</span>
+                            <span class="metadata-value text-white">Afrobeat · Funk · Jazz</span>
+                        </div>
+                        
+
+                        
+                        <div class="border-t border-white/20 my-6"></div>
+
+                        <div class="metadata-row">
+                            <span class="metadata-label font-bold text-[#FFD700]">Performance</span>
+                            <span class="metadata-value text-[#FFD700] font-black">90</span>
+                        </div>
+                        <div class="metadata-row">
+                            <span class="metadata-label font-bold text-[#FFD700]">Production</span>
+                            <span class="metadata-value text-[#FFD700] font-black">95</span>
+                        </div>
+                        <div class="metadata-row">
+                            <span class="metadata-label font-bold text-[#FFD700]">Danceability</span>
+                            <span class="metadata-value text-[#FFD700] font-black">97</span>
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div class="pt-6 flex items-baseline gap-4">
+                    <span class="metadata-label text-[#FFD700] font-bold uppercase tracking-[0.3em] text-[11px]">Mojo Rating</span>
+                    <div class="mojo-rating italic font-black text-[#FFD700]">
+                        94%
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    
+    
+
+    <div class="max-w-3xl mx-auto review-content space-y-8 relative z-10 text-white font-light leading-[1.85]">
+        <p>For close to a decade, every single time I had a chance to see The Atibalas live, I would be thwarted by life. In a moment of desperation, I found out they were opening for Lettuce in Denver. It didn't take a lot to convince my wife and our good friend to travel from Austin for the show. In addition to an amazing show from the Antibala, Lettuce was incredible and I was introduced to a band I would soon be playing as part of any road trip mix., Andy Frasco. It was however, The Antibalas who pushed me even deeper down the afrobeat rabbit hole than I already was.</p>
+<p class="text-xl text-gray-200 italic leading-relaxed border-l-4 border-red-600 pl-6 py-2 my-8">
+  "Antibalas doesn't need words. They never really did."
+</p>
+<p>The Antibalas story begins in a Brooklyn warehouse in 1997, when founder and co-producer Martín Perna assembled what would grow into a 12-piece Afrobeat collective credited with bringing the fire of Fela Kuti to a whole new generation. <em>Hourglass</em> is their seventh studio album and it marks a homecoming of sorts — the band strips away the vocals they've used in recent years and returns to pure instrumental Afrobeat, letting rhythm and melody carry everything they want to say about this world. As Perna puts it, once a song has lyrics, everyone who doesn't speak that language is on the outside. With <em>Hourglass</em>, nobody is on the outside.</p>
+<p>The decision to go instrumental feels absolutely right. With previous frontman Duke Amayo gone after 23 remarkable years, Perna and company don't try to replace him — they lean hard into what this band does at its most primal. Six tracks, no filler, no wasted motion.</p>
+<div class="flex flex-col md:flex-row gap-6 justify-center my-10">
+    <a href="https://antibalas.bandcamp.com/album/hourglass" target="_blank" class="px-12 py-4 border border-[#c5a059] text-[#c5a059] font-black uppercase tracking-widest text-xs hover:bg-[#c5a059] hover:text-black transition-all">Buy Album</a>
+</div>
+<p><em>Solace</em> opens things with that classic Antibalas move — a slow build of percussion and a warm synth line before the horns come flooding in like a dam breaking. You know immediately you're in good hands. <em>Lo Life</em> swings like something that fell off a 1970s Ghanaian dance floor, the whole band locked into a groove so deep you need a rope to climb back out.</p>
+<p><em>La Ceiba</em> is the one that grabs you by the collar. A raw guitar growl cuts right through the brass and dares you to sit still. It's the most urgent track on the record and it earns every second. The title track, <em>Hourglass</em>, begins with a tenor saxophone solo that is by turns mournful and absolutely soaring before the whole band drops into a 12-8 groove as heavy as anything you'll hear this year. <em>Oasis</em> closes things out with a triumphant flood of flute work that sends you back into the world slightly changed.</p>
+<p>Daptone continues to set the gold standard for both recording quality and packaging — the gatefold vinyl is a work of art unto itself, that collaged eye staring back at you from the cover asking what exactly you see when you look at the world around you. The band's political conscience hasn't gone anywhere, it's just moved entirely into the music where, honestly, it's even more powerful.</p>
+<p><em>Hourglass</em> is a testament to what happens when musicians of this caliber stop trying to explain themselves and simply play. Antibalas doesn't need words. They never really did.</p>
+<div class="my-12 aspect-video border border-white/10 rounded-sm overflow-hidden shadow-2xl">
+    <iframe class="w-full h-full" src="https://www.youtube.com/embed/6KY0rS_c_J4" frameborder="0" allowfullscreen></iframe>
+</div>
+
+    </div>
+
+    
+
+    
+    
+
+    
+    <div class="xl:hidden flex justify-between items-center mt-20 pt-10 border-t border-white/10 relative z-10">
+        
+        <div></div>
+        
+
+        
+        <a href="/reviews/crocodiles/" class="flex flex-col items-end text-right">
+            <span class="text-[#FFD700] text-[10px] font-bold uppercase tracking-widest mb-1">Next →</span>
+            <span class="text-white/40 text-[9px] uppercase tracking-wider">Echo &amp; the Bunnymen</span>
+        </a>
+        
+    </div>
+</article>
+
+<style>
+    .vertical-text {
+        writing-mode: vertical-rl;
+        text-orientation: mixed;
+    }
+    .mojo-rating {
+        font-size: 2.75rem;
+        text-shadow: 0 0 20px rgba(255, 215, 0, 0.2);
+    }
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const card = document.querySelector('.glass-card');
+        const heading = card ? card.querySelector('.artist-heading') : null;
+        const subheading = card ? card.querySelector('.album-subheading') : null;
+        if (!card || !heading) return;
+
+        // Step down artist name font size until card stops overflowing
+        let size = parseFloat(window.getComputedStyle(heading).fontSize);
+        while (card.scrollHeight > card.clientHeight && size > 14) {
+            size -= 0.5;
+            heading.style.fontSize = size + 'px';
+        }
+
+        // If still overflowing, step down album title too
+        if (subheading) {
+            let subSize = parseFloat(window.getComputedStyle(subheading).fontSize);
+            while (card.scrollHeight > card.clientHeight && subSize > 11) {
+                subSize -= 0.5;
+                subheading.style.fontSize = subSize + 'px';
+            }
+        }
+    });
+</script>
+        </main>
+
+        <footer class="border-t border-white border-opacity-10 py-12 mt-20">
+            <div class="max-w-7xl mx-auto px-6 text-center">
+                <p class="logo-mojo text-sm opacity-50">© 2026 MOJOLISTS</p>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
