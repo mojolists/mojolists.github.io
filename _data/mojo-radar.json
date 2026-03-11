@@ -88,7 +88,7 @@
       "texas": false,
       "key": "rel:doctor-bionic-electric-pollen",
       "addedAt": "2026-03-11T14:53:32.720Z",
-      "preordered": false
+      "preordered": true
     }
   },
   "radarNews": {
@@ -156,5 +156,5 @@
       }
     ]
   },
-  "savedAt": "2026-03-11T14:57:12.977Z"
+  "savedAt": "2026-03-11T14:57:14.179Z"
 }
