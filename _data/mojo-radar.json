@@ -58,7 +58,7 @@
       "texas": false,
       "key": "rel:parlor-greens-emeralds",
       "addedAt": "2026-03-11T14:53:32.720Z",
-      "preordered": false
+      "preordered": true
     },
     "rel:joey-qui-ones-inna-soul-steady-situation": {
       "artist": "Joey Quiñones",
@@ -156,5 +156,5 @@
       }
     ]
   },
-  "savedAt": "2026-03-11T14:57:09.989Z"
+  "savedAt": "2026-03-11T14:57:12.977Z"
 }
