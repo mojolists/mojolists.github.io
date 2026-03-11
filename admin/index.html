@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MojoLists Admin</title>
+<script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+* { box-sizing:border-box; margin:0; padding:0; }
+html,body,#root { height:100%; }
+body { background:#111; }
+::-webkit-scrollbar { width:4px; }
+::-webkit-scrollbar-track { background:transparent; }
+::-webkit-scrollbar-thumb { background:rgba(255,255,255,0.15); border-radius:3px; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+const { useState, useEffect, useCallback } = React;
+
+// ─── CONFIG ──────────────────────────────────────────────────────────────────
+const PASSPHRASE   = "zavmoc01";
+const GITHUB_OWNER = "mojolists";
+const GITHUB_REPO  = "mojolists.github.io";
+const DATA_PATH    = "_data/mojo-radar.json";
+
+// ─── STYLES ──────────────────────────────────────────────────────────────────
+const css = `
+  .app { background:#111; color:#eee; font-family:'Inter',sans-serif; font-weight:400; height:100vh; display:flex; flex-direction:column; overflow:hidden; font-size:14px; }
+
+  /* LOCK SCREEN */
+  .lock { height:100vh; display:flex; align-items:center; justify-content:center; background:#111; }
+  .lock-box { display:flex; flex-direction:column; align-items:center; gap:20px; width:320px; }
+  .lock-logo { font-family:'Cormorant Garamond',serif; font-size:28px; letter-spacing:0.16em; text-transform:uppercase; color:#fff; }
+  .lock-logo em { color:#e63946; font-style:normal; }
+  .lock-sub { font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:rgba(255,255,255,0.35); }
+  .lock-input { width:100%; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.18); color:#eee; font-family:'IBM Plex Mono',monospace; font-size:15px; padding:12px 14px; outline:none; border-radius:2px; letter-spacing:0.1em; text-align:center; transition:border-color 0.15s; }
+  .lock-input:focus { border-color:rgba(197,160,89,0.6); }
+  .lock-input.err { border-color:rgba(230,57,70,0.7); animation:shake 0.3s; }
+  @keyframes shake { 0%,100%{transform:translateX(0)} 25%{transform:translateX(-6px)} 75%{transform:translateX(6px)} }
+  .lock-btn { width:100%; padding:12px; background:#c5a059; color:#000; border:none; font-family:'IBM Plex Mono',monospace; font-size:12px; font-weight:500; letter-spacing:0.12em; text-transform:uppercase; cursor:pointer; border-radius:2px; transition:background 0.15s; }
+  .lock-btn:hover { background:#a8873f; }
+
+  /* SETUP SCREEN */
+  .setup { height:100vh; display:flex; align-items:center; justify-content:center; background:#111; }
+  .setup-box { width:440px; display:flex; flex-direction:column; gap:16px; }
+  .setup-title { font-family:'IBM Plex Mono',monospace; font-size:13px; letter-spacing:0.12em; text-transform:uppercase; color:#c5a059; margin-bottom:4px; }
+  .setup-desc { font-size:13px; color:rgba(255,255,255,0.55); line-height:1.7; }
+  .setup-desc a { color:#c5a059; }
+  .setup-label { font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:rgba(255,255,255,0.55); margin-bottom:6px; display:block; }
+  .setup-input { width:100%; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.18); color:#eee; font-family:'IBM Plex Mono',monospace; font-size:13px; padding:10px 12px; outline:none; border-radius:2px; transition:border-color 0.15s; }
+  .setup-input:focus { border-color:rgba(197,160,89,0.6); }
+  .setup-save { padding:10px 24px; background:#c5a059; color:#000; border:none; font-family:'IBM Plex Mono',monospace; font-size:12px; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; cursor:pointer; border-radius:2px; }
+  .setup-save:hover { background:#a8873f; }
+  .setup-note { font-family:'IBM Plex Mono',monospace; font-size:11px; color:rgba(255,255,255,0.3); line-height:1.7; }
+
+  /* HEADER */
+  .hdr { border-bottom:1px solid rgba(255,255,255,0.12); padding:0 24px; display:flex; align-items:center; background:#161616; flex-shrink:0; height:54px; gap:0; }
+  .logo { font-family:'Cormorant Garamond',serif; font-weight:400; font-size:22px; letter-spacing:0.14em; text-transform:uppercase; color:#fff; margin-right:24px; }
+  .logo em { color:#e63946; font-style:normal; }
+  .nav-tabs { display:flex; height:100%; flex:1; }
+  .nav-tab { padding:0 22px; font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; border:none; background:transparent; color:rgba(255,255,255,0.55); cursor:pointer; border-bottom:2px solid transparent; transition:all 0.15s; height:100%; }
+  .nav-tab:hover { color:rgba(255,255,255,0.85); }
+  .nav-tab.active-gen { color:#e63946; border-bottom-color:#e63946; }
+  .nav-tab.active-radar { color:#c5a059; border-bottom-color:#c5a059; }
+  .hdr-right { display:flex; align-items:center; gap:10px; margin-left:auto; }
+  .sync-status { font-family:'IBM Plex Mono',monospace; font-size:11px; color:rgba(255,255,255,0.35); display:flex; align-items:center; gap:6px; }
+  .sync-dot { width:6px; height:6px; border-radius:50%; }
+  .sync-ok   { background:#5cb85c; }
+  .sync-err  { background:#e63946; }
+  .sync-busy { background:#c5a059; animation:pulse 1s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+  .hdr-btn { padding:5px 12px; background:transparent; border:1px solid rgba(255,255,255,0.18); color:rgba(255,255,255,0.5); font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.06em; cursor:pointer; border-radius:2px; transition:all 0.15s; }
+  .hdr-btn:hover { color:#fff; border-color:rgba(255,255,255,0.4); }
+
+  /* GENERATOR */
+  .gen-layout { flex:1; display:grid; grid-template-columns:310px 1fr; overflow:hidden; }
+  .left { border-right:1px solid rgba(255,255,255,0.1); display:flex; flex-direction:column; overflow-y:auto; background:#161616; }
+  .sec { padding:16px 18px; border-bottom:1px solid rgba(255,255,255,0.07); }
+  .sec-label { font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.15em; text-transform:uppercase; color:rgba(255,255,255,0.55); margin-bottom:11px; display:flex; align-items:center; gap:8px; }
+  .sec-label::after { content:''; flex:1; height:1px; background:rgba(255,255,255,0.08); }
+  .type-row { display:flex; }
+  .tbtn { flex:1; padding:9px 0; font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:0.08em; text-transform:uppercase; border:1px solid rgba(255,255,255,0.18); background:transparent; color:rgba(255,255,255,0.6); cursor:pointer; transition:all 0.15s; }
+  .tbtn:first-child { border-radius:2px 0 0 2px; }
+  .tbtn:last-child { border-left:none; border-radius:0 2px 2px 0; }
+  .tbtn:hover:not(.tr):not(.tp) { color:#fff; border-color:rgba(255,255,255,0.4); }
+  .tr { background:rgba(230,57,70,0.15); border-color:#e63946; color:#e63946; }
+  .tp { background:rgba(197,160,89,0.15); border-color:#c5a059; color:#c5a059; }
+  .series-sel { width:100%; margin-top:10px; background:rgba(255,255,255,0.06); border:1px solid rgba(197,160,89,0.35); color:#c5a059; font-family:'IBM Plex Mono',monospace; font-size:13px; padding:8px 10px; outline:none; border-radius:2px; }
+  .series-sel option { background:#1a1a1a; }
+  .fl { margin-bottom:12px; }
+  .fl:last-child { margin-bottom:0; }
+  .fl label { display:block; font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:rgba(255,255,255,0.6); margin-bottom:6px; }
+  .fi { width:100%; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.18); color:#eee; font-family:'Inter',sans-serif; font-size:14px; padding:9px 11px; outline:none; border-radius:2px; transition:border-color 0.15s; }
+  .fi:focus { border-color:rgba(197,160,89,0.6); }
+  .fi::placeholder { color:rgba(255,255,255,0.3); }
+  textarea.fi { resize:vertical; min-height:64px; line-height:1.6; font-size:13px; }
+  .gbtn { width:100%; padding:12px; border:none; font-family:'IBM Plex Mono',monospace; font-size:12px; font-weight:500; letter-spacing:0.12em; text-transform:uppercase; cursor:pointer; transition:background 0.15s; border-radius:2px; }
+  .gbtn-reg { background:#e63946; color:#fff; }
+  .gbtn-reg:hover { background:#c5303b; }
+  .gbtn-rep { background:#c5a059; color:#000; }
+  .gbtn-rep:hover { background:#a8873f; }
+  .gbtn:disabled { background:rgba(255,255,255,0.1); color:rgba(255,255,255,0.3); cursor:not-allowed; }
+  .sbtn { width:100%; padding:9px; margin-top:8px; background:transparent; color:rgba(255,255,255,0.6); border:1px solid rgba(255,255,255,0.2); font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.08em; text-transform:uppercase; cursor:pointer; transition:all 0.15s; border-radius:2px; }
+  .sbtn:hover { color:#fff; border-color:rgba(255,255,255,0.45); }
+  .sbtn:disabled { opacity:0.3; cursor:not-allowed; }
+  .deploy-steps { font-family:'IBM Plex Mono',monospace; font-size:12px; color:rgba(255,255,255,0.55); line-height:2; }
+  .deploy-steps span { color:#c5a059; }
+  .right { display:flex; flex-direction:column; overflow:hidden; }
+  .toolbar { padding:11px 22px; border-bottom:1px solid rgba(255,255,255,0.1); display:flex; align-items:center; gap:9px; background:#161616; flex-shrink:0; }
+  .toolbar-title { font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:rgba(255,255,255,0.6); margin-right:auto; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:380px; }
+  .tbarbtn { padding:7px 16px; border:1px solid rgba(197,160,89,0.45); background:transparent; color:#c5a059; font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:0.06em; cursor:pointer; border-radius:2px; transition:all 0.15s; white-space:nowrap; }
+  .tbarbtn:hover { background:rgba(197,160,89,0.1); }
+  .tbarbtn.copied { color:#5cb85c; border-color:#5cb85c; }
+  .tbarbtn.dl { background:rgba(197,160,89,0.12); }
+  .out-area { flex:1; overflow-y:auto; padding:24px 28px; }
+  .idle { display:flex; flex-direction:column; align-items:center; justify-content:center; height:100%; gap:12px; text-align:center; }
+  .idle-glyph { font-family:'Cormorant Garamond',serif; font-size:72px; color:rgba(255,255,255,0.05); line-height:1; }
+  .idle-text { font-size:14px; color:rgba(255,255,255,0.45); font-style:italic; max-width:280px; line-height:1.8; }
+  .loading { display:flex; flex-direction:column; align-items:center; justify-content:center; height:100%; gap:20px; }
+  .spinner { width:32px; height:32px; border:2px solid rgba(255,255,255,0.1); border-top-color:#c5a059; border-radius:50%; animation:spin 0.8s linear infinite; }
+  @keyframes spin { to { transform:rotate(360deg); } }
+  .steps { display:flex; flex-direction:column; gap:7px; }
+  .step { font-family:'IBM Plex Mono',monospace; font-size:13px; letter-spacing:0.05em; color:rgba(255,255,255,0.35); display:flex; align-items:center; gap:8px; transition:color 0.3s; }
+  .step.active { color:#c5a059; }
+  .step.done { color:rgba(255,255,255,0.55); }
+  .step.done::before { content:'✓'; color:#5cb85c; margin-right:2px; }
+  .sug-grid { display:flex; flex-direction:column; gap:8px; }
+  .sug-card { background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.1); border-radius:3px; padding:14px 16px; cursor:pointer; transition:all 0.15s; display:flex; align-items:center; gap:12px; }
+  .sug-card:hover { border-color:rgba(197,160,89,0.5); background:rgba(197,160,89,0.06); }
+  .sug-info { flex:1; min-width:0; }
+  .sug-artist { font-size:15px; font-weight:500; }
+  .sug-album { font-family:'Cormorant Garamond',serif; font-size:17px; color:rgba(255,255,255,0.65); }
+  .sug-meta { font-family:'IBM Plex Mono',monospace; font-size:11px; color:rgba(255,255,255,0.45); letter-spacing:0.06em; margin-top:3px; }
+  .sug-why { font-size:13px; color:rgba(255,255,255,0.55); margin-top:5px; line-height:1.5; font-style:italic; }
+  .badge { font-family:'IBM Plex Mono',monospace; font-size:11px; padding:3px 8px; border-radius:2px; letter-spacing:0.04em; flex-shrink:0; }
+  .badge-reg { background:rgba(230,57,70,0.15); color:#e63946; border:1px solid rgba(230,57,70,0.35); }
+  .badge-rep { background:rgba(197,160,89,0.15); color:#c5a059; border:1px solid rgba(197,160,89,0.35); }
+  .badge-tx  { background:rgba(92,184,92,0.15);  color:#5cb85c; border:1px solid rgba(92,184,92,0.35); }
+  .badge-pre { background:rgba(160,100,220,0.15); color:#b07fe0; border:1px solid rgba(160,100,220,0.35); }
+  .assets-grid { display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px; margin-bottom:14px; }
+  .asset-card { background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.1); border-radius:3px; padding:12px 14px; }
+  .asset-label { font-family:'IBM Plex Mono',monospace; font-size:11px; color:rgba(255,255,255,0.55); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:8px; }
+  .asset-link { color:#c5a059; text-decoration:none; font-family:'IBM Plex Mono',monospace; font-size:12px; display:inline-block; margin-top:4px; }
+  .asset-link:hover { text-decoration:underline; }
+  .asset-hint { font-size:12px; color:rgba(255,255,255,0.5); font-style:italic; font-family:'IBM Plex Mono',monospace; line-height:1.5; }
+  .pill { display:inline-block; font-family:'IBM Plex Mono',monospace; font-size:11px; padding:3px 8px; border-radius:2px; margin-top:5px; }
+  .pill-ok  { background:rgba(92,184,92,0.15); border:1px solid rgba(92,184,92,0.35); color:#5cb85c; }
+  .pill-manual { background:rgba(197,160,89,0.12); border:1px solid rgba(197,160,89,0.35); color:#c5a059; }
+  .img-thumb { width:58px; height:58px; object-fit:cover; border-radius:2px; border:1px solid rgba(255,255,255,0.15); display:block; margin-bottom:6px; }
+  .scores-row { display:flex; align-items:center; gap:14px; font-family:'IBM Plex Mono',monospace; font-size:13px; flex-wrap:wrap; }
+  .scores-row span { color:rgba(255,255,255,0.5); font-size:12px; margin-left:3px; }
+  .mojo-num { color:#c5a059 !important; font-size:20px !important; font-family:'Cormorant Garamond',serif !important; font-style:italic; margin-left:auto; }
+  .next-steps { background:rgba(197,160,89,0.07); border:1px solid rgba(197,160,89,0.25); border-radius:3px; padding:10px 14px; font-size:13px; color:rgba(255,255,255,0.6); line-height:1.8; margin-bottom:14px; font-family:'IBM Plex Mono',monospace; }
+  .next-steps strong { color:#c5a059; }
+  .out-head { font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:rgba(255,255,255,0.5); margin-bottom:10px; margin-top:18px; display:flex; align-items:center; gap:8px; }
+  .out-head::after { content:''; flex:1; height:1px; background:rgba(255,255,255,0.08); }
+  .code-block { background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.1); border-radius:3px; padding:18px; font-family:'IBM Plex Mono',monospace; font-size:12px; line-height:1.8; color:rgba(255,255,255,0.82); white-space:pre-wrap; overflow-x:auto; }
+  .err-box { background:rgba(230,57,70,0.09); border:1px solid rgba(230,57,70,0.3); border-radius:3px; padding:14px 16px; font-size:14px; color:#f99; line-height:1.6; }
+  .retry-btn { margin-top:10px; padding:8px 18px; border:1px solid rgba(255,255,255,0.2); background:transparent; color:rgba(255,255,255,0.65); font-family:'IBM Plex Mono',monospace; font-size:12px; cursor:pointer; border-radius:2px; }
+  .retry-btn:hover { color:#fff; border-color:rgba(255,255,255,0.5); }
+
+  /* RADAR */
+  .radar-layout { flex:1; display:flex; flex-direction:column; overflow:hidden; }
+  .radar-toolbar { padding:12px 22px; border-bottom:1px solid rgba(255,255,255,0.1); display:flex; align-items:center; gap:10px; background:#161616; flex-shrink:0; flex-wrap:wrap; }
+  .radar-meta { font-family:'IBM Plex Mono',monospace; font-size:12px; color:rgba(255,255,255,0.55); margin-right:auto; display:flex; align-items:center; gap:7px; }
+  .fresh-dot { width:7px; height:7px; border-radius:50%; flex-shrink:0; }
+  .dot-fresh { background:#5cb85c; }
+  .dot-stale { background:rgba(255,255,255,0.3); }
+  .rbtn { padding:8px 18px; border:none; font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:0.08em; text-transform:uppercase; cursor:pointer; border-radius:2px; transition:all 0.15s; }
+  .rbtn-gold { background:#c5a059; color:#000; font-weight:500; }
+  .rbtn-gold:hover { background:#a8873f; }
+  .rbtn-gold:disabled { background:rgba(255,255,255,0.1); color:rgba(255,255,255,0.3); cursor:not-allowed; }
+  .rbtn-ghost { background:transparent; border:1px solid rgba(255,255,255,0.2); color:rgba(255,255,255,0.6); }
+  .rbtn-ghost:hover { color:#fff; border-color:rgba(255,255,255,0.4); }
+  .db-badge { font-family:'IBM Plex Mono',monospace; font-size:11px; color:rgba(255,255,255,0.4); background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:10px; padding:2px 10px; }
+  .radar-tabs { display:flex; border-bottom:1px solid rgba(255,255,255,0.08); background:#161616; flex-shrink:0; padding:0 22px; }
+  .rtab { padding:10px 20px; font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:0.08em; text-transform:uppercase; border:none; background:transparent; color:rgba(255,255,255,0.5); cursor:pointer; border-bottom:2px solid transparent; transition:all 0.15s; }
+  .rtab:hover { color:rgba(255,255,255,0.85); }
+  .rtab.rtab-active { color:#c5a059; border-bottom-color:#c5a059; }
+  .rtab .cnt { font-size:11px; background:rgba(197,160,89,0.18); color:#c5a059; border-radius:10px; padding:1px 7px; margin-left:5px; }
+  .radar-content { flex:1; overflow-y:auto; padding:22px 24px; }
+  .r-empty { display:flex; flex-direction:column; align-items:center; justify-content:center; min-height:300px; gap:12px; text-align:center; }
+  .r-empty-glyph { font-family:'Cormorant Garamond',serif; font-size:64px; color:rgba(255,255,255,0.06); line-height:1; }
+  .r-empty-text { font-size:14px; color:rgba(255,255,255,0.45); font-style:italic; max-width:300px; line-height:1.8; }
+  .r-loading { display:flex; flex-direction:column; align-items:center; justify-content:center; min-height:300px; gap:16px; }
+  .r-loading-steps { display:flex; flex-direction:column; gap:6px; }
+  .r-loading-step { font-family:'IBM Plex Mono',monospace; font-size:13px; color:rgba(255,255,255,0.4); display:flex; align-items:center; gap:8px; }
+  .r-loading-step.active { color:#c5a059; }
+  .r-loading-step.done { color:rgba(255,255,255,0.6); }
+  .r-loading-step.done::before { content:'✓'; color:#5cb85c; margin-right:2px; }
+  .news-list { display:flex; flex-direction:column; }
+  .news-card { border-bottom:1px solid rgba(255,255,255,0.07); padding:18px 0; }
+  .news-card:first-child { padding-top:0; }
+  .news-card:last-child { border-bottom:none; }
+  .news-src  { font-family:'IBM Plex Mono',monospace; font-size:11px; color:rgba(255,255,255,0.5); letter-spacing:0.06em; margin-bottom:5px; }
+  .news-hl   { font-size:16px; font-weight:500; line-height:1.4; margin-bottom:6px; color:#fff; }
+  .news-blurb { font-size:14px; color:rgba(255,255,255,0.65); line-height:1.7; margin-bottom:8px; }
+  .news-tags  { display:flex; gap:6px; flex-wrap:wrap; }
+  .ntag { font-family:'IBM Plex Mono',monospace; font-size:11px; padding:3px 8px; border-radius:2px; }
+  .ntag-label     { background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.14); color:rgba(255,255,255,0.6); }
+  .ntag-label-key { background:rgba(197,160,89,0.12); border:1px solid rgba(197,160,89,0.35); color:#c5a059; }
+  .ntag-tx        { background:rgba(92,184,92,0.12);  border:1px solid rgba(92,184,92,0.35);  color:#5cb85c; }
+  .release-list { display:flex; flex-direction:column; }
+  .rel-card { border-bottom:1px solid rgba(255,255,255,0.07); padding:18px 0; display:flex; flex-direction:column; gap:8px; }
+  .rel-card:first-child { padding-top:0; }
+  .rel-card:last-child  { border-bottom:none; }
+  .rel-card.is-preordered { border-left:3px solid rgba(160,100,220,0.6); padding-left:14px; }
+  .rel-top    { display:flex; align-items:flex-start; gap:10px; }
+  .rel-info   { flex:1; min-width:0; }
+  .rel-artist { font-size:15px; font-weight:600; color:#fff; display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+  .rel-album  { font-family:'Cormorant Garamond',serif; font-size:18px; font-style:italic; color:rgba(255,255,255,0.7); }
+  .rel-meta   { font-family:'IBM Plex Mono',monospace; font-size:11px; color:rgba(255,255,255,0.5); letter-spacing:0.05em; margin-top:3px; display:flex; gap:10px; flex-wrap:wrap; align-items:center; }
+  .rel-added  { color:rgba(255,255,255,0.28); font-size:10px; }
+  .rel-released { color:#5cb85c; font-size:10px; }
+  .rel-label-name { color:#c5a059; }
+  .rel-why    { font-size:13px; color:rgba(255,255,255,0.6); font-style:italic; line-height:1.55; }
+  .rel-actions { display:flex; gap:7px; flex-wrap:wrap; align-items:center; }
+  .gen-btn-sm { padding:6px 14px; background:rgba(230,57,70,0.12); border:1px solid rgba(230,57,70,0.35); color:#e63946; font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.06em; cursor:pointer; border-radius:2px; transition:all 0.15s; }
+  .gen-btn-sm:hover { background:rgba(230,57,70,0.22); }
+  .preorder-btn { padding:6px 14px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.18); color:rgba(255,255,255,0.6); font-family:'IBM Plex Mono',monospace; font-size:11px; cursor:pointer; border-radius:2px; transition:all 0.15s; }
+  .preorder-btn:hover { color:#fff; border-color:rgba(160,100,220,0.5); }
+  .preorder-btn.on { color:#b07fe0; border-color:rgba(160,100,220,0.5); background:rgba(160,100,220,0.1); }
+  .pri-high { color:#e63946; font-family:'IBM Plex Mono',monospace; font-size:11px; }
+  .cal-header { display:flex; align-items:center; gap:14px; margin-bottom:20px; }
+  .cal-nav { background:transparent; border:1px solid rgba(255,255,255,0.18); color:rgba(255,255,255,0.7); font-family:'IBM Plex Mono',monospace; font-size:14px; padding:6px 14px; cursor:pointer; border-radius:2px; transition:all 0.15s; }
+  .cal-nav:hover { color:#fff; border-color:rgba(255,255,255,0.5); }
+  .cal-month-label { font-family:'Cormorant Garamond',serif; font-size:26px; font-weight:300; color:#fff; letter-spacing:0.06em; }
+  .cal-grid { display:grid; grid-template-columns:repeat(7,1fr); gap:3px; }
+  .cal-dow  { font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:rgba(255,255,255,0.5); text-align:center; padding:7px 0; }
+  .cal-cell { min-height:86px; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.07); border-radius:2px; padding:6px 7px; }
+  .cal-cell.today { border-color:rgba(197,160,89,0.45); background:rgba(197,160,89,0.06); }
+  .cal-cell.other-month { opacity:0.25; }
+  .cal-day-num { font-family:'IBM Plex Mono',monospace; font-size:11px; color:rgba(255,255,255,0.45); margin-bottom:4px; }
+  .cal-cell.today .cal-day-num { color:#c5a059; font-weight:600; }
+  .cal-release { font-size:10px; line-height:1.35; padding:2px 5px; border-radius:2px; margin-bottom:2px; cursor:pointer; transition:opacity 0.15s; overflow:hidden; white-space:nowrap; text-overflow:ellipsis; }
+  .cal-release:hover { opacity:0.75; }
+  .cal-release.r-regular  { background:rgba(230,57,70,0.2);  color:#f87; border-left:2px solid #e63946; }
+  .cal-release.r-replay   { background:rgba(197,160,89,0.2); color:#d4b06a; border-left:2px solid #c5a059; }
+  .cal-release.r-tx       { background:rgba(92,184,92,0.2);  color:#7dd87d; border-left:2px solid #5cb85c; }
+  .cal-release.r-preorder { background:rgba(160,100,220,0.2); color:#c49af0; border-left:2px solid #b07fe0; }
+  .cal-legend { display:flex; gap:16px; margin-top:16px; padding-top:14px; border-top:1px solid rgba(255,255,255,0.07); flex-wrap:wrap; }
+  .cal-legend-item { display:flex; align-items:center; gap:6px; font-family:'IBM Plex Mono',monospace; font-size:11px; color:rgba(255,255,255,0.55); }
+  .leg-dot { width:9px; height:9px; border-radius:1px; flex-shrink:0; }
+`;
+
+// ─── PROMPTS ─────────────────────────────────────────────────────────────────
+const REVIEW_SYSTEM = `You are the AI content engine for MojoLists.com — a music review site for crate diggers, vinyl collectors, and serious music lovers covering soul, funk, blues, R&B, post-punk, new wave, and krautrock.
+
+## RE-PLAY REVIEWS (landmark classic albums)
+Tone: scholarly, confident, historically grounded. No first person. Dense, well-constructed paragraphs. Three sections:
+- "At Release" — context, critical reception, commercial performance at the time
+- "The Influence" — specific artists influenced, sounds pioneered. Concrete names.
+- "Where It Stands Today" — current consensus, legacy, how it sounds now
+Style: "The distance between Stand! and There's a Riot Goin' On is one of the most vertiginous drops in the history of popular music..."
+2-3 paragraphs per section. Never open with "This album".
+
+## REGULAR REVIEWS (new/contemporary releases)
+Tone: personal, passionate, first-person. Writer is a music obsessive in San Antonio — soul/funk/blues/vinyl. Conversational, occasionally vulnerable, always specific. One flowing body, no headers.
+Style: "Over the last few years, I slowly stopped writing and reviewing... Neal Francis's new album 'Changes' touched me, it was a hand reaching down into the murky depths of my malaise."
+
+## SCORES (all out of 100)
+- Re-Play: Performance, Production, Impact
+- Regular: Performance, Production, Danceability
+Mojo = average of three, rounded.
+
+Return ONLY valid JSON, no markdown:
+{"artist":"...","album":"...","label":"...","year":"...","genre":["Soul","Funk"],"imageFilename":"artist-album.jpg","score1":90,"score2":88,"score3":85,"type":"replay" or "regular","series":"classics" or "new-wave" or "","isNewBand":true or false,"atRelease":"...","influence":"...","today":"...","body":"...","pullQuote":"Best single sentence verbatim.","slug":"lowercase-hyphenated"}
+Re-Play: fill atRelease/influence/today, body="". Regular: fill body only.`;
+
+const SUGGEST_SYSTEM = `You are the content strategist for MojoLists.com — soul, funk, blues, R&B, post-punk, new wave, krautrock. Vinyl-obsessed audience in San Antonio.
+Already reviewed: Television, The Human League, Funkadelic (Maggot Brain), Talking Heads, Can (Tago Mago), The Kinks, Sly & the Family Stone (There's a Riot Goin' On), The Band (Music From Big Pink), King Crimson, The Olympians, Trombone Shorty, Black Joe Lewis, Jonny Lang, Joe Louis Walker, The Monophonics, Neal Francis (Changes), No Show Ponies, Sharon Jones & the Dap-Kings, The Bamboos, The Nightowls, Tommy Castro, Voo Davis, Wily Bo Walker, The Soul Surfers, The James Hunter Six, Clarence "Gatemouth" Brown.
+Suggest 5 albums not yet covered. Mix Re-Play classics and current releases. Strong bias toward soul/funk/blues.
+Return ONLY a valid JSON array, no markdown: [{"artist":"...","album":"...","year":"...","genre":"...","type":"replay" or "regular","series":"classics" or "new-wave" or "","why":"One sentence."}]`;
+
+const RADAR_NEWS_SYSTEM = `You are the music news editor for MojoLists.com. The site covers soul, funk, blues, R&B, post-punk, new wave, krautrock. Key labels: Daptone, Colemine, Big Crown, Big Star, Blue Note, Numero Group, Karma Chief, Dunham. Texas and Austin music scene is a priority.
+Return 5 stories. Return ONLY a valid JSON array, no markdown, no trailing commas. Keep blurb under 20 words:
+[{"headline":"...","source":"Publication","date":"Mar 8 2026","blurb":"Short summary.","tags":["Daptone","Soul"],"texas":false}]`;
+
+const RADAR_UPCOMING_SYSTEM = `You are the release calendar editor for MojoLists.com. Primary focus: soul and funk. Key labels: Daptone Records, Colemine Records, Big Crown Records, Big Star Records, Blue Note Records, Karma Chief Records, Dunham Records, Funk Night Records, Timmion Records.
+Return 6 confirmed upcoming releases. releaseDate must be a confirmed date.
+Return ONLY a valid JSON array, no markdown, no trailing commas:
+[{"artist":"...","album":"...","releaseDate":"Apr 4 2026","genre":"Soul","label":"...","reviewType":"regular" or "replay","series":"","why":"One sentence under 15 words.","priority":"high" or "medium" or "low","texas":false}]`;
+
+// ─── HELPERS ─────────────────────────────────────────────────────────────────
+function safeParseJSON(raw, fallback=[]) {
+  try {
+    const s = raw.replace(/```json|```/g,"").trim();
+    const a = Math.min(...["{","["].map(c=>s.indexOf(c)===-1?Infinity:s.indexOf(c)));
+    const b = Math.max(s.lastIndexOf("}"),s.lastIndexOf("]"));
+    if (a===Infinity||b===-1) return fallback;
+    return JSON.parse(s.slice(a,b+1));
+  } catch(e) { console.warn("JSON parse:",e.message); return fallback; }
+}
+
+function releaseKey(artist, album) {
+  return "rel:" + (artist+"-"+(album||"")).toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"");
+}
+function isExpired(r) {
+  const d = r.releaseDate ? new Date(r.releaseDate) : null;
+  if (!d||isNaN(d)) return false;
+  return Date.now() > d.getTime() + 14*24*60*60*1000;
+}
+function parseReleaseDate(str) {
+  if (!str) return null;
+  const d = new Date(str); return isNaN(d)?null:d;
+}
+function isReleased(r) {
+  const d = parseReleaseDate(r.releaseDate); return d && d < new Date();
+}
+function getDaysInMonth(y,m) { return new Date(y,m+1,0).getDate(); }
+function getFirstDayOfMonth(y,m) { return new Date(y,m,1).getDay(); }
+
+function buildMd(d, ytId, buyLink) {
+  const isReplay = d.type==="replay";
+  const genreYaml = Array.isArray(d.genre)&&d.genre.length ? "["+d.genre.map(g=>`"${g}"`).join(", ")+"]" : '[""]';
+  const today = new Date().toISOString().split("T")[0];
+  let out = `---\nlayout: ${isReplay?"replay":"review"}.njk\ntitle: "${d.artist}"\nartist: "${d.artist}"\nalbum: "${d.album}"\nlabel: "${d.label||""}"\nyear: "${d.year}"\nimage: "${d.imageFilename}"\nscore1: ${d.score1}\nscore2: ${d.score2}\nscore3: ${d.score3}\ntags: reviews\ngenre: ${genreYaml}\n`;
+  if (isReplay) { out+=`type: replay\n`; if(d.series) out+=`series: ${d.series}\n`; }
+  out += `date: ${today}\n---\n\n`;
+  const buyHtml   = buyLink ? `\n<a href="${buyLink}" target="_blank" class="buy-btn">Buy Album</a>\n` : "";
+  const vidHtml   = ytId ? `\n<div class="inline-video"><iframe src="https://www.youtube.com/embed/${ytId}" title="${d.artist} - ${d.album}" frameborder="0" allowfullscreen></iframe></div>\n` : "";
+  const quoteHtml = d.pullQuote ? `\n<p class="inline-quote">${d.pullQuote}</p>\n` : "";
+  if (isReplay) {
+    out += `## At Release\n\n${d.atRelease||""}\n\n${quoteHtml}## The Influence\n\n${d.influence||""}\n${vidHtml}\n## Where It Stands Today\n\n${d.today||""}\n\n${buyHtml}`;
+  } else {
+    out += `${d.body||""}\n${quoteHtml}${vidHtml}${buyHtml}`;
+  }
+  return out;
+}
+
+// ─── GITHUB DATA LAYER ───────────────────────────────────────────────────────
+async function ghGet(token) {
+  const url = `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/${DATA_PATH}`;
+  const res = await fetch(url, { headers:{ Authorization:`token ${token}`, Accept:"application/vnd.github.v3+json" } });
+  if (res.status===404) return { data:null, sha:null };
+  if (!res.ok) throw new Error(`GitHub read ${res.status}`);
+  const j = await res.json();
+  const data = JSON.parse(atob(j.content.replace(/\n/g,"")));
+  return { data, sha: j.sha };
+}
+
+async function ghPut(token, data, sha) {
+  const url = `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/${DATA_PATH}`;
+  const content = btoa(unescape(encodeURIComponent(JSON.stringify(data, null, 2))));
+  const body = { message:`chore: update radar data ${new Date().toISOString().slice(0,10)}`, content, ...(sha?{sha}:{}) };
+  const res = await fetch(url, { method:"PUT", headers:{ Authorization:`token ${token}`, Accept:"application/vnd.github.v3+json", "Content-Type":"application/json" }, body:JSON.stringify(body) });
+  if (!res.ok) throw new Error(`GitHub write ${res.status}`);
+  const j = await res.json();
+  return j.content.sha;
+}
+
+// ─── MAIN APP ────────────────────────────────────────────────────────────────
+function App() {
+  // Auth
+  const [authed,    setAuthed]    = useState(false);
+  const [passInput, setPassInput] = useState("");
+  const [passErr,   setPassErr]   = useState(false);
+
+  // Setup (API keys)
+  const [anthropicKey, setAnthropicKey] = useState(() => localStorage.getItem("mojo-anthropic-key")||"");
+  const [githubToken,  setGithubToken]  = useState(() => localStorage.getItem("mojo-github-token")||"");
+  const [setupDone,    setSetupDone]    = useState(() => !!(localStorage.getItem("mojo-anthropic-key")&&localStorage.getItem("mojo-github-token")));
+  const [setupAK,      setSetupAK]      = useState("");
+  const [setupGH,      setSetupGH]      = useState("");
+
+  // Sync state
+  const [syncStatus,  setSyncStatus]  = useState("idle"); // idle | busy | ok | err
+  const [syncMsg,     setSyncMsg]     = useState("");
+  const [ghSha,       setGhSha]       = useState(null);
+
+  // App state
+  const [tab,         setTab]         = useState("gen");
+  const [reviewType,  setReviewType]  = useState("regular");
+  const [series,      setSeries]      = useState("");
+  const [albumInput,  setAlbumInput]  = useState("");
+  const [notes,       setNotes]       = useState("");
+  const [genPhase,    setGenPhase]    = useState("idle");
+  const [genStep,     setGenStep]     = useState(0);
+  const [suggestions, setSuggestions] = useState([]);
+  const [result,      setResult]      = useState(null);
+  const [assets,      setAssets]      = useState({ytId:"",buyLink:"",imageUrl:"",imageFilename:""});
+  const [mdOutput,    setMdOutput]    = useState("");
+  const [copyLabel,   setCopyLabel]   = useState("Copy .md");
+  const [genError,    setGenError]    = useState("");
+  const [radarTab,    setRadarTab]    = useState("upcoming");
+  const [radarPhase,  setRadarPhase]  = useState("idle");
+  const [radarStep,   setRadarStep]   = useState(0);
+  const [radarData,   setRadarData]   = useState(null);
+  const [radarError,  setRadarError]  = useState("");
+  const [relDB,       setRelDB]       = useState({});
+  const [calMonth,    setCalMonth]    = useState(()=>{ const n=new Date(); return {year:n.getFullYear(),month:n.getMonth()}; });
+
+  const GEN_STEPS   = ["Writing review…","Searching YouTube…","Finding buy link…","Finding album cover…","Assembling .md…"];
+  const RADAR_STEPS = ["Scanning music news…","Searching label releases…"];
+  const busy        = genPhase==="loading";
+  const WATCHED_LABELS = ["daptone","colemine","big crown","big star","blue note","karma chief"];
+
+  // Load from GitHub on mount (after auth+setup)
+  useEffect(() => {
+    if (!authed||!setupDone||!githubToken) return;
+    (async () => {
+      setSyncStatus("busy"); setSyncMsg("Loading…");
+      try {
+        const { data, sha } = await ghGet(githubToken);
+        setGhSha(sha);
+        if (data) {
+          const db = data.releases || {};
+          const pruned = Object.fromEntries(Object.entries(db).filter(([,v])=>!isExpired(v)));
+          setRelDB(pruned);
+          if (data.radarNews) { setRadarData(data.radarNews); setRadarPhase("ready"); }
+        }
+        setSyncStatus("ok"); setSyncMsg("Loaded from GitHub");
+      } catch(e) {
+        setSyncStatus("err"); setSyncMsg(e.message);
+      }
+    })();
+  }, [authed, setupDone]);
+
+  // Save to GitHub
+  const saveToGitHub = useCallback(async (releases, radarNews) => {
+    if (!githubToken) return;
+    setSyncStatus("busy"); setSyncMsg("Saving…");
+    try {
+      const newSha = await ghPut(githubToken, { releases, radarNews: radarNews||null, savedAt: new Date().toISOString() }, ghSha);
+      setGhSha(newSha);
+      setSyncStatus("ok"); setSyncMsg("Saved to GitHub ✓");
+      setTimeout(()=>setSyncMsg(""),3000);
+    } catch(e) {
+      setSyncStatus("err"); setSyncMsg(`Save failed: ${e.message}`);
+    }
+  }, [githubToken, ghSha]);
+
+  // DB helpers (local state + GitHub)
+  const dbReleases = Object.values(relDB).sort((a,b) => {
+    const da = parseReleaseDate(a.releaseDate)||new Date(9999,0);
+    const db_ = parseReleaseDate(b.releaseDate)||new Date(9999,0);
+    return da-db_;
+  });
+
+  function mergeReleases(newReleases, currentDB) {
+    const db = {...currentDB};
+    const now = new Date().toISOString();
+    for (const r of newReleases) {
+      const key = releaseKey(r.artist, r.album);
+      db[key] = { ...r, key, addedAt: db[key]?.addedAt||now, preordered: db[key]?.preordered||false };
+    }
+    for (const k of Object.keys(db)) { if (isExpired(db[k])) delete db[k]; }
+    return db;
+  }
+
+  async function togglePreorder(key) {
+    const updated = { ...relDB, [key]: { ...relDB[key], preordered: !relDB[key]?.preordered } };
+    setRelDB(updated);
+    await saveToGitHub(updated, radarData);
+  }
+
+  // API calls — uses stored anthropic key
+  async function callClaude(msg, system, tokens=1000) {
+    const res = await fetch("https://api.anthropic.com/v1/messages", {
+      method:"POST",
+      headers:{ "Content-Type":"application/json", "x-api-key": anthropicKey, "anthropic-version":"2023-06-01", "anthropic-dangerous-direct-browser-access":"true" },
+      body:JSON.stringify({ model:"claude-sonnet-4-20250514", max_tokens:tokens, system, messages:[{role:"user",content:msg}] })
+    });
+    if (!res.ok) { const e=await res.json().catch(()=>({})); throw new Error(e.error?.message||`API ${res.status}`); }
+    const d = await res.json();
+    return d.content?.filter(b=>b.type==="text").map(b=>b.text).join("")||"";
+  }
+
+  async function callClaudeSearch(msg, system, tokens=800) {
+    const res = await fetch("https://api.anthropic.com/v1/messages", {
+      method:"POST",
+      headers:{ "Content-Type":"application/json", "x-api-key": anthropicKey, "anthropic-version":"2023-06-01", "anthropic-dangerous-direct-browser-access":"true" },
+      body:JSON.stringify({ model:"claude-sonnet-4-20250514", max_tokens:tokens, system, tools:[{type:"web_search_20250305",name:"web_search"}], messages:[{role:"user",content:msg}] })
+    });
+    if (!res.ok) { const e=await res.json().catch(()=>({})); throw new Error(e.error?.message||`API ${res.status}`); }
+    const d = await res.json();
+    return d.content?.filter(b=>b.type==="text").map(b=>b.text).join("")||"";
+  }
+
+  // Asset searches
+  async function searchYT(artist, album) {
+    try { const t=await callClaudeSearch(`Find a real YouTube video ID for "${album}" by ${artist}. Return ONLY JSON: {"videoId":"XXXXXXXXXXX","found":true} or {"videoId":"","found":false}`,"Find real YouTube video IDs. Return only valid JSON.",300); const p=safeParseJSON(t,{found:false}); return p.found?p.videoId:""; } catch { return ""; }
+  }
+  async function searchBuy(artist, album, isNewBand) {
+    try { const t=await callClaudeSearch(isNewBand?`Find the Bandcamp album page for "${album}" by ${artist}. Return ONLY JSON: {"url":"https://...","found":true} or {"url":"","found":false}`:`Find an Amazon product page for a vinyl LP of "${album}" by ${artist}. URL must contain /dp/. Return ONLY JSON: {"url":"https://www.amazon.com/...","found":true} or {"url":"","found":false}`,"Find real product URLs. Return only valid JSON.",300); const p=safeParseJSON(t,{found:false}); return p.found?p.url:""; } catch { return ""; }
+  }
+  async function searchImage(artist, album) {
+    try { const t=await callClaudeSearch(`Find a direct URL to a high-quality album cover image for "${album}" by ${artist}. Look on Wikipedia, AllMusic, Discogs, MusicBrainz. Return ONLY JSON: {"imageUrl":"https://...","found":true} or {"imageUrl":"","found":false}.`,"Find direct image URLs for album covers. Return only valid JSON.",300); const p=safeParseJSON(t,{found:false}); return p.found?p.imageUrl:""; } catch { return ""; }
+  }
+
+  async function generate(overAlbum, overType, overSeries) {
+    const album=overAlbum||albumInput, type=overType||reviewType, ser=overSeries!==undefined?overSeries:series;
+    if (!album.trim()) return;
+    setGenPhase("loading"); setGenStep(0); setGenError(""); setResult(null); setAssets({ytId:"",buyLink:"",imageUrl:"",imageFilename:""});
+    try {
+      const raw=await callClaude(`Write a ${type==="replay"?"Re-Play":"regular"} MojoLists review for: ${album}${ser?` (series: ${ser})`:""}${notes?`\n\nNotes: ${notes}`:""}`,REVIEW_SYSTEM);
+      const data=safeParseJSON(raw);
+      if (!data.artist) throw new Error("Review generation returned unexpected data. Try again.");
+      setResult(data); setGenStep(1);
+      const ytId=await searchYT(data.artist,data.album); setGenStep(2);
+      const buyLink=await searchBuy(data.artist,data.album,data.isNewBand); setGenStep(3);
+      const imgUrl=await searchImage(data.artist,data.album); setGenStep(4);
+      setAssets({ytId,buyLink,imageUrl:imgUrl,imageFilename:data.imageFilename});
+      setMdOutput(buildMd(data,ytId,buyLink));
+      setGenPhase("result");
+    } catch(e) { setGenError(e.message); setGenPhase("error"); }
+  }
+
+  async function getSuggestions() {
+    setGenPhase("loading"); setGenStep(0); setGenError("");
+    try { const raw=await callClaude("Give me 5 album suggestions for MojoLists.",SUGGEST_SYSTEM); const parsed=safeParseJSON(raw,[]); if(!parsed.length) throw new Error("No suggestions returned."); setSuggestions(parsed); setGenPhase("suggestions"); }
+    catch(e) { setGenError(e.message); setGenPhase("error"); }
+  }
+
+  function pickSuggestion(s) { setAlbumInput(`${s.artist} — ${s.album}`); setReviewType(s.type||"regular"); setSeries(s.series||""); setGenPhase("idle"); }
+
+  function downloadMd() {
+    if (!mdOutput||!result) return;
+    const fn=(result.slug||result.artist.toLowerCase().replace(/[^a-z0-9]+/g,"-"))+".md";
+    const a=document.createElement("a"); a.href=URL.createObjectURL(new Blob([mdOutput],{type:"text/plain"})); a.download=fn; a.click(); URL.revokeObjectURL(a.href);
+  }
+  function copyMd() { navigator.clipboard.writeText(mdOutput).then(()=>{ setCopyLabel("Copied!"); setTimeout(()=>setCopyLabel("Copy .md"),2000); }); }
+
+  async function fetchRadar() {
+    setRadarPhase("loading"); setRadarStep(0); setRadarError("");
+    const today=new Date().toLocaleDateString("en-US",{weekday:"long",year:"numeric",month:"long",day:"numeric"});
+    try {
+      const newsRaw=await callClaudeSearch(`Today is ${today}. Search for recent music news from the last 7 days. Focus on Daptone, Colemine, Big Crown, Blue Note, Big Star label news, Texas/Austin artist news, soul/funk/blues reissues. Flag texas:true for any Texas or Austin artist.`,RADAR_NEWS_SYSTEM,800);
+      const news=safeParseJSON(newsRaw,[]); setRadarStep(1);
+      const upRaw=await callClaudeSearch(`Today is ${today}. Search for upcoming soul and funk album releases in the next 90 days. Specifically check Daptone, Colemine, Big Crown, Big Star, Blue Note, Karma Chief. Also search for upcoming Texas artist releases and flag texas:true.`,RADAR_UPCOMING_SYSTEM,800);
+      const scanned=safeParseJSON(upRaw,[]); setRadarStep(2);
+      const updatedDB=mergeReleases(scanned, relDB);
+      const newRadarData={ fetchedAt:new Date().toISOString(), news };
+      setRelDB(updatedDB);
+      setRadarData(newRadarData);
+      setRadarPhase("ready");
+      setRadarTab("upcoming");
+      await saveToGitHub(updatedDB, newRadarData);
+    } catch(e) { setRadarError(e.message); setRadarPhase("error"); }
+  }
+
+  function sendToGen(item) {
+    setAlbumInput(item.album?`${item.artist} — ${item.album}`:item.artist);
+    setReviewType(item.reviewType||"regular"); setSeries(item.series||""); setTab("gen");
+  }
+
+  // Calendar
+  function renderCalendar() {
+    const {year,month}=calMonth, today=new Date();
+    const MONTHS=["January","February","March","April","May","June","July","August","September","October","November","December"];
+    const DOW=["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+    const dim=getDaysInMonth(year,month), fd=getFirstDayOfMonth(year,month);
+    const byDay={};
+    dbReleases.forEach(r=>{ const d=parseReleaseDate(r.releaseDate); if(!d||d.getFullYear()!==year||d.getMonth()!==month) return; const day=d.getDate(); if(!byDay[day])byDay[day]=[]; byDay[day].push(r); });
+    const cells=[];
+    for(let i=0;i<fd;i++) cells.push({blank:true,key:`b${i}`});
+    for(let d=1;d<=dim;d++) cells.push({day:d,isToday:today.getFullYear()===year&&today.getMonth()===month&&today.getDate()===d,releases:byDay[d]||[],key:`d${d}`});
+    return (
+      <div>
+        <div className="cal-header">
+          <button className="cal-nav" onClick={()=>setCalMonth(p=>{const m=p.month-1;return m<0?{year:p.year-1,month:11}:{year:p.year,month:m};})}>‹</button>
+          <div className="cal-month-label">{MONTHS[month]} {year}</div>
+          <button className="cal-nav" onClick={()=>setCalMonth(p=>{const m=p.month+1;return m>11?{year:p.year+1,month:0}:{year:p.year,month:m};})}>›</button>
+        </div>
+        <div className="cal-grid">
+          {DOW.map(d=><div key={d} className="cal-dow">{d}</div>)}
+          {cells.map(cell=>cell.blank?<div key={cell.key} className="cal-cell other-month"/>:
+            <div key={cell.key} className={`cal-cell${cell.isToday?" today":""}`}>
+              <div className="cal-day-num">{cell.day}</div>
+              {cell.releases.map((r,i)=>{
+                const cls=r.preordered?"r-preorder":r.texas?"r-tx":r.reviewType==="replay"?"r-replay":"r-regular";
+                return <div key={i} className={`cal-release ${cls}`} title={`${r.artist} — ${r.album}${r.preordered?" · Preordered":""}`} onClick={()=>sendToGen(r)}>{r.artist}</div>;
+              })}
+            </div>
+          )}
+        </div>
+        <div className="cal-legend">
+          <div className="cal-legend-item"><div className="leg-dot" style={{background:"#e63946"}}/> New Release</div>
+          <div className="cal-legend-item"><div className="leg-dot" style={{background:"#c5a059"}}/> Re-Play / Reissue</div>
+          <div className="cal-legend-item"><div className="leg-dot" style={{background:"#5cb85c"}}/> Texas Artist</div>
+          <div className="cal-legend-item"><div className="leg-dot" style={{background:"#b07fe0"}}/> Preordered</div>
+          <div style={{marginLeft:"auto",fontFamily:"'IBM Plex Mono',monospace",fontSize:10,color:"rgba(255,255,255,0.3)"}}>Click any release → Generator</div>
+        </div>
+      </div>
+    );
+  }
+
+  const mojoScore  = result?Math.round((result.score1+result.score2+result.score3)/3):0;
+  const radarFresh = radarData?(Date.now()-new Date(radarData.fetchedAt).getTime())<4*60*60*1000:false;
+  const newsCount  = (radarData?.news||[]).length;
+  const dbCount    = dbReleases.length;
+  const preCount   = dbReleases.filter(r=>r.preordered).length;
+  const radarReady = radarPhase==="ready"||(radarPhase==="idle"&&dbCount>0);
+
+  // ── LOCK SCREEN ──
+  if (!authed) return (
+    <div style={{background:"#111",height:"100vh",display:"flex",alignItems:"center",justifyContent:"center"}}>
+      <style>{css}</style>
+      <div className="lock-box">
+        <div className="lock-logo">MOJO<em>LISTS</em></div>
+        <div className="lock-sub">Admin</div>
+        <input className={`lock-input${passErr?" err":""}`} type="password" placeholder="passphrase"
+          value={passInput} onChange={e=>{setPassInput(e.target.value);setPassErr(false);}}
+          onKeyDown={e=>{ if(e.key==="Enter"){ if(passInput===PASSPHRASE){setAuthed(true);}else{setPassErr(true);setPassInput("");} } }}
+          autoFocus/>
+        <button className="lock-btn" onClick={()=>{ if(passInput===PASSPHRASE){setAuthed(true);}else{setPassErr(true);setPassInput("");} }}>Enter</button>
+      </div>
+    </div>
+  );
+
+  // ── SETUP SCREEN ──
+  if (!setupDone) return (
+    <div style={{background:"#111",height:"100vh",display:"flex",alignItems:"center",justifyContent:"center"}}>
+      <style>{css}</style>
+      <div className="setup-box">
+        <div style={{fontFamily:"'Cormorant Garamond',serif",fontSize:22,letterSpacing:"0.14em",textTransform:"uppercase",color:"#fff",marginBottom:4}}>MOJO<em style={{color:"#e63946",fontStyle:"normal"}}>LISTS</em> <span style={{fontFamily:"'IBM Plex Mono',monospace",fontSize:13,letterSpacing:"0.1em",color:"rgba(255,255,255,0.4)"}}>Setup</span></div>
+        <div className="setup-desc">Enter your keys once — they're saved in this browser only. Get your Anthropic key at <a href="https://console.anthropic.com" target="_blank">console.anthropic.com</a> and your GitHub token at <a href="https://github.com/settings/tokens" target="_blank">github.com/settings/tokens</a> (needs <strong>repo</strong> scope).</div>
+        <div>
+          <label className="setup-label">Anthropic API Key</label>
+          <input className="setup-input" type="password" placeholder="sk-ant-..." value={setupAK} onChange={e=>setSetupAK(e.target.value)}/>
+        </div>
+        <div>
+          <label className="setup-label">GitHub Personal Access Token</label>
+          <input className="setup-input" type="password" placeholder="ghp_..." value={setupGH} onChange={e=>setSetupGH(e.target.value)}/>
+        </div>
+        <div>
+          <button className="setup-save" onClick={()=>{ if(!setupAK.trim()||!setupGH.trim()) return; localStorage.setItem("mojo-anthropic-key",setupAK.trim()); localStorage.setItem("mojo-github-token",setupGH.trim()); setAnthropicKey(setupAK.trim()); setGithubToken(setupGH.trim()); setSetupDone(true); }}>Save & Continue</button>
+        </div>
+        <div className="setup-note">Keys are stored in localStorage on this device only. On a new device you'll be asked to enter them again.</div>
+      </div>
+    </div>
+  );
+
+  // ── MAIN APP ──
+  return (
+    <>
+      <style>{css}</style>
+      <div className="app">
+
+        <div className="hdr">
+          <div className="logo">MOJO<em>LISTS</em></div>
+          <div className="nav-tabs">
+            <button className={`nav-tab ${tab==="gen"?"active-gen":""}`} onClick={()=>setTab("gen")}>Generator</button>
+            <button className={`nav-tab ${tab==="radar"?"active-radar":""}`} onClick={()=>setTab("radar")}>
+              Radar{radarData&&<span style={{marginLeft:6,fontSize:9}}>{radarFresh?"●":"○"}</span>}
+              {preCount>0&&<span style={{marginLeft:7,fontSize:10,color:"#b07fe0"}}>{preCount} pre</span>}
+            </button>
+          </div>
+          <div className="hdr-right">
+            <div className="sync-status">
+              <div className={`sync-dot ${syncStatus==="ok"?"sync-ok":syncStatus==="err"?"sync-err":syncStatus==="busy"?"sync-busy":""}`}/>
+              {syncMsg}
+            </div>
+            <button className="hdr-btn" onClick={()=>{ localStorage.removeItem("mojo-anthropic-key"); localStorage.removeItem("mojo-github-token"); setSetupDone(false); }}>⚙ Keys</button>
+          </div>
+        </div>
+
+        {/* GENERATOR */}
+        {tab==="gen"&&(
+          <div className="gen-layout">
+            <div className="left">
+              <div className="sec">
+                <div className="sec-label">Review Type</div>
+                <div className="type-row">
+                  <button className={`tbtn ${reviewType==="regular"?"tr":""}`} onClick={()=>{setReviewType("regular");setSeries("");}} disabled={busy}>Regular</button>
+                  <button className={`tbtn ${reviewType==="replay"?"tp":""}`}  onClick={()=>setReviewType("replay")} disabled={busy}>Re-Play</button>
+                </div>
+                {reviewType==="replay"&&<select className="series-sel" value={series} onChange={e=>setSeries(e.target.value)} disabled={busy}><option value="">— No Series —</option><option value="classics">Classics</option><option value="new-wave">New Wave</option><option value="disco">Disco</option></select>}
+              </div>
+              <div className="sec">
+                <div className="sec-label">Album</div>
+                <div className="fl"><label>Artist &amp; Album</label><input className="fi" type="text" placeholder={reviewType==="replay"?"e.g. Curtis Mayfield — Superfly":"e.g. Durand Jones — Wait Til I Get Over"} value={albumInput} onChange={e=>setAlbumInput(e.target.value)} onKeyDown={e=>e.key==="Enter"&&generate()} disabled={busy}/></div>
+                <div className="fl"><label>Extra Notes <span style={{fontWeight:300,textTransform:"none",letterSpacing:0,opacity:0.5}}>(optional)</span></label><textarea className="fi" placeholder="Angles, scores, things to emphasize…" value={notes} onChange={e=>setNotes(e.target.value)} disabled={busy}/></div>
+              </div>
+              <div className="sec">
+                <button className={`gbtn ${reviewType==="replay"?"gbtn-rep":"gbtn-reg"}`} onClick={()=>generate()} disabled={busy||!albumInput.trim()}>{busy?"Working…":`↗ Generate ${reviewType==="replay"?"Re-Play":"Review"}`}</button>
+                <button className="sbtn" onClick={getSuggestions} disabled={busy}>✦ Suggest Albums to Cover</button>
+              </div>
+              <div className="sec">
+                <div className="sec-label">Deploy</div>
+                <div className="deploy-steps">
+                  <div>1. Download <span>slug.md</span> → <span>/reviews/slug/</span></div>
+                  <div>2. Download cover → rename → <span>/assets/img/</span></div>
+                  <div>3. Commit &amp; push in GitHub Desktop</div>
+                </div>
+              </div>
+            </div>
+            <div className="right">
+              <div className="toolbar">
+                <span className="toolbar-title">{genPhase==="idle"&&"Output"}{genPhase==="loading"&&"Working…"}{genPhase==="suggestions"&&"Suggestions — click to load"}{genPhase==="result"&&result&&`${result.artist} — ${result.album}`}{genPhase==="error"&&"Error"}</span>
+                {genPhase==="result"&&<><button className={`tbarbtn ${copyLabel==="Copied!"?"copied":""}`} onClick={copyMd}>{copyLabel}</button><button className="tbarbtn dl" onClick={downloadMd}>↓ Download .md</button></>}
+              </div>
+              <div className="out-area">
+                {genPhase==="idle"&&<div className="idle"><div className="idle-glyph">♫</div><div className="idle-text">Enter an album and generate a complete review — or check the Radar tab for what's coming.</div></div>}
+                {genPhase==="loading"&&<div className="loading"><div className="spinner"/><div className="steps">{GEN_STEPS.map((s,i)=><div key={i} className={`step ${i<genStep?"done":i===genStep?"active":""}`}>{i>=genStep&&<span style={{opacity:0.2,marginRight:6}}>◦</span>}{s}</div>)}</div></div>}
+                {genPhase==="suggestions"&&<div><div className="out-head" style={{marginTop:0}}>Suggested Albums</div><div className="sug-grid">{suggestions.map((s,i)=><div key={i} className="sug-card" onClick={()=>pickSuggestion(s)}><div className="sug-info"><div className="sug-artist">{s.artist}</div><div className="sug-album">{s.album}</div><div className="sug-meta">{s.year} · {s.genre}</div><div className="sug-why">{s.why}</div></div><div className={`badge ${s.type==="replay"?"badge-rep":"badge-reg"}`}>{s.type==="replay"?"Re-Play":"New"}</div></div>)}</div></div>}
+                {genPhase==="result"&&result&&<div>
+                  <div className="assets-grid">
+                    <div className="asset-card"><div className="asset-label">Album Cover</div>{assets.imageUrl?(<><img className="img-thumb" src={assets.imageUrl} alt="cover" onError={e=>e.target.style.display="none"}/><div style={{fontSize:11,fontFamily:"'IBM Plex Mono',monospace",color:"rgba(255,255,255,0.35)",marginBottom:2,wordBreak:"break-all"}}>Save as: <span style={{color:"#c5a059"}}>{assets.imageFilename}</span></div><a className="asset-link" href={assets.imageUrl} target="_blank" rel="noreferrer">↓ Download →</a><div><span className="pill pill-ok">Found</span></div></>):(<><div className="asset-hint">Not found. Save as: <span style={{color:"#c5a059"}}>{assets.imageFilename}</span></div><a className="asset-link" href={`https://www.google.com/search?tbm=isch&q=${encodeURIComponent(result.artist+" "+result.album+" album cover")}`} target="_blank" rel="noreferrer">Search Google Images →</a><div><span className="pill pill-manual">Manual</span></div></>)}</div>
+                    <div className="asset-card"><div className="asset-label">YouTube</div>{assets.ytId?(<><div style={{fontSize:12,fontFamily:"'IBM Plex Mono',monospace",color:"#c5a059",marginBottom:3}}>ID: {assets.ytId}</div><a className="asset-link" href={`https://www.youtube.com/watch?v=${assets.ytId}`} target="_blank" rel="noreferrer">Watch to verify →</a><div><span className="pill pill-ok">Found</span></div></>):(<><div className="asset-hint">Could not confirm a video ID.</div><a className="asset-link" href={`https://www.youtube.com/results?search_query=${encodeURIComponent(result.artist+" "+result.album)}`} target="_blank" rel="noreferrer">Search YouTube →</a><div><span className="pill pill-manual">Manual</span></div></>)}</div>
+                    <div className="asset-card"><div className="asset-label">Buy Link</div>{assets.buyLink?(<><div style={{fontSize:11,fontFamily:"'IBM Plex Mono',monospace",color:"rgba(255,255,255,0.4)",marginBottom:3,wordBreak:"break-all",maxHeight:40,overflow:"hidden"}}>{assets.buyLink.replace("https://","").slice(0,50)}{assets.buyLink.length>55?"…":""}</div><a className="asset-link" href={assets.buyLink} target="_blank" rel="noreferrer">Verify link →</a><div><span className="pill pill-ok">Found</span></div></>):(<><div className="asset-hint">{result.isNewBand?"Bandcamp":"Amazon vinyl"} not found.</div><a className="asset-link" href={result.isNewBand?`https://bandcamp.com/search?q=${encodeURIComponent(result.artist+" "+result.album)}`:`https://www.amazon.com/s?k=${encodeURIComponent(result.artist+" "+result.album+" vinyl")}`} target="_blank" rel="noreferrer">Search {result.isNewBand?"Bandcamp":"Amazon"} →</a><div><span className="pill pill-manual">Manual</span></div></>)}</div>
+                  </div>
+                  <div className="asset-card" style={{marginBottom:12}}><div className="asset-label">Scores</div><div className="scores-row"><div>Performance<span>{result.score1}</span></div><div>Production<span>{result.score2}</span></div><div>{result.type==="replay"?"Impact":"Danceability"}<span>{result.score3}</span></div><div className="mojo-num">{mojoScore}%</div></div></div>
+                  {(!assets.ytId||!assets.buyLink||!assets.imageUrl)&&<div className="next-steps"><strong>Manual steps needed: </strong>{!assets.imageUrl&&`Download album cover, save as ${assets.imageFilename}. `}{!assets.ytId&&"Find YouTube video ID and add to .md. "}{!assets.buyLink&&`Find ${result.isNewBand?"Bandcamp":"Amazon vinyl"} link and add to .md. `}</div>}
+                  <div className="out-head" style={{marginTop:0}}>Generated .md File</div>
+                  <div className="code-block">{mdOutput}</div>
+                </div>}
+                {genPhase==="error"&&<div className="err-box"><strong>Something went wrong.</strong><br/>{genError}<div><button className="retry-btn" onClick={()=>setGenPhase("idle")}>← Back</button></div></div>}
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* RADAR */}
+        {tab==="radar"&&(
+          <div className="radar-layout">
+            <div className="radar-toolbar">
+              <div className="radar-meta">
+                {radarData?<><span className={`fresh-dot ${radarFresh?"dot-fresh":"dot-stale"}`}/>{radarFresh?"Fresh · ":"Last scan: "}{new Date(radarData.fetchedAt).toLocaleDateString("en-US",{month:"short",day:"numeric"})} · {new Date(radarData.fetchedAt).toLocaleTimeString([],{hour:"2-digit",minute:"2-digit"})}</>
+                  :dbCount>0?"Release tracker — run a scan to refresh":"Music intelligence for MojoLists"}
+              </div>
+              {dbCount>0&&<span className="db-badge">{dbCount} tracked{preCount>0?` · ${preCount} preordered`:""}</span>}
+              {radarData&&<button className="rbtn rbtn-ghost" onClick={()=>{setRadarData(null);setRadarPhase("idle");}}>Clear News</button>}
+              <button className="rbtn rbtn-gold" onClick={fetchRadar} disabled={radarPhase==="loading"}>{radarPhase==="loading"?"Scanning…":radarData?"↻ Refresh":"▶ Run Scan"}</button>
+            </div>
+
+            {radarPhase==="loading"&&<div className="radar-content"><div className="r-loading"><div className="spinner"/><div className="r-loading-steps">{RADAR_STEPS.map((s,i)=><div key={i} className={`r-loading-step ${i<radarStep?"done":i===radarStep?"active":""}`}>{i>=radarStep&&<span style={{opacity:0.2,marginRight:6}}>◦</span>}{s}</div>)}</div></div></div>}
+            {radarPhase==="error"&&<div className="radar-content"><div className="err-box"><strong>Scan failed.</strong><br/>{radarError}<div><button className="retry-btn" onClick={()=>setRadarPhase("idle")}>← Back</button></div></div></div>}
+            {radarPhase==="idle"&&dbCount===0&&<div className="radar-content"><div className="r-empty"><div className="r-empty-glyph">📡</div><div className="r-empty-text">Run the daily scan to pull label releases from Daptone · Colemine · Big Crown · Blue Note and Texas artist news.</div><button className="rbtn rbtn-gold" onClick={fetchRadar} style={{marginTop:10}}>▶ Run Scan</button></div></div>}
+
+            {radarReady&&radarPhase!=="loading"&&radarPhase!=="error"&&(dbCount>0||radarData)&&<>
+              <div className="radar-tabs">
+                <button className={`rtab ${radarTab==="upcoming"?"rtab-active":""}`} onClick={()=>setRadarTab("upcoming")}>Upcoming <span className="cnt">{dbCount}</span></button>
+                <button className={`rtab ${radarTab==="calendar"?"rtab-active":""}`} onClick={()=>setRadarTab("calendar")}>Calendar</button>
+                {radarData&&<button className={`rtab ${radarTab==="news"?"rtab-active":""}`} onClick={()=>setRadarTab("news")}>News{newsCount>0&&<span className="cnt">{newsCount}</span>}</button>}
+              </div>
+
+              {radarTab==="upcoming"&&<div className="radar-content">{dbReleases.length===0?<div className="r-empty"><div className="r-empty-text">No releases tracked yet.</div></div>:
+                <div className="release-list">{dbReleases.map(r=>{
+                  const released=isReleased(r), addedDate=r.addedAt?new Date(r.addedAt).toLocaleDateString("en-US",{month:"short",day:"numeric"}):"";
+                  return <div key={r.key} className={`rel-card${r.preordered?" is-preordered":""}`}>
+                    <div className="rel-top"><div className="rel-info">
+                      <div className="rel-artist">{r.artist}{r.preordered&&<span className="badge badge-pre">Preordered</span>}{r.texas&&<span className="badge badge-tx">🤠 TX</span>}{r.priority==="high"&&<span className="pri-high">★</span>}</div>
+                      <div className="rel-album">{r.album}</div>
+                      <div className="rel-meta"><span>{r.releaseDate}</span>{released&&<span className="rel-released">● Released</span>}<span>{r.genre}</span>{r.label&&<span className="rel-label-name">{r.label}</span>}{addedDate&&<span className="rel-added">Found {addedDate}</span>}</div>
+                    </div><div className={`badge ${r.reviewType==="replay"?"badge-rep":"badge-reg"}`}>{r.reviewType==="replay"?"Re-Play":"New"}</div></div>
+                    <div className="rel-why">{r.why}</div>
+                    <div className="rel-actions">
+                      <button className="gen-btn-sm" onClick={()=>sendToGen(r)}>↗ Generate Review</button>
+                      <button className={`preorder-btn ${r.preordered?"on":""}`} onClick={()=>togglePreorder(r.key)}>🛒 {r.preordered?"Preordered":"Preorder"}</button>
+                    </div>
+                  </div>;
+                })}</div>}
+              </div>}
+
+              {radarTab==="calendar"&&<div className="radar-content">{renderCalendar()}</div>}
+
+              {radarTab==="news"&&radarData&&<div className="radar-content">{(radarData.news||[]).length===0?<div className="r-empty"><div className="r-empty-text">No news found in last scan.</div></div>:
+                <div className="news-list">{radarData.news.map((n,i)=><div key={i} className="news-card">
+                  <div className="news-src">{n.source} · {n.date}</div>
+                  <div className="news-hl">{n.headline}</div>
+                  <div className="news-blurb">{n.blurb}</div>
+                  <div className="news-tags">{(n.tags||[]).map((t,j)=>{ const isTx=t.toLowerCase().includes("texas")||t.toLowerCase().includes("austin"); const isKey=WATCHED_LABELS.some(l=>t.toLowerCase().includes(l)); return <span key={j} className={`ntag ${isTx?"ntag-tx":isKey?"ntag-label-key":"ntag-label"}`}>{t}</span>; })}{n.texas&&<span className="ntag ntag-tx">🤠 Texas</span>}</div>
+                </div>)}</div>}
+              </div>}
+            </>}
+          </div>
+        )}
+
+      </div>
+    </>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById("root")).render(<App/>);
+</script>
+</body>
+</html>

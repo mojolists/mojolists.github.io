@@ -481,8 +481,8 @@ let carouselIndex  = 0;
 let viewOffset     = 0;   // float, drives all renders
 let cRafId         = null;
 let sortDirections = {};
-let currentView    = localStorage.getItem('mojoArchiveView') || 'carousel';
-if (currentView === 'table') currentView = 'carousel';
+let currentView    = localStorage.getItem('mojoArchiveView') || 'preview';
+if (currentView === 'table') currentView = 'preview';
 
 /* ── Apply transforms to all 5 slots ───────────────────────────────── */
 function renderCarousel() {
