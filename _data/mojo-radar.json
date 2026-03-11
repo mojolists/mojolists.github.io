@@ -1,0 +1,160 @@
+{
+  "releases": {
+    "rel:jalen-ngonda-doctrine-of-love": {
+      "artist": "Jalen Ngonda",
+      "album": "Doctrine of Love",
+      "releaseDate": "Jun 5 2026",
+      "genre": "Soul",
+      "label": "Daptone Records",
+      "reviewType": "regular",
+      "series": "",
+      "why": "Critical soul breakthrough delivering gospel-charged grooves and viral resonance.",
+      "priority": "high",
+      "texas": false,
+      "key": "rel:jalen-ngonda-doctrine-of-love",
+      "addedAt": "2026-03-11T14:53:32.720Z",
+      "preordered": false
+    },
+    "rel:thee-marloes-di-hotel-malibu": {
+      "artist": "Thee Marloes",
+      "album": "Di Hotel Malibu",
+      "releaseDate": "May 22 2026",
+      "genre": "Soul",
+      "label": "Big Crown Records",
+      "reviewType": "regular",
+      "series": "",
+      "why": "Indonesian soul trio's sophomore album expands their groove with porous soundscapes.",
+      "priority": "high",
+      "texas": false,
+      "key": "rel:thee-marloes-di-hotel-malibu",
+      "addedAt": "2026-03-11T14:53:32.720Z",
+      "preordered": false
+    },
+    "rel:les-imprim-s-fading-forward": {
+      "artist": "Les Imprimés",
+      "album": "Fading Forward",
+      "releaseDate": "Apr 10 2026",
+      "genre": "Soul",
+      "label": "Big Crown Records",
+      "reviewType": "regular",
+      "series": "",
+      "why": "Norwegian soul producer blends 60s soul with hip-hop energy and ethereal vocals.",
+      "priority": "high",
+      "texas": false,
+      "key": "rel:les-imprim-s-fading-forward",
+      "addedAt": "2026-03-11T14:53:32.720Z",
+      "preordered": false
+    },
+    "rel:parlor-greens-emeralds": {
+      "artist": "Parlor Greens",
+      "album": "Emeralds",
+      "releaseDate": "Apr 10 2026",
+      "genre": "Funk",
+      "label": "Colemine Records",
+      "reviewType": "regular",
+      "series": "",
+      "why": "Funky organ trio serves beautifully curated sampler of organ-driven instrumentals.",
+      "priority": "high",
+      "texas": false,
+      "key": "rel:parlor-greens-emeralds",
+      "addedAt": "2026-03-11T14:53:32.720Z",
+      "preordered": false
+    },
+    "rel:joey-qui-ones-inna-soul-steady-situation": {
+      "artist": "Joey Quiñones",
+      "album": "Inna Soul Steady Situation",
+      "releaseDate": "May 29 2026",
+      "genre": "Soul",
+      "label": "Colemine Records",
+      "reviewType": "regular",
+      "series": "",
+      "why": "East LA soul leader explores reggae and rocksteady foundations in debut solo.",
+      "priority": "high",
+      "texas": true,
+      "key": "rel:joey-qui-ones-inna-soul-steady-situation",
+      "addedAt": "2026-03-11T14:53:32.720Z",
+      "preordered": false
+    },
+    "rel:doctor-bionic-electric-pollen": {
+      "artist": "Doctor Bionic",
+      "album": "Electric Pollen",
+      "releaseDate": "May 15 2026",
+      "genre": "Funk",
+      "label": "Colemine Records",
+      "reviewType": "regular",
+      "series": "",
+      "why": "Cincinnati producer's improvised organic grooves blend soul jazz and hip-hop.",
+      "priority": "medium",
+      "texas": false,
+      "key": "rel:doctor-bionic-electric-pollen",
+      "addedAt": "2026-03-11T14:53:32.720Z",
+      "preordered": false
+    }
+  },
+  "radarNews": {
+    "fetchedAt": "2026-03-11T14:53:32.721Z",
+    "news": [
+      {
+        "headline": "Austin Blues Festival Returns April 25-26 with Parliament Funkadelic Headlining",
+        "source": "Hoodline",
+        "date": "Mar 9 2026",
+        "blurb": "Austin Blues Fest returns to Waterloo Park honoring Antone's legacy.",
+        "tags": [
+          "Funk",
+          "Blues",
+          "Texas"
+        ],
+        "texas": true
+      },
+      {
+        "headline": "Tedeschi Trucks Band Releases 'Future Soul' Album March 20",
+        "source": "Blues Rock Review",
+        "date": "Mar 1 2026",
+        "blurb": "<cite index=\"35-2\">Tedeschi Trucks Band announced sixth studio album Future Soul, released March 20 via Fantasy Records</cite>.",
+        "tags": [
+          "Soul",
+          "Blues",
+          "R&B"
+        ],
+        "texas": false
+      },
+      {
+        "headline": "Colemine Records Releases New Vinyl from Durand Jones & The Indications March 13",
+        "source": "Colemine Records",
+        "date": "Mar 4 2026",
+        "blurb": "<cite index=\"14-2\">Durand Jones & The Indications releases Let's Take Our Time March 13</cite>.",
+        "tags": [
+          "Colemine",
+          "Soul",
+          "Funk"
+        ],
+        "texas": false
+      },
+      {
+        "headline": "Daptone Records' Jalen Ngonda Announced for Mostly Jazz Funk Soul Festival July 2026",
+        "source": "God Is In The TV",
+        "date": "Feb 11 2026",
+        "blurb": "<cite index=\"1-1\">Daptone Records recording star Jalen Ngonda announced as Sunday headliner</cite>.",
+        "tags": [
+          "Daptone",
+          "Soul",
+          "Funk"
+        ],
+        "texas": false
+      },
+      {
+        "headline": "Selwyn Birchwood Releases Electric Swamp Funkin' Blues March 27 on Alligator",
+        "source": "Alligator Records",
+        "date": "Mar 6 2026",
+        "blurb": "<cite index=\"31-1\">Award-winning bluesman Selwyn Birchwood releases Electric Swamp Funkin' Blues, his fifth Alligator Records album</cite>.",
+        "tags": [
+          "Blues",
+          "Funk",
+          "Soul"
+        ],
+        "texas": false
+      }
+    ]
+  },
+  "savedAt": "2026-03-11T14:53:32.721Z"
+}
