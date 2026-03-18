@@ -55,7 +55,7 @@ body {
     font-family: 'Inter', sans-serif !important;
     font-weight: 500;
     font-size: 1.1rem;
-    color: #e63946;
+    color: #e63946; /* default: red for current reviews — replay.njk overrides to gold inline */
     letter-spacing: -0.01em;
     text-transform: uppercase;
 }
@@ -79,15 +79,7 @@ body {
     color: rgba(255, 255, 255, 0.9);
 }
 
-.mojo-rating {
-    font-family: 'Inter', sans-serif !important;
-    font-weight: 600;
-    font-style: italic;
-    font-size: 4rem;
-    color: #ffffff;
-    line-height: 1;
-    letter-spacing: -0.05em;
-}
+/* .mojo-rating sizing and color defined per-template in review.njk / replay.njk */
 
 /* Editorial Body Text */
 .review-content {
