@@ -1,0 +1,1545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MojoLists · Publish Calendar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+/* ── RESET ───────────────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; overflow: hidden; }
+body { background: #0d0d0d; color: #eee; font-family: 'Inter', sans-serif; font-size: 13px; }
+button { font-family: inherit; }
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); border-radius: 3px; }
+
+/* ── SETUP SCREEN ────────────────────────────────────────────────────────── */
+.setup-screen {
+  height: 100vh; display: flex; align-items: center;
+  justify-content: center; background: #0d0d0d;
+}
+.setup-box {
+  width: 480px; background: #161616;
+  border: 1px solid rgba(255,255,255,0.1); padding: 40px;
+  display: flex; flex-direction: column; gap: 20px;
+}
+.setup-logo {
+  font-family: 'Cormorant Garamond', serif; font-size: 28px;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: #fff; text-align: center;
+}
+.setup-logo span { color: #e63946; }
+.setup-subtitle {
+  font-family: 'IBM Plex Mono', monospace; font-size: 11px;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: rgba(255,255,255,0.3); text-align: center;
+}
+.setup-note {
+  font-size: 12px; color: rgba(255,255,255,0.45); line-height: 1.75;
+  background: rgba(197,160,89,0.07); border-left: 2px solid #c5a059;
+  padding: 10px 14px;
+}
+.setup-note.dim {
+  border-color: rgba(255,255,255,0.12); background: rgba(255,255,255,0.03);
+  color: rgba(255,255,255,0.28);
+}
+.setup-field { display: flex; flex-direction: column; gap: 7px; }
+.setup-label {
+  font-family: 'IBM Plex Mono', monospace; font-size: 11px;
+  letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.5);
+}
+.setup-input {
+  background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.18);
+  color: #eee; font-family: 'IBM Plex Mono', monospace; font-size: 13px;
+  padding: 10px 12px; outline: none; width: 100%; transition: border-color 0.15s;
+}
+.setup-input:focus { border-color: rgba(197,160,89,0.6); }
+.setup-btn {
+  background: #c5a059; color: #000; border: none;
+  font-family: 'IBM Plex Mono', monospace; font-size: 12px; font-weight: 500;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 12px; cursor: pointer; width: 100%; transition: background 0.15s;
+}
+.setup-btn:hover { background: #a8873f; }
+.setup-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+.setup-btn.ghost {
+  background: transparent; border: 1px solid rgba(255,255,255,0.18);
+  color: rgba(255,255,255,0.4);
+}
+.setup-btn.ghost:hover { color: rgba(255,255,255,0.7); border-color: rgba(255,255,255,0.35); background: transparent; }
+.setup-err {
+  color: #e63946; font-size: 12px; font-family: 'IBM Plex Mono', monospace;
+  display: none; padding: 8px 12px; background: rgba(230,57,70,0.08);
+  border: 1px solid rgba(230,57,70,0.25);
+}
+
+/* ── MAIN APP ─────────────────────────────────────────────────────────────── */
+.app { height: 100vh; display: flex; flex-direction: column; }
+
+/* HEADER */
+.hdr {
+  height: 52px; background: #161616;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  display: flex; align-items: center; padding: 0 20px;
+  gap: 12px; flex-shrink: 0;
+}
+.hdr-logo {
+  font-family: 'Cormorant Garamond', serif; font-size: 20px;
+  letter-spacing: 0.14em; text-transform: uppercase; color: #fff;
+  white-space: nowrap;
+}
+.hdr-logo span { color: #e63946; }
+.hdr-tag {
+  font-family: 'IBM Plex Mono', monospace; font-size: 10px;
+  letter-spacing: 0.15em; text-transform: uppercase;
+  color: rgba(255,255,255,0.25); white-space: nowrap;
+}
+.hdr-sep { width: 1px; height: 20px; background: rgba(255,255,255,0.1); flex-shrink: 0; }
+.hdr-sync { display: flex; align-items: center; gap: 7px; }
+.sync-dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: rgba(255,255,255,0.18); flex-shrink: 0;
+}
+.sync-dot.ok  { background: #10b981; }
+.sync-dot.err { background: #e63946; }
+.sync-dot.busy { background: #c5a059; animation: pulse 1s ease-in-out infinite; }
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+.sync-text {
+  font-family: 'IBM Plex Mono', monospace; font-size: 10px;
+  color: rgba(255,255,255,0.3); white-space: nowrap;
+}
+.hdr-spacer { flex: 1; }
+.hdr-btn {
+  background: transparent; border: 1px solid rgba(255,255,255,0.2);
+  color: rgba(255,255,255,0.5); font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px; letter-spacing: 0.07em; text-transform: uppercase;
+  padding: 5px 11px; cursor: pointer; transition: all 0.15s;
+  white-space: nowrap;
+}
+.hdr-btn:hover { color: #fff; border-color: rgba(255,255,255,0.45); }
+.hdr-btn.gold { border-color: rgba(197,160,89,0.4); color: rgba(197,160,89,0.8); }
+.hdr-btn.gold:hover { background: rgba(197,160,89,0.08); border-color: #c5a059; color: #c5a059; }
+
+/* MAIN LAYOUT */
+.main-layout { flex: 1; display: flex; overflow: hidden; }
+
+/* ── CALENDAR PANEL ───────────────────────────────────────────────────────── */
+.cal-panel {
+  width: 370px; flex-shrink: 0; background: #111;
+  border-right: 1px solid rgba(255,255,255,0.09);
+  display: flex; flex-direction: column;
+}
+.cal-nav {
+  padding: 14px 14px 8px; display: flex; align-items: center;
+  gap: 7px; flex-shrink: 0;
+}
+.cal-month-label {
+  font-family: 'Cormorant Garamond', serif; font-size: 22px;
+  font-weight: 300; color: #fff; flex: 1; letter-spacing: 0.04em;
+}
+.cal-nav-btn {
+  background: transparent; border: 1px solid rgba(255,255,255,0.18);
+  color: rgba(255,255,255,0.45); width: 28px; height: 28px;
+  cursor: pointer; font-size: 15px; display: flex; align-items: center;
+  justify-content: center; transition: all 0.15s; flex-shrink: 0;
+}
+.cal-nav-btn:hover { color: #fff; border-color: rgba(255,255,255,0.45); }
+.add-review-btn {
+  background: rgba(124,58,237,0.12); border: 1px solid rgba(124,58,237,0.4);
+  color: #a78bfa; font-family: 'IBM Plex Mono', monospace; font-size: 10px;
+  letter-spacing: 0.07em; text-transform: uppercase; padding: 5px 10px;
+  cursor: pointer; white-space: nowrap; transition: all 0.15s; flex-shrink: 0;
+}
+.add-review-btn:hover { background: rgba(124,58,237,0.22); border-color: #7c3aed; }
+.cal-dow {
+  display: grid; grid-template-columns: repeat(7, 1fr);
+  padding: 0 6px 4px; flex-shrink: 0;
+}
+.cal-dow-cell {
+  text-align: center; font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px; letter-spacing: 0.08em; color: rgba(255,255,255,0.25);
+  padding: 4px 0; text-transform: uppercase;
+}
+.cal-grid {
+  display: grid; grid-template-columns: repeat(7, 1fr);
+  padding: 0 6px 6px; gap: 1px; flex: 1;
+}
+.cal-day {
+  min-height: 68px; background: rgba(255,255,255,0.018);
+  padding: 5px 4px 4px; cursor: pointer; transition: background 0.1s;
+  display: flex; flex-direction: column; gap: 2px; overflow: hidden;
+}
+.cal-day:hover { background: rgba(255,255,255,0.045); }
+.cal-day.other-month { opacity: 0.28; }
+.cal-day.today { border-top: 2px solid rgba(197,160,89,0.5); }
+.cal-day.today .day-num { color: #c5a059; }
+.day-num {
+  font-family: 'IBM Plex Mono', monospace; font-size: 10px;
+  color: rgba(255,255,255,0.35); line-height: 1; padding-bottom: 1px;
+}
+.review-pill {
+  font-size: 9px; font-family: 'IBM Plex Mono', monospace;
+  background: rgba(124,58,237,0.2); border: 1px solid rgba(124,58,237,0.45);
+  color: #c4b5fd; padding: 1px 4px; white-space: nowrap; overflow: hidden;
+  text-overflow: ellipsis; cursor: pointer; transition: background 0.1s;
+}
+.review-pill:hover { background: rgba(124,58,237,0.38); }
+.release-dot-row { display: flex; gap: 2px; flex-wrap: wrap; margin-top: 1px; }
+.release-dot {
+  width: 7px; height: 7px; border-radius: 50%; cursor: pointer;
+  flex-shrink: 0; transition: transform 0.1s;
+}
+.release-dot:hover { transform: scale(1.3); }
+.release-dot.ordered   { background: #10b981; }
+.release-dot.unordered { background: #f59e0b; }
+
+/* ── LIST PANEL ───────────────────────────────────────────────────────────── */
+.list-panel { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
+
+.list-section { display: flex; flex-direction: column; overflow: hidden; }
+.list-section.releases-section {
+  flex: 1; overflow: hidden; display: flex; flex-direction: column;
+}
+.list-section.reviews-section {
+  flex-shrink: 0; max-height: 260px;
+  border-top: 1px solid rgba(255,255,255,0.09);
+}
+.section-hdr {
+  padding: 11px 20px 9px; border-bottom: 1px solid rgba(255,255,255,0.07);
+  display: flex; align-items: center; gap: 10px; flex-shrink: 0;
+}
+.section-title {
+  font-family: 'IBM Plex Mono', monospace; font-size: 10px;
+  letter-spacing: 0.18em; text-transform: uppercase;
+}
+.section-title.gold { color: rgba(197,160,89,0.65); }
+.section-title.purple { color: rgba(167,139,250,0.65); }
+.section-count {
+  font-family: 'IBM Plex Mono', monospace; font-size: 10px;
+  color: rgba(255,255,255,0.22);
+}
+.section-scroll { overflow-y: auto; flex: 1; }
+
+/* RELEASE CARDS */
+.releases-grid { display: flex; flex-direction: column; }
+.release-card {
+  border-bottom: 1px solid rgba(255,255,255,0.055);
+  padding: 11px 20px; display: flex; gap: 13px; align-items: flex-start;
+}
+.release-card:last-child { border-bottom: none; }
+.preorder-btn {
+  width: 30px; height: 30px; border-radius: 50%;
+  border: 2px solid; cursor: pointer; display: flex; align-items: center;
+  justify-content: center; font-size: 13px; flex-shrink: 0;
+  transition: all 0.2s; background: transparent; margin-top: 3px;
+}
+.preorder-btn.unordered { border-color: #f59e0b; color: #f59e0b; }
+.preorder-btn.unordered:hover { background: rgba(245,158,11,0.12); }
+.preorder-btn.ordered { border-color: #10b981; color: #10b981; }
+.preorder-btn.ordered:hover { background: rgba(16,185,129,0.1); }
+.release-info { flex: 1; min-width: 0; }
+.release-artist {
+  font-size: 14px; font-weight: 500; color: #fff;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.release-album {
+  font-size: 12px; color: rgba(255,255,255,0.45); font-style: italic;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.release-meta {
+  display: flex; gap: 8px; align-items: center; margin-top: 4px; flex-wrap: wrap;
+}
+.release-date {
+  font-family: 'IBM Plex Mono', monospace; font-size: 10px;
+  color: rgba(255,255,255,0.32);
+}
+.release-source {
+  font-size: 10px; color: rgba(255,255,255,0.25);
+}
+.genre-badge {
+  font-family: 'IBM Plex Mono', monospace; font-size: 9px;
+  letter-spacing: 0.07em; background: rgba(197,160,89,0.09);
+  border: 1px solid rgba(197,160,89,0.22); color: rgba(197,160,89,0.65);
+  padding: 1px 6px; text-transform: uppercase;
+}
+.status-badge {
+  font-family: 'IBM Plex Mono', monospace; font-size: 9px;
+  padding: 1px 6px; text-transform: uppercase; letter-spacing: 0.07em;
+}
+.status-badge.ordered {
+  background: rgba(16,185,129,0.09); border: 1px solid rgba(16,185,129,0.28);
+  color: #10b981;
+}
+.status-badge.unordered {
+  background: rgba(245,158,11,0.09); border: 1px solid rgba(245,158,11,0.28);
+  color: #f59e0b;
+}
+.notes-toggle {
+  font-family: 'IBM Plex Mono', monospace; font-size: 9px;
+  color: rgba(255,255,255,0.22); cursor: pointer; background: none;
+  border: none; padding: 0; transition: color 0.15s; margin-top: 5px;
+  display: block; text-align: left;
+}
+.notes-toggle:hover { color: rgba(255,255,255,0.5); }
+.notes-area { display: none; margin-top: 6px; }
+.notes-area.open { display: block; }
+.notes-textarea {
+  width: 100%; background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.1); color: #ddd;
+  font-family: 'Inter', sans-serif; font-size: 12px; padding: 8px;
+  resize: vertical; min-height: 55px; outline: none;
+  transition: border-color 0.15s; line-height: 1.6;
+}
+.notes-textarea:focus { border-color: rgba(197,160,89,0.4); }
+
+/* SCHEDULED REVIEW ITEMS */
+.review-items { display: flex; flex-direction: column; }
+.review-item {
+  border-bottom: 1px solid rgba(255,255,255,0.055);
+  padding: 9px 20px; display: flex; gap: 12px; align-items: flex-start;
+}
+.review-item:last-child { border-bottom: none; }
+.review-date-block { flex-shrink: 0; width: 42px; text-align: center; padding-top: 1px; }
+.review-date-day {
+  font-family: 'IBM Plex Mono', monospace; font-size: 17px;
+  color: #a78bfa; line-height: 1;
+}
+.review-date-mon {
+  font-family: 'IBM Plex Mono', monospace; font-size: 9px;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: rgba(167,139,250,0.45);
+}
+.review-item-info { flex: 1; min-width: 0; }
+.review-item-artist { font-size: 13px; font-weight: 500; color: #fff; }
+.review-item-album {
+  font-size: 12px; color: rgba(255,255,255,0.42); font-style: italic;
+}
+.review-item-badges { display: flex; gap: 6px; margin-top: 4px; flex-wrap: wrap; }
+.type-badge {
+  font-family: 'IBM Plex Mono', monospace; font-size: 9px;
+  padding: 1px 6px; letter-spacing: 0.07em; text-transform: uppercase;
+}
+.type-badge.replay {
+  background: rgba(124,58,237,0.12); border: 1px solid rgba(124,58,237,0.38);
+  color: #a78bfa;
+}
+.type-badge.regular {
+  background: rgba(230,57,70,0.09); border: 1px solid rgba(230,57,70,0.32);
+  color: #f87171;
+}
+.series-badge {
+  font-family: 'IBM Plex Mono', monospace; font-size: 9px;
+  padding: 1px 6px; letter-spacing: 0.07em; text-transform: uppercase;
+  background: rgba(197,160,89,0.07); border: 1px solid rgba(197,160,89,0.2);
+  color: rgba(197,160,89,0.55);
+}
+.review-actions { display: flex; gap: 4px; flex-shrink: 0; }
+.icon-btn {
+  background: transparent; border: 1px solid rgba(255,255,255,0.12);
+  color: rgba(255,255,255,0.3); width: 26px; height: 26px;
+  cursor: pointer; font-size: 12px; display: flex;
+  align-items: center; justify-content: center; transition: all 0.15s;
+}
+.icon-btn:hover { border-color: rgba(255,255,255,0.38); color: #fff; }
+.icon-btn.del:hover { border-color: #e63946; color: #e63946; }
+
+/* ── MODAL ────────────────────────────────────────────────────────────────── */
+.modal-overlay {
+  position: fixed; inset: 0; background: rgba(0,0,0,0.72);
+  display: none; align-items: center; justify-content: center; z-index: 100;
+}
+.modal-overlay.open { display: flex; }
+.modal {
+  background: #1a1a1a; border: 1px solid rgba(255,255,255,0.12);
+  width: 440px; padding: 28px; display: flex; flex-direction: column; gap: 16px;
+}
+.modal-title {
+  font-family: 'IBM Plex Mono', monospace; font-size: 11px;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: rgba(255,255,255,0.5); padding-bottom: 4px;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+}
+.modal-field { display: flex; flex-direction: column; gap: 6px; }
+.modal-label {
+  font-family: 'IBM Plex Mono', monospace; font-size: 10px;
+  letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.42);
+}
+.modal-input {
+  background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.14);
+  color: #eee; font-family: 'Inter', sans-serif; font-size: 14px;
+  padding: 9px 11px; outline: none; width: 100%; transition: border-color 0.15s;
+}
+.modal-input:focus { border-color: rgba(197,160,89,0.5); }
+.modal-select {
+  background: #1e1e1e; border: 1px solid rgba(255,255,255,0.14);
+  color: #eee; font-family: 'Inter', sans-serif; font-size: 14px;
+  padding: 9px 11px; outline: none; width: 100%; cursor: pointer;
+}
+.modal-select option { background: #1e1e1e; }
+.type-toggle { display: flex; }
+.type-opt {
+  flex: 1; padding: 8px; font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px; letter-spacing: 0.07em; text-transform: uppercase;
+  border: 1px solid rgba(255,255,255,0.14); background: transparent;
+  color: rgba(255,255,255,0.45); cursor: pointer; transition: all 0.15s;
+}
+.type-opt:first-child { border-right: none; }
+.type-opt:hover:not(.active-regular):not(.active-replay) { color: rgba(255,255,255,0.8); }
+.type-opt.active-regular {
+  background: rgba(230,57,70,0.12); border-color: #e63946; color: #e63946;
+}
+.type-opt.active-replay {
+  background: rgba(124,58,237,0.14); border-color: #7c3aed; color: #a78bfa;
+}
+.modal-actions {
+  display: flex; gap: 8px; justify-content: flex-end; padding-top: 6px;
+}
+.modal-btn {
+  font-family: 'IBM Plex Mono', monospace; font-size: 11px;
+  letter-spacing: 0.07em; text-transform: uppercase;
+  padding: 8px 18px; border: none; cursor: pointer; transition: all 0.15s;
+}
+.modal-btn.primary { background: #c5a059; color: #000; }
+.modal-btn.primary:hover { background: #a8873f; }
+.modal-btn.secondary {
+  background: transparent; border: 1px solid rgba(255,255,255,0.2);
+  color: rgba(255,255,255,0.5);
+}
+.modal-btn.secondary:hover { color: #fff; border-color: rgba(255,255,255,0.4); }
+.modal-btn.danger {
+  background: transparent; border: 1px solid rgba(230,57,70,0.38);
+  color: #e63946; margin-right: auto;
+}
+.modal-btn.danger:hover { background: rgba(230,57,70,0.1); }
+
+/* ── EMPTY STATES ─────────────────────────────────────────────────────────── */
+.empty-state {
+  padding: 36px 20px; text-align: center; color: rgba(255,255,255,0.18);
+  font-family: 'IBM Plex Mono', monospace; font-size: 11px;
+  letter-spacing: 0.1em; text-transform: uppercase; line-height: 1.8;
+}
+
+/* ── TOAST ───────────────────────────────────────────────────────────────── */
+.toast {
+  position: fixed; bottom: 22px; left: 50%; transform: translateX(-50%);
+  background: #222; border: 1px solid rgba(255,255,255,0.15); color: #eee;
+  font-family: 'IBM Plex Mono', monospace; font-size: 12px;
+  padding: 9px 20px; z-index: 300; opacity: 0; transition: opacity 0.2s;
+  pointer-events: none; white-space: nowrap;
+}
+.toast.show { opacity: 1; }
+</style>
+</head>
+<body>
+
+<!-- ── SETUP / CREDENTIALS SCREEN ────────────────────────────────────────── -->
+<div id="setup-screen" class="setup-screen" style="display:none;">
+  <div class="setup-box">
+    <div class="setup-logo">MOJO<span>LISTS</span></div>
+    <div class="setup-subtitle">Publish Calendar · Gist Setup</div>
+
+    <div class="setup-note">
+      Your Gist ID and GitHub token are stored <strong>only in your browser's localStorage</strong>
+      — they are never written into this HTML file, so it's safe to commit this file to your public
+      repo exactly as-is. You'll need to enter credentials once per browser/machine.
+    </div>
+
+    <div class="setup-field">
+      <label class="setup-label">GitHub Gist ID</label>
+      <input id="setup-gist-id" class="setup-input" type="text"
+             placeholder="e.g. a1b2c3d4e5f6abc123..." autocomplete="off" spellcheck="false">
+    </div>
+
+    <div class="setup-field">
+      <label class="setup-label">GitHub Personal Access Token (gist scope only)</label>
+      <input id="setup-token" class="setup-input" type="password"
+             placeholder="ghp_..." autocomplete="off" spellcheck="false">
+    </div>
+
+    <div id="setup-err" class="setup-err"></div>
+
+    <button class="setup-btn" id="setup-connect-btn" onclick="saveSetup()">
+      Connect &amp; Load Calendar
+    </button>
+
+    <div class="setup-note dim">
+      Don't have a Gist yet? The calendar still works — data is saved in this browser only.
+      You can add Gist credentials later via the Settings button in the header.
+    </div>
+
+    <button class="setup-btn ghost" id="setup-skip-btn" onclick="skipSetup()">
+      Skip — Use This Browser Only
+    </button>
+
+    <button class="setup-btn ghost" id="setup-cancel-btn" onclick="cancelSetup()"
+            style="display:none;">
+      ← Cancel
+    </button>
+  </div>
+</div>
+
+<!-- ── MAIN APP ───────────────────────────────────────────────────────────── -->
+<div id="app" class="app" style="display:none;">
+
+  <!-- HEADER -->
+  <div class="hdr">
+    <div class="hdr-logo">MOJO<span>LISTS</span></div>
+    <div class="hdr-tag">Publish Calendar</div>
+    <div class="hdr-sep"></div>
+    <div class="hdr-sync">
+      <div class="sync-dot" id="sync-dot"></div>
+      <div class="sync-text" id="sync-text">—</div>
+    </div>
+    <div class="hdr-spacer"></div>
+    <button class="hdr-btn gold" onclick="triggerRadarImport()" title="Load releases from mojo-radar.json">Import Radar</button>
+    <button class="hdr-btn" onclick="exportJSON()" title="Download calendar data as JSON">Export JSON</button>
+    <button class="hdr-btn" onclick="triggerImportJSON()" title="Restore from a saved JSON export">Import JSON</button>
+    <button class="hdr-btn" onclick="forceSync()" title="Re-fetch data from your Gist">↻ Sync</button>
+    <div class="hdr-sep"></div>
+    <button class="hdr-btn" onclick="showSetup()">Settings</button>
+  </div>
+
+  <!-- MAIN LAYOUT -->
+  <div class="main-layout">
+
+    <!-- CALENDAR -->
+    <div class="cal-panel">
+      <div class="cal-nav">
+        <div class="cal-month-label" id="cal-month-label"></div>
+        <button class="cal-nav-btn" onclick="prevMonth()" title="Previous month">‹</button>
+        <button class="cal-nav-btn" onclick="nextMonth()" title="Next month">›</button>
+        <button class="add-review-btn" onclick="openAddReview(null)">+ Review</button>
+      </div>
+      <div class="cal-dow">
+        <div class="cal-dow-cell">Su</div>
+        <div class="cal-dow-cell">Mo</div>
+        <div class="cal-dow-cell">Tu</div>
+        <div class="cal-dow-cell">We</div>
+        <div class="cal-dow-cell">Th</div>
+        <div class="cal-dow-cell">Fr</div>
+        <div class="cal-dow-cell">Sa</div>
+      </div>
+      <div class="cal-grid" id="cal-grid"></div>
+    </div>
+
+    <!-- LIST PANEL -->
+    <div class="list-panel">
+
+      <!-- UPCOMING RELEASES -->
+      <div class="list-section releases-section">
+        <div class="section-hdr">
+          <div class="section-title gold">Upcoming Releases</div>
+          <div class="section-count" id="releases-count"></div>
+        </div>
+        <div class="section-scroll">
+          <div class="releases-grid" id="releases-list"></div>
+        </div>
+      </div>
+
+      <!-- SCHEDULED REVIEWS -->
+      <div class="list-section reviews-section">
+        <div class="section-hdr">
+          <div class="section-title purple">Scheduled Reviews</div>
+          <div class="section-count" id="reviews-count"></div>
+        </div>
+        <div class="section-scroll">
+          <div class="review-items" id="reviews-list"></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ── ADD / EDIT REVIEW MODAL ────────────────────────────────────────────── -->
+<div class="modal-overlay" id="modal-overlay" onclick="handleOverlayClick(event)">
+  <div class="modal">
+    <div class="modal-title" id="modal-title">Schedule a Review</div>
+
+    <div class="modal-field">
+      <label class="modal-label">Artist</label>
+      <input id="m-artist" class="modal-input" type="text" placeholder="e.g. Joy Division">
+    </div>
+    <div class="modal-field">
+      <label class="modal-label">Album</label>
+      <input id="m-album" class="modal-input" type="text" placeholder="e.g. Unknown Pleasures">
+    </div>
+    <div class="modal-field">
+      <label class="modal-label">Publish Date</label>
+      <input id="m-date" class="modal-input" type="date">
+    </div>
+    <div class="modal-field">
+      <label class="modal-label">Review Type</label>
+      <div class="type-toggle">
+        <button class="type-opt" id="type-regular" onclick="setModalType('regular')">Regular</button>
+        <button class="type-opt" id="type-replay" onclick="setModalType('replay')">Re-Play</button>
+      </div>
+    </div>
+    <div class="modal-field" id="series-field" style="display:none;">
+      <label class="modal-label">Re-Play Series</label>
+      <select id="m-series" class="modal-select">
+        <option value="classics">Classics</option>
+        <option value="new-wave">New Wave</option>
+      </select>
+    </div>
+    <div class="modal-field">
+      <label class="modal-label">Notes (optional)</label>
+      <textarea id="m-notes" class="modal-input" rows="3"
+                placeholder="Anything to remember about this review…"
+                style="resize:vertical;"></textarea>
+    </div>
+
+    <div class="modal-actions">
+      <button class="modal-btn danger" id="modal-delete-btn"
+              onclick="deleteEditingReview()" style="display:none;">Delete</button>
+      <button class="modal-btn secondary" onclick="closeModal()">Cancel</button>
+      <button class="modal-btn primary" onclick="saveReview()">Save</button>
+    </div>
+  </div>
+</div>
+
+<!-- Hidden file inputs -->
+<input type="file" id="radar-file-input"  accept=".json" style="display:none;"
+       onchange="handleRadarImport(event)">
+<input type="file" id="import-json-input" accept=".json" style="display:none;"
+       onchange="handleImportJSON(event)">
+
+<!-- Toast notification -->
+<div class="toast" id="toast"></div>
+
+<script>
+// ─────────────────────────────────────────────────────────────────────────────
+// CONFIG
+// ─────────────────────────────────────────────────────────────────────────────
+// ⚠️  DO NOT put your Gist ID or token here — this file is in a public repo.
+// ⚠️  Enter them in the setup screen instead. They are stored in localStorage,
+// ⚠️  which is private to your browser and never exposed in the HTML source.
+
+const GIST_FILE = 'mojolists-calendar.json';   // filename inside your Gist
+
+// ─────────────────────────────────────────────────────────────────────────────
+// SEED / DEFAULT DATA
+// Change or extend this only if you want different items pre-loaded
+// the very first time someone opens this tool on a brand-new Gist.
+// ─────────────────────────────────────────────────────────────────────────────
+const SEED_DATA = {
+  scheduledReviews: [
+    {
+      id: 'rev-001',
+      artist: 'Gang of Four',
+      album: 'Entertainment!',
+      date: '2026-03-21',
+      type: 'replay',
+      series: 'new-wave',
+      notes: ''
+    },
+    {
+      id: 'rev-002',
+      artist: 'New Order',
+      album: 'Power, Corruption & Lies',
+      date: '2026-03-21',
+      type: 'replay',
+      series: 'new-wave',
+      notes: ''
+    }
+  ],
+  releases: [
+    {
+      key: 'rel:les-imprim-s-fading-forward',
+      artist: 'Les Imprimés',
+      album: 'Fading Forward',
+      releaseDate: 'Apr 10 2026',
+      label: 'Big Crown Records',
+      genre: 'Soul',
+      preordered: true,
+      notes: ''
+    },
+    {
+      key: 'rel:parlor-greens-emeralds',
+      artist: 'Parlor Greens',
+      album: 'Emeralds',
+      releaseDate: 'Apr 10 2026',
+      label: 'Colemine Records',
+      genre: 'Funk',
+      preordered: true,
+      notes: ''
+    },
+    {
+      key: 'rel:doctor-bionic-electric-pollen',
+      artist: 'Doctor Bionic',
+      album: 'Electric Pollen',
+      releaseDate: 'May 15 2026',
+      label: 'Colemine Records',
+      genre: 'Funk',
+      preordered: true,
+      notes: ''
+    },
+    {
+      key: 'rel:thee-marloes-di-hotel-malibu',
+      artist: 'Thee Marloes',
+      album: 'Di Hotel Malibu',
+      releaseDate: 'May 22 2026',
+      label: 'Big Crown Records',
+      genre: 'Soul',
+      preordered: true,
+      notes: ''
+    },
+    {
+      key: 'rel:joey-qui-ones-inna-soul-steady-situation',
+      artist: 'Joey Quiñones',
+      album: 'Inna Soul Steady Situation',
+      releaseDate: 'May 29 2026',
+      label: 'Colemine Records',
+      genre: 'Soul',
+      preordered: true,
+      notes: ''
+    },
+    {
+      key: 'rel:jalen-ngonda-doctrine-of-love',
+      artist: 'Jalen Ngonda',
+      album: 'Doctrine of Love',
+      releaseDate: 'Jun 5 2026',
+      label: 'Daptone Records',
+      genre: 'Soul',
+      preordered: true,
+      notes: ''
+    }
+  ]
+};
+
+// ─────────────────────────────────────────────────────────────────────────────
+// STATE
+// ─────────────────────────────────────────────────────────────────────────────
+let appData    = { scheduledReviews: [], releases: [] };
+let calYear    = new Date().getFullYear();
+let calMonth   = new Date().getMonth();  // 0-indexed
+let modalMode  = 'add';    // 'add' | 'edit'
+let editingId  = null;
+let modalType  = 'regular';
+let openNotes  = new Set();  // tracks which notes panels are expanded: "release:key" or "review:id"
+let isFirstRun = false;      // true when setup screen is shown for the first time
+
+// ─────────────────────────────────────────────────────────────────────────────
+// CREDENTIALS  (stored in localStorage, never in this file)
+// ─────────────────────────────────────────────────────────────────────────────
+function getCreds() {
+  try {
+    const raw = localStorage.getItem('mojo-cal-config');
+    if (!raw) return { gistId: '', token: '' };
+    return JSON.parse(raw);
+  } catch(e) { return { gistId: '', token: '' }; }
+}
+
+function saveCreds(gistId, token) {
+  localStorage.setItem('mojo-cal-config', JSON.stringify({ gistId, token }));
+}
+
+function hasGist() {
+  const { gistId, token } = getCreds();
+  return !!(gistId && token);
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// SYNC STATUS  (the dot + text in the header)
+// ─────────────────────────────────────────────────────────────────────────────
+function setSyncStatus(state, msg) {
+  const dot  = document.getElementById('sync-dot');
+  const text = document.getElementById('sync-text');
+  if (!dot || !text) return;
+  dot.className = 'sync-dot ' + state;
+  const labels = { ok: 'Synced', err: 'Error', busy: 'Syncing…' };
+  text.textContent = msg || labels[state] || '—';
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// GIST  API
+// ─────────────────────────────────────────────────────────────────────────────
+async function loadFromGist() {
+  if (!hasGist()) return loadFromLocal();
+  const { gistId, token } = getCreds();
+  try {
+    setSyncStatus('busy', 'Loading…');
+    const res = await fetch(`https://api.github.com/gists/${gistId}`, {
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Accept': 'application/vnd.github.v3+json'
+      }
+    });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const gist = await res.json();
+    const content = gist.files[GIST_FILE]?.content;
+    if (content && content.trim() !== '{}' && content.trim() !== '') {
+      const parsed = JSON.parse(content);
+      if (parsed.scheduledReviews || parsed.releases) {
+        localStorage.setItem('mojo-cal-data', content);
+        setSyncStatus('ok');
+        return parsed;
+      }
+    }
+    // Gist is empty — push seed data up
+    const seed = deepCopy(SEED_DATA);
+    await writeToGist(seed);
+    return seed;
+  } catch(e) {
+    setSyncStatus('err', e.message);
+    showToast('⚠ Gist load failed — using local cache');
+    return loadFromLocal();
+  }
+}
+
+async function writeToGist(data) {
+  if (!hasGist()) return;
+  const { gistId, token } = getCreds();
+  const content = JSON.stringify(data, null, 2);
+  localStorage.setItem('mojo-cal-data', content);
+  try {
+    setSyncStatus('busy', 'Saving…');
+    const res = await fetch(`https://api.github.com/gists/${gistId}`, {
+      method: 'PATCH',
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Accept': 'application/vnd.github.v3+json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ files: { [GIST_FILE]: { content } } })
+    });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    setSyncStatus('ok');
+  } catch(e) {
+    setSyncStatus('err', 'Save failed');
+    showToast('⚠ Gist save failed — data saved locally only');
+  }
+}
+
+function loadFromLocal() {
+  try {
+    const raw = localStorage.getItem('mojo-cal-data');
+    if (raw) {
+      const parsed = JSON.parse(raw);
+      if (parsed.scheduledReviews || parsed.releases) {
+        setSyncStatus('ok', 'Local only');
+        return parsed;
+      }
+    }
+  } catch(e) { /* fall through */ }
+  setSyncStatus('ok', 'Using defaults');
+  return deepCopy(SEED_DATA);
+}
+
+async function save() {
+  localStorage.setItem('mojo-cal-data', JSON.stringify(appData));
+  if (hasGist()) {
+    await writeToGist(appData);
+  } else {
+    setSyncStatus('ok', 'Local only');
+  }
+}
+
+async function forceSync() {
+  if (!hasGist()) {
+    showToast('No Gist configured — go to Settings first');
+    return;
+  }
+  const data = await loadFromGist();
+  appData = data;
+  renderAll();
+  showToast('✓ Synced from Gist');
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// DATE UTILITIES
+// ─────────────────────────────────────────────────────────────────────────────
+function dateKey(d) {
+  const y = d.getFullYear();
+  const m = String(d.getMonth() + 1).padStart(2, '0');
+  const day = String(d.getDate()).padStart(2, '0');
+  return `${y}-${m}-${day}`;
+}
+
+function parseReleaseDate(str) {
+  if (!str) return null;
+  try {
+    // "Apr 10 2026" — add noon to avoid timezone-shift issues
+    const d = new Date(str + ' 12:00:00');
+    return isNaN(d.getTime()) ? null : d;
+  } catch(e) { return null; }
+}
+
+const MONTH_NAMES = [
+  'January','February','March','April','May','June',
+  'July','August','September','October','November','December'
+];
+
+function dayMonthParts(dateStr) {
+  try {
+    const [y, m, d] = dateStr.split('-').map(Number);
+    const date = new Date(y, m - 1, d);
+    return {
+      day: String(d),
+      mon: date.toLocaleDateString('en-US', { month: 'short' }).toUpperCase()
+    };
+  } catch(e) { return { day: '?', mon: '???' }; }
+}
+
+function deepCopy(obj) {
+  return JSON.parse(JSON.stringify(obj));
+}
+
+function safeId(str) {
+  return str.replace(/[^a-zA-Z0-9_-]/g, '-');
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// CALENDAR RENDER
+// ─────────────────────────────────────────────────────────────────────────────
+function renderCalendar() {
+  const label = document.getElementById('cal-month-label');
+  const grid  = document.getElementById('cal-grid');
+  if (!label || !grid) return;
+
+  label.textContent = `${MONTH_NAMES[calMonth]} ${calYear}`;
+
+  // Build index maps so each day cell knows what's on it
+  const reviewsByDate  = {};
+  const releasesByDate = {};
+
+  appData.scheduledReviews.forEach(r => {
+    if (!reviewsByDate[r.date]) reviewsByDate[r.date] = [];
+    reviewsByDate[r.date].push(r);
+  });
+  appData.releases.forEach(r => {
+    const d = parseReleaseDate(r.releaseDate);
+    if (!d) return;
+    const k = dateKey(d);
+    if (!releasesByDate[k]) releasesByDate[k] = [];
+    releasesByDate[k].push(r);
+  });
+
+  const todayKey = dateKey(new Date());
+  const firstDow = new Date(calYear, calMonth, 1).getDay();  // 0=Sun
+  const lastDate  = new Date(calYear, calMonth + 1, 0).getDate();
+
+  let html = '';
+
+  // Previous-month padding
+  for (let i = 0; i < firstDow; i++) {
+    const d = new Date(calYear, calMonth, -firstDow + 1 + i);
+    html += buildDayCell(d, dateKey(d), false, reviewsByDate, releasesByDate, todayKey);
+  }
+  // Current month
+  for (let i = 1; i <= lastDate; i++) {
+    const d = new Date(calYear, calMonth, i);
+    html += buildDayCell(d, dateKey(d), true, reviewsByDate, releasesByDate, todayKey);
+  }
+  // Next-month padding (always fill to 42 cells = 6 rows)
+  const filled = firstDow + lastDate;
+  for (let i = 1; i <= 42 - filled; i++) {
+    const d = new Date(calYear, calMonth + 1, i);
+    html += buildDayCell(d, dateKey(d), false, reviewsByDate, releasesByDate, todayKey);
+  }
+
+  grid.innerHTML = html;
+}
+
+function buildDayCell(d, k, currentMonth, reviewsByDate, releasesByDate, todayKey) {
+  const classes = ['cal-day'];
+  if (!currentMonth) classes.push('other-month');
+  if (k === todayKey) classes.push('today');
+
+  const reviews  = reviewsByDate[k]  || [];
+  const releases = releasesByDate[k] || [];
+
+  // All days are clickable (other-month days let you schedule in advance)
+  const clickAction = `onclick="openAddReview('${k}')"`;
+
+  let inner = `<div class="day-num">${d.getDate()}</div>`;
+
+  reviews.forEach(r => {
+    const shortName = r.artist.length > 11 ? r.artist.slice(0, 10) + '…' : r.artist;
+    inner += `<div class="review-pill"
+      onclick="event.stopPropagation(); openEditReview('${r.id}')"
+      title="${esc(r.artist)} — ${esc(r.album)}">${esc(shortName)}</div>`;
+  });
+
+  if (releases.length) {
+    inner += '<div class="release-dot-row">';
+    releases.forEach(r => {
+      const cls   = r.preordered ? 'ordered' : 'unordered';
+      const label = `${r.artist} — ${r.album}`;
+      inner += `<div class="release-dot ${cls}"
+        title="${esc(label)}"
+        onclick="event.stopPropagation(); scrollToRelease('${safeId(r.key)}')"></div>`;
+    });
+    inner += '</div>';
+  }
+
+  return `<div class="${classes.join(' ')}" ${clickAction}>${inner}</div>`;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// RELEASES LIST RENDER
+// ─────────────────────────────────────────────────────────────────────────────
+function renderReleasesList() {
+  const list  = document.getElementById('releases-list');
+  const count = document.getElementById('releases-count');
+  if (!list) return;
+
+  const sorted = [...appData.releases].sort((a, b) => {
+    const da = parseReleaseDate(a.releaseDate);
+    const db = parseReleaseDate(b.releaseDate);
+    if (!da && !db) return 0;
+    if (!da) return 1;
+    if (!db) return -1;
+    return da - db;
+  });
+
+  count.textContent = `${sorted.length} release${sorted.length !== 1 ? 's' : ''}`;
+
+  if (sorted.length === 0) {
+    list.innerHTML = `<div class="empty-state">
+      No releases yet.<br>Click "Import Radar" in the header to load from mojo-radar.json
+    </div>`;
+    return;
+  }
+
+  list.innerHTML = sorted.map(r => {
+    const sid   = safeId(r.key);
+    const ord   = r.preordered;
+    const hasN  = !!(r.notes && r.notes.trim());
+    const nOpen = openNotes.has(`release:${r.key}`);
+
+    return `
+    <div class="release-card" id="release-${sid}">
+      <button class="preorder-btn ${ord ? 'ordered' : 'unordered'}"
+              onclick="togglePreorder('${r.key}')"
+              title="${ord ? 'Click to mark as NOT pre-ordered' : 'Click to mark as pre-ordered'}">
+        ${ord ? '✓' : '○'}
+      </button>
+      <div class="release-info">
+        <div class="release-artist">${esc(r.artist)}</div>
+        <div class="release-album">${esc(r.album)}</div>
+        <div class="release-meta">
+          <span class="release-date">${esc(r.releaseDate)}</span>
+          <span class="release-source">${esc(r.label)}</span>
+          ${r.genre ? `<span class="genre-badge">${esc(r.genre)}</span>` : ''}
+          <span class="status-badge ${ord ? 'ordered' : 'unordered'}">
+            ${ord ? 'Pre-ordered' : 'Not yet'}
+          </span>
+        </div>
+        <button class="notes-toggle" onclick="toggleNotes('${r.key}', 'release')">
+          ${hasN ? '▾ Notes' : '+ Add Notes'}
+        </button>
+        <div class="notes-area${nOpen ? ' open' : ''}" id="notes-release-${sid}">
+          <textarea class="notes-textarea"
+            placeholder="Notes about this release…"
+            onblur="saveNotes('${r.key}', 'release', this.value)">${esc(r.notes || '')}</textarea>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// SCHEDULED REVIEWS LIST RENDER
+// ─────────────────────────────────────────────────────────────────────────────
+function renderReviewsList() {
+  const list  = document.getElementById('reviews-list');
+  const count = document.getElementById('reviews-count');
+  if (!list) return;
+
+  const sorted = [...appData.scheduledReviews].sort((a, b) =>
+    a.date.localeCompare(b.date)
+  );
+
+  count.textContent = `${sorted.length} scheduled`;
+
+  if (sorted.length === 0) {
+    list.innerHTML = `<div class="empty-state">
+      No reviews scheduled.<br>Click a calendar day or "+ Review" to add one
+    </div>`;
+    return;
+  }
+
+  list.innerHTML = sorted.map(r => {
+    const { day, mon } = dayMonthParts(r.date);
+    const sid   = safeId(r.id);
+    const hasN  = !!(r.notes && r.notes.trim());
+    const nOpen = openNotes.has(`review:${r.id}`);
+
+    const typeBadge   = r.type === 'replay'
+      ? `<span class="type-badge replay">Re-Play</span>`
+      : `<span class="type-badge regular">Regular</span>`;
+    const seriesBadge = (r.type === 'replay' && r.series)
+      ? `<span class="series-badge">${esc(r.series)}</span>`
+      : '';
+
+    return `
+    <div class="review-item">
+      <div class="review-date-block">
+        <div class="review-date-day">${esc(day)}</div>
+        <div class="review-date-mon">${esc(mon)}</div>
+      </div>
+      <div class="review-item-info">
+        <div class="review-item-artist">${esc(r.artist)}</div>
+        <div class="review-item-album">${esc(r.album)}</div>
+        <div class="review-item-badges">${typeBadge}${seriesBadge}</div>
+        <button class="notes-toggle" onclick="toggleNotes('${r.id}', 'review')">
+          ${hasN ? '▾ Notes' : '+ Notes'}
+        </button>
+        <div class="notes-area${nOpen ? ' open' : ''}" id="notes-review-${sid}">
+          <textarea class="notes-textarea"
+            placeholder="Notes…"
+            onblur="saveNotes('${r.id}', 'review', this.value)">${esc(r.notes || '')}</textarea>
+        </div>
+      </div>
+      <div class="review-actions">
+        <button class="icon-btn" onclick="openEditReview('${r.id}')" title="Edit">✎</button>
+        <button class="icon-btn del" onclick="quickDeleteReview('${r.id}')" title="Delete">✕</button>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// RENDER EVERYTHING
+// ─────────────────────────────────────────────────────────────────────────────
+function renderAll() {
+  renderCalendar();
+  renderReleasesList();
+  renderReviewsList();
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// CALENDAR NAVIGATION
+// ─────────────────────────────────────────────────────────────────────────────
+function prevMonth() {
+  calMonth--;
+  if (calMonth < 0) { calMonth = 11; calYear--; }
+  renderCalendar();
+}
+
+function nextMonth() {
+  calMonth++;
+  if (calMonth > 11) { calMonth = 0; calYear++; }
+  renderCalendar();
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// PREORDER TOGGLE
+// ─────────────────────────────────────────────────────────────────────────────
+async function togglePreorder(key) {
+  const r = appData.releases.find(r => r.key === key);
+  if (!r) return;
+  r.preordered = !r.preordered;
+  await save();
+  renderAll();
+  showToast(r.preordered
+    ? `✓ ${r.artist} marked as pre-ordered`
+    : `${r.artist} marked as not yet pre-ordered`
+  );
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// NOTES  (expand/collapse + save)
+// ─────────────────────────────────────────────────────────────────────────────
+function toggleNotes(id, kind) {
+  const tag = `${kind}:${id}`;
+  const sid = safeId(id);
+  const el  = document.getElementById(`notes-${kind}-${sid}`);
+  if (!el) return;
+
+  if (openNotes.has(tag)) {
+    openNotes.delete(tag);
+    el.classList.remove('open');
+  } else {
+    openNotes.add(tag);
+    el.classList.add('open');
+    el.querySelector('textarea')?.focus();
+  }
+}
+
+async function saveNotes(id, kind, value) {
+  if (kind === 'release') {
+    const r = appData.releases.find(r => r.key === id);
+    if (r) r.notes = value;
+  } else {
+    const r = appData.scheduledReviews.find(r => r.id === id);
+    if (r) r.notes = value;
+  }
+  await save();
+
+  // Update just the toggle button label — no full re-render needed
+  const sid      = safeId(id);
+  const area     = document.getElementById(`notes-${kind}-${sid}`);
+  const btn      = area?.previousElementSibling;
+  if (btn && btn.classList.contains('notes-toggle')) {
+    if (kind === 'release') {
+      btn.textContent = value.trim() ? '▾ Notes' : '+ Add Notes';
+    } else {
+      btn.textContent = value.trim() ? '▾ Notes' : '+ Notes';
+    }
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// SCROLL TO RELEASE IN THE LIST
+// ─────────────────────────────────────────────────────────────────────────────
+function scrollToRelease(sid) {
+  const el = document.getElementById(`release-${sid}`);
+  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// MODAL  — Add / Edit Review
+// ─────────────────────────────────────────────────────────────────────────────
+function openAddReview(dateStr) {
+  modalMode = 'add';
+  editingId = null;
+  document.getElementById('modal-title').textContent = 'Schedule a Review';
+  document.getElementById('modal-delete-btn').style.display = 'none';
+  document.getElementById('m-artist').value = '';
+  document.getElementById('m-album').value  = '';
+  document.getElementById('m-date').value   = dateStr || dateKey(new Date());
+  document.getElementById('m-notes').value  = '';
+  setModalType('regular');
+  openModal();
+}
+
+function openEditReview(id) {
+  const r = appData.scheduledReviews.find(r => r.id === id);
+  if (!r) return;
+  modalMode = 'edit';
+  editingId = id;
+  document.getElementById('modal-title').textContent = 'Edit Scheduled Review';
+  document.getElementById('modal-delete-btn').style.display = 'block';
+  document.getElementById('m-artist').value = r.artist;
+  document.getElementById('m-album').value  = r.album;
+  document.getElementById('m-date').value   = r.date;
+  document.getElementById('m-notes').value  = r.notes || '';
+  setModalType(r.type || 'regular');
+  if (r.type === 'replay') {
+    document.getElementById('m-series').value = r.series || 'classics';
+  }
+  openModal();
+}
+
+function setModalType(type) {
+  modalType = type;
+  const reg    = document.getElementById('type-regular');
+  const rep    = document.getElementById('type-replay');
+  const series = document.getElementById('series-field');
+  reg.className    = 'type-opt' + (type === 'regular' ? ' active-regular' : '');
+  rep.className    = 'type-opt' + (type === 'replay'  ? ' active-replay'  : '');
+  series.style.display = type === 'replay' ? 'flex' : 'none';
+}
+
+function openModal() {
+  document.getElementById('modal-overlay').classList.add('open');
+  setTimeout(() => document.getElementById('m-artist').focus(), 60);
+}
+
+function closeModal() {
+  document.getElementById('modal-overlay').classList.remove('open');
+}
+
+function handleOverlayClick(e) {
+  if (e.target === document.getElementById('modal-overlay')) closeModal();
+}
+
+async function saveReview() {
+  const artist = document.getElementById('m-artist').value.trim();
+  const album  = document.getElementById('m-album').value.trim();
+  const date   = document.getElementById('m-date').value;
+  const notes  = document.getElementById('m-notes').value.trim();
+  const series = modalType === 'replay' ? document.getElementById('m-series').value : '';
+
+  if (!artist || !date) {
+    showToast('⚠ Artist and date are required');
+    return;
+  }
+
+  if (modalMode === 'add') {
+    appData.scheduledReviews.push({
+      id: 'rev-' + Date.now(),
+      artist, album, date, type: modalType, series, notes
+    });
+  } else {
+    const r = appData.scheduledReviews.find(r => r.id === editingId);
+    if (r) Object.assign(r, { artist, album, date, type: modalType, series, notes });
+  }
+
+  closeModal();
+  await save();
+  renderAll();
+  showToast(modalMode === 'add' ? '✓ Review scheduled' : '✓ Review updated');
+}
+
+async function deleteEditingReview() {
+  if (!editingId) return;
+  appData.scheduledReviews = appData.scheduledReviews.filter(r => r.id !== editingId);
+  closeModal();
+  await save();
+  renderAll();
+  showToast('Review removed');
+}
+
+async function quickDeleteReview(id) {
+  appData.scheduledReviews = appData.scheduledReviews.filter(r => r.id !== id);
+  await save();
+  renderAll();
+  showToast('Review removed');
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// IMPORT  mojo-radar.json
+// ─────────────────────────────────────────────────────────────────────────────
+function triggerRadarImport() {
+  document.getElementById('radar-file-input').click();
+}
+
+function handleRadarImport(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = async (e) => {
+    try {
+      const json     = JSON.parse(e.target.result);
+      const releases = json.releases;
+      if (!releases || typeof releases !== 'object') {
+        showToast('⚠ No "releases" object found in this file');
+        return;
+      }
+      const existingKeys = new Set(appData.releases.map(r => r.key));
+      let added = 0, skipped = 0;
+      Object.values(releases).forEach(rel => {
+        if (existingKeys.has(rel.key)) { skipped++; return; }
+        appData.releases.push({
+          key:         rel.key,
+          artist:      rel.artist      || '',
+          album:       rel.album       || '',
+          releaseDate: rel.releaseDate || '',
+          label:       rel.label       || '',
+          genre:       rel.genre       || '',
+          preordered:  rel.preordered  || false,
+          notes:       ''
+        });
+        added++;
+      });
+      await save();
+      renderAll();
+      showToast(`✓ ${added} release${added !== 1 ? 's' : ''} added, ${skipped} already existed`);
+    } catch(err) {
+      showToast('⚠ Could not parse JSON — is this the right file?');
+    }
+    event.target.value = '';
+  };
+  reader.readAsText(file);
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// EXPORT / IMPORT JSON  (full backup)
+// ─────────────────────────────────────────────────────────────────────────────
+function exportJSON() {
+  const content = JSON.stringify(appData, null, 2);
+  const blob    = new Blob([content], { type: 'application/json' });
+  const a       = document.createElement('a');
+  a.href        = URL.createObjectURL(blob);
+  a.download    = `mojolists-calendar-${dateKey(new Date())}.json`;
+  a.click();
+  showToast('✓ JSON exported');
+}
+
+function triggerImportJSON() {
+  document.getElementById('import-json-input').click();
+}
+
+function handleImportJSON(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = async (e) => {
+    try {
+      const data = JSON.parse(e.target.result);
+      if (!data.scheduledReviews && !data.releases) {
+        showToast('⚠ Not a valid MojoLists calendar export');
+        return;
+      }
+      appData = data;
+      await save();
+      renderAll();
+      showToast('✓ Data imported successfully');
+    } catch(err) {
+      showToast('⚠ Could not parse file');
+    }
+    event.target.value = '';
+  };
+  reader.readAsText(file);
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// SETUP SCREEN
+// ─────────────────────────────────────────────────────────────────────────────
+function showSetup() {
+  // Coming from the main app — show Cancel button
+  const { gistId, token } = getCreds();
+  document.getElementById('setup-gist-id').value = gistId || '';
+  document.getElementById('setup-token').value    = token  || '';
+  document.getElementById('setup-err').style.display    = 'none';
+  document.getElementById('setup-cancel-btn').style.display = 'block';
+  document.getElementById('setup-skip-btn').style.display   = 'none';
+  document.getElementById('app').style.display    = 'none';
+  document.getElementById('setup-screen').style.display = 'flex';
+  isFirstRun = false;
+}
+
+function cancelSetup() {
+  document.getElementById('setup-screen').style.display = 'none';
+  document.getElementById('app').style.display = 'flex';
+}
+
+async function saveSetup() {
+  const gistId = document.getElementById('setup-gist-id').value.trim();
+  const token  = document.getElementById('setup-token').value.trim();
+  const errEl  = document.getElementById('setup-err');
+  const btn    = document.getElementById('setup-connect-btn');
+
+  errEl.style.display = 'none';
+  btn.textContent     = 'Connecting…';
+  btn.disabled        = true;
+
+  saveCreds(gistId, token);
+
+  try {
+    let data;
+
+    if (gistId && token) {
+      // Directly test the connection here so we can show a clear error if it fails
+      const res = await fetch(`https://api.github.com/gists/${gistId}`, {
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Accept': 'application/vnd.github.v3+json'
+        }
+      });
+      if (!res.ok) {
+        const status = res.status;
+        if (status === 401) throw new Error('Token invalid or expired (401)');
+        if (status === 404) throw new Error('Gist not found — check the Gist ID (404)');
+        throw new Error(`GitHub returned HTTP ${status}`);
+      }
+      const gist    = await res.json();
+      const content = gist.files[GIST_FILE]?.content;
+
+      if (content && content.trim() !== '{}' && content.trim() !== '') {
+        const parsed = JSON.parse(content);
+        data = (parsed.scheduledReviews || parsed.releases) ? parsed : deepCopy(SEED_DATA);
+      } else {
+        // Gist exists but is empty — populate it with seed data
+        data = deepCopy(SEED_DATA);
+        await fetch(`https://api.github.com/gists/${gistId}`, {
+          method: 'PATCH',
+          headers: {
+            'Authorization': `Bearer ${token}`,
+            'Accept': 'application/vnd.github.v3+json',
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            files: { [GIST_FILE]: { content: JSON.stringify(data, null, 2) } }
+          })
+        });
+      }
+      localStorage.setItem('mojo-cal-data', JSON.stringify(data));
+    } else {
+      data = loadFromLocal();
+    }
+
+    appData = data;
+    btn.textContent = 'Connect & Load Calendar';
+    btn.disabled    = false;
+    document.getElementById('setup-screen').style.display = 'none';
+    document.getElementById('app').style.display          = 'flex';
+    setSyncStatus('ok');
+    renderAll();
+    showToast('✓ Connected to Gist successfully');
+
+  } catch(err) {
+    errEl.textContent   = `Connection failed: ${err.message}`;
+    errEl.style.display = 'block';
+    btn.textContent     = 'Connect & Load Calendar';
+    btn.disabled        = false;
+  }
+}
+
+function skipSetup() {
+  saveCreds('', '');
+  appData = loadFromLocal();
+  document.getElementById('setup-screen').style.display = 'none';
+  document.getElementById('app').style.display          = 'flex';
+  renderAll();
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// TOAST
+// ─────────────────────────────────────────────────────────────────────────────
+let toastTimer;
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove('show'), 3200);
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// UTILITY — HTML escape (prevents XSS from artist/album names)
+// ─────────────────────────────────────────────────────────────────────────────
+function esc(str) {
+  return String(str || '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// KEYBOARD SHORTCUTS
+// ─────────────────────────────────────────────────────────────────────────────
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeModal();
+  // Ctrl/Cmd + Enter saves modal
+  if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+    if (document.getElementById('modal-overlay').classList.contains('open')) {
+      saveReview();
+    }
+  }
+});
+
+// ─────────────────────────────────────────────────────────────────────────────
+// INIT
+// ─────────────────────────────────────────────────────────────────────────────
+async function init() {
+  const configExists = !!localStorage.getItem('mojo-cal-config');
+
+  if (!configExists) {
+    // First ever visit — show setup screen
+    isFirstRun = true;
+    document.getElementById('setup-cancel-btn').style.display = 'none';
+    document.getElementById('setup-skip-btn').style.display   = 'block';
+    document.getElementById('setup-screen').style.display     = 'flex';
+    return;
+  }
+
+  // Returning visit — go straight to the app
+  document.getElementById('app').style.display = 'flex';
+  const data = await loadFromGist();
+  appData    = data;
+  renderAll();
+}
+
+init();
+</script>
+</body>
+</html>
