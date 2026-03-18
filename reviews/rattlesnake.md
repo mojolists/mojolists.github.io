@@ -5,7 +5,7 @@ artist: "Lloyd Cole and the Commotions"
 album: "Rattlesnakes"
 label: "Polydor Records"
 year: "1984"
-image: "ratttlesnake1.jpg"
+image: "rattlesnake1.jpg"
 score1: 88
 score2: 94
 score3: 91
