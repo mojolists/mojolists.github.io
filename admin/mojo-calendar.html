@@ -1294,43 +1294,83 @@ async function quickDeleteReview(id) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// IMPORT  mojo-radar.json
+// IMPORT  mojo-radar.json  (auto from GitHub or manual file fallback)
 // ─────────────────────────────────────────────────────────────────────────────
-function triggerRadarImport() {
-  document.getElementById('radar-file-input').click();
+const RADAR_OWNER = "mojolists";
+const RADAR_REPO  = "mojolists.github.io";
+const RADAR_PATH  = "_data/mojo-radar.json";
+
+async function fetchRadarFromGitHub(token) {
+  const url = `https://api.github.com/repos/${RADAR_OWNER}/${RADAR_REPO}/contents/${RADAR_PATH}`;
+  const res = await fetch(url, {
+    headers: {
+      'Authorization': `token ${token}`,
+      'Accept': 'application/vnd.github.v3+json'
+    }
+  });
+  if (!res.ok) throw new Error(`GitHub ${res.status}`);
+  const file = await res.json();
+  return JSON.parse(atob(file.content.replace(/\n/g, '')));
+}
+
+function mergeRadarReleases(json) {
+  const releases = json.releases;
+  if (!releases || typeof releases !== 'object') return 0;
+  const existingKeys = new Set(appData.releases.map(r => r.key));
+  let added = 0;
+  Object.values(releases).forEach(rel => {
+    if (existingKeys.has(rel.key)) return;
+    appData.releases.push({
+      key:         rel.key,
+      artist:      rel.artist      || '',
+      album:       rel.album       || '',
+      releaseDate: rel.releaseDate || '',
+      label:       rel.label       || '',
+      genre:       rel.genre       || '',
+      preordered:  rel.preordered  || false,
+      notes:       ''
+    });
+    added++;
+  });
+  return added;
+}
+
+// Called automatically on load (silent=true) and manually via button (silent=false)
+async function triggerRadarImport(silent = false) {
+  const token = localStorage.getItem('mojo-github-token');
+  if (!token) {
+    // No token from main admin — fall back to file picker
+    document.getElementById('radar-file-input').click();
+    return;
+  }
+  try {
+    if (!silent) showToast('Syncing from Radar…');
+    const json  = await fetchRadarFromGitHub(token);
+    const added = mergeRadarReleases(json);
+    if (added > 0) {
+      await save();
+      renderAll();
+      showToast(`✓ ${added} new release${added !== 1 ? 's' : ''} loaded from Radar`);
+    } else {
+      if (!silent) showToast('✓ Radar synced — no new releases');
+    }
+  } catch(err) {
+    if (!silent) showToast(`⚠ Could not load Radar: ${err.message}`);
+  }
 }
 
 function handleRadarImport(event) {
+  // Manual file-picker fallback (used when no GitHub token is available)
   const file = event.target.files[0];
   if (!file) return;
   const reader = new FileReader();
   reader.onload = async (e) => {
     try {
-      const json     = JSON.parse(e.target.result);
-      const releases = json.releases;
-      if (!releases || typeof releases !== 'object') {
-        showToast('⚠ No "releases" object found in this file');
-        return;
-      }
-      const existingKeys = new Set(appData.releases.map(r => r.key));
-      let added = 0, skipped = 0;
-      Object.values(releases).forEach(rel => {
-        if (existingKeys.has(rel.key)) { skipped++; return; }
-        appData.releases.push({
-          key:         rel.key,
-          artist:      rel.artist      || '',
-          album:       rel.album       || '',
-          releaseDate: rel.releaseDate || '',
-          label:       rel.label       || '',
-          genre:       rel.genre       || '',
-          preordered:  rel.preordered  || false,
-          notes:       ''
-        });
-        added++;
-      });
+      const json  = JSON.parse(e.target.result);
+      const added = mergeRadarReleases(json);
       await save();
       renderAll();
-      showToast(`✓ ${added} release${added !== 1 ? 's' : ''} added, ${skipped} already existed`);
+      showToast(`✓ ${added} release${added !== 1 ? 's' : ''} added from file`);
     } catch(err) {
       showToast('⚠ Could not parse JSON — is this the right file?');
     }
@@ -1463,6 +1503,8 @@ async function saveSetup() {
     setSyncStatus('ok');
     renderAll();
     showToast('✓ Connected to Gist successfully');
+    // Auto-sync Radar releases after connecting
+    await triggerRadarImport(true);
 
   } catch(err) {
     errEl.textContent   = `Connection failed: ${err.message}`;
@@ -1537,6 +1579,8 @@ async function init() {
   const data = await loadFromGist();
   appData    = data;
   renderAll();
+  // Auto-sync Radar releases silently on every load
+  await triggerRadarImport(true);
 }
 
 init();
