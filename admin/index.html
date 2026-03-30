@@ -662,7 +662,7 @@ function App() {
           <div className="nav-tabs">
             <button className={`nav-tab ${tab==="gen"?"active-gen":""}`} onClick={()=>setTab("gen")}>Generator</button>
             <button className={`nav-tab ${tab==="radar"?"active-radar":""}`} onClick={()=>setTab("radar")}>
-              Radar{radarData&&<span style={{marginLeft:6,fontSize:9}}>{radarFresh?"●":"○"}</span>}
+              Radar
               {preCount>0&&<span style={{marginLeft:7,fontSize:10,color:"#b07fe0"}}>{preCount} pre</span>}
             </button>
           </div>
