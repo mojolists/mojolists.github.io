@@ -283,7 +283,7 @@ Return 5 stories. Return ONLY a valid JSON array, no markdown, no trailing comma
 [{"headline":"...","source":"Publication","date":"Mar 8 2026","blurb":"Short summary.","tags":["Daptone","Soul"],"texas":false}]`;
 
 const RADAR_UPCOMING_SYSTEM = `You are the release calendar editor for MojoLists.com. Primary focus: soul and funk. Key labels: Daptone Records, Colemine Records, Big Crown Records, Big Star Records, Blue Note Records, Karma Chief Records, Dunham Records, Funk Night Records, Timmion Records.
-Return 6 confirmed upcoming releases. releaseDate must be a confirmed date.
+Return up to 12 confirmed upcoming releases spread across the next 90 days — include releases from 30, 60, and 90 days out, not just the nearest ones. releaseDate must be a confirmed date, not a guess.
 Return ONLY a valid JSON array, no markdown, no trailing commas:
 [{"artist":"...","album":"...","releaseDate":"Apr 4 2026","genre":"Soul","label":"...","reviewType":"regular" or "replay","series":"","why":"One sentence under 15 words.","priority":"high" or "medium" or "low","texas":false}]`;
 
@@ -533,7 +533,8 @@ function App() {
     try {
       const newsRaw=await callClaudeSearch(`Today is ${today}. Search for recent music news from the last 7 days. Focus on Daptone, Colemine, Big Crown, Blue Note, Big Star label news, Texas/Austin artist news, soul/funk/blues reissues. Flag texas:true for any Texas or Austin artist.`,RADAR_NEWS_SYSTEM,800);
       const news=safeParseJSON(newsRaw,[]); setRadarStep(1);
-      const upRaw=await callClaudeSearch(`Today is ${today}. Search for upcoming soul and funk album releases in the next 90 days. Specifically check Daptone, Colemine, Big Crown, Big Star, Blue Note, Karma Chief. Also search for upcoming Texas artist releases and flag texas:true.`,RADAR_UPCOMING_SYSTEM,800);
+      const existingList=Object.values(relDB).map(r=>`${r.artist} — ${r.album}`).join(", ");
+      const upRaw=await callClaudeSearch(`Today is ${today}. Search for upcoming soul and funk album releases in the next 90 days. Specifically check Daptone, Colemine, Big Crown, Big Star, Blue Note, Karma Chief. Search multiple times for releases in April, May, and June 2026 specifically. Also search for upcoming Texas artist releases and flag texas:true. Return exactly 6 releases that are NOT already in this list: ${existingList}. Do not return any album already in that list.`,RADAR_UPCOMING_SYSTEM,1600);
       const scanned=safeParseJSON(upRaw,[]); setRadarStep(2);
       const updatedDB=mergeReleases(scanned, relDB);
       const newRadarData={ fetchedAt:new Date().toISOString(), news };
