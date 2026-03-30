@@ -476,7 +476,7 @@ function App() {
     const res = await fetch("https://api.anthropic.com/v1/messages", {
       method:"POST",
       headers:{ "Content-Type":"application/json", "x-api-key": anthropicKey, "anthropic-version":"2023-06-01", "anthropic-dangerous-direct-browser-access":"true" },
-      body:JSON.stringify({ model:"claude-haiku-4-5-20251001", max_tokens:tokens, system, tools:[{type:"web_search_20250305",name:"web_search"}], messages:[{role:"user",content:msg}] })
+      body:JSON.stringify({ model:"claude-haiku-4-5-20251001", max_tokens:tokens, system, tools:[{type:"web_search_20250305",name:"web_search",max_uses:3}], messages:[{role:"user",content:msg}] })
     });
     if (!res.ok) { const e=await res.json().catch(()=>({})); throw new Error(e.error?.message||`API ${res.status}`); }
     const d = await res.json();
@@ -533,6 +533,7 @@ function App() {
     try {
       const newsRaw=await callClaudeSearch(`Today is ${today}. Search for recent music news from the last 7 days. Focus on Daptone, Colemine, Big Crown, Blue Note, Big Star label news, Texas/Austin artist news, soul/funk/blues reissues. Flag texas:true for any Texas or Austin artist.`,RADAR_NEWS_SYSTEM,800);
       const news=safeParseJSON(newsRaw,[]); setRadarStep(1);
+      await new Promise(r=>setTimeout(r,15000));
       const existingList=Object.values(relDB).map(r=>`${r.artist} — ${r.album}`).join(", ");
       const upRaw=await callClaudeSearch(`Today is ${today}. Search for upcoming soul and funk album releases in the next 90 days. Specifically check Daptone, Colemine, Big Crown, Big Star, Blue Note, Karma Chief. Search multiple times for releases in April, May, and June 2026 specifically. Also search for upcoming Texas artist releases and flag texas:true. Return exactly 6 releases that are NOT already in this list: ${existingList}. Do not return any album already in that list.`,RADAR_UPCOMING_SYSTEM,1600);
       const scanned=safeParseJSON(upRaw,[]); setRadarStep(2);
