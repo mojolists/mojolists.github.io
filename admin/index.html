@@ -278,17 +278,18 @@ Already reviewed: Television, The Human League, Funkadelic (Maggot Brain), Talki
 Suggest 5 albums not yet covered. Mix Re-Play classics and current releases. Strong bias toward soul/funk/blues.
 Return ONLY a valid JSON array, no markdown: [{"artist":"...","album":"...","year":"...","genre":"...","type":"replay" or "regular","series":"classics" or "new-wave" or "","why":"One sentence."}]`;
 
-const RADAR_COMBINED_SYSTEM = `You are the music editor for MojoLists.com, covering soul, funk, blues, R&B, post-punk, new wave, krautrock. Key labels: Daptone, Colemine, Big Crown, Big Star, Blue Note, Numero Group, Karma Chief, Dunham. Texas and Austin music scene is a priority.
+const RELEASES_SYSTEM = `You are the release calendar editor for MojoLists.com. Primary focus: soul and funk. Key labels: Daptone Records, Colemine Records, Big Crown Records, Big Star Records, Blue Note Records, Karma Chief Records, Dunham Records, Funk Night Records.
+Search for exactly 6 confirmed upcoming releases in the next 90 days that are NOT in the exclusion list. releaseDate must be a real confirmed announced date — do not guess.
+Return ONLY a valid JSON array, no markdown, no trailing commas:
+[{"artist":"...","album":"...","releaseDate":"Apr 4 2026","genre":"Soul","label":"...","reviewType":"regular","series":"","why":"One sentence under 15 words.","priority":"high|medium|low","texas":false}]`;
 
-Search the web and return a JSON object with exactly two keys:
+const CONCERTS_SYSTEM = `You are a concert listings editor for MojoLists.com. Find only confirmed upcoming shows in Austin TX or San Antonio TX.
+Return up to 10 shows. Return ONLY a valid JSON array, no markdown, no trailing commas:
+[{"artist":"...","venue":"...","date":"Apr 15 2026","city":"Austin","ticketUrl":"","notes":""}]`;
 
-"news": array of 3 recent stories (last 7 days). Keep blurb under 20 words.
-[{"headline":"...","source":"Publication","date":"Mar 8 2026","blurb":"Short summary.","tags":["Daptone","Soul"],"texas":false}]
-
-"upcoming": array of exactly 6 confirmed upcoming releases in the next 90 days, spread across April, May, and June — do NOT return albums already in the exclusion list. releaseDate must be a real confirmed date.
-[{"artist":"...","album":"...","releaseDate":"Apr 4 2026","genre":"Soul","label":"...","reviewType":"regular" or "replay","series":"","why":"One sentence under 15 words.","priority":"high" or "medium" or "low","texas":false}]
-
-Return ONLY a valid JSON object with those two keys, no markdown, no trailing commas.`;
+const DAPTONE_ARTISTS  = ["Lee Fields & the Expressions","Antibalas","Thee Sacred Souls","The Budos Band","Sugaray Rayford","La Lucha","Menahan Street Band","Saun & Starr"];
+const COLEMINE_ARTISTS = ["Orgone","Jungle Fire","Monophonics","Delvon Lamarr Organ Trio","Brainstory","The Shacks","Izo FitzRoy"];
+const BIG_CROWN_ARTISTS= ["El Michels Affair","Lady Wray","McKinley Dixon","Thee Marloes","Theo Croker"];
 
 // ─── HELPERS ─────────────────────────────────────────────────────────────────
 function safeParseJSON(raw, fallback=[]) {
@@ -391,18 +392,19 @@ function App() {
   const [mdOutput,    setMdOutput]    = useState("");
   const [copyLabel,   setCopyLabel]   = useState("Copy .md");
   const [genError,    setGenError]    = useState("");
-  const [radarTab,    setRadarTab]    = useState("upcoming");
-  const [radarPhase,  setRadarPhase]  = useState("idle");
-  const [radarStep,   setRadarStep]   = useState(0);
-  const [radarData,   setRadarData]   = useState(null);
-  const [radarError,  setRadarError]  = useState("");
-  const [relDB,       setRelDB]       = useState({});
+  const [radarTab,      setRadarTab]      = useState("upcoming");
+  const [radarPhase,    setRadarPhase]    = useState("idle");
+  const [radarError,    setRadarError]    = useState("");
+  const [relDB,         setRelDB]         = useState({});
+  const [concertData,   setConcertData]   = useState([]);
+  const [concertPhase,  setConcertPhase]  = useState("idle");
+  const [concertError,  setConcertError]  = useState("");
+  const [extraArtists,  setExtraArtists]  = useState(()=>localStorage.getItem("mojo-extra-artists")||"");
+  const [scanningType,  setScanningType]  = useState(null);
   const [calMonth,    setCalMonth]    = useState(()=>{ const n=new Date(); return {year:n.getFullYear(),month:n.getMonth()}; });
 
-  const GEN_STEPS   = ["Writing review…","Searching YouTube…","Finding buy link…","Finding album cover…","Assembling .md…"];
-  const RADAR_STEPS = ["Scanning music news…","Searching label releases…"];
-  const busy        = genPhase==="loading";
-  const WATCHED_LABELS = ["daptone","colemine","big crown","big star","blue note","karma chief"];
+  const GEN_STEPS = ["Writing review…","Searching YouTube…","Finding buy link…","Finding album cover…","Assembling .md…"];
+  const busy      = genPhase==="loading";
 
   // Load from GitHub on mount (after auth+setup)
   useEffect(() => {
@@ -416,7 +418,8 @@ function App() {
           const db = data.releases || {};
           const pruned = Object.fromEntries(Object.entries(db).filter(([,v])=>!isExpired(v)));
           setRelDB(pruned);
-          if (data.radarNews) { setRadarData(data.radarNews); setRadarPhase("ready"); }
+          if (pruned && Object.keys(pruned).length>0) setRadarPhase("ready");
+          if (Array.isArray(data.concerts) && data.concerts.length>0) { setConcertData(data.concerts); setConcertPhase("ready"); }
         }
         setSyncStatus("ok"); setSyncMsg("Loaded from GitHub");
       } catch(e) {
@@ -426,11 +429,11 @@ function App() {
   }, [authed, setupDone]);
 
   // Save to GitHub
-  const saveToGitHub = useCallback(async (releases, radarNews) => {
+  const saveToGitHub = useCallback(async (releases, concerts) => {
     if (!githubToken) return;
     setSyncStatus("busy"); setSyncMsg("Saving…");
     try {
-      const newSha = await ghPut(githubToken, { releases, radarNews: radarNews||null, savedAt: new Date().toISOString() }, ghSha);
+      const newSha = await ghPut(githubToken, { releases, concerts: concerts||[], savedAt: new Date().toISOString() }, ghSha);
       setGhSha(newSha);
       setSyncStatus("ok"); setSyncMsg("Saved to GitHub ✓");
       setTimeout(()=>setSyncMsg(""),3000);
@@ -460,7 +463,7 @@ function App() {
   async function togglePreorder(key) {
     const updated = { ...relDB, [key]: { ...relDB[key], preordered: !relDB[key]?.preordered } };
     setRelDB(updated);
-    await saveToGitHub(updated, radarData);
+    await saveToGitHub(updated, concertData);
   }
 
   // API calls — uses stored anthropic key
@@ -530,24 +533,32 @@ function App() {
   }
   function copyMd() { navigator.clipboard.writeText(mdOutput).then(()=>{ setCopyLabel("Copied!"); setTimeout(()=>setCopyLabel("Copy .md"),2000); }); }
 
-  async function fetchRadar() {
-    setRadarPhase("loading"); setRadarStep(0); setRadarError("");
-    const today=new Date().toLocaleDateString("en-US",{weekday:"long",year:"numeric",month:"long",day:"numeric"});
+  async function fetchReleases() {
+    setRadarPhase("loading"); setRadarError(""); setScanningType("releases");
+    const today=new Date().toLocaleDateString("en-US",{month:"long",day:"numeric",year:"numeric"});
     try {
-      const existingList=Object.values(relDB).map(r=>`${r.artist} — ${r.album}`).join(", ");
-      const combinedRaw=await callClaudeSearch(`Today is ${today}. Search for: 1) recent soul/funk/blues music news from the last 7 days from Daptone, Colemine, Big Crown, Blue Note, Big Star, Texas/Austin artists. 2) Exactly 6 confirmed upcoming soul and funk releases in the next 90 days across April, May, and June — exclude anything already in this list: ${existingList}. Flag texas:true for any Texas or Austin artist.`,RADAR_COMBINED_SYSTEM,1600);
-      const combined=safeParseJSON(combinedRaw,{});
-      const news=Array.isArray(combined.news)?combined.news:[];
-      const scanned=Array.isArray(combined.upcoming)?combined.upcoming:[];
-      setRadarStep(2);
-      const updatedDB=mergeReleases(scanned, relDB);
-      const newRadarData={ fetchedAt:new Date().toISOString(), news };
-      setRelDB(updatedDB);
-      setRadarData(newRadarData);
-      setRadarPhase("ready");
-      setRadarTab("upcoming");
-      await saveToGitHub(updatedDB, newRadarData);
-    } catch(e) { setRadarError(e.message); setRadarPhase("error"); }
+      const existingList=Object.values(relDB).map(r=>`${r.artist} — ${r.album}`).join(", ")||"none";
+      const raw=await callClaudeSearch(`Today is ${today}. Search for exactly 6 confirmed upcoming soul and funk releases in the next 90 days from Daptone, Colemine, Big Crown, Big Star, Blue Note, Karma Chief labels. Exclude anything already in this list: ${existingList}.`,RELEASES_SYSTEM,800);
+      const scanned=safeParseJSON(raw,[]);
+      const updatedDB=mergeReleases(scanned,relDB);
+      setRelDB(updatedDB); setRadarPhase("ready"); setRadarTab("upcoming"); setScanningType(null);
+      await saveToGitHub(updatedDB,concertData);
+    } catch(e) { setRadarError(e.message); setRadarPhase("error"); setScanningType(null); }
+  }
+
+  async function fetchConcerts() {
+    setConcertPhase("loading"); setConcertError(""); setScanningType("concerts");
+    const today=new Date().toLocaleDateString("en-US",{month:"long",day:"numeric",year:"numeric"});
+    const roster=[...DAPTONE_ARTISTS,...COLEMINE_ARTISTS,...BIG_CROWN_ARTISTS];
+    const extras=extraArtists.split(",").map(a=>a.trim()).filter(Boolean);
+    const allArtists=[...new Set([...roster,...extras])];
+    const artistQuery=allArtists.map(a=>`"${a}"`).join(" OR ");
+    try {
+      const raw=await callClaudeSearch(`Today is ${today}. Search for upcoming concerts in Austin TX or San Antonio TX by any of these artists: ${artistQuery}. Only include confirmed upcoming shows.`,CONCERTS_SYSTEM,800);
+      const concerts=safeParseJSON(raw,[]);
+      setConcertData(concerts); setConcertPhase("ready"); setRadarTab("concerts"); setScanningType(null);
+      await saveToGitHub(relDB,concerts);
+    } catch(e) { setConcertError(e.message); setConcertPhase("error"); setScanningType(null); }
   }
 
   function sendToGen(item) {
@@ -597,8 +608,6 @@ function App() {
   }
 
   const mojoScore  = result?Math.round((result.score1+result.score2+result.score3)/3):0;
-  const radarFresh = radarData?(Date.now()-new Date(radarData.fetchedAt).getTime())<4*60*60*1000:false;
-  const newsCount  = (radarData?.news||[]).length;
   const dbCount    = dbReleases.length;
   const preCount   = dbReleases.filter(r=>r.preordered).length;
   const radarReady = radarPhase==="ready"||(radarPhase==="idle"&&dbCount>0);
@@ -727,26 +736,30 @@ function App() {
           <div className="radar-layout">
             <div className="radar-toolbar">
               <div className="radar-meta">
-                {radarData?<><span className={`fresh-dot ${radarFresh?"dot-fresh":"dot-stale"}`}/>{radarFresh?"Fresh · ":"Last scan: "}{new Date(radarData.fetchedAt).toLocaleDateString("en-US",{month:"short",day:"numeric"})} · {new Date(radarData.fetchedAt).toLocaleTimeString([],{hour:"2-digit",minute:"2-digit"})}</>
-                  :dbCount>0?"Release tracker — run a scan to refresh":"Music intelligence for MojoLists"}
+                {dbCount>0?`${dbCount} releases tracked${preCount>0?` · ${preCount} preordered`:""}`:concertData.length>0?`${concertData.length} concerts found`:"Scan for upcoming releases and local shows"}
               </div>
-              {dbCount>0&&<span className="db-badge">{dbCount} tracked{preCount>0?` · ${preCount} preordered`:""}</span>}
-              {radarData&&<button className="rbtn rbtn-ghost" onClick={()=>{setRadarData(null);setRadarPhase("idle");}}>Clear News</button>}
-              <button className="rbtn rbtn-gold" onClick={fetchRadar} disabled={radarPhase==="loading"}>{radarPhase==="loading"?"Scanning…":radarData?"↻ Refresh":"▶ Run Scan"}</button>
+              <button className="rbtn rbtn-ghost" onClick={fetchReleases} disabled={!!scanningType}>
+                {scanningType==="releases"?"Scanning…":"↻ Releases"}
+              </button>
+              <button className="rbtn rbtn-gold" onClick={fetchConcerts} disabled={!!scanningType}>
+                {scanningType==="concerts"?"Scanning…":"↻ Concerts"}
+              </button>
             </div>
 
-            {radarPhase==="loading"&&<div className="radar-content"><div className="r-loading"><div className="spinner"/><div className="r-loading-steps">{RADAR_STEPS.map((s,i)=><div key={i} className={`r-loading-step ${i<radarStep?"done":i===radarStep?"active":""}`}>{i>=radarStep&&<span style={{opacity:0.2,marginRight:6}}>◦</span>}{s}</div>)}</div></div></div>}
+            {radarPhase==="loading"&&<div className="radar-content"><div className="r-loading"><div className="spinner"/><div style={{marginTop:12,fontFamily:"'IBM Plex Mono',monospace",fontSize:12,color:"rgba(255,255,255,0.5)"}}>Searching for upcoming releases…</div></div></div>}
             {radarPhase==="error"&&<div className="radar-content"><div className="err-box"><strong>Scan failed.</strong><br/>{radarError}<div><button className="retry-btn" onClick={()=>setRadarPhase("idle")}>← Back</button></div></div></div>}
-            {radarPhase==="idle"&&dbCount===0&&<div className="radar-content"><div className="r-empty"><div className="r-empty-glyph">📡</div><div className="r-empty-text">Run the daily scan to pull label releases from Daptone · Colemine · Big Crown · Blue Note and Texas artist news.</div><button className="rbtn rbtn-gold" onClick={fetchRadar} style={{marginTop:10}}>▶ Run Scan</button></div></div>}
+            {radarPhase==="idle"&&dbCount===0&&concertData.length===0&&<div className="radar-content"><div className="r-empty"><div className="r-empty-glyph">📡</div><div className="r-empty-text">Scan releases from Daptone · Colemine · Big Crown · Blue Note, or find concerts in Austin and San Antonio.</div></div></div>}
 
-            {radarReady&&radarPhase!=="loading"&&radarPhase!=="error"&&(dbCount>0||radarData)&&<>
+            {(radarReady||concertData.length>0)&&radarPhase!=="loading"&&radarPhase!=="error"&&<>
               <div className="radar-tabs">
-                <button className={`rtab ${radarTab==="upcoming"?"rtab-active":""}`} onClick={()=>setRadarTab("upcoming")}>Upcoming <span className="cnt">{dbCount}</span></button>
-                <button className={`rtab ${radarTab==="calendar"?"rtab-active":""}`} onClick={()=>setRadarTab("calendar")}>Calendar</button>
-                {radarData&&<button className={`rtab ${radarTab==="news"?"rtab-active":""}`} onClick={()=>setRadarTab("news")}>News{newsCount>0&&<span className="cnt">{newsCount}</span>}</button>}
+                {dbCount>0&&<button className={`rtab ${radarTab==="upcoming"?"rtab-active":""}`} onClick={()=>setRadarTab("upcoming")}>Upcoming <span className="cnt">{dbCount}</span></button>}
+                {dbCount>0&&<button className={`rtab ${radarTab==="calendar"?"rtab-active":""}`} onClick={()=>setRadarTab("calendar")}>Calendar</button>}
+                <button className={`rtab ${radarTab==="concerts"?"rtab-active":""}`} onClick={()=>setRadarTab("concerts")}>
+                  Concerts{concertData.length>0&&<span className="cnt">{concertData.length}</span>}
+                </button>
               </div>
 
-              {radarTab==="upcoming"&&<div className="radar-content">{dbReleases.length===0?<div className="r-empty"><div className="r-empty-text">No releases tracked yet.</div></div>:
+              {radarTab==="upcoming"&&<div className="radar-content">{dbReleases.length===0?<div className="r-empty"><div className="r-empty-text">No releases tracked yet. Run a Releases scan.</div></div>:
                 <div className="release-list">{dbReleases.map(r=>{
                   const released=isReleased(r), addedDate=r.addedAt?new Date(r.addedAt).toLocaleDateString("en-US",{month:"short",day:"numeric"}):"";
                   return <div key={r.key} className={`rel-card${r.preordered?" is-preordered":""}`}>
@@ -766,12 +779,22 @@ function App() {
 
               {radarTab==="calendar"&&<div className="radar-content">{renderCalendar()}</div>}
 
-              {radarTab==="news"&&radarData&&<div className="radar-content">{(radarData.news||[]).length===0?<div className="r-empty"><div className="r-empty-text">No news found in last scan.</div></div>:
-                <div className="news-list">{radarData.news.map((n,i)=><div key={i} className="news-card">
-                  <div className="news-src">{n.source} · {n.date}</div>
-                  <div className="news-hl">{n.headline}</div>
-                  <div className="news-blurb">{n.blurb}</div>
-                  <div className="news-tags">{(n.tags||[]).map((t,j)=>{ const isTx=t.toLowerCase().includes("texas")||t.toLowerCase().includes("austin"); const isKey=WATCHED_LABELS.some(l=>t.toLowerCase().includes(l)); return <span key={j} className={`ntag ${isTx?"ntag-tx":isKey?"ntag-label-key":"ntag-label"}`}>{t}</span>; })}{n.texas&&<span className="ntag ntag-tx">🤠 Texas</span>}</div>
+              {radarTab==="concerts"&&<div className="radar-content">
+                <div style={{marginBottom:16,padding:"12px 0",borderBottom:"1px solid rgba(255,255,255,0.08)"}}>
+                  <div style={{fontFamily:"'IBM Plex Mono',monospace",fontSize:11,letterSpacing:"0.1em",textTransform:"uppercase",color:"rgba(255,255,255,0.35)",marginBottom:6}}>Extra Artists to Track</div>
+                  <input className="fi" type="text" placeholder="e.g. Gary Clark Jr., Khruangbin, Black Pumas" value={extraArtists}
+                    onChange={e=>{setExtraArtists(e.target.value);localStorage.setItem("mojo-extra-artists",e.target.value);}}
+                    style={{marginBottom:4}}/>
+                  <div style={{fontSize:11,color:"rgba(255,255,255,0.3)"}}>Daptone · Colemine · Big Crown rosters always included · separate extras with commas</div>
+                </div>
+                {concertPhase==="loading"&&<div className="r-loading"><div className="spinner"/><div style={{marginTop:12,fontFamily:"'IBM Plex Mono',monospace",fontSize:12,color:"rgba(255,255,255,0.5)"}}>Searching Austin &amp; San Antonio shows…</div></div>}
+                {concertPhase==="error"&&<div className="err-box"><strong>Scan failed.</strong><br/>{concertError}<div><button className="retry-btn" onClick={()=>setConcertPhase("idle")}>← Back</button></div></div>}
+                {concertData.length===0&&concertPhase!=="loading"&&concertPhase!=="error"&&<div className="r-empty"><div className="r-empty-glyph">🎸</div><div className="r-empty-text">No concerts yet. Add any extra artists above, then hit ↻ Concerts.</div></div>}
+                {concertData.length>0&&concertPhase!=="loading"&&<div className="news-list">{concertData.map((c,i)=><div key={i} className="news-card">
+                  <div className="news-src">{c.city} · {c.date}</div>
+                  <div className="news-hl">{c.artist}</div>
+                  <div className="news-blurb">{c.venue}{c.notes?` — ${c.notes}`:""}</div>
+                  {c.ticketUrl&&<a className="asset-link" href={c.ticketUrl} target="_blank" rel="noreferrer">Tickets →</a>}
                 </div>)}</div>}
               </div>}
             </>}
