@@ -715,6 +715,10 @@ function App() {
                   <button className={`tbtn ${reviewType==="regular"?"tr":""}`} onClick={()=>{setReviewType("regular");setSeries("");}} disabled={busy}>Regular</button>
                   <button className={`tbtn ${reviewType==="replay"?"tp":""}`}  onClick={()=>setReviewType("replay")} disabled={busy}>Re-Play</button>
                 </div>
+                {reviewType==="regular"&&<div className="type-row" style={{marginTop:8}}>
+                  <button className={`tbtn ${entryMode==="ai"?"tr":""}`} onClick={()=>setEntryMode("ai")} disabled={busy}>AI Write</button>
+                  <button className={`tbtn ${entryMode==="manual"?"tr":""}`} onClick={()=>setEntryMode("manual")} disabled={busy}>Manual</button>
+                </div>}
                 {reviewType==="replay"&&<select className="series-sel" value={series} onChange={e=>setSeries(e.target.value)} disabled={busy}><option value="">— No Series —</option><option value="classics">Classics</option><option value="new-wave">New Wave</option><option value="disco">Disco</option></select>}
               </div>
               <div className="sec">
