@@ -403,6 +403,16 @@ function App() {
   const [scanningType,  setScanningType]  = useState(null);
   const [calMonth,    setCalMonth]    = useState(()=>{ const n=new Date(); return {year:n.getFullYear(),month:n.getMonth()}; });
 
+  const [entryMode,      setEntryMode]      = useState("ai");
+  const [manualLabel,    setManualLabel]    = useState("");
+  const [manualYear,     setManualYear]     = useState("");
+  const [manualGenre,    setManualGenre]    = useState("");
+  const [manualScore1,   setManualScore1]   = useState(90);
+  const [manualScore2,   setManualScore2]   = useState(90);
+  const [manualScore3,   setManualScore3]   = useState(90);
+  const [manualBody,     setManualBody]     = useState("");
+  const [manualPullQuote,setManualPullQuote]= useState("");
+
   const GEN_STEPS = ["Writing review…","Searching YouTube…","Finding buy link…","Finding album cover…","Assembling .md…"];
   const busy      = genPhase==="loading";
 
@@ -525,6 +535,26 @@ function App() {
   }
 
   function pickSuggestion(s) { setAlbumInput(`${s.artist} — ${s.album}`); setReviewType(s.type||"regular"); setSeries(s.series||""); setGenPhase("idle"); }
+
+  function useManual() {
+    if (!albumInput.trim() || !manualBody.trim()) return;
+    const parts = albumInput.split("—").map(s=>s.trim());
+    const artist = parts[0] || albumInput.trim();
+    const album  = parts[1] || "";
+    const genres = manualGenre.split(",").map(s=>s.trim()).filter(Boolean);
+    const slug   = (artist+"-"+album).toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"");
+    const data   = {
+      artist, album, label:manualLabel, year:manualYear, genre:genres,
+      imageFilename:slug+".jpg",
+      score1:parseInt(manualScore1)||90, score2:parseInt(manualScore2)||90, score3:parseInt(manualScore3)||90,
+      type:"regular", series:"", isNewBand:false,
+      body:manualBody, pullQuote:manualPullQuote, slug
+    };
+    setResult(data);
+    setAssets({ytId:"", buyLink:"", imageUrl:"", imageFilename:slug+".jpg"});
+    setMdOutput(buildMd(data,"",""));
+    setGenPhase("result");
+  }
 
   function downloadMd() {
     if (!mdOutput||!result) return;
