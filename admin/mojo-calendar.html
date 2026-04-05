@@ -122,6 +122,8 @@ button { font-family: inherit; }
 .hdr-btn:hover { color: #fff; border-color: rgba(255,255,255,0.45); }
 .hdr-btn.gold { border-color: rgba(197,160,89,0.4); color: rgba(197,160,89,0.8); }
 .hdr-btn.gold:hover { background: rgba(197,160,89,0.08); border-color: #c5a059; color: #c5a059; }
+.hdr-btn.cyan { border-color: rgba(34,211,238,0.4); color: rgba(34,211,238,0.8); }
+.hdr-btn.cyan:hover { background: rgba(34,211,238,0.08); border-color: #22d3ee; color: #22d3ee; }
 
 /* MAIN LAYOUT */
 .main-layout { flex: 1; display: flex; overflow: hidden; }
@@ -195,6 +197,7 @@ button { font-family: inherit; }
 .release-dot:hover { transform: scale(1.3); }
 .release-dot.ordered   { background: #10b981; }
 .release-dot.unordered { background: #f59e0b; }
+.release-dot.manual    { background: #22d3ee; }
 
 /* ── LIST PANEL ───────────────────────────────────────────────────────────── */
 .list-panel { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
@@ -240,6 +243,8 @@ button { font-family: inherit; }
 .preorder-btn.unordered:hover { background: rgba(245,158,11,0.12); }
 .preorder-btn.ordered { border-color: #10b981; color: #10b981; }
 .preorder-btn.ordered:hover { background: rgba(16,185,129,0.1); }
+.preorder-btn.manual { border-color: #22d3ee; color: #22d3ee; }
+.preorder-btn.manual:hover { background: rgba(34,211,238,0.1); }
 .release-info { flex: 1; min-width: 0; }
 .release-artist {
   font-size: 14px; font-weight: 500; color: #fff;
@@ -276,6 +281,15 @@ button { font-family: inherit; }
 .status-badge.unordered {
   background: rgba(245,158,11,0.09); border: 1px solid rgba(245,158,11,0.28);
   color: #f59e0b;
+}
+.status-badge.manual {
+  background: rgba(34,211,238,0.09); border: 1px solid rgba(34,211,238,0.28);
+  color: #22d3ee;
+}
+.manual-tag {
+  font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 0.1em;
+  text-transform: uppercase; border: 1px solid rgba(34,211,238,0.35);
+  color: rgba(34,211,238,0.65); padding: 1px 5px;
 }
 .notes-toggle {
   font-family: 'IBM Plex Mono', monospace; font-size: 9px;
@@ -495,6 +509,7 @@ button { font-family: inherit; }
     </div>
     <div class="hdr-spacer"></div>
     <button class="hdr-btn gold" onclick="triggerRadarImport()" title="Load releases from mojo-radar.json">Import Radar</button>
+    <button class="hdr-btn cyan" onclick="openAddRelease()" title="Manually add a pre-order not found by radar">+ Add Release</button>
     <button class="hdr-btn" onclick="exportJSON()" title="Download calendar data as JSON">Export JSON</button>
     <button class="hdr-btn" onclick="triggerImportJSON()" title="Restore from a saved JSON export">Import JSON</button>
     <button class="hdr-btn" onclick="forceSync()" title="Re-fetch data from your Gist">↻ Sync</button>
@@ -533,6 +548,7 @@ button { font-family: inherit; }
         <div class="section-hdr">
           <div class="section-title gold">Upcoming Releases</div>
           <div class="section-count" id="releases-count"></div>
+          <button class="add-review-btn" style="color:#22d3ee;border-color:rgba(34,211,238,0.4);" onmouseover="this.style.background='rgba(34,211,238,0.12)';this.style.borderColor='#22d3ee'" onmouseout="this.style.background='';this.style.borderColor='rgba(34,211,238,0.4)'" onclick="openAddRelease()">+ Manual</button>
         </div>
         <div class="section-scroll">
           <div class="releases-grid" id="releases-list"></div>
@@ -597,6 +613,48 @@ button { font-family: inherit; }
               onclick="deleteEditingReview()" style="display:none;">Delete</button>
       <button class="modal-btn secondary" onclick="closeModal()">Cancel</button>
       <button class="modal-btn primary" onclick="saveReview()">Save</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── ADD / EDIT RELEASE MODAL ─────────────────────────────────────────────── -->
+<div class="modal-overlay" id="modal-release-overlay" onclick="handleReleaseOverlayClick(event)">
+  <div class="modal">
+    <div class="modal-title" id="modal-release-title">Add Release</div>
+
+    <div class="modal-field">
+      <label class="modal-label">Artist</label>
+      <input id="r-artist" class="modal-input" type="text" placeholder="e.g. Sharon Jones">
+    </div>
+    <div class="modal-field">
+      <label class="modal-label">Album</label>
+      <input id="r-album" class="modal-input" type="text" placeholder="e.g. Soul of a Woman">
+    </div>
+    <div class="modal-field">
+      <label class="modal-label">Release Date</label>
+      <input id="r-date" class="modal-input" type="date">
+    </div>
+    <div class="modal-field">
+      <label class="modal-label">Label (optional)</label>
+      <input id="r-label" class="modal-input" type="text" placeholder="e.g. Daptone Records">
+    </div>
+    <div class="modal-field">
+      <label class="modal-label">Genre (optional)</label>
+      <input id="r-genre" class="modal-input" type="text" placeholder="e.g. Soul">
+    </div>
+    <div class="modal-field">
+      <label class="modal-label">Pre-ordered?</label>
+      <div class="type-toggle">
+        <button class="type-opt" id="r-preordered-yes" onclick="setReleasePreordered(true)">Yes</button>
+        <button class="type-opt" id="r-preordered-no"  onclick="setReleasePreordered(false)">Not Yet</button>
+      </div>
+    </div>
+
+    <div class="modal-actions">
+      <button class="modal-btn danger" id="modal-release-delete-btn"
+              onclick="deleteEditingRelease()" style="display:none;">Delete</button>
+      <button class="modal-btn secondary" onclick="closeReleaseModal()">Cancel</button>
+      <button class="modal-btn primary" onclick="saveRelease()">Save</button>
     </div>
   </div>
 </div>
@@ -967,7 +1025,7 @@ function buildDayCell(d, k, currentMonth, reviewsByDate, releasesByDate, todayKe
   if (releases.length) {
     inner += '<div class="release-dot-row">';
     releases.forEach(r => {
-      const cls   = r.preordered ? 'ordered' : 'unordered';
+      const cls   = r.source === 'manual' ? 'manual' : (r.preordered ? 'ordered' : 'unordered');
       const label = `${r.artist} — ${r.album}`;
       inner += `<div class="release-dot ${cls}"
         title="${esc(label)}"
@@ -1006,28 +1064,34 @@ function renderReleasesList() {
   }
 
   list.innerHTML = sorted.map(r => {
-    const sid   = safeId(r.key);
-    const ord   = r.preordered;
-    const hasN  = !!(r.notes && r.notes.trim());
-    const nOpen = openNotes.has(`release:${r.key}`);
+    const sid      = safeId(r.key);
+    const ord      = r.preordered;
+    const isManual = r.source === 'manual';
+    const hasN     = !!(r.notes && r.notes.trim());
+    const nOpen    = openNotes.has(`release:${r.key}`);
+    const btnCls   = isManual ? 'manual' : (ord ? 'ordered' : 'unordered');
+    const badgeCls = isManual ? 'manual' : (ord ? 'ordered' : 'unordered');
+    const badgeTxt = isManual ? (ord ? 'Manual · Pre-ordered' : 'Manual · Not yet') : (ord ? 'Pre-ordered' : 'Not yet');
 
     return `
     <div class="release-card" id="release-${sid}">
-      <button class="preorder-btn ${ord ? 'ordered' : 'unordered'}"
+      <button class="preorder-btn ${btnCls}"
               onclick="togglePreorder('${r.key}')"
               title="${ord ? 'Click to mark as NOT pre-ordered' : 'Click to mark as pre-ordered'}">
         ${ord ? '✓' : '○'}
       </button>
       <div class="release-info">
-        <div class="release-artist">${esc(r.artist)}</div>
+        <div class="release-artist" style="display:flex;align-items:center;gap:6px;">
+          ${esc(r.artist)}
+          ${isManual ? `<span class="manual-tag">manual</span>` : ''}
+          ${isManual ? `<button class="icon-btn" style="margin-left:auto;" onclick="openEditRelease('${r.key}')" title="Edit this release">✎</button>` : ''}
+        </div>
         <div class="release-album">${esc(r.album)}</div>
         <div class="release-meta">
           <span class="release-date">${esc(r.releaseDate)}</span>
           <span class="release-source">${esc(r.label)}</span>
           ${r.genre ? `<span class="genre-badge">${esc(r.genre)}</span>` : ''}
-          <span class="status-badge ${ord ? 'ordered' : 'unordered'}">
-            ${ord ? 'Pre-ordered' : 'Not yet'}
-          </span>
+          <span class="status-badge ${badgeCls}">${badgeTxt}</span>
         </div>
         <button class="notes-toggle" onclick="toggleNotes('${r.key}', 'release')">
           ${hasN ? '▾ Notes' : '+ Add Notes'}
@@ -1294,6 +1358,103 @@ async function quickDeleteReview(id) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
+// MANUAL RELEASE MODAL
+// ─────────────────────────────────────────────────────────────────────────────
+let releaseModalMode = 'add';
+let editingReleaseKey = null;
+let releasePreordered = false;
+
+function openAddRelease() {
+  releaseModalMode  = 'add';
+  editingReleaseKey = null;
+  releasePreordered = false;
+  document.getElementById('modal-release-title').textContent = 'Add Release';
+  document.getElementById('modal-release-delete-btn').style.display = 'none';
+  document.getElementById('r-artist').value = '';
+  document.getElementById('r-album').value  = '';
+  document.getElementById('r-date').value   = '';
+  document.getElementById('r-label').value  = '';
+  document.getElementById('r-genre').value  = '';
+  setReleasePreordered(false);
+  document.getElementById('modal-release-overlay').classList.add('open');
+  setTimeout(() => document.getElementById('r-artist').focus(), 60);
+}
+
+function openEditRelease(key) {
+  const r = appData.releases.find(r => r.key === key);
+  if (!r) return;
+  releaseModalMode  = 'edit';
+  editingReleaseKey = key;
+  releasePreordered = r.preordered || false;
+  document.getElementById('modal-release-title').textContent = 'Edit Release';
+  document.getElementById('modal-release-delete-btn').style.display = 'block';
+  // Parse stored date back to YYYY-MM-DD for the date input
+  const parsed = parseReleaseDate(r.releaseDate);
+  const dateVal = parsed ? parsed.toISOString().split('T')[0] : '';
+  document.getElementById('r-artist').value = r.artist  || '';
+  document.getElementById('r-album').value  = r.album   || '';
+  document.getElementById('r-date').value   = dateVal;
+  document.getElementById('r-label').value  = r.label   || '';
+  document.getElementById('r-genre').value  = r.genre   || '';
+  setReleasePreordered(releasePreordered);
+  document.getElementById('modal-release-overlay').classList.add('open');
+  setTimeout(() => document.getElementById('r-artist').focus(), 60);
+}
+
+function setReleasePreordered(val) {
+  releasePreordered = val;
+  document.getElementById('r-preordered-yes').className = 'type-opt' + (val ? ' active-regular' : '');
+  document.getElementById('r-preordered-no').className  = 'type-opt' + (!val ? ' active-regular' : '');
+}
+
+function closeReleaseModal() {
+  document.getElementById('modal-release-overlay').classList.remove('open');
+}
+
+function handleReleaseOverlayClick(e) {
+  if (e.target === document.getElementById('modal-release-overlay')) closeReleaseModal();
+}
+
+async function saveRelease() {
+  const artist = document.getElementById('r-artist').value.trim();
+  const album  = document.getElementById('r-album').value.trim();
+  const date   = document.getElementById('r-date').value;
+  const label  = document.getElementById('r-label').value.trim();
+  const genre  = document.getElementById('r-genre').value.trim();
+
+  if (!artist || !date) {
+    showToast('⚠ Artist and date are required');
+    return;
+  }
+
+  // Format date as "Mon D YYYY" to match radar style
+  const d = new Date(date + 'T12:00:00');
+  const releaseDate = d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+
+  if (releaseModalMode === 'add') {
+    const key = 'manual:' + artist.toLowerCase().replace(/[^a-z0-9]+/g, '-') + '-' + Date.now();
+    appData.releases.push({ key, artist, album, releaseDate, label, genre, preordered: releasePreordered, source: 'manual', notes: '' });
+  } else {
+    const r = appData.releases.find(r => r.key === editingReleaseKey);
+    if (r) Object.assign(r, { artist, album, releaseDate, label, genre, preordered: releasePreordered });
+  }
+
+  closeReleaseModal();
+  await save();
+  renderAll();
+  showToast(releaseModalMode === 'add' ? '✓ Release added' : '✓ Release updated');
+}
+
+async function deleteEditingRelease() {
+  if (!editingReleaseKey) return;
+  appData.releases = appData.releases.filter(r => r.key !== editingReleaseKey);
+  closeReleaseModal();
+  await save();
+  renderAll();
+  showToast('Release removed');
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
 // IMPORT  mojo-radar.json  (auto from GitHub or manual file fallback)
 // ─────────────────────────────────────────────────────────────────────────────
 const RADAR_OWNER = "mojolists";
@@ -1328,6 +1489,7 @@ function mergeRadarReleases(json) {
       label:       rel.label       || '',
       genre:       rel.genre       || '',
       preordered:  rel.preordered  || false,
+      source:      'radar',
       notes:       ''
     });
     added++;
