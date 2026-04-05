@@ -18,11 +18,9 @@ There's a particular kind of confidence that comes not from technical showboatin
 
 Parlor Greens is Tim Carman (formerly of GA-20) on drums, Jimmy James (of The True Loves, formerly of the Delvon Lamarr Organ Trio) on guitar, and Adam Scone (Scone Cash Players, The Sugarman 3) on organ. On paper, it reads like a supergroup assembled in someone's wildest funk fantasy. In practice, it sounds even better than that. These are three musicians who have each spent careers embedded in the tradition — the lineage of Dr. Lonnie Smith, Melvin Sparks, Bernard "Pretty" Purdie, Charles Earland, Richard "Groove" Holmes, and Brother Jack McDuff — and who understand that honoring that tradition doesn't mean being constrained by it.
 
-<blockquote class="inline-quote">These aren't flashy musicians, but they're musicians who understand space and patience.</blockquote>
-
-<div class="video-embed">
-  <iframe width="560" height="315" src="https://www.youtube.com/embed/7YIp7rl55ug" title="Parlor Greens – Eat Your Greens" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-</div>
+<p class="text-xl text-gray-200 italic leading-relaxed border-l-4 border-red-600 pl-6 py-2 my-8">
+  "These aren't flashy musicians, but they're musicians who understand space and patience."
+</p>
 
 Their 2024 debut, In Green, We Dream, announced the trio as a serious force: tight, loose, joyful, and street-smart. Emeralds deepens all of that, but it carries something the debut didn't have to carry — grief. All three members were navigating personal losses during the recording sessions, and while this album is not a somber record by any stretch, that weight is present in the music, lending it a dimension that separates it from the merely excellent.
 
@@ -39,7 +37,9 @@ The title track "Emeralds" sits at the album's center as something of an anchor.
 
 "Letter To Brother Ben" is a gospel-tinged shuffler that gives Carman the spotlight he deserves. This man plays the best shuffle this side of the Mississippi, and here he gets the canvas to prove it. There's a churchy warmth to the track, a sense of communal memory, that feels especially resonant given the personal losses the band was carrying through these sessions. It's the album's most tender original.
 
-<a href="https://parlorgreens.bandcamp.com/album/emeralds" target="_blank" class="buy-btn">Buy Album</a>
+<div class="flex flex-col md:flex-row gap-6 justify-center my-10">
+    <a href="https://parlorgreens.bandcamp.com/album/emeralds" target="_blank" class="px-12 py-4 border border-[#c5a059] text-[#c5a059] font-black uppercase tracking-widest text-xs hover:bg-[#c5a059] hover:text-black transition-all">Buy Album</a>
+</div>
 
 "Francisco Smack" injects momentum back into the proceedings — a slightly harder-edged instrumental workout that showcases the trio's tighter, funkier tendencies. After the emotional depth of "Letter To Brother Ben," it's a breath of fresh air and an indication that Emeralds knows exactly how to pace itself.
 
@@ -59,4 +59,8 @@ The organ trio format is one of the most elegantly constrained in American music
 Colemine Records has built a reputation for releasing records that sound like they were made in a different, better era, and Emeralds is a crown jewel of their catalog. It doesn't sound dated. It sounds timeless, which is a harder thing to achieve. The album draws from the legacies of Blue Note and Prestige-era organ masters without ever turning nostalgia into artifice.
 
 If the debut announced the arrival of a serious band, Emeralds confirms the arrival of a great one. It's the rare sophomore record that deepens everything its predecessor promised — richer, warmer, and more emotionally complex without sacrificing a single ounce of the groove. In a world that often mistakes busyness for depth, Parlor Greens remind us that the deepest grooves are often the simplest ones, played by people who have actually lived something worth saying.
+
+<div class="my-12 aspect-video border border-white/10 rounded-sm overflow-hidden shadow-2xl">
+    <iframe class="w-full h-full" src="https://www.youtube.com/embed/7YIp7rl55ug" frameborder="0" allowfullscreen></iframe>
+</div>
 
