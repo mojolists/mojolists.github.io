@@ -45,6 +45,10 @@ The title track "Emeralds" sits at the album's center as something of an anchor.
 
 Then comes "Jolene." Yes, that "Jolene." Dolly Parton's timeless plea for romantic mercy might seem an unlikely destination for a Hammond organ trio, but Parlor Greens make the case effortlessly and irresistibly. The transformation is not a novelty — they don't play it for laughs or for surprise. They play it like they mean it: funky, aching, alive. It may be the album's most purely joyful track, and proof that a great melody is a great melody regardless of the instrument or idiom.
 
+<div class="my-12 aspect-video border border-white/10 rounded-sm overflow-hidden shadow-2xl">
+    <iframe class="w-full h-full" src="https://www.youtube.com/embed/mGz4fHCdWWw" frameborder="0" allowfullscreen></iframe>
+</div>
+
 "Lion's Mane" opens with a nod to Horace Silver's "Song For My Father" — Scone easing into that familiar refrain before using it as a springboard rather than a destination. The trio builds from that soul jazz foundation into something harder and more psychedelic: by the time James unspools his solo, the whole thing has drifted toward the atmospheric, Band of Gypsies-era Hendrix territory. It's one of the album's most adventurous moments and a reminder that this is not a band content to stay in any single lane.
 
 "Red Dog" channels the absolute heaviest shade of early R&B, with James's crunchy guitar paving the way for dual solos — first guitar, then organ — that burn rather than boast. There's grit and swagger here, an old-school ferocity that feels completely natural coming from these three players.
