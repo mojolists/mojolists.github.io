@@ -18,7 +18,11 @@ There's a particular kind of confidence that comes not from technical showboatin
 
 Parlor Greens is Tim Carman (formerly of GA-20) on drums, Jimmy James (of The True Loves, formerly of the Delvon Lamarr Organ Trio) on guitar, and Adam Scone (Scone Cash Players, The Sugarman 3) on organ. On paper, it reads like a supergroup assembled in someone's wildest funk fantasy. In practice, it sounds even better than that. These are three musicians who have each spent careers embedded in the tradition — the lineage of Dr. Lonnie Smith, Melvin Sparks, Bernard "Pretty" Purdie, Charles Earland, Richard "Groove" Holmes, and Brother Jack McDuff — and who understand that honoring that tradition doesn't mean being constrained by it.
 
-<p class="inline-quote">These aren't flashy musicians, but they're musicians who understand space and patience.</p>
+<blockquote class="inline-quote">These aren't flashy musicians, but they're musicians who understand space and patience.</blockquote>
+
+<div class="video-embed">
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/7YIp7rl55ug" title="Parlor Greens – Eat Your Greens" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+</div>
 
 Their 2024 debut, In Green, We Dream, announced the trio as a serious force: tight, loose, joyful, and street-smart. Emeralds deepens all of that, but it carries something the debut didn't have to carry — grief. All three members were navigating personal losses during the recording sessions, and while this album is not a somber record by any stretch, that weight is present in the music, lending it a dimension that separates it from the merely excellent.
 
