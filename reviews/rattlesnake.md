@@ -35,7 +35,7 @@ In America, the record's influence was felt somewhat differently. R.E.M. were al
 
 ## Where It Stands Today
 
-eventually caught up to. Its combination of melodic directness and lyrical density — the tunes are instantly memorable, the words require several passes — anticipates the approach that would make Pulp's Jarvis Cocker a celebrity in the 1990s and that continues to drive the best British songwriting today. The record does not sound dated in the way that many contemporaneous productions do; Blair Cowan's keyboards have a warmth that avoided the worst excesses of mid-1980s production.
+Rattlesnakes is one of those debut albums the culture took its time catching up to. Its combination of melodic directness and lyrical density — the tunes are instantly memorable, the words require several passes — anticipates the approach that would make Pulp's Jarvis Cocker a celebrity in the 1990s and that continues to drive the best British songwriting today. The record does not sound dated in the way that many contemporaneous productions do; Blair Cowan's keyboards have a warmth that avoided the worst excesses of mid-1980s production.
 
 What holds up most firmly is the writing. 'Charlotte Street,' 'Are You Ready to Be Heartbroken,' and the title track remain model examples of how to construct a lyric that rewards attention without withholding the primary pleasures of a pop song. Cole has continued to make records of considerable quality in the decades since, but Rattlesnakes remains the document that most completely captures what he could do when every element of his craft arrived simultaneously at its full expression.
 

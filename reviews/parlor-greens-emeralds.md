@@ -24,7 +24,6 @@ Parlor Greens is Tim Carman (formerly of GA-20) on drums, Jimmy James (of The Tr
 
 Their 2024 debut, In Green, We Dream, announced the trio as a serious force: tight, loose, joyful, and street-smart. Emeralds deepens all of that, but it carries something the debut didn't have to carry — grief. All three members were navigating personal losses during the recording sessions, and while this album is not a somber record by any stretch, that weight is present in the music, lending it a dimension that separates it from the merely excellent.
 
-Track by Track
 The album opens with "Eat Your Greens," the lead single and a statement of intent. Scone lays down a crisp bed of Hammond B3 sounds while Carman locks in with what can only be described as military ease — a Charles Earland-inspired four-on-the-floor pulse that drives guitar and organ forward like a freight train. This is funk as motion rather than mood: lean, forceful, impossible to resist, and absolutely impossible to sit still during. If you were on the fence about this band before, you won't be after 30 seconds.
 
 "Mustard Sauce" follows with piquant, percussive funkiness that brings things to a full rolling boil. The cooking metaphors aren't accidental — Parlor Greens have a knack for titles that feel lived-in and unpretentious, names that sound like something overheard in a kitchen or a barbershop rather than drafted in a studio.
@@ -55,14 +54,11 @@ Then comes "Jolene." Yes, that "Jolene." Dolly Parton's timeless plea for romant
 
 The album closes with "Queen Of My Heart," and it is a gut-punch in the most beautiful sense. Jimmy James wrote this tune for his mother shortly after she passed away, and the sweet-shimmering finale builds to something almost unbearable in its gentleness. Its closing moments include a tender, loving conversation between Jimmy and his mother — the final recording he has of her before she died. It is a profound, quietly devastating way to end a record. The fact that it doesn't derail the album's overall spirit of joy and vitality says everything about the emotional intelligence of the musicians involved. Grief and gratitude can coexist, and here they do.
 
-The Bigger Picture
 Emeralds succeeds not only as a showcase of technical craft but as a document of what instrumental music can hold. In the hands of lesser players, a Dolly Parton cover risks feeling like a gimmick; a closing dedication to a departed mother risks feeling maudlin. Parlor Greens navigate both without breaking a sweat, because everything they do comes from the same place: genuine feeling, honestly expressed, with the chops to back it up.
 
-The organ trio format is one of the most elegantly constrained in American music — three voices, no bass, and every player pulling double duty rhythmically and melodically. Parlor Greens understand that constraint is not limitation but focus. Every note on Emeralds is a choice, and the choices are consistently impeccable.
+The organ trio format is one of the most elegantly constrained in American music — three voices, no bass, and every player pulling double duty rhythmically and melodically. Parlor Greens understand this intuitively. Every note on Emeralds is a choice, and the choices are consistently the right ones. Colemine Records has built a reputation for releasing records that sound like they were made in a different, better era, and Emeralds earns that designation — drawing from the legacies of the Blue Note and Prestige organ masters without mistaking nostalgia for art.
 
-Colemine Records has built a reputation for releasing records that sound like they were made in a different, better era, and Emeralds is a crown jewel of their catalog. It doesn't sound dated. It sounds timeless, which is a harder thing to achieve. The album draws from the legacies of Blue Note and Prestige-era organ masters without ever turning nostalgia into artifice.
-
-If the debut announced the arrival of a serious band, Emeralds confirms the arrival of a great one. It's the rare sophomore record that deepens everything its predecessor promised — richer, warmer, and more emotionally complex without sacrificing a single ounce of the groove. In a world that often mistakes busyness for depth, Parlor Greens remind us that the deepest grooves are often the simplest ones, played by people who have actually lived something worth saying.
+The debut, In Green, We Dream, was a serious arrival. This is something more. Warmer, heavier, and more emotionally complex, it carries real weight without losing a single ounce of the groove. That combination — joy and grief, swagger and restraint, three guys locked in so tight they can afford to leave space — is what makes the best organ trio records last. Emeralds lasts.
 
 <div class="my-12 aspect-video border border-white/10 rounded-sm overflow-hidden shadow-2xl">
     <iframe class="w-full h-full" src="https://www.youtube.com/embed/7YIp7rl55ug" frameborder="0" allowfullscreen></iframe>
