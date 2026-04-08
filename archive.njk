@@ -139,7 +139,7 @@ permalink: /archive/
            data-image="{{ review.data.image }}"
            data-avg="{{ avg }}"
            data-type="{{ review.data.type }}"
-           data-genre="{{ review.data.genre | join(', ') }}"
+           data-genre="{{ review.data.genre | default([]) | join(', ') }}"
            data-series="{{ review.data.series }}"
            data-year="{{ review.data.year }}"
            data-excerpt="{{ review.templateContent | striptags | truncate(160) }}">
@@ -180,7 +180,7 @@ permalink: /archive/
                  data-artist="{{ review.data.artist }}"
                  data-album="{{ review.data.album }}"
                  data-type="{{ review.data.type }}"
-                 data-genre="{{ review.data.genre | join(', ') }}"
+                 data-genre="{{ review.data.genre | default([]) | join(', ') }}"
                  data-series="{{ review.data.series }}"
                  data-year="{{ review.data.year }}"
                  onclick="flipCard(this)">

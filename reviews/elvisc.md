@@ -10,7 +10,7 @@ score1: 92
 score2: 80
 score3: 93
 tags: reviews
-genre: ["elvisc.jpg"]
+genre: ["New Wave", "Pop Rock"]
 type: replay
 series: new-wave
 date: 2026-03-10
