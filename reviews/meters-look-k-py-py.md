@@ -22,9 +22,11 @@ Look-Ka Py Py arrived in 1970 as a largely unheralded artifact from New Orleans,
 
 
 <p class="inline-quote">The grooves breathed. They didn't announce themselves. They simply existed, incontrovertible as gravity.</p>
+
 ## The Influence
 
 Look-Ka Py Py became the template for everything that followed in New Orleans funk. The album's fingerprints are audible throughout James Brown's later Parliament-Funkadelic experiments, and its DNA runs directly through Earth Wind & Fire's instrumental passages and Prince's Minneapolis sound. George Clinton cited the Meters explicitly as architects of the funk methodology he would systematize; Herbie Hancock studied their rhythmic precision before Headhunters; and contemporary producers from DJ Premier to Questlove have mined these grooves for samples and spiritual guidance. Nocentelli's clean, syncopated guitar lines became the gold standard for funk accompaniment—present but never dominant, always serving the pocket. The album influenced not just funk musicians but electronic producers who heard in its robotic precision a pathway toward synthesizer-based funk that would dominate the 1980s.
+
 <a href="https://www.amazon.com/Look-ka-Py-LP-Meters/dp/B00HWKJHEQ" target="_blank" class="buy-btn">Buy Album</a>
 ## Where It Stands Today
 
