@@ -31,7 +31,7 @@
       "preordered": true
     },
     "rel:les-imprim-s-fading-forward": {
-      "artist": "Les Imprimés",
+      "artist": "Les ImprimÃ©s",
       "album": "Fading Forward",
       "releaseDate": "Apr 10 2026",
       "genre": "Soul",
@@ -61,7 +61,7 @@
       "preordered": true
     },
     "rel:joey-qui-ones-inna-soul-steady-situation": {
-      "artist": "Joey Quiñones",
+      "artist": "Joey QuiÃ±ones",
       "album": "Inna Soul Steady Situation",
       "releaseDate": "May 29 2026",
       "genre": "Soul",
@@ -89,72 +89,107 @@
       "key": "rel:doctor-bionic-electric-pollen",
       "addedAt": "2026-03-11T14:53:32.720Z",
       "preordered": true
+    },
+    "rel:the-budos-band-the-budos-band": {
+      "artist": "The Budos Band",
+      "album": "The Budos Band",
+      "releaseDate": "Apr 3 2026",
+      "genre": "Funk",
+      "label": "Colemine Records",
+      "reviewType": "regular",
+      "series": "",
+      "why": "Funk instrumentalists return with self-titled album.",
+      "priority": "high",
+      "texas": false,
+      "key": "rel:the-budos-band-the-budos-band",
+      "addedAt": "2026-04-09T21:42:38.861Z",
+      "preordered": false
+    },
+    "rel:jnbo-friends-friends": {
+      "artist": "JNBO & Friends",
+      "album": "& Friends",
+      "releaseDate": "Apr 3 2026",
+      "genre": "Soul",
+      "label": "College of Knowledge Records",
+      "reviewType": "regular",
+      "series": "",
+      "why": "Instrumental soul funk odysseys from Melbourne composer.",
+      "priority": "high",
+      "texas": false,
+      "key": "rel:jnbo-friends-friends",
+      "addedAt": "2026-04-09T21:42:38.861Z",
+      "preordered": false
+    },
+    "rel:market-east-french-street": {
+      "artist": "Market East",
+      "album": "French Street",
+      "releaseDate": "Apr 3 2026",
+      "genre": "Soul",
+      "label": "Colemine Records",
+      "reviewType": "regular",
+      "series": "",
+      "why": "Soul and funk from emerging ensemble.",
+      "priority": "medium",
+      "texas": false,
+      "key": "rel:market-east-french-street",
+      "addedAt": "2026-04-09T21:42:38.861Z",
+      "preordered": false
+    },
+    "rel:mitchum-yacoub-a-way-in": {
+      "artist": "Mitchum Yacoub",
+      "album": "A Way In",
+      "releaseDate": "Apr 24 2026",
+      "genre": "Soul",
+      "label": "Colemine Records",
+      "reviewType": "regular",
+      "series": "",
+      "why": "Soul vocalist debut on Colemine Records.",
+      "priority": "medium",
+      "texas": false,
+      "key": "rel:mitchum-yacoub-a-way-in",
+      "addedAt": "2026-04-09T21:42:38.861Z",
+      "preordered": false
+    },
+    "rel:kendra-morris-flat-tire-flat-tire-dub-mix": {
+      "artist": "Kendra Morris",
+      "album": "Flat Tire / Flat Tire (Dub Mix)",
+      "releaseDate": "May 8 2026",
+      "genre": "Soul",
+      "label": "Colemine Records",
+      "reviewType": "regular",
+      "series": "",
+      "why": "Soul/funk single from rising vocalist.",
+      "priority": "medium",
+      "texas": false,
+      "key": "rel:kendra-morris-flat-tire-flat-tire-dub-mix",
+      "addedAt": "2026-04-09T21:42:38.861Z",
+      "preordered": false
+    },
+    "rel:delvon-lamarr-organ-trio-chicken-leg-if-i-could": {
+      "artist": "Delvon Lamarr Organ Trio",
+      "album": "Chicken Leg / If I Could",
+      "releaseDate": "May 29 2026",
+      "genre": "Funk",
+      "label": "Colemine Records",
+      "reviewType": "regular",
+      "series": "",
+      "why": "Funk organ trio release with two tracks.",
+      "priority": "high",
+      "texas": false,
+      "key": "rel:delvon-lamarr-organ-trio-chicken-leg-if-i-could",
+      "addedAt": "2026-04-09T21:42:38.861Z",
+      "preordered": false
     }
   },
-  "radarNews": {
-    "fetchedAt": "2026-03-11T14:53:32.721Z",
-    "news": [
-      {
-        "headline": "Austin Blues Festival Returns April 25-26 with Parliament Funkadelic Headlining",
-        "source": "Hoodline",
-        "date": "Mar 9 2026",
-        "blurb": "Austin Blues Fest returns to Waterloo Park honoring Antone's legacy.",
-        "tags": [
-          "Funk",
-          "Blues",
-          "Texas"
-        ],
-        "texas": true
-      },
-      {
-        "headline": "Tedeschi Trucks Band Releases 'Future Soul' Album March 20",
-        "source": "Blues Rock Review",
-        "date": "Mar 1 2026",
-        "blurb": "<cite index=\"35-2\">Tedeschi Trucks Band announced sixth studio album Future Soul, released March 20 via Fantasy Records</cite>.",
-        "tags": [
-          "Soul",
-          "Blues",
-          "R&B"
-        ],
-        "texas": false
-      },
-      {
-        "headline": "Colemine Records Releases New Vinyl from Durand Jones & The Indications March 13",
-        "source": "Colemine Records",
-        "date": "Mar 4 2026",
-        "blurb": "<cite index=\"14-2\">Durand Jones & The Indications releases Let's Take Our Time March 13</cite>.",
-        "tags": [
-          "Colemine",
-          "Soul",
-          "Funk"
-        ],
-        "texas": false
-      },
-      {
-        "headline": "Daptone Records' Jalen Ngonda Announced for Mostly Jazz Funk Soul Festival July 2026",
-        "source": "God Is In The TV",
-        "date": "Feb 11 2026",
-        "blurb": "<cite index=\"1-1\">Daptone Records recording star Jalen Ngonda announced as Sunday headliner</cite>.",
-        "tags": [
-          "Daptone",
-          "Soul",
-          "Funk"
-        ],
-        "texas": false
-      },
-      {
-        "headline": "Selwyn Birchwood Releases Electric Swamp Funkin' Blues March 27 on Alligator",
-        "source": "Alligator Records",
-        "date": "Mar 6 2026",
-        "blurb": "<cite index=\"31-1\">Award-winning bluesman Selwyn Birchwood releases Electric Swamp Funkin' Blues, his fifth Alligator Records album</cite>.",
-        "tags": [
-          "Blues",
-          "Funk",
-          "Soul"
-        ],
-        "texas": false
-      }
-    ]
-  },
-  "savedAt": "2026-03-11T14:57:27.474Z"
+  "concerts": [
+    {
+      "artist": "Thee Sacred Souls",
+      "venue": "Freeman Coliseum",
+      "date": "Sep 10 2026",
+      "city": "San Antonio",
+      "ticketUrl": "https://www.ticketmaster.com/thee-sacred-souls-la-lom-the-san-antonio-texas-09-10-2026/event/3A00644C8667A0F7",
+      "notes": "LA LOM & The Womack Sisters also performing"
+    }
+  ],
+  "savedAt": "2026-04-09T21:54:45.633Z"
 }
