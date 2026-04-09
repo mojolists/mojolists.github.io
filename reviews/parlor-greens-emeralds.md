@@ -3,7 +3,7 @@ layout: review.njk
 title: "Parlor Greens"
 artist: "Parlor Greens"
 album: "Emeralds"
-label: "Unknown"
+label: "Colemine Records"
 year: "2026"
 image: "parlor-greens-emeralds.jpg"
 score1: 82
