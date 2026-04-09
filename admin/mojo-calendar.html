@@ -779,6 +779,8 @@ let editingId  = null;
 let modalType  = 'regular';
 let openNotes  = new Set();  // tracks which notes panels are expanded: "release:key" or "review:id"
 let isFirstRun = false;      // true when setup screen is shown for the first time
+let radarSha   = null;       // SHA of mojo-radar.json — needed for write-back
+let radarCache = null;       // full parsed mojo-radar.json — preserved on write to keep non-calendar fields
 
 // ─────────────────────────────────────────────────────────────────────────────
 // CREDENTIALS  (stored in localStorage, never in this file)
@@ -1443,6 +1445,13 @@ async function saveRelease() {
   await save();
   renderAll();
   showToast(releaseModalMode === 'add' ? '✓ Release added' : '✓ Release updated');
+  // Sync changes back to mojo-radar.json so the two stores stay in step
+  try {
+    await writeRadarToGitHub(buildRadarReleasesObj());
+    showToast((releaseModalMode === 'add' ? '✓ Release added' : '✓ Release updated') + ' — radar synced');
+  } catch(e) {
+    showToast('⚠ Calendar saved but radar sync failed: ' + e.message);
+  }
 }
 
 async function deleteEditingRelease() {
@@ -1452,6 +1461,13 @@ async function deleteEditingRelease() {
   await save();
   renderAll();
   showToast('Release removed');
+  // Sync deletion back to mojo-radar.json
+  try {
+    await writeRadarToGitHub(buildRadarReleasesObj());
+    showToast('✓ Release removed — radar synced');
+  } catch(e) {
+    showToast('⚠ Calendar saved but radar sync failed: ' + e.message);
+  }
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -1471,7 +1487,66 @@ async function fetchRadarFromGitHub(token) {
   });
   if (!res.ok) throw new Error(`GitHub ${res.status}`);
   const file = await res.json();
-  return JSON.parse(atob(file.content.replace(/\n/g, '')));
+  radarSha   = file.sha;
+  radarCache = JSON.parse(atob(file.content.replace(/\n/g, '')));
+  return radarCache;
+}
+
+// Converts appData.releases back to the radar object format, preserving
+// radar-only fields (priority, why, reviewType, etc.) for existing entries.
+function buildRadarReleasesObj() {
+  const base = (radarCache && radarCache.releases) ? { ...radarCache.releases } : {};
+  // Remove entries that were deleted from the calendar
+  const calendarKeys = new Set(appData.releases.map(r => r.key));
+  Object.keys(base).forEach(k => { if (!calendarKeys.has(k)) delete base[k]; });
+  // Upsert from calendar
+  appData.releases.forEach(r => {
+    if (base[r.key]) {
+      // Existing radar entry — update only calendar-managed fields
+      base[r.key] = { ...base[r.key], artist: r.artist, album: r.album, releaseDate: r.releaseDate, label: r.label, genre: r.genre, preordered: r.preordered };
+    } else {
+      // New manual entry — create with sensible defaults
+      base[r.key] = {
+        artist: r.artist, album: r.album, releaseDate: r.releaseDate,
+        label: r.label || '', genre: r.genre || '',
+        reviewType: 'regular', series: '', why: '', priority: 'medium',
+        texas: false, key: r.key, addedAt: new Date().toISOString(),
+        preordered: r.preordered || false, reviewed: false
+      };
+    }
+  });
+  return base;
+}
+
+// Writes the current releases back to mojo-radar.json via the GitHub Contents API.
+async function writeRadarToGitHub(releasesObj) {
+  const token = localStorage.getItem('mojo-github-token');
+  if (!token) return;
+  // Fetch SHA if we don't have it yet
+  if (!radarSha) {
+    try { await fetchRadarFromGitHub(token); } catch(e) { throw new Error('Could not fetch radar SHA: ' + e.message); }
+  }
+  const updated = radarCache ? { ...radarCache, releases: releasesObj } : { releases: releasesObj };
+  const content = btoa(unescape(encodeURIComponent(JSON.stringify(updated, null, 2))));
+  const url  = `https://api.github.com/repos/${RADAR_OWNER}/${RADAR_REPO}/contents/${RADAR_PATH}`;
+  const body = {
+    message: `chore: update radar from calendar ${new Date().toISOString().slice(0, 10)}`,
+    content,
+    sha: radarSha
+  };
+  const res = await fetch(url, {
+    method: 'PUT',
+    headers: {
+      'Authorization': `token ${token}`,
+      'Accept': 'application/vnd.github.v3+json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(body)
+  });
+  if (!res.ok) throw new Error(`GitHub ${res.status}`);
+  const result = await res.json();
+  radarSha   = result.content.sha;   // keep SHA current for the next write
+  radarCache = { ...radarCache, releases: releasesObj };
 }
 
 function mergeRadarReleases(json) {
