@@ -135,6 +135,20 @@ a { color: inherit; text-decoration: none; }
 }
 .hdr-btn.green:hover { background: rgba(34,197,94,0.08); border-color: #22c55e; color: #22c55e; }
 
+/* Run Update button states */
+.run-btn { border-color: rgba(197,160,89,0.35); color: rgba(197,160,89,0.75); }
+.run-btn:hover:not(:disabled) { background: rgba(197,160,89,0.08); border-color: #c5a059; color: #c5a059; }
+.run-btn.running {
+  border-color: rgba(197,160,89,0.5); color: #c5a059;
+  animation: pulse 1s ease-in-out infinite; cursor: not-allowed;
+}
+.run-btn.done {
+  border-color: rgba(16,185,129,0.5); color: #10b981;
+}
+.run-btn.error {
+  border-color: rgba(239,68,68,0.5); color: #ef4444;
+}
+
 /* ── WEEK NAV ──────────────────────────────────────────────────────────────── */
 .week-nav {
   position: sticky; top: 52px; z-index: 88;
@@ -456,6 +470,13 @@ a { color: inherit; text-decoration: none; }
         <span class="filter-dot dot-denver"></span>Denver
       </button>
     </div>
+
+    <div class="hdr-sep"></div>
+
+    <!-- Manual scrape trigger -->
+    <button class="hdr-btn run-btn" id="run-btn" onclick="triggerScrape()" title="Trigger the weekly scrape workflow now">
+      <span id="run-btn-label">↻ Run Update</span>
+    </button>
 
     <div class="hdr-spacer"></div>
 
@@ -1243,6 +1264,80 @@ function filterToNewShows() {
       setTimeout(() => el.style.background = '', 800);
     });
   }, 100);
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// RUN UPDATE — triggers the scrape-shows GitHub Actions workflow on demand
+// Requires the token to have 'workflow' scope (in addition to 'repo' scope).
+// If it fails with 403, the token needs to be regenerated with workflow scope.
+// ─────────────────────────────────────────────────────────────────────────────
+const SCRAPE_WORKFLOW = 'scrape-shows.yml';
+const REPO_BRANCH     = 'main';   // change to 'master' if your default branch differs
+
+async function triggerScrape() {
+  const btn   = document.getElementById('run-btn');
+  const label = document.getElementById('run-btn-label');
+
+  // Prevent double-trigger
+  if (btn.classList.contains('running')) return;
+
+  btn.classList.add('running');
+  btn.disabled = true;
+  label.textContent = '↻ Running…';
+
+  try {
+    const token = getToken();
+    const res   = await fetch(
+      `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/actions/workflows/${SCRAPE_WORKFLOW}/dispatches`,
+      {
+        method: 'POST',
+        headers: {
+          'Authorization': `token ${token}`,
+          'Accept':        'application/vnd.github.v3+json',
+          'Content-Type':  'application/json',
+        },
+        body: JSON.stringify({ ref: REPO_BRANCH }),
+      }
+    );
+
+    if (res.status === 204) {
+      // 204 No Content = workflow triggered successfully
+      btn.classList.remove('running');
+      btn.classList.add('done');
+      label.textContent = '✓ Queued';
+      showToast('✓ Scrape queued — check Actions tab for progress. Refresh in ~60s.');
+
+      // Auto-reset button after 8s, then auto-reload data after ~70s
+      setTimeout(() => {
+        btn.classList.remove('done');
+        btn.disabled = false;
+        label.textContent = '↻ Run Update';
+      }, 8000);
+
+      setTimeout(() => {
+        showToast('Reloading shows…');
+        loadShows();
+      }, 70000);
+
+    } else if (res.status === 403) {
+      throw new Error('Token needs "workflow" scope — regenerate it at github.com/settings/tokens');
+    } else {
+      const body = await res.json().catch(() => ({}));
+      throw new Error(body.message || `HTTP ${res.status}`);
+    }
+
+  } catch(e) {
+    btn.classList.remove('running');
+    btn.classList.add('error');
+    btn.disabled = false;
+    label.textContent = '✕ Failed';
+    showToast('⚠ Could not trigger workflow: ' + e.message);
+
+    setTimeout(() => {
+      btn.classList.remove('error');
+      label.textContent = '↻ Run Update';
+    }, 5000);
+  }
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
