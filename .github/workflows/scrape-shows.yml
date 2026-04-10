@@ -1,0 +1,51 @@
+# scrape-shows.yml
+# -----------------
+# Runs every Wednesday at 7 AM UTC (2 AM CST / 1 AM MST).
+#
+# Wednesday is the sweet spot: captures Monday + Tuesday show announcements
+# (when most venues post new listings) while pre-sales are still going live.
+#
+# Scrapes ALL active venues in one pass and updates _data/mojo-shows.json.
+# Also records which shows are new since the last run for the calendar banner.
+#
+# Required repo secrets (Settings → Secrets → Actions):
+#   MOJO_PAT — GitHub Personal Access Token with repo scope
+#               (GITHUB_TOKEN can't trigger Eleventy deploys,
+#                so we use a PAT to allow the push to kick off deploy.yml)
+
+name: Scrape Shows (Weekly)
+
+on:
+  schedule:
+    # 7:00 AM UTC every Wednesday = 2:00 AM CST = 1:00 AM MST
+    - cron: '0 7 * * 3'
+  workflow_dispatch:    # allow manual trigger from Actions tab
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          # Use PAT so that the subsequent push can trigger deploy.yml
+          token: ${{ secrets.MOJO_PAT }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: pip install requests beautifulsoup4 lxml
+
+      - name: Run venue scraper
+        env:
+          GITHUB_TOKEN: ${{ secrets.MOJO_PAT }}
+          GITHUB_REPO:  ${{ github.repository }}
+        run: python scripts/scrape_venues.py
+
+      # Note: scrape_venues.py writes directly to GitHub via the Contents API,
+      # so no git commit step is needed here — the script handles it.

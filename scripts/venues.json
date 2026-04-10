@@ -1,0 +1,103 @@
+{
+  "_comment": "Add Austin small venues here. Each entry needs: key, name, url, region, and parser strategy.",
+  "_strategies": {
+    "prekindle":    "Parses Prekindle-powered venue pages (Parish, Mohawk, Emo's, etc.)",
+    "eventbrite":   "Uses Eventbrite public API for venues that ticket through EB",
+    "html_generic": "Generic HTML scraper — looks for common event listing patterns",
+    "ticketweb":    "Parses TicketWeb-embedded venue pages",
+    "custom":       "Venue-specific scraper — see parser notes"
+  },
+  "venues": [
+    {
+      "key": "parish-austin",
+      "name": "Parish",
+      "city": "Austin",
+      "region": "austin",
+      "url": "https://www.parishaustin.com/events",
+      "strategy": "prekindle",
+      "active": true,
+      "notes": "Main room + Parish Underground"
+    },
+    {
+      "key": "mohawk-austin",
+      "name": "Mohawk",
+      "city": "Austin",
+      "region": "austin",
+      "url": "https://www.mohawkaustin.com/events",
+      "strategy": "prekindle",
+      "active": true,
+      "notes": "Indoor + Outdoor stages"
+    },
+    {
+      "key": "antones-austin",
+      "name": "Antone's",
+      "city": "Austin",
+      "region": "austin",
+      "url": "https://www.antonesnightclub.com/events",
+      "strategy": "prekindle",
+      "active": true,
+      "notes": "Legendary blues/roots venue"
+    },
+    {
+      "key": "continental-club-austin",
+      "name": "Continental Club",
+      "city": "Austin",
+      "region": "austin",
+      "url": "https://www.continentalclub.com/Austin",
+      "strategy": "html_generic",
+      "active": true,
+      "notes": "Check gallery page too"
+    },
+    {
+      "key": "stubbs-waller-creek",
+      "name": "Stubb's Waller Creek Amphitheater",
+      "city": "Austin",
+      "region": "austin",
+      "url": "https://www.stubbsaustin.com/events",
+      "strategy": "html_generic",
+      "active": true,
+      "notes": "Outdoor + Indoor (Waller Creek Amphitheater and Indoors)"
+    },
+    {
+      "key": "emos-austin",
+      "name": "Emo's Austin",
+      "city": "Austin",
+      "region": "austin",
+      "url": "https://www.emosaustin.com/events",
+      "strategy": "prekindle",
+      "active": true,
+      "notes": ""
+    },
+    {
+      "key": "far-out-lounge",
+      "name": "Far Out Lounge",
+      "city": "Austin",
+      "region": "austin",
+      "url": "https://www.faroutlounge.com/events",
+      "strategy": "html_generic",
+      "active": true,
+      "notes": "South Austin"
+    },
+    {
+      "key": "the-paramount-austin",
+      "name": "The Paramount Theatre",
+      "city": "Austin",
+      "region": "austin",
+      "url": "https://www.austintheatre.org/performances/",
+      "strategy": "html_generic",
+      "active": true,
+      "notes": "Also check State Theatre"
+    },
+    {
+      "_comment": "ADD MORE VENUES BELOW — copy a block above and fill in the fields",
+      "key": "EXAMPLE-venue",
+      "name": "Example Venue",
+      "city": "Austin",
+      "region": "austin",
+      "url": "https://example.com/events",
+      "strategy": "html_generic",
+      "active": false,
+      "notes": "Set active: true when ready to scrape"
+    }
+  ]
+}
