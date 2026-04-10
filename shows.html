@@ -1272,7 +1272,18 @@ function filterToNewShows() {
 // If it fails with 403, the token needs to be regenerated with workflow scope.
 // ─────────────────────────────────────────────────────────────────────────────
 const SCRAPE_WORKFLOW = 'scrape-shows.yml';
-const REPO_BRANCH     = 'main';   // change to 'master' if your default branch differs
+
+async function getDefaultBranch() {
+  // Ask GitHub what the repo's default branch actually is
+  const token = getToken();
+  const res   = await fetch(
+    `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}`,
+    { headers: { 'Authorization': `token ${token}`, 'Accept': 'application/vnd.github.v3+json' } }
+  );
+  if (!res.ok) throw new Error(`Could not fetch repo info: HTTP ${res.status}`);
+  const data = await res.json();
+  return data.default_branch || 'master';
+}
 
 async function triggerScrape() {
   const btn   = document.getElementById('run-btn');
@@ -1286,7 +1297,9 @@ async function triggerScrape() {
   label.textContent = '↻ Running…';
 
   try {
-    const token = getToken();
+    const token         = getToken();
+    const defaultBranch = await getDefaultBranch();
+
     const res   = await fetch(
       `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/actions/workflows/${SCRAPE_WORKFLOW}/dispatches`,
       {
@@ -1296,7 +1309,7 @@ async function triggerScrape() {
           'Accept':        'application/vnd.github.v3+json',
           'Content-Type':  'application/json',
         },
-        body: JSON.stringify({ ref: REPO_BRANCH }),
+        body: JSON.stringify({ ref: defaultBranch }),
       }
     );
 
