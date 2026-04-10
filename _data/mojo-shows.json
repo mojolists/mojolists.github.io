@@ -1,9 +1,12 @@
 {
   "meta": {
-    "lastUpdated": null,
-    "scraperIndex": 0,
-    "lastScraperRun": null,
-    "lastTMPull": null
+    "lastUpdated": "2026-04-10T19:18:38.679335Z",
+    "lastScraperRun": "2026-04-10T19:18:38.679335Z",
+    "lastTMPull": null,
+    "lastRunNewShows": [],
+    "lastRunVenueCount": 8,
+    "lastRunFoundCount": 0,
+    "lastRunNewCount": 0
   },
   "shows": []
 }
