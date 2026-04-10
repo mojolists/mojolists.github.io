@@ -1,12 +1,5 @@
 {
-  "_comment": "Add Austin small venues here. Each entry needs: key, name, url, region, and parser strategy.",
-  "_strategies": {
-    "prekindle":    "Parses Prekindle-powered venue pages (Parish, Mohawk, Emo's, etc.)",
-    "eventbrite":   "Uses Eventbrite public API for venues that ticket through EB",
-    "html_generic": "Generic HTML scraper — looks for common event listing patterns",
-    "ticketweb":    "Parses TicketWeb-embedded venue pages",
-    "custom":       "Venue-specific scraper — see parser notes"
-  },
+  "_comment": "Add Austin small venues here. js_rendered:true = uses headless browser (Playwright). wait_selector = CSS selector to wait for before extracting HTML.",
   "venues": [
     {
       "key": "parish-austin",
@@ -15,8 +8,10 @@
       "region": "austin",
       "url": "https://www.parishaustin.com/events",
       "strategy": "prekindle",
+      "js_rendered": true,
+      "wait_selector": ".event-listing, .event-item, article",
       "active": true,
-      "notes": "Main room + Parish Underground"
+      "notes": "Main room + Parish Underground. Prekindle-powered, JS-rendered."
     },
     {
       "key": "mohawk-austin",
@@ -25,8 +20,10 @@
       "region": "austin",
       "url": "https://www.mohawkaustin.com/events",
       "strategy": "prekindle",
+      "js_rendered": true,
+      "wait_selector": ".event-listing, .event-item, article",
       "active": true,
-      "notes": "Indoor + Outdoor stages"
+      "notes": "Indoor + Outdoor stages. Prekindle-powered, JS-rendered."
     },
     {
       "key": "antones-austin",
@@ -35,8 +32,10 @@
       "region": "austin",
       "url": "https://www.antonesnightclub.com/events",
       "strategy": "prekindle",
+      "js_rendered": true,
+      "wait_selector": ".event-listing, .event-item, article",
       "active": true,
-      "notes": "Legendary blues/roots venue"
+      "notes": "Legendary blues/roots venue. Prekindle-powered, JS-rendered."
     },
     {
       "key": "continental-club-austin",
@@ -45,18 +44,21 @@
       "region": "austin",
       "url": "https://www.continentalclub.com/Austin",
       "strategy": "html_generic",
+      "js_rendered": false,
       "active": true,
-      "notes": "Check gallery page too"
+      "notes": "Simple HTML calendar, no JS rendering needed."
     },
     {
-      "key": "stubbs-waller-creek",
-      "name": "Stubb's Waller Creek Amphitheater",
+      "key": "stubbs-austin",
+      "name": "Stubb's",
       "city": "Austin",
       "region": "austin",
       "url": "https://www.stubbsaustin.com/events",
       "strategy": "html_generic",
+      "js_rendered": true,
+      "wait_selector": ".event-card, .event-listing, [data-event]",
       "active": true,
-      "notes": "Outdoor + Indoor (Waller Creek Amphitheater and Indoors)"
+      "notes": "Outdoor amphitheater + indoor. JS-rendered."
     },
     {
       "key": "emos-austin",
@@ -65,8 +67,10 @@
       "region": "austin",
       "url": "https://www.emosaustin.com/events",
       "strategy": "prekindle",
+      "js_rendered": true,
+      "wait_selector": ".event-listing, .event-item, article",
       "active": true,
-      "notes": ""
+      "notes": "Prekindle-powered, JS-rendered."
     },
     {
       "key": "far-out-lounge",
@@ -75,8 +79,10 @@
       "region": "austin",
       "url": "https://www.faroutlounge.com/events",
       "strategy": "html_generic",
+      "js_rendered": true,
+      "wait_selector": ".event, .show, article",
       "active": true,
-      "notes": "South Austin"
+      "notes": "South Austin. JS-rendered."
     },
     {
       "key": "the-paramount-austin",
@@ -85,19 +91,22 @@
       "region": "austin",
       "url": "https://www.austintheatre.org/performances/",
       "strategy": "html_generic",
+      "js_rendered": false,
       "active": true,
-      "notes": "Also check State Theatre"
+      "notes": "Also covers State Theatre on the same page."
     },
     {
-      "_comment": "ADD MORE VENUES BELOW — copy a block above and fill in the fields",
+      "_comment": "ADD MORE VENUES — copy a block above and fill in the fields. Set active:true when ready.",
       "key": "EXAMPLE-venue",
       "name": "Example Venue",
       "city": "Austin",
       "region": "austin",
       "url": "https://example.com/events",
       "strategy": "html_generic",
+      "js_rendered": false,
+      "wait_selector": null,
       "active": false,
-      "notes": "Set active: true when ready to scrape"
+      "notes": ""
     }
   ]
 }

@@ -38,8 +38,11 @@ jobs:
           python-version: '3.11'
           cache: 'pip'
 
-      - name: Install dependencies
-        run: pip install requests beautifulsoup4 lxml
+      - name: Install Python dependencies
+        run: pip install requests beautifulsoup4 lxml playwright
+
+      - name: Install Playwright browser (Chromium only)
+        run: playwright install chromium --with-deps
 
       - name: Run venue scraper
         env:
