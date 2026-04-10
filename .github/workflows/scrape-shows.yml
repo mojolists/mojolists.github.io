@@ -48,6 +48,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.MOJO_PAT }}
           GITHUB_REPO:  ${{ github.repository }}
+          DIAGNOSE:     "true"
         run: python scripts/scrape_venues.py
 
       # Note: scrape_venues.py writes directly to GitHub via the Contents API,

@@ -415,10 +415,64 @@ def fetch_html(venue):
 # ─────────────────────────────────────────────────────────────────────────────
 # SCRAPE ONE VENUE
 # ─────────────────────────────────────────────────────────────────────────────
-def scrape_venue(venue):
+def diagnose_venue(venue, html):
+    """
+    Print diagnostic info to the Actions log so we can see what
+    each page is actually serving — helps write better parsers.
+    """
+    soup = BeautifulSoup(html, "lxml")
+
+    print(f"    ── DIAGNOSTIC: {venue['name']} ──────────────────────────")
+    print(f"    HTML length  : {len(html):,} chars")
+
+    title = soup.find("title")
+    print(f"    Page title   : {title.get_text(strip=True) if title else '(none)'}")
+
+    # JSON-LD blocks
+    jld = soup.find_all("script", type="application/ld+json")
+    print(f"    JSON-LD tags : {len(jld)}")
+    for i, s in enumerate(jld[:3]):
+        try:
+            d = json.loads(s.string or "")
+            t = d.get("@type") if isinstance(d, dict) else [x.get("@type") for x in d[:2]]
+            print(f"      [{i}] @type = {t}")
+        except Exception:
+            print(f"      [{i}] (parse error)")
+
+    # All script tags — look for data-bearing ones
+    scripts = soup.find_all("script")
+    print(f"    Script tags  : {len(scripts)} total")
+    data_scripts = [s for s in scripts if s.string and len(s.string) > 200]
+    print(f"    Data scripts : {len(data_scripts)} with >200 chars")
+    for s in data_scripts[:3]:
+        snippet = (s.string or "")[:120].replace("\n", " ")
+        print(f"      → {snippet}…")
+
+    # Interesting class names on divs/articles
+    all_classes = set()
+    for el in soup.find_all(["div","article","li","section"], class_=True):
+        for c in el.get("class", []):
+            if any(kw in c.lower() for kw in ["event","show","gig","concert","listing","card"]):
+                all_classes.add(c)
+    print(f"    Event-ish classes: {sorted(all_classes)[:15]}")
+
+    # itemprop / itemtype attributes
+    itemtypes = [el.get("itemtype","") for el in soup.find_all(attrs={"itemtype":True})]
+    if itemtypes:
+        print(f"    itemtype     : {itemtypes[:5]}")
+
+    # Look for date-like text patterns in the raw HTML (quick sanity check)
+    date_hits = re.findall(r'\b(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s+\d{1,2}', html)
+    print(f"    Date strings : {len(date_hits)} found  e.g. {date_hits[:5]}")
+    print(f"    ─────────────────────────────────────────────────────────")
+
+
+def scrape_venue(venue, diagnose=False):
     print(f"  [{venue['strategy']}{'*' if venue.get('js_rendered') else ''}]  {venue['name']}")
     try:
         html   = fetch_html(venue)
+        if diagnose:
+            diagnose_venue(venue, html)
         parser = PARSERS.get(venue["strategy"], parse_html_generic)
         shows  = parser(html, venue)
         print(f"    → {len(shows)} show(s)")
@@ -475,8 +529,14 @@ def main():
     all_fresh = []
     errors    = []
 
+    # DIAGNOSE=true in env triggers verbose HTML analysis for every venue —
+    # set it manually in the workflow when debugging zero-result runs.
+    diagnose = os.environ.get("DIAGNOSE", "").lower() in ("1", "true", "yes")
+    if diagnose:
+        print("⚑ DIAGNOSTIC MODE — verbose HTML analysis enabled\n")
+
     for i, venue in enumerate(active):
-        fresh = scrape_venue(venue)
+        fresh = scrape_venue(venue, diagnose=diagnose)
         all_fresh.extend(fresh)
         if not fresh:
             errors.append(venue["name"])
