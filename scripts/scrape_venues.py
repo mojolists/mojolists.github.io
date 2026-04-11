@@ -4,16 +4,20 @@ scrape_venues.py
 ----------------
 Weekly venue scraper for mojo-shows.json.
 
-Uses requests+BeautifulSoup for simple HTML venues.
-Uses Playwright (headless Chromium) for JS-rendered venues (Prekindle, etc.)
-so the page fully loads before we extract event data.
-
-Runs every Wednesday via GitHub Actions. Scrapes ALL active venues in one
-pass, then records which shows are new since the last run for the banner.
+Each venue uses a targeted strategy based on its actual tech stack:
+  mec_wp_api   — WordPress + Modern Events Calendar plugin (Parish)
+                 Calls the WP REST API directly — no browser needed.
+  tw_js        — WordPress + TicketWeb plugin (Antone's)
+                 Playwright renders page, then reads EventData.events via JS eval.
+  nextjs_js    — Next.js app (Emo's)
+                 Playwright renders page, reads __NEXT_DATA__ via JS eval.
+  html_generic — Simple HTML sites (Continental Club)
+                 requests + BeautifulSoup, JSON-LD / microdata / class heuristics.
 
 Requires env vars:
     GITHUB_TOKEN  — repo PAT with contents:write scope
-    GITHUB_REPO   — owner/repo  (e.g. mojolists/mojolists.github.io)
+    GITHUB_REPO   — e.g. mojolists/mojolists.github.io
+    DIAGNOSE      — set to "true" to enable verbose HTML diagnostics
 """
 
 import json
@@ -32,356 +36,164 @@ from bs4 import BeautifulSoup
 # ─────────────────────────────────────────────────────────────────────────────
 # CONFIG
 # ─────────────────────────────────────────────────────────────────────────────
-SCRIPT_DIR   = Path(__file__).parent
-VENUES_FILE  = SCRIPT_DIR / "venues.json"
-SHOWS_PATH   = "_data/mojo-shows.json"
-REPO         = os.environ.get("GITHUB_REPO", "mojolists/mojolists.github.io")
-TOKEN        = os.environ.get("GITHUB_TOKEN", "")
+SCRIPT_DIR  = Path(__file__).parent
+VENUES_FILE = SCRIPT_DIR / "venues.json"
+SHOWS_PATH  = "_data/mojo-shows.json"
+REPO        = os.environ.get("GITHUB_REPO", "mojolists/mojolists.github.io")
+TOKEN       = os.environ.get("GITHUB_TOKEN", "")
+DIAGNOSE    = os.environ.get("DIAGNOSE", "").lower() in ("1", "true", "yes")
 
-HEADERS_BASE = {
-    "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 "
-                  "(KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
-    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+HEADERS     = {
+    "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
+                  "AppleWebKit/537.36 (KHTML, like Gecko) "
+                  "Chrome/124.0.0.0 Safari/537.36",
+    "Accept": "text/html,application/xhtml+xml,*/*;q=0.8",
 }
 
-TODAY        = date.today()
-END_OF_YEAR  = date(TODAY.year, 12, 31)
-NINETY_DAYS  = TODAY + timedelta(days=90)
-MAX_DATE     = max(END_OF_YEAR, NINETY_DAYS)
-FETCH_DELAY  = 1.0   # seconds between requests (be polite)
+TODAY       = date.today()
+END_OF_YEAR = date(TODAY.year, 12, 31)
+MAX_DATE    = max(END_OF_YEAR, TODAY + timedelta(days=90))
+FETCH_DELAY = 1.2
 
 
 # ─────────────────────────────────────────────────────────────────────────────
-# PLAYWRIGHT — lazy-loaded so simple-HTML venues don't pay the import cost
+# PLAYWRIGHT — shared browser instance, lazy-initialised
 # ─────────────────────────────────────────────────────────────────────────────
-_pw_browser = None
-_pw_context = None
+_pw_instance = None
+_pw_browser  = None
+_pw_context  = None
 
-def get_browser():
-    """Return a shared Playwright browser instance (Chromium, headless)."""
-    global _pw_browser, _pw_context
+def _get_pw_context():
+    global _pw_instance, _pw_browser, _pw_context
     if _pw_browser is None:
         from playwright.sync_api import sync_playwright
-        _pw = sync_playwright().start()
-        _pw_browser = _pw.chromium.launch(headless=True)
-        _pw_context = _pw_browser.new_context(
-            user_agent=HEADERS_BASE["User-Agent"],
+        _pw_instance = sync_playwright().start()
+        _pw_browser  = _pw_instance.chromium.launch(headless=True)
+        _pw_context  = _pw_browser.new_context(
+            user_agent=HEADERS["User-Agent"],
             viewport={"width": 1280, "height": 900},
         )
-    return _pw_browser, _pw_context
+    return _pw_context
 
-def fetch_with_playwright(url, wait_selector=None, wait_ms=3000):
+def _close_pw():
+    global _pw_instance, _pw_browser, _pw_context
+    if _pw_browser:
+        try: _pw_browser.close()
+        except: pass
+        try: _pw_instance.stop()
+        except: pass
+    _pw_browser = _pw_context = _pw_instance = None
+
+def playwright_get(url, wait_selector=None, wait_ms=10000, js_eval=None):
     """
-    Load a URL in headless Chromium, wait for JS to render, return HTML.
-    wait_selector: CSS selector to wait for before extracting HTML (optional).
-    wait_ms: fallback networkidle wait in milliseconds.
+    Load url in headless Chrome. Returns (html, js_result).
+    wait_selector: CSS selector to wait for (up to 12s).
+    js_eval: JavaScript expression to evaluate after load — result is returned.
     """
-    _, ctx = get_browser()
+    ctx  = _get_pw_context()
     page = ctx.new_page()
+    js_result = None
     try:
         page.goto(url, wait_until="domcontentloaded", timeout=30000)
         if wait_selector:
             try:
-                page.wait_for_selector(wait_selector, timeout=8000)
+                page.wait_for_selector(wait_selector, timeout=12000)
             except Exception:
-                pass  # selector didn't appear — still try to parse what we have
-        else:
-            # Wait for network to go quiet (JS data loads settle)
+                pass   # selector didn't appear — carry on and parse what we have
+        # Always let the network settle
+        try:
+            page.wait_for_load_state("networkidle", timeout=wait_ms)
+        except Exception:
+            pass
+        if js_eval:
             try:
-                page.wait_for_load_state("networkidle", timeout=wait_ms)
+                js_result = page.evaluate(js_eval)
             except Exception:
                 pass
         html = page.content()
     finally:
         page.close()
-    return html
-
-def close_browser():
-    global _pw_browser, _pw_context
-    if _pw_browser:
-        _pw_browser.close()
-        _pw_browser = None
-        _pw_context = None
+    return html, js_result
 
 
 # ─────────────────────────────────────────────────────────────────────────────
 # GITHUB API
 # ─────────────────────────────────────────────────────────────────────────────
-def gh_headers():
-    return {
-        "Authorization": f"token {TOKEN}",
-        "Accept": "application/vnd.github.v3+json",
-    }
+def _gh_headers():
+    return {"Authorization": f"token {TOKEN}", "Accept": "application/vnd.github.v3+json"}
 
-def load_shows_from_github():
+def load_shows():
     url = f"https://api.github.com/repos/{REPO}/contents/{SHOWS_PATH}"
-    res = requests.get(url, headers=gh_headers(), timeout=15)
-    if res.status_code == 404:
-        print("mojo-shows.json not found — starting fresh.")
+    r   = requests.get(url, headers=_gh_headers(), timeout=15)
+    if r.status_code == 404:
         return {"meta": {}, "shows": []}, None
-    res.raise_for_status()
-    data    = res.json()
-    content = base64.b64decode(data["content"]).decode("utf-8")
-    return json.loads(content), data["sha"]
+    r.raise_for_status()
+    d = r.json()
+    return json.loads(base64.b64decode(d["content"]).decode()), d["sha"]
 
-def write_shows_to_github(shows_data, sha, commit_msg):
+def save_shows(data, sha, msg):
     url     = f"https://api.github.com/repos/{REPO}/contents/{SHOWS_PATH}"
-    content = base64.b64encode(
-        json.dumps(shows_data, indent=2, ensure_ascii=False).encode("utf-8")
-    ).decode("utf-8")
-    body = {"message": commit_msg, "content": content}
-    if sha:
-        body["sha"] = sha
-    res = requests.put(url, headers=gh_headers(), json=body, timeout=15)
-    res.raise_for_status()
-    print(f"✓ Committed: {commit_msg}")
+    content = base64.b64encode(json.dumps(data, indent=2, ensure_ascii=False).encode()).decode()
+    body    = {"message": msg, "content": content}
+    if sha: body["sha"] = sha
+    r = requests.put(url, headers=_gh_headers(), json=body, timeout=15)
+    r.raise_for_status()
+    print(f"✓ {msg}")
 
 
 # ─────────────────────────────────────────────────────────────────────────────
-# SHOW ID
+# SHOW ID + DATE PARSING
 # ─────────────────────────────────────────────────────────────────────────────
-def make_show_id(venue_key, show_date, artist):
-    raw = f"{venue_key}|{show_date}|{artist.lower().strip()}"
+def show_id(venue_key, d, artist):
+    raw = f"{venue_key}|{d}|{artist.lower().strip()}"
     return "scraped-" + hashlib.md5(raw.encode()).hexdigest()[:10]
 
+MONTHS = {"jan":1,"feb":2,"mar":3,"apr":4,"may":5,"jun":6,
+           "jul":7,"aug":8,"sep":9,"oct":10,"nov":11,"dec":12}
 
-# ─────────────────────────────────────────────────────────────────────────────
-# DATE / TIME PARSING
-# ─────────────────────────────────────────────────────────────────────────────
-MONTH_MAP = {
-    "jan":1,"feb":2,"mar":3,"apr":4,"may":5,"jun":6,
-    "jul":7,"aug":8,"sep":9,"oct":10,"nov":11,"dec":12
-}
-
-def parse_date_string(raw):
+def parse_date(raw):
     if not raw: return None
-    raw = raw.strip()
+    raw = str(raw).strip()
     m = re.match(r"(\d{4})-(\d{2})-(\d{2})", raw)
-    if m: return date(int(m.group(1)), int(m.group(2)), int(m.group(3)))
+    if m: return date(int(m[1]), int(m[2]), int(m[3]))
     m = re.match(r"([A-Za-z]+)\s+(\d{1,2}),?\s+(\d{4})", raw)
     if m:
-        mon = MONTH_MAP.get(m.group(1)[:3].lower())
-        if mon: return date(int(m.group(3)), mon, int(m.group(2)))
+        mon = MONTHS.get(m[1][:3].lower())
+        if mon: return date(int(m[3]), mon, int(m[2]))
     m = re.match(r"(\d{1,2})/(\d{1,2})/(\d{2,4})", raw)
     if m:
-        yr = int(m.group(3))
-        if yr < 100: yr += 2000
-        return date(yr, int(m.group(1)), int(m.group(2)))
-    m = re.match(r"(?:[A-Za-z]+,\s+)?([A-Za-z]+)\s+(\d{1,2})", raw)
+        yr = int(m[3]); yr = yr+2000 if yr<100 else yr
+        return date(yr, int(m[1]), int(m[2]))
+    m = re.match(r"(?:[A-Za-z]+,\s+)?([A-Za-z]+)\s+(\d{1,2})\b", raw)
     if m:
-        mon = MONTH_MAP.get(m.group(1)[:3].lower())
+        mon = MONTHS.get(m[1][:3].lower())
         if mon:
-            day = int(m.group(2))
             try:
-                d = date(TODAY.year, mon, day)
-                if d < TODAY: d = date(TODAY.year+1, mon, day)
-                return d
+                d = date(TODAY.year, mon, int(m[2]))
+                return d if d >= TODAY else date(TODAY.year+1, mon, int(m[2]))
             except ValueError: pass
     return None
 
-def parse_time_string(raw):
+def parse_time(raw):
     if not raw: return None
-    raw = raw.strip().upper()
+    raw = str(raw).strip().upper()
     m = re.search(r"(\d{1,2})(?::(\d{2}))?\s*(AM|PM)?", raw)
     if not m: return None
-    h = int(m.group(1)); mins = int(m.group(2)) if m.group(2) else 0
-    ampm = m.group(3)
-    if ampm == "PM" and h < 12: h += 12
-    elif ampm == "AM" and h == 12: h = 0
+    h = int(m[1]); mins = int(m[2]) if m[2] else 0
+    if m[3]=="PM" and h<12: h+=12
+    elif m[3]=="AM" and h==12: h=0
     return f"{h:02d}:{mins:02d}"
 
+def in_window(d):
+    return d and TODAY <= d <= MAX_DATE
 
-# ─────────────────────────────────────────────────────────────────────────────
-# PARSERS
-# ─────────────────────────────────────────────────────────────────────────────
-
-def parse_json_ld(soup, venue):
-    """Extract events from JSON-LD <script> blocks — works on many sites."""
-    shows = []
-    for script in soup.find_all("script", type="application/ld+json"):
-        try:
-            data   = json.loads(script.string or "")
-            events = data if isinstance(data, list) else [data]
-            for ev in events:
-                if ev.get("@type") not in ("MusicEvent", "Event", "TheaterEvent"): continue
-                raw_date = ev.get("startDate", "")
-                d = parse_date_string(raw_date[:10])
-                if not d or d < TODAY or d > MAX_DATE: continue
-                artist = _extract_artist(ev)
-                shows.append(_build_show(
-                    venue, d, artist,
-                    url=ev.get("url",""),
-                    time_str=raw_date[11:16] if len(raw_date)>10 else None,
-                    price=_extract_price(ev),
-                ))
-        except Exception:
-            continue
-    return shows
-
-
-def parse_inline_json(soup, venue):
-    """
-    Many JS-heavy sites embed their event data as a JSON blob in a <script> tag,
-    e.g.  window.__DATA__ = {...}  or  var events = [...]
-    We fish those out and look for date + name fields.
-    """
-    shows = []
-    candidates = []
-
-    for script in soup.find_all("script"):
-        text = script.string or ""
-        # Look for JSON arrays or objects assigned to a variable
-        for m in re.finditer(r'(?:window\.\w+|var \w+|\w+)\s*=\s*(\[{.{50,}?\}]|\{{.{50,}?\}})\s*;', text, re.S):
-            try:
-                candidates.append(json.loads(m.group(1)))
-            except Exception:
-                pass
-
-    for obj in candidates:
-        items = obj if isinstance(obj, list) else obj.get("events", obj.get("items", []))
-        if not isinstance(items, list): continue
-        for item in items:
-            if not isinstance(item, dict): continue
-            # Look for a date field
-            raw_date = (item.get("date") or item.get("startDate") or
-                        item.get("start_date") or item.get("eventDate") or
-                        item.get("start") or "")
-            if isinstance(raw_date, dict):
-                raw_date = raw_date.get("date") or raw_date.get("local") or ""
-            d = parse_date_string(str(raw_date)[:10])
-            if not d or d < TODAY or d > MAX_DATE: continue
-            # Look for a name/title field
-            artist = (item.get("name") or item.get("title") or
-                      item.get("headliner") or item.get("artist") or "").strip()
-            if not artist: continue
-            url = item.get("url") or item.get("link") or ""
-            shows.append(_build_show(venue, d, artist, url=url))
-
-    return shows
-
-
-def parse_prekindle(html, venue):
-    """
-    Prekindle pages. After JS renders, events appear in the DOM and JSON-LD
-    is injected. Try JSON-LD → inline JSON → generic HTML fallback.
-    """
-    soup = BeautifulSoup(html, "lxml")
-
-    shows = parse_json_ld(soup, venue)
-    if shows: return shows
-
-    shows = parse_inline_json(soup, venue)
-    if shows: return shows
-
-    return parse_html_generic(html, venue)
-
-
-def parse_html_generic(html, venue):
-    """Generic HTML parser — microdata, then class-name heuristics."""
-    soup  = BeautifulSoup(html, "lxml")
-    shows = []
-
-    # Try JSON-LD first
-    shows = parse_json_ld(soup, venue)
-    if shows: return shows
-
-    # Try inline JSON blobs
-    shows = parse_inline_json(soup, venue)
-    if shows: return shows
-
-    # Microdata
-    for ev in soup.find_all(attrs={"itemtype": re.compile(r"schema.org/(Music)?Event")}):
-        name_el = ev.find(attrs={"itemprop": "name"})
-        date_el = ev.find(attrs={"itemprop": "startDate"})
-        if not (name_el and date_el): continue
-        raw_date = date_el.get("content") or date_el.get_text()
-        d = parse_date_string(raw_date[:10])
-        if not d or d < TODAY or d > MAX_DATE: continue
-        artist = name_el.get_text(strip=True)
-        link   = ev.find("a", href=True)
-        url    = _abs(link["href"], venue["url"]) if link else ""
-        shows.append(_build_show(venue, d, artist, url=url))
-    if shows: return shows
-
-    # Class-name heuristics
-    DATE_RE   = re.compile(r"(event|show)[_-]?(date|day|time)", re.I)
-    ARTIST_RE = re.compile(r"(event|show|artist)[_-]?(title|name|headline|headliner)", re.I)
-    for block in soup.find_all(["article","li","div"],
-                                class_=re.compile(r"event|show|gig|listing", re.I)):
-        date_el   = block.find(class_=DATE_RE)
-        artist_el = block.find(class_=ARTIST_RE)
-        if not (date_el and artist_el): continue
-        d = parse_date_string(date_el.get_text(strip=True))
-        if not d or d < TODAY or d > MAX_DATE: continue
-        artist = artist_el.get_text(strip=True)
-        if not artist: continue
-        link = block.find("a", href=True)
-        url  = _abs(link["href"], venue["url"]) if link else ""
-        shows.append(_build_show(venue, d, artist, url=url))
-
-    return shows
-
-
-def parse_eventbrite(html, venue):
-    soup = BeautifulSoup(html, "lxml")
-    # Try JSON-LD first (Eventbrite injects it)
-    shows = parse_json_ld(soup, venue)
-    if shows: return shows
-    # Fallback: __SERVER_DATA__
-    m = re.search(r'__SERVER_DATA__\s*=\s*({.+?})\s*;', html, re.S)
-    if not m: return parse_html_generic(html, venue)
-    shows = []
-    try:
-        data   = json.loads(m.group(1))
-        events = data.get("search_data",{}).get("events",{}).get("results",[])
-        for ev in events:
-            raw_date = ev.get("start_date") or ev.get("start",{}).get("local","")
-            d = parse_date_string(raw_date[:10])
-            if not d or d < TODAY or d > MAX_DATE: continue
-            artist = (ev.get("name") or {}).get("text") or ev.get("name","")
-            url    = ev.get("url","")
-            shows.append(_build_show(venue, d, artist, url=url,
-                                     time_str=raw_date[11:16] if len(raw_date)>10 else None))
-    except Exception:
-        return parse_html_generic(html, venue)
-    return shows
-
-
-PARSERS = {
-    "prekindle":    parse_prekindle,
-    "eventbrite":   parse_eventbrite,
-    "html_generic": parse_html_generic,
-    "ticketweb":    parse_html_generic,
-    "custom":       parse_html_generic,
-}
-
-
-# ─────────────────────────────────────────────────────────────────────────────
-# HELPERS
-# ─────────────────────────────────────────────────────────────────────────────
-def _extract_artist(ev):
-    p = ev.get("performer") or ev.get("performers")
-    if isinstance(p, dict):  return p.get("name", ev.get("name","Unknown"))
-    if isinstance(p, list) and p: return p[0].get("name", ev.get("name","Unknown"))
-    return ev.get("name","Unknown")
-
-def _extract_price(ev):
-    offers = ev.get("offers")
-    if not offers: return None
-    if isinstance(offers, list): offers = offers[0]
-    price = offers.get("price") or offers.get("lowPrice")
-    if price:
-        cur = offers.get("priceCurrency","USD")
-        return f"{'$' if cur=='USD' else cur}{price}"
-    return None
-
-def _build_show(venue, d, artist, url="", time_str=None, price=None):
+def build_show(venue, d, artist, url="", time_str=None, price=None, opener=None):
     return {
-        "id":      make_show_id(venue["key"], str(d), artist),
+        "id":      show_id(venue["key"], str(d), artist),
         "date":    str(d),
-        "time":    parse_time_string(time_str) if time_str else None,
+        "time":    parse_time(time_str),
         "artist":  artist.strip(),
-        "opener":  None,
+        "opener":  opener,
         "venue":   venue["name"],
         "region":  venue["region"],
         "city":    venue["city"],
@@ -391,114 +203,364 @@ def _build_show(venue, d, artist, url="", time_str=None, price=None):
         "addedAt": datetime.utcnow().isoformat() + "Z",
     }
 
+
+# ─────────────────────────────────────────────────────────────────────────────
+# STRATEGY: mec_wp_api
+# WordPress + Modern Events Calendar plugin (Parish)
+# Calls WP REST API directly — much more reliable than scraping AJAX HTML.
+# ─────────────────────────────────────────────────────────────────────────────
+def strategy_mec_wp_api(venue):
+    base = venue.get("api_base", "").rstrip("/")
+    if not base:
+        # Derive from url: take up to first path segment
+        from urllib.parse import urlparse
+        p = urlparse(venue["url"])
+        base = f"{p.scheme}://{p.netloc}"
+
+    endpoints = [
+        f"{base}/wp-json/mec/v1/events",
+        f"{base}/wp-json/wp/v2/mec-events",
+        f"{base}/wp-json/tribe/events/v1/events",
+    ]
+    params = {"per_page": 100, "status": "publish", "after": TODAY.isoformat()}
+
+    for ep in endpoints:
+        try:
+            r = requests.get(ep, headers=HEADERS, params=params, timeout=15)
+            if not r.ok:
+                continue
+            data = r.json()
+            events = data if isinstance(data, list) else data.get("events", [])
+            if not events:
+                continue
+            print(f"    REST API hit: {ep}  ({len(events)} events)")
+            shows = []
+            for ev in events:
+                # MEC events use various date field names
+                raw_date = (ev.get("date") or ev.get("start_date") or
+                            ev.get("meta", {}).get("mec_start_date", "") or
+                            ev.get("date_gmt",""))
+                d = parse_date(str(raw_date)[:10])
+                if not in_window(d): continue
+                artist = (ev.get("title", {}).get("rendered") or
+                          ev.get("title") or ev.get("name","")).strip()
+                artist = re.sub(r"<[^>]+>", "", artist)  # strip HTML tags
+                if not artist: continue
+                url = ev.get("link") or ev.get("url") or ""
+                shows.append(build_show(venue, d, artist, url=url))
+            return shows
+        except Exception as e:
+            print(f"    ⚠ {ep}: {e}")
+            continue
+
+    print(f"    ⚠ No WP REST API endpoint responded — falling back to Playwright")
+    return strategy_pw_generic(venue)
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# STRATEGY: tw_js
+# WordPress + TicketWeb plugin (Antone's)
+# Playwright renders page, then reads window.EventData.events via JS eval.
+# ─────────────────────────────────────────────────────────────────────────────
+TW_JS_EVAL = """
+() => {
+  try {
+    if (window.EventData && Array.isArray(window.EventData.events) && window.EventData.events.length > 0) {
+      return JSON.stringify(window.EventData.events);
+    }
+  } catch(e) {}
+  return null;
+}
+"""
+
+def strategy_tw_js(venue):
+    print(f"    (Playwright + JS eval — waiting for TicketWeb AJAX)")
+    html, events_json = playwright_get(
+        venue["url"],
+        wait_selector=".tw-event-item, .tw-plugin-upcoming-event-list li",
+        wait_ms=12000,
+        js_eval=TW_JS_EVAL,
+    )
+    if events_json:
+        try:
+            events = json.loads(events_json)
+            print(f"    EventData.events: {len(events)} items")
+            shows = []
+            for ev in events:
+                raw_date = (ev.get("date") or ev.get("startDate") or
+                            ev.get("start_date") or ev.get("event_date",""))
+                d = parse_date(str(raw_date)[:10])
+                if not in_window(d): continue
+                artist = (ev.get("title") or ev.get("name") or
+                          ev.get("headliner","")).strip()
+                if not artist: continue
+                url = ev.get("url") or ev.get("link") or ev.get("ticket_url","")
+                shows.append(build_show(venue, d, artist, url=url))
+            return shows
+        except Exception as e:
+            print(f"    ⚠ EventData parse failed: {e}")
+    # Fallback: parse rendered HTML
+    return strategy_html(html, venue)
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# STRATEGY: nextjs_js
+# Next.js app (Emo's)
+# Playwright renders, reads __NEXT_DATA__ or page component state via JS eval.
+# ─────────────────────────────────────────────────────────────────────────────
+NEXTJS_JS_EVAL = """
+() => {
+  try {
+    // Standard Next.js Pages Router data
+    if (window.__NEXT_DATA__) {
+      const nd = window.__NEXT_DATA__;
+      const pp = nd.props && nd.props.pageProps;
+      if (pp) return JSON.stringify(pp);
+    }
+  } catch(e) {}
+  return null;
+}
+"""
+
+def strategy_nextjs_js(venue):
+    print(f"    (Playwright + __NEXT_DATA__ extraction)")
+    html, page_props_json = playwright_get(
+        venue["url"],
+        wait_ms=12000,
+        js_eval=NEXTJS_JS_EVAL,
+    )
+    if page_props_json:
+        try:
+            props = json.loads(page_props_json)
+            # Look for events in common prop names
+            events = (props.get("events") or props.get("shows") or
+                      props.get("data", {}).get("events") or [])
+            if events:
+                print(f"    __NEXT_DATA__ events: {len(events)}")
+                shows = []
+                for ev in events:
+                    if not isinstance(ev, dict): continue
+                    raw_date = (ev.get("date") or ev.get("startDate") or
+                                ev.get("start_date",""))
+                    d = parse_date(str(raw_date)[:10])
+                    if not in_window(d): continue
+                    artist = (ev.get("title") or ev.get("name") or
+                              ev.get("headliner","")).strip()
+                    if not artist: continue
+                    url = ev.get("url") or ev.get("link") or ""
+                    shows.append(build_show(venue, d, artist, url=url))
+                return shows
+        except Exception as e:
+            print(f"    ⚠ __NEXT_DATA__ parse failed: {e}")
+    # Fall back to HTML parsing of rendered DOM
+    return strategy_html(html, venue)
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# STRATEGY: pw_generic
+# Generic Playwright + extended wait, then HTML parse.
+# Useful as a fallback when the specific strategy returns nothing.
+# ─────────────────────────────────────────────────────────────────────────────
+def strategy_pw_generic(venue):
+    print(f"    (Playwright generic — {venue.get('wait_selector','networkidle')})")
+    html, _ = playwright_get(
+        venue["url"],
+        wait_selector=venue.get("wait_selector"),
+        wait_ms=10000,
+    )
+    return strategy_html(html, venue)
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# STRATEGY: html_generic
+# Plain requests + BeautifulSoup. JSON-LD → microdata → class heuristics.
+# ─────────────────────────────────────────────────────────────────────────────
+def strategy_html_fetch(venue):
+    r = requests.get(venue["url"], headers=HEADERS, timeout=20)
+    r.raise_for_status()
+    return strategy_html(r.text, venue)
+
+def strategy_html(html, venue):
+    soup  = BeautifulSoup(html, "lxml")
+    shows = []
+
+    # ── JSON-LD ──────────────────────────────────────────────────────────────
+    for script in soup.find_all("script", type="application/ld+json"):
+        try:
+            data   = json.loads(script.string or "")
+            events = data if isinstance(data, list) else [data]
+            for ev in events:
+                if ev.get("@type") not in ("MusicEvent","Event","TheaterEvent"):
+                    continue
+                raw = ev.get("startDate","")
+                d   = parse_date(raw[:10])
+                if not in_window(d): continue
+                artist  = _ld_artist(ev)
+                url     = ev.get("url","")
+                time_s  = raw[11:16] if len(raw)>10 else None
+                price   = _ld_price(ev)
+                shows.append(build_show(venue, d, artist, url=url,
+                                        time_str=time_s, price=price))
+        except Exception:
+            continue
+    if shows: return shows
+
+    # ── Inline JSON blobs ────────────────────────────────────────────────────
+    for script in soup.find_all("script"):
+        text = script.string or ""
+        for m in re.finditer(
+            r'(?:window\.\w+|var \w+|\w+)\s*=\s*(\[{.{50,}?\}]|\{{.{100,}?\}})\s*[;,]',
+            text, re.S
+        ):
+            try:
+                obj   = json.loads(m.group(1))
+                items = obj if isinstance(obj, list) else obj.get("events", obj.get("items",[]))
+                if not isinstance(items, list): continue
+                for item in items:
+                    if not isinstance(item, dict): continue
+                    raw = (item.get("date") or item.get("startDate") or
+                           item.get("start_date") or item.get("start",""))
+                    if isinstance(raw, dict): raw = raw.get("date") or raw.get("local","")
+                    d = parse_date(str(raw)[:10])
+                    if not in_window(d): continue
+                    artist = (item.get("name") or item.get("title") or
+                              item.get("headliner","")).strip()
+                    if not artist: continue
+                    url = item.get("url") or item.get("link","")
+                    shows.append(build_show(venue, d, artist, url=url))
+            except Exception:
+                continue
+    if shows: return shows
+
+    # ── Schema.org microdata ─────────────────────────────────────────────────
+    for ev in soup.find_all(attrs={"itemtype": re.compile(r"schema.org/(Music)?Event")}):
+        name_el = ev.find(attrs={"itemprop":"name"})
+        date_el = ev.find(attrs={"itemprop":"startDate"})
+        if not (name_el and date_el): continue
+        d = parse_date((date_el.get("content") or date_el.get_text())[:10])
+        if not in_window(d): continue
+        artist = name_el.get_text(strip=True)
+        link   = ev.find("a", href=True)
+        url    = _abs(link["href"], venue["url"]) if link else ""
+        shows.append(build_show(venue, d, artist, url=url))
+    if shows: return shows
+
+    # ── Class-name heuristics ────────────────────────────────────────────────
+    DATE_RE   = re.compile(r"(event|show)[_-]?(date|day|time)", re.I)
+    ARTIST_RE = re.compile(r"(event|show|artist)[_-]?(title|name|headline|headliner)", re.I)
+    for block in soup.find_all(["article","li","div"],
+                                class_=re.compile(r"event|show|gig|listing|concert", re.I)):
+        date_el   = block.find(class_=DATE_RE)
+        artist_el = block.find(class_=ARTIST_RE)
+        if not (date_el and artist_el): continue
+        d = parse_date(date_el.get_text(strip=True))
+        if not in_window(d): continue
+        artist = artist_el.get_text(strip=True)
+        if not artist: continue
+        link = block.find("a", href=True)
+        url  = _abs(link["href"], venue["url"]) if link else ""
+        shows.append(build_show(venue, d, artist, url=url))
+
+    return shows
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# HELPERS
+# ─────────────────────────────────────────────────────────────────────────────
+def _ld_artist(ev):
+    p = ev.get("performer") or ev.get("performers")
+    if isinstance(p, dict):  return p.get("name", ev.get("name","Unknown"))
+    if isinstance(p, list) and p: return p[0].get("name", ev.get("name","Unknown"))
+    return ev.get("name","Unknown")
+
+def _ld_price(ev):
+    o = ev.get("offers")
+    if not o: return None
+    if isinstance(o, list): o = o[0]
+    price = o.get("price") or o.get("lowPrice")
+    if price:
+        cur = o.get("priceCurrency","USD")
+        return f"{'$' if cur=='USD' else cur}{price}"
+    return None
+
 def _abs(path, base):
     from urllib.parse import urljoin
     return urljoin(base, path)
 
 
 # ─────────────────────────────────────────────────────────────────────────────
-# FETCH — chooses requests vs Playwright based on venue config
+# DIAGNOSTICS
 # ─────────────────────────────────────────────────────────────────────────────
-def fetch_html(venue):
-    """Return page HTML, using Playwright for JS-rendered venues."""
-    if venue.get("js_rendered"):
-        print(f"    (headless browser)")
-        wait_sel = venue.get("wait_selector")
-        html = fetch_with_playwright(venue["url"], wait_selector=wait_sel)
-    else:
-        res = requests.get(venue["url"], headers=HEADERS_BASE, timeout=20)
-        res.raise_for_status()
-        html = res.text
-    return html
+def diagnose(venue, html):
+    soup = BeautifulSoup(html, "lxml")
+    title  = soup.find("title")
+    jld    = soup.find_all("script", type="application/ld+json")
+    scripts = [s for s in soup.find_all("script") if s.string and len(s.string)>200]
+    classes = set()
+    for el in soup.find_all(["div","article","li","section","ul"], class_=True):
+        for c in el.get("class",[]):
+            if any(k in c.lower() for k in ["event","show","gig","concert","listing","card"]):
+                classes.add(c)
+    dates = re.findall(r'\b(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s+\d{1,2}', html)
+    print(f"    ── DIAG: {venue['name']} ──────────────────")
+    print(f"    HTML: {len(html):,} chars  |  title: {title.get_text(strip=True) if title else '?'}")
+    print(f"    JSON-LD: {len(jld)}  |  data scripts: {len(scripts)}  |  date strings: {len(dates)}")
+    for s in scripts[:2]:
+        print(f"      → {(s.string or '')[:100].replace(chr(10),' ')}…")
+    print(f"    event classes: {sorted(classes)[:12]}")
+    print(f"    ─────────────────────────────────────────")
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# DISPATCH TABLE
+# ─────────────────────────────────────────────────────────────────────────────
+STRATEGIES = {
+    "mec_wp_api":    strategy_mec_wp_api,
+    "tw_js":         strategy_tw_js,
+    "nextjs_js":     strategy_nextjs_js,
+    "pw_generic":    strategy_pw_generic,
+    "html_generic":  strategy_html_fetch,
+}
 
 
 # ─────────────────────────────────────────────────────────────────────────────
 # SCRAPE ONE VENUE
 # ─────────────────────────────────────────────────────────────────────────────
-def diagnose_venue(venue, html):
-    """
-    Print diagnostic info to the Actions log so we can see what
-    each page is actually serving — helps write better parsers.
-    """
-    soup = BeautifulSoup(html, "lxml")
-
-    print(f"    ── DIAGNOSTIC: {venue['name']} ──────────────────────────")
-    print(f"    HTML length  : {len(html):,} chars")
-
-    title = soup.find("title")
-    print(f"    Page title   : {title.get_text(strip=True) if title else '(none)'}")
-
-    # JSON-LD blocks
-    jld = soup.find_all("script", type="application/ld+json")
-    print(f"    JSON-LD tags : {len(jld)}")
-    for i, s in enumerate(jld[:3]):
-        try:
-            d = json.loads(s.string or "")
-            t = d.get("@type") if isinstance(d, dict) else [x.get("@type") for x in d[:2]]
-            print(f"      [{i}] @type = {t}")
-        except Exception:
-            print(f"      [{i}] (parse error)")
-
-    # All script tags — look for data-bearing ones
-    scripts = soup.find_all("script")
-    print(f"    Script tags  : {len(scripts)} total")
-    data_scripts = [s for s in scripts if s.string and len(s.string) > 200]
-    print(f"    Data scripts : {len(data_scripts)} with >200 chars")
-    for s in data_scripts[:3]:
-        snippet = (s.string or "")[:120].replace("\n", " ")
-        print(f"      → {snippet}…")
-
-    # Interesting class names on divs/articles
-    all_classes = set()
-    for el in soup.find_all(["div","article","li","section"], class_=True):
-        for c in el.get("class", []):
-            if any(kw in c.lower() for kw in ["event","show","gig","concert","listing","card"]):
-                all_classes.add(c)
-    print(f"    Event-ish classes: {sorted(all_classes)[:15]}")
-
-    # itemprop / itemtype attributes
-    itemtypes = [el.get("itemtype","") for el in soup.find_all(attrs={"itemtype":True})]
-    if itemtypes:
-        print(f"    itemtype     : {itemtypes[:5]}")
-
-    # Look for date-like text patterns in the raw HTML (quick sanity check)
-    date_hits = re.findall(r'\b(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s+\d{1,2}', html)
-    print(f"    Date strings : {len(date_hits)} found  e.g. {date_hits[:5]}")
-    print(f"    ─────────────────────────────────────────────────────────")
-
-
-def scrape_venue(venue, diagnose=False):
-    print(f"  [{venue['strategy']}{'*' if venue.get('js_rendered') else ''}]  {venue['name']}")
+def scrape_venue(venue):
+    strat = venue.get("strategy", "html_generic")
+    print(f"  [{strat}]  {venue['name']}")
     try:
-        html   = fetch_html(venue)
-        if diagnose:
-            diagnose_venue(venue, html)
-        parser = PARSERS.get(venue["strategy"], parse_html_generic)
-        shows  = parser(html, venue)
+        fn    = STRATEGIES.get(strat, strategy_html_fetch)
+        shows = fn(venue)
+        if DIAGNOSE and shows == [] and strat in ("html_generic", "pw_generic"):
+            # Re-fetch for diagnosis only if we got nothing
+            if strat == "html_generic":
+                try:
+                    r = requests.get(venue["url"], headers=HEADERS, timeout=20)
+                    diagnose(venue, r.text)
+                except Exception: pass
+            else:
+                html, _ = playwright_get(venue["url"], wait_ms=8000)
+                diagnose(venue, html)
         print(f"    → {len(shows)} show(s)")
         return shows
     except Exception as e:
-        print(f"    ⚠ Failed: {e}")
+        print(f"    ⚠ {e}")
         return []
 
 
 # ─────────────────────────────────────────────────────────────────────────────
-# MERGE
+# MERGE + NEW SHOWS DIFF
 # ─────────────────────────────────────────────────────────────────────────────
-def merge_all_scraped(existing_shows, fresh_scraped):
-    kept = [s for s in existing_shows if s.get("source") != "scraped"]
-    kept.extend(fresh_scraped)
-    kept = [s for s in kept
-            if s.get("date","") >= str(TODAY) and s.get("date","") <= str(MAX_DATE)]
-    return kept
+def merge(existing, fresh):
+    kept = [s for s in existing if s.get("source") != "scraped"]
+    kept.extend(fresh)
+    return [s for s in kept if s.get("date","") >= str(TODAY) <= str(MAX_DATE)
+            and s.get("date","") <= str(MAX_DATE)]
 
-
-# ─────────────────────────────────────────────────────────────────────────────
-# NEW SHOWS SUMMARY
-# ─────────────────────────────────────────────────────────────────────────────
-def build_new_shows_summary(old_ids, new_shows):
-    new = [s for s in new_shows if s["id"] not in old_ids]
-    new.sort(key=lambda s: (s["date"], s.get("time") or ""))
+def new_shows_summary(old_ids, fresh):
+    new = sorted([s for s in fresh if s["id"] not in old_ids],
+                 key=lambda s: (s["date"], s.get("time") or ""))
     return [{"id":s["id"],"date":s["date"],"artist":s["artist"],
              "venue":s["venue"],"region":s["region"]} for s in new]
 
@@ -507,72 +569,56 @@ def build_new_shows_summary(old_ids, new_shows):
 # MAIN
 # ─────────────────────────────────────────────────────────────────────────────
 def main():
-    print(f"\n=== MojoLists Venue Scraper — {TODAY} ===\n")
+    print(f"\n=== MojoLists Venue Scraper — {TODAY} ===")
+    if DIAGNOSE: print("⚑ DIAGNOSTIC MODE\n")
 
     with open(VENUES_FILE) as f:
         config = json.load(f)
-
     active = [v for v in config["venues"] if v.get("active")]
     if not active:
         print("No active venues. Edit scripts/venues.json.")
         return
 
-    js_count = sum(1 for v in active if v.get("js_rendered"))
-    print(f"Venues: {len(active)} active  ({js_count} need headless browser)\n")
+    js_venues = [v for v in active if v.get("strategy","") in ("tw_js","nextjs_js","pw_generic")]
+    print(f"Active: {len(active)} venues  ({len(js_venues)} use headless browser)\n")
 
-    shows_data, file_sha = load_shows_from_github()
-    if "meta"  not in shows_data: shows_data["meta"]  = {}
-    if "shows" not in shows_data: shows_data["shows"] = []
+    data, sha = load_shows()
+    if "meta"  not in data: data["meta"]  = {}
+    if "shows" not in data: data["shows"] = []
 
-    old_scraped_ids = {s["id"] for s in shows_data["shows"] if s.get("source") == "scraped"}
-
+    old_ids   = {s["id"] for s in data["shows"] if s.get("source")=="scraped"}
     all_fresh = []
     errors    = []
 
-    # DIAGNOSE=true in env triggers verbose HTML analysis for every venue —
-    # set it manually in the workflow when debugging zero-result runs.
-    diagnose = os.environ.get("DIAGNOSE", "").lower() in ("1", "true", "yes")
-    if diagnose:
-        print("⚑ DIAGNOSTIC MODE — verbose HTML analysis enabled\n")
-
     for i, venue in enumerate(active):
-        fresh = scrape_venue(venue, diagnose=diagnose)
+        fresh = scrape_venue(venue)
         all_fresh.extend(fresh)
-        if not fresh:
-            errors.append(venue["name"])
-        if i < len(active) - 1 and not venue.get("js_rendered"):
+        if not fresh: errors.append(venue["name"])
+        if i < len(active)-1 and venue.get("strategy","") == "html_generic":
             time.sleep(FETCH_DELAY)
 
-    try:
-        close_browser()
-    except Exception:
-        pass
+    _close_pw()
 
     print(f"\nTotal scraped: {len(all_fresh)}")
-    if errors:
-        print(f"⚠ Zero results from: {', '.join(errors)}")
+    if errors: print(f"⚠ Zero results: {', '.join(errors)}")
 
-    shows_data["shows"] = merge_all_scraped(shows_data["shows"], all_fresh)
-    new_summary = build_new_shows_summary(old_scraped_ids, all_fresh)
-
+    data["shows"] = merge(data["shows"], all_fresh)
+    summary = new_shows_summary(old_ids, all_fresh)
     now = datetime.utcnow().isoformat() + "Z"
-    shows_data["meta"].update({
-        "lastUpdated":       now,
-        "lastScraperRun":    now,
-        "lastRunNewShows":   new_summary,
+    data["meta"].update({
+        "lastUpdated": now, "lastScraperRun": now,
+        "lastRunNewShows": summary,
         "lastRunVenueCount": len(active),
         "lastRunFoundCount": len(all_fresh),
-        "lastRunNewCount":   len(new_summary),
+        "lastRunNewCount": len(summary),
     })
-    shows_data["meta"].pop("scraperIndex", None)
+    data["meta"].pop("scraperIndex", None)
 
-    print(f"Total in store: {len(shows_data['shows'])}  |  New this run: {len(new_summary)}")
-
-    commit_msg = (f"chore: weekly scrape — {len(all_fresh)} shows / "
-                  f"{len(active)} venues / {len(new_summary)} new [{TODAY}]")
-    write_shows_to_github(shows_data, file_sha, commit_msg)
+    print(f"In store: {len(data['shows'])}  |  New: {len(summary)}")
+    save_shows(data, sha,
+               f"chore: scrape {len(all_fresh)} shows / {len(active)} venues / "
+               f"{len(summary)} new [{TODAY}]")
     print("Done.\n")
-
 
 if __name__ == "__main__":
     main()

@@ -1,5 +1,5 @@
 {
-  "_comment": "Add Austin small venues here. js_rendered:true = uses headless browser (Playwright). wait_selector = CSS selector to wait for before extracting HTML.",
+  "_comment": "Active Austin/SA/Denver venues. strategy options: mec_wp_api | tw_js | nextjs_js | pw_generic | html_generic",
   "venues": [
     {
       "key": "parish-austin",
@@ -7,23 +7,11 @@
       "city": "Austin",
       "region": "austin",
       "url": "https://www.parishaustin.com/events",
-      "strategy": "prekindle",
-      "js_rendered": true,
-      "wait_selector": ".event-listing, .event-item, article",
+      "api_base": "https://www.parishaustin.com",
+      "strategy": "mec_wp_api",
+      "js_rendered": false,
       "active": true,
-      "notes": "Main room + Parish Underground. Prekindle-powered, JS-rendered."
-    },
-    {
-      "key": "mohawk-austin",
-      "name": "Mohawk",
-      "city": "Austin",
-      "region": "austin",
-      "url": "https://www.mohawkaustin.com/events",
-      "strategy": "prekindle",
-      "js_rendered": true,
-      "wait_selector": ".event-listing, .event-item, article",
-      "active": true,
-      "notes": "Indoor + Outdoor stages. Prekindle-powered, JS-rendered."
+      "notes": "WordPress + Modern Events Calendar plugin. Calls WP REST API directly."
     },
     {
       "key": "antones-austin",
@@ -31,34 +19,11 @@
       "city": "Austin",
       "region": "austin",
       "url": "https://www.antonesnightclub.com/events",
-      "strategy": "prekindle",
+      "strategy": "tw_js",
       "js_rendered": true,
-      "wait_selector": ".event-listing, .event-item, article",
+      "wait_selector": ".tw-event-item, .tw-plugin-upcoming-event-list li",
       "active": true,
-      "notes": "Legendary blues/roots venue. Prekindle-powered, JS-rendered."
-    },
-    {
-      "key": "continental-club-austin",
-      "name": "Continental Club",
-      "city": "Austin",
-      "region": "austin",
-      "url": "https://www.continentalclub.com/Austin",
-      "strategy": "html_generic",
-      "js_rendered": false,
-      "active": true,
-      "notes": "Simple HTML calendar, no JS rendering needed."
-    },
-    {
-      "key": "stubbs-austin",
-      "name": "Stubb's",
-      "city": "Austin",
-      "region": "austin",
-      "url": "https://www.stubbsaustin.com/events",
-      "strategy": "html_generic",
-      "js_rendered": true,
-      "wait_selector": ".event-card, .event-listing, [data-event]",
-      "active": true,
-      "notes": "Outdoor amphitheater + indoor. JS-rendered."
+      "notes": "WordPress + TicketWeb plugin. Reads window.EventData.events via JS eval."
     },
     {
       "key": "emos-austin",
@@ -66,37 +31,72 @@
       "city": "Austin",
       "region": "austin",
       "url": "https://www.emosaustin.com/events",
-      "strategy": "prekindle",
+      "strategy": "nextjs_js",
       "js_rendered": true,
-      "wait_selector": ".event-listing, .event-item, article",
       "active": true,
-      "notes": "Prekindle-powered, JS-rendered."
+      "notes": "Next.js app. Reads window.__NEXT_DATA__.props.pageProps via JS eval."
     },
     {
+      "key": "continental-club-austin",
+      "name": "Continental Club",
+      "city": "Austin",
+      "region": "austin",
+      "url": "https://www.continentalclub.com/Austin",
+      "strategy": "pw_generic",
+      "js_rendered": true,
+      "wait_selector": ".show, .event, article, .schedule",
+      "active": true,
+      "notes": "Previous URL 404'd. Try with Playwright + pw_generic. Verify URL if still failing."
+    },
+    {
+      "key": "mohawk-austin",
+      "name": "Mohawk",
+      "city": "Austin",
+      "region": "austin",
+      "url": "https://www.mohawkaustin.com/calendar",
+      "strategy": "pw_generic",
+      "js_rendered": true,
+      "wait_selector": ".event, .show, article, [class*='event']",
+      "active": true,
+      "notes": "/events loaded the rental page — trying /calendar. Verify if still wrong."
+    },
+    {
+      "key": "stubb-indoor",
+      "name": "Stubb's Waller Creek",
+      "city": "Austin",
+      "region": "austin",
+      "url": "https://www.stubbsaustin.com",
+      "strategy": "pw_generic",
+      "js_rendered": true,
+      "wait_selector": ".event-card, [class*='event'], article",
+      "active": true,
+      "notes": "/events 404'd. Trying homepage. Stubb's big shows also appear via Ticketmaster pull."
+    },
+    {
+      "_comment": "BLOCKED / INACTIVE VENUES",
       "key": "far-out-lounge",
       "name": "Far Out Lounge",
       "city": "Austin",
       "region": "austin",
       "url": "https://www.faroutlounge.com/events",
       "strategy": "html_generic",
-      "js_rendered": true,
-      "wait_selector": ".event, .show, article",
-      "active": true,
-      "notes": "South Austin. JS-rendered."
+      "js_rendered": false,
+      "active": false,
+      "notes": "Returns 'Access Denied' (359 bytes) — bot detection. Check if they have an Eventbrite page instead."
     },
     {
       "key": "the-paramount-austin",
       "name": "The Paramount Theatre",
       "city": "Austin",
       "region": "austin",
-      "url": "https://www.austintheatre.org/performances/",
+      "url": "https://www.austintheatre.org/calendar/",
       "strategy": "html_generic",
       "js_rendered": false,
-      "active": true,
-      "notes": "Also covers State Theatre on the same page."
+      "active": false,
+      "notes": "Cloudflare blocks all automated requests. Shows should appear via Ticketmaster pull."
     },
     {
-      "_comment": "ADD MORE VENUES — copy a block above and fill in the fields. Set active:true when ready.",
+      "_comment": "ADD MORE VENUES — copy a block and fill in the fields. Set active:true when ready.",
       "key": "EXAMPLE-venue",
       "name": "Example Venue",
       "city": "Austin",
@@ -104,7 +104,6 @@
       "url": "https://example.com/events",
       "strategy": "html_generic",
       "js_rendered": false,
-      "wait_selector": null,
       "active": false,
       "notes": ""
     }
