@@ -1,5 +1,5 @@
 ---
-layout: review.njk
+layout: nfc.njk
 title: "Albert Collins And The Icebreakers"
 artist: "Albert Collins And The Icebreakers"
 album: "Don't Lose Your Cool"
@@ -7,7 +7,6 @@ year: "1983"
 label: "Alligator Records"
 image: "albert-collins-and-the-icebreakers-don-t-lose-your-cool.jpg"
 genre: ["Blues", "Texas Blues", "Electric Blues"]
-tags: reviews
 date: 1983-03-01
 source: "auto-generated"
 ---

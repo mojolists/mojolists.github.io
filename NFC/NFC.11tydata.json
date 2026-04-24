@@ -1,0 +1,6 @@
+{
+  "layout": "nfc.njk",
+  "permalink": "/NFC/{{ page.fileSlug }}/",
+  "eleventyExcludeFromCollections": true,
+  "tags": []
+}

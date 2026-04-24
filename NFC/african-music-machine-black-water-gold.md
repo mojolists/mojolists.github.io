@@ -1,5 +1,5 @@
 ---
-layout: review.njk
+layout: nfc.njk
 title: "African Music Machine"
 artist: "African Music Machine"
 album: "Black Water Gold"
@@ -7,7 +7,6 @@ year: "2000"
 label: "Soul Power"
 image: "african-music-machine-black-water-gold.jpg"
 genre: ["Funk", "Soul", "Deep Funk"]
-tags: reviews
 date: 2000-01-01
 source: "auto-generated"
 ---

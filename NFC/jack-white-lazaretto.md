@@ -1,5 +1,5 @@
 ---
-layout: review.njk
+layout: nfc.njk
 title: "Jack White"
 artist: "Jack White"
 album: "Lazaretto"
@@ -7,7 +7,6 @@ year: "2014"
 label: "Third Man Records"
 image: "jack-white-lazaretto.jpg"
 genre: ["Rock", "Blues Rock", "Garage Rock"]
-tags: reviews
 date: 2014-06-10
 source: "auto-generated"
 ---
@@ -27,8 +26,4 @@ Jack White's second solo album, released in June 2014 on his own Third Man Recor
 
 **Spin it for:** raucous fuzz-blues, the single coolest-engineered vinyl release of the 21st century, and an excuse to show off the hologram to anyone in the room.
 
-**Standouts:** "Lazaretto" · "Just One Drink" · "Temporary Ground" · "High Ball Stepper"
-
----
-
-**Sources:** [Wikipedia: *Lazaretto* (album)](https://en.wikipedia.org/wiki/Lazaretto_(album)) · [Rolling Stone — hologram-filled Ultra LP details](https://www.rollingstone.com/music/music-news/jack-white-details-hologram-filled-lazaretto-ultra-lp-188535/) · [The Vinyl Factory — Ultra LP multi-speed tracks, locked grooves, holograms](https://www.thevinylfactory.com/news/jack-white-lazaretto-ultra-lp-multi-speed-tracks-locked-grooves-holograms-vinyl) · [NPR All Songs Considered — Ultra LP surprises](https://www.npr.org/sections/allsongs/2014/05/06/310156717/ultra-lp-version-of-jack-whites-new-album-has-some-crazy-surprises) · [Infinity Light Science — Lazaretto hologram](https://www.infinitylightscience.com/hologram-for-lazeretto-lp) · [Songfacts — Lazaretto lyrics inspired by teenage writings](https://www.songfacts.com/facts/jack-white/lazaretto)
+**Standouts:** "Lazaretto

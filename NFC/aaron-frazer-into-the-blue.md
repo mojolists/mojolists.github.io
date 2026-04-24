@@ -1,5 +1,5 @@
 ---
-layout: review.njk
+layout: nfc.njk
 title: "Aaron Frazer"
 artist: "Aaron Frazer"
 album: "Into The Blue"
@@ -7,7 +7,6 @@ year: "2024"
 label: "Dead Oceans"
 image: "aaron-frazer-into-the-blue.jpg"
 genre: ["Soul", "Neo-Soul", "Psychedelic Soul"]
-tags: reviews
 date: 2024-06-28
 source: "auto-generated"
 ---

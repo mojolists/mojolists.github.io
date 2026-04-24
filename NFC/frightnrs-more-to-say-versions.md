@@ -1,5 +1,5 @@
 ---
-layout: review.njk
+layout: nfc.njk
 title: "The Frightnrs"
 artist: "The Frightnrs"
 album: "More To Say Versions"
@@ -7,7 +7,6 @@ year: "2017"
 label: "Daptone Records"
 image: "frightnrs-more-to-say.jpg"
 genre: ["Reggae", "Rocksteady", "Dub"]
-tags: reviews
 date: 2017-10-13
 source: "auto-generated"
 ---
@@ -28,4 +27,4 @@ Everything here carries heavy context. The band's frontman, **Dan Klein, died of
 
 ---
 
-**Sources:** [Daptone Records — album page](https://shopdaptonerecords.com/products/the-frightnrs-more-to-say-versions) · [The Frightnrs on Bandcamp](https://thefrightnrs.bandcamp.com/album/more-to-say-versions) · [NPR — "The Tragic Turn of The Frightnrs' First — And Last — Record"](https://www.npr.org/sections/therecord/2016/08/23/490958536/the-tragic-turn-of-the-frightnrs-first-and-last-record) · [Brooklyn Vegan — Dan Klein obituary and album announcement](https://www.brooklynvegan.com/the-frightnrs-frontman-passed-away-from-als-at-33-album-coming-out-on-daptone/) · [Reggaeville biography](https://www.reggaeville.com/artist-details/the-frightnrs/about/)
+**Sources:** [Daptone Records — album page](https://shopdaptonerecords.com/products/the-frightnrs-more-to-say-versions) · [The Frightnrs on Bandcamp](https://thefrightnrs.bandcamp.com/album/more-to-say-versions) · [NPR — "The Tragic Turn of The Frightnrs' First — And Last — Record"](https://www.npr.org/sections/therecord/2016

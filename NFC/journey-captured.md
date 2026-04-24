@@ -1,5 +1,5 @@
 ---
-layout: review.njk
+layout: nfc.njk
 title: "Journey"
 artist: "Journey"
 album: "Captured"
@@ -7,7 +7,6 @@ year: "1981"
 label: "Columbia Records"
 image: "journey-captured.jpg"
 genre: ["Rock", "Arena Rock", "Live"]
-tags: reviews
 date: 1981-01-30
 source: "auto-generated"
 ---
@@ -24,8 +23,4 @@ The lineup here is the classic one: Steve Perry, Neal Schon, Gregg Rolie, Ross V
 
 **Spin it for:** peak-Perry vocal pyrotechnics, Neal Schon guitar work before the *Escape*-era polish, and a snapshot of the pre-Cain lineup on its last major outing.
 
-**Standouts:** "Lights" · "Wheel in the Sky" · "Lovin' Touchin' Squeezin'" · "Any Way You Want It"
-
----
-
-**Sources:** [Wikipedia: *Captured* (Journey album)](https://en.wikipedia.org/wiki/Captured_(Journey_album)) · [Discogs release page](https://www.discogs.com/master/80535-Journey-Captured) · [Ultimate Classic Rock — ranking every Gregg Rolie album](https://ultimateclassicrock.com/gregg-rolie-journey-santana-albums/) · [103.5 The Arrow — Stanley Mouse and Journey](https://1035thearrow.com/2024/03/15/journey-stanley-mouse/) · [Brave Words — Steve Perry on *Captured*](https://bravewords.com/news/steve-perry-looks-back-on-journey-s-captured-album-i-didn-t-like-recording-music-live-and-i-didn-t-like-filming-the-show-live/)
+**Standouts:** "Lights" · "Whe

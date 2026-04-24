@@ -1,5 +1,5 @@
 ---
-layout: review.njk
+layout: nfc.njk
 title: "Albert Collins"
 artist: "Albert Collins"
 album: "Frostbite"
@@ -7,7 +7,6 @@ year: "1980"
 label: "Alligator Records"
 image: "albert-collins-frostbite.jpg"
 genre: ["Blues", "Texas Blues", "Electric Blues"]
-tags: reviews
 date: 1980-01-01
 source: "auto-generated"
 ---

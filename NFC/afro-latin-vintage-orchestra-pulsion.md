@@ -1,5 +1,5 @@
 ---
-layout: review.njk
+layout: nfc.njk
 title: "Afro Latin Vintage Orchestra"
 artist: "Afro Latin Vintage Orchestra"
 album: "Pulsion"
@@ -7,7 +7,6 @@ year: "2014"
 label: "Ubiquity Records"
 image: "afro-latin-vintage-orchestra-pulsion.jpg"
 genre: ["Latin Jazz", "Afro-Cuban", "Funk"]
-tags: reviews
 date: 2014-08-26
 source: "auto-generated"
 ---

@@ -1,5 +1,5 @@
 ---
-layout: review.njk
+layout: nfc.njk
 title: "Adrian Quesada"
 artist: "Adrian Quesada"
 album: "Jaguar Sound"
@@ -7,7 +7,6 @@ year: "2022"
 label: "ATO Records"
 image: "adrian-quesada-jaguar-sound.jpg"
 genre: ["Instrumental", "Psychedelic Soul", "Cinematic"]
-tags: reviews
 date: 2022-11-18
 source: "auto-generated"
 ---

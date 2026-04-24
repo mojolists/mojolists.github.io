@@ -1,5 +1,5 @@
 ---
-layout: review.njk
+layout: nfc.njk
 title: "Herbie Hancock"
 artist: "Herbie Hancock"
 album: "Inventions & Dimensions"
@@ -7,7 +7,6 @@ year: "1963"
 label: "Blue Note Records"
 image: "herbie-hancock-inventions.jpg"
 genre: ["Jazz", "Post-Bop", "Latin Jazz"]
-tags: reviews
 date: 1964-02-01
 source: "auto-generated"
 ---
@@ -29,4 +28,4 @@ The lineup is Hancock on piano, **Paul Chambers** on bass, **Willie Bobo** on dr
 
 ---
 
-**Sources:** [Wikipedia: *Inventions & Dimensions*](https://en.wikipedia.org/wiki/Inventions_&_Dimensions) · [HerbieHancock.com — album page](https://www.herbiehancock.com/music/discography/album/inventions-and-dimensions/) · [Discogs master release](https://www.discogs.com/master/163817-Herbie-Hancock-Inventions-And-Dimensions) · [London Jazz Collector review](https://londonjazzcollector.wordpress.com/2013/01/09/herbie-hancock-inventions-and-dimensions-1963-blue-note/) · [All About Jazz review](https://www.allaboutjazz.com/inventions-and-dimensions-herbie-hancock-blue-note-records-review-by-greg-simmons)
+**Sources:** [Wikipedia: *Inventions & Dimensions*](https://en.wikipedia.org/wiki/Inventions_&_Dimensions) · [HerbieHancock.com — album page](https://www.herbiehan

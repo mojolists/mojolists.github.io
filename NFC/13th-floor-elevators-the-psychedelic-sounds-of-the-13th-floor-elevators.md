@@ -1,5 +1,5 @@
 ---
-layout: review.njk
+layout: nfc.njk
 title: "13th Floor Elevators"
 artist: "13th Floor Elevators"
 album: "The Psychedelic Sounds Of The 13th Floor Elevators"
@@ -7,7 +7,6 @@ year: "1966"
 label: "International Artists"
 image: "13th-floor-elevators-the-psychedelic-sounds-of-the-13th-floor-elevators.jpg"
 genre: ["Psychedelic Rock", "Garage Rock", "Acid Rock"]
-tags: reviews
 date: 1966-10-17
 source: "auto-generated"
 ---

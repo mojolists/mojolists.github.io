@@ -1,5 +1,5 @@
 ---
-layout: review.njk
+layout: nfc.njk
 title: "Albert Collins"
 artist: "Albert Collins"
 album: "Frozen Alive!"
@@ -7,7 +7,6 @@ year: "1981"
 label: "Alligator Records"
 image: "albert-collins-frozen-alive.jpg"
 genre: ["Blues", "Texas Blues", "Live"]
-tags: reviews
 date: 1981-01-01
 source: "auto-generated"
 ---

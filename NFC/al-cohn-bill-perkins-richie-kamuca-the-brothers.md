@@ -1,5 +1,5 @@
 ---
-layout: review.njk
+layout: nfc.njk
 title: "Al Cohn, Bill Perkins, Richie Kamuca"
 artist: "Al Cohn, Bill Perkins, Richie Kamuca"
 album: "The Brothers!"
@@ -7,7 +7,6 @@ year: "1955"
 label: "RCA Victor"
 image: "al-cohn-bill-perkins-richie-kamuca-the-brothers.jpg"
 genre: ["Jazz", "Bebop", "Cool Jazz"]
-tags: reviews
 date: 1955-01-01
 source: "auto-generated"
 ---

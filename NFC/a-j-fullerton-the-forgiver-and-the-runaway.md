@@ -1,5 +1,5 @@
 ---
-layout: review.njk
+layout: nfc.njk
 title: "A.J. Fullerton"
 artist: "A.J. Fullerton"
 album: "The Forgiver And The Runaway"
@@ -7,7 +7,6 @@ year: "2021"
 label: "Vizztone Label Group"
 image: "a-j-fullerton-the-forgiver-and-the-runaway.jpg"
 genre: ["Blues", "Roots", "Americana"]
-tags: reviews
 date: 2021-03-26
 source: "auto-generated"
 ---

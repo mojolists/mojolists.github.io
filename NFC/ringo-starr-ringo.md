@@ -1,5 +1,5 @@
 ---
-layout: review.njk
+layout: nfc.njk
 title: "Ringo Starr"
 artist: "Ringo Starr"
 album: "Ringo"
@@ -7,7 +7,6 @@ year: "1973"
 label: "Apple Records"
 image: "ringo-starr-ringo.jpg"
 genre: ["Rock", "Pop Rock"]
-tags: reviews
 date: 1973-11-02
 source: "auto-generated"
 ---
@@ -26,7 +25,3 @@ This was the commercial peak of Ringo's solo career. Both singles — "Photograp
 **Spin it for:** '70s all-star pop with Beatles DNA throughout, two of Ringo's biggest hits, and the novelty of hearing all four Beatles on one LP sleeve after the breakup.
 
 **Standouts:** "Photograph" · "You're Sixteen" · "I'm the Greatest" · "Oh My My"
-
----
-
-**Sources:** [Wikipedia: *Ringo* (album)](https://en.wikipedia.org/wiki/Ringo_(album)) · [The Beatles Bible — Ringo (1973 album)](https://www.beatlesbible.com/people/ringo-starr/albums/ringo/) · [The Beatles Bible — interview with cover artist Tim Bruckner](https://www.beatlesbible.com/features/tim-bruckner-interview-2015/) · [uDiscover Music — *Ringo* and the Beatles' aura](https://www.udiscovermusic.com/stories/ringo-starr-solo-album-invoked-beatles/) · [Billboard — Ringo Starr's Hot 100 feats](https://www.billboard.com/music/chart-beat/ringo-starr-ex-beatles-hot-100-feats-1236085598/) · [Wikipedia: "Photograph" (Ringo Starr song)](https://en.wikipedia.org/wiki/Photograph_(Ringo_Starr_song)) · [Wikipedia: "You're Sixteen"](https://en.wikipedia.org/wiki/You're_Sixteen)

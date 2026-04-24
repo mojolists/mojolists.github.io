@@ -1,5 +1,5 @@
 ---
-layout: review.njk
+layout: nfc.njk
 title: "Afro Funk"
 artist: "Afro Funk"
 album: "Body Music"
@@ -7,7 +7,6 @@ year: "1975"
 label: "Secret Stash Records"
 image: "afro-funk-body-music.jpg"
 genre: ["Afrobeat", "Funk", "African"]
-tags: reviews
 date: 2012-01-01
 source: "auto-generated"
 ---

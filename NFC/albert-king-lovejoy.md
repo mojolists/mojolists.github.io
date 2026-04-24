@@ -1,5 +1,5 @@
 ---
-layout: review.njk
+layout: nfc.njk
 title: "Albert King"
 artist: "Albert King"
 album: "Lovejoy"
@@ -7,7 +7,6 @@ year: "1971"
 label: "Stax"
 image: "albert-king-lovejoy.jpg"
 genre: ["Blues", "Electric Blues", "Soul Blues"]
-tags: reviews
 date: 1971-07-01
 source: "auto-generated"
 ---

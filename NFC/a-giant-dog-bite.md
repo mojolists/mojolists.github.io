@@ -1,5 +1,5 @@
 ---
-layout: review.njk
+layout: nfc.njk
 title: "A Giant Dog"
 artist: "A Giant Dog"
 album: "Bite"
@@ -7,7 +7,6 @@ year: "2023"
 label: "Merge Records"
 image: "a-giant-dog-bite.jpg"
 genre: ["Glam Rock", "Garage Rock", "Indie Rock"]
-tags: reviews
 date: 2023-08-25
 source: "auto-generated"
 ---

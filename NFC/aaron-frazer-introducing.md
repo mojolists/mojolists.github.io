@@ -1,5 +1,5 @@
 ---
-layout: review.njk
+layout: nfc.njk
 title: "Aaron Frazer"
 artist: "Aaron Frazer"
 album: "Introducing..."
@@ -7,7 +7,6 @@ year: "2021"
 label: "Easy Eye Sound / Dead Oceans"
 image: "aaron-frazer-introducing.jpg"
 genre: ["Soul", "R&B", "Doo-Wop"]
-tags: reviews
 date: 2021-01-08
 source: "auto-generated"
 ---

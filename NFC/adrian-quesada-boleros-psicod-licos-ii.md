@@ -1,5 +1,5 @@
 ---
-layout: review.njk
+layout: nfc.njk
 title: "Adrian Quesada"
 artist: "Adrian Quesada"
 album: "Boleros Psicodélicos II"
@@ -7,7 +7,6 @@ year: "2025"
 label: "ATO Records / Electric Deluxe"
 image: "adrian-quesada-boleros-psicod-licos-ii.jpg"
 genre: ["Latin", "Psychedelic Soul", "Bolero"]
-tags: reviews
 date: 2025-06-27
 source: "auto-generated"
 ---

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{ artist }} — {{ album }}</title>
+<meta name="description" content="{{ artist }} — {{ album }} ({{ year }}, {{ label }})">
+<style>
+  :root {
+    --bg: #faf7f2;
+    --ink: #1a1a1a;
+    --ink-soft: #555;
+    --rule: #d9d3c7;
+    --accent: #8a5a2b;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-size: 17px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  main {
+    max-width: 560px;
+    margin: 0 auto;
+    padding: 32px 22px 60px;
+  }
+
+  .cover {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    display: block;
+    border-radius: 6px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+    margin-bottom: 28px;
+    background: #eee;
+  }
+
+  h1 {
+    font-size: 1.55rem;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    margin: 0 0 6px;
+  }
+
+  .album-title {
+    font-size: 1.25rem;
+    font-weight: 500;
+    font-style: italic;
+    margin: 0 0 18px;
+    line-height: 1.3;
+  }
+
+  dl.meta {
+    font-size: 0.92rem;
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    padding: 12px 0;
+    margin: 0 0 26px;
+    display: grid;
+    grid-template-columns: 72px 1fr;
+    row-gap: 6px;
+    column-gap: 14px;
+  }
+
+  dl.meta dt {
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    align-self: center;
+  }
+
+  dl.meta dd { margin: 0; }
+
+  .content p { margin: 0 0 1.1em; }
+  .content em { font-style: italic; }
+
+  .content h2 {
+    display: none;
+  }
+
+  .content strong { font-weight: 600; }
+
+  /* Style the first paragraph after "Cool stuff:" as section label */
+  .content p strong:first-child:only-child {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+    font-weight: 700;
+  }
+
+  /* The markdown body: unordered list becomes the "cool stuff" card list */
+  .content ul {
+    list-style: none;
+    margin: 0 0 1.6em;
+    padding: 0;
+  }
+
+  .content ul li {
+    padding: 10px 0;
+    border-bottom: 1px solid var(--rule);
+    font-size: 0.98rem;
+    line-height: 1.5;
+  }
+
+  .content ul li:last-child { border-bottom: none; }
+
+  /* Make the section-label paragraphs (**Cool stuff:**, **Spin it for:**, **Standouts:**) look like section headings */
+  .section-label {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+    font-weight: 700;
+    margin: 28px 0 10px;
+    display: block;
+  }
+
+  hr {
+    border: none;
+    border-top: 1px solid var(--rule);
+    margin: 40px 0 20px;
+  }
+
+  .content a {
+    color: var(--ink);
+    text-decoration: underline;
+    text-decoration-color: var(--rule);
+    text-underline-offset: 3px;
+  }
+
+  .content a:hover { color: var(--accent); }
+
+  /* Sources footer — smaller, muted */
+  .content p:last-of-type {
+    font-size: 0.82rem;
+    color: var(--ink-soft);
+    line-height: 1.7;
+  }
+
+  .content p:last-of-type a {
+    color: var(--ink-soft);
+  }
+
+  .content p:last-of-type a:hover {
+    color: var(--accent);
+  }
+</style>
+</head>
+<body>
+<main>
+  <img class="cover" src="/assets/img/covers/{{ image }}" alt="{{ artist }} — {{ album }}">
+
+  <h1>{{ artist }}</h1>
+  <div class="album-title">{{ album }}</div>
+
+  <dl class="meta">
+    <dt>Year</dt><dd>{{ year }}</dd>
+    <dt>Label</dt><dd>{{ label }}</dd>
+    {% if genre %}<dt>Genre</dt><dd>{{ genre | join(' · ') }}</dd>{% endif %}
+  </dl>
+
+  <div class="content">
+    {{ content | safe }}
+  </div>
+</main>
+</body>
+</html>

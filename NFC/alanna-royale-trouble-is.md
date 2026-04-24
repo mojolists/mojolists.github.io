@@ -1,5 +1,5 @@
 ---
-layout: review.njk
+layout: nfc.njk
 title: "Alanna Royale"
 artist: "Alanna Royale"
 album: "Trouble Is"
@@ -7,7 +7,6 @@ year: "2023"
 label: "Soul Step Records"
 image: "alanna-royale-trouble-is.jpg"
 genre: ["Soul", "R&B", "Neo-Soul"]
-tags: reviews
 date: 2023-10-20
 source: "auto-generated"
 ---

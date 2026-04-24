@@ -1,5 +1,5 @@
 ---
-layout: review.njk
+layout: nfc.njk
 title: "Adrian Quesada"
 artist: "Adrian Quesada"
 album: "Boleros Psicodélicos"
@@ -7,7 +7,6 @@ year: "2022"
 label: "ATO Records / Electric Deluxe"
 image: "adrian-quesada-boleros-psicod-licos.jpg"
 genre: ["Latin", "Psychedelic Soul", "Bolero"]
-tags: reviews
 date: 2022-06-03
 source: "auto-generated"
 ---

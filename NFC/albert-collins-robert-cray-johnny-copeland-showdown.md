@@ -1,5 +1,5 @@
 ---
-layout: review.njk
+layout: nfc.njk
 title: "Albert Collins / Robert Cray / Johnny Copeland"
 artist: "Albert Collins / Robert Cray / Johnny Copeland"
 album: "Showdown!"
@@ -7,7 +7,6 @@ year: "1985"
 label: "Alligator Records"
 image: "albert-collins-robert-cray-johnny-copeland-showdown.jpg"
 genre: ["Blues", "Texas Blues", "Electric Blues"]
-tags: reviews
 date: 1985-01-01
 source: "auto-generated"
 ---

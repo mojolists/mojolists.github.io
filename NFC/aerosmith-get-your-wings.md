@@ -1,5 +1,5 @@
 ---
-layout: review.njk
+layout: nfc.njk
 title: "Aerosmith"
 artist: "Aerosmith"
 album: "Get Your Wings"
@@ -7,7 +7,6 @@ year: "1974"
 label: "Columbia Records"
 image: "aerosmith-get-your-wings.jpg"
 genre: ["Hard Rock", "Blues Rock"]
-tags: reviews
 date: 1974-03-15
 source: "auto-generated"
 ---

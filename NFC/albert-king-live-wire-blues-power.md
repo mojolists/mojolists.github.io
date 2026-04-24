@@ -1,5 +1,5 @@
 ---
-layout: review.njk
+layout: nfc.njk
 title: "Albert King"
 artist: "Albert King"
 album: "Live Wire / Blues Power"
@@ -7,7 +7,6 @@ year: "1968"
 label: "Stax"
 image: "albert-king-live-wire-blues-power.jpg"
 genre: ["Blues", "Electric Blues", "Live"]
-tags: reviews
 date: 1968-12-01
 source: "auto-generated"
 ---
