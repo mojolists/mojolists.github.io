@@ -28,6 +28,4 @@ During the decade between albums, Pazner was touring as the keyboardist for Lee 
 
 ---
 
-[Read the full Mojolists review →](/reviews/olympians-2026/)
-
-**Sources:** [Mojolists review of *In Search of a Revival*](/reviews/olympians-2026/) · [Daptone Records](https://daptonerecords.com/) · [Glide Magazine review](https://glidemagazine.com/322260/a-decade-later-the-olympians-script-a-cinematic-comeback-via-daptone-on-in-search-of-a-revival-album-review/) · [Far Out Magazine review](https://faroutmagazine.co.uk/the-olympians-in-search-of-a-revival-album-review/)
+**Sources:** [Daptone Records](https://daptonerecords.com/) · [Glide Magazine review](https://glidemagazine.com/322260/a-decade-later-the-olympians-script-a-cinematic-comeback-via-daptone-on-in-search-of-a-revival-album-review/) · [Far Out Magazine review](https://faroutmagazine.co.uk/the-olympians-in-search-of-a-revival-album-review/)

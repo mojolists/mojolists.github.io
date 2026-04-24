@@ -1,0 +1,39 @@
+# ===== build output =====
+# Eleventy builds _site/ from the source files on every run.
+# The source is what belongs in git; the built output does not.
+_site/
+
+# ===== dependencies =====
+node_modules/
+package-lock.json
+
+# ===== OS / editor cruft =====
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+*.swo
+.vscode/
+.idea/
+
+# ===== git stragglers =====
+# If a prior git process crashed, this can linger and block new commits.
+.git/index.lock
+
+# ===== nightly enrichment logs and scratch output =====
+scripts/nightly-enrichment-log.txt
+scripts/nightly-enrichment-skipped.txt
+scripts/covers-log.txt
+scripts/covers-stdout.log
+scripts/covers-progress.json
+
+# ===== Python =====
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# ===== misc =====
+*.log
+.env
+.env.local

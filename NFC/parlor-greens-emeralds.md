@@ -28,6 +28,4 @@ The record sits squarely in the lineage of the great organ trios — Dr. Lonnie 
 
 ---
 
-[Read the full Mojolists review →](/reviews/parlor-greens-emeralds/)
-
-**Sources:** [Mojolists review of *Emeralds*](/reviews/parlor-greens-emeralds/) · [Parlor Greens on Bandcamp](https://parlorgreens.bandcamp.com/album/emeralds) · [Colemine Records album page](https://www.coleminerecords.com/products/parlor-greens-emeralds-release-date-3-27-2026)
+**Sources:** [Parlor Greens on Bandcamp](https://parlorgreens.bandcamp.com/album/emeralds) · [Colemine Records album page](https://www.coleminerecords.com/products/parlor-greens-emeralds-release-date-3-27-2026)

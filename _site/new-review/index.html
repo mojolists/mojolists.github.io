@@ -168,6 +168,112 @@
             color: #c5a059;
             line-height: 1;
         }
+
+        /* Writing Guide */
+        #writing-guide-panel {
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 2px;
+            margin-bottom: 28px;
+            overflow: hidden;
+        }
+        #guide-toggle-btn {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 16px;
+            background: rgba(255,255,255,0.04);
+            border: none;
+            cursor: pointer;
+            color: rgba(255,255,255,0.45);
+            transition: background 0.2s;
+        }
+        #guide-toggle-btn:hover { background: rgba(255,255,255,0.07); color: rgba(255,255,255,0.65); }
+        #guide-toggle-btn .guide-label {
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.35em;
+        }
+        #guide-toggle-btn .guide-arrow {
+            font-size: 10px;
+            transition: transform 0.2s;
+        }
+        #guide-toggle-btn.open .guide-arrow { transform: rotate(180deg); }
+        #writing-guide-body {
+            display: none;
+            padding: 20px 16px 8px;
+            border-top: 1px solid rgba(255,255,255,0.07);
+        }
+        .guide-section {
+            margin-bottom: 20px;
+        }
+        .guide-section-title {
+            font-size: 9px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.3em;
+            color: #c5a059;
+            margin-bottom: 8px;
+        }
+        .guide-text {
+            font-size: 12px;
+            line-height: 1.65;
+            color: rgba(255,255,255,0.55);
+        }
+        .guide-text strong {
+            color: rgba(255,255,255,0.75);
+            font-weight: 600;
+        }
+        .guide-avoids {
+            list-style: none;
+            padding: 0;
+            margin: 6px 0 0;
+        }
+        .guide-avoids li {
+            font-size: 11px;
+            color: rgba(255,255,255,0.38);
+            padding: 3px 0 3px 14px;
+            position: relative;
+            font-family: 'Courier New', monospace;
+            line-height: 1.5;
+        }
+        .guide-avoids li::before {
+            content: '✕';
+            position: absolute;
+            left: 0;
+            color: rgba(230,57,70,0.5);
+            font-size: 9px;
+            top: 5px;
+        }
+        .guide-dos {
+            list-style: none;
+            padding: 0;
+            margin: 6px 0 0;
+        }
+        .guide-dos li {
+            font-size: 12px;
+            color: rgba(255,255,255,0.55);
+            padding: 4px 0 4px 14px;
+            position: relative;
+            line-height: 1.55;
+        }
+        .guide-dos li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: rgba(197,160,89,0.5);
+            font-size: 10px;
+            top: 5px;
+        }
+        .guide-test {
+            font-size: 12px;
+            color: rgba(255,255,255,0.5);
+            font-style: italic;
+            border-left: 2px solid rgba(197,160,89,0.3);
+            padding-left: 12px;
+            line-height: 1.6;
+        }
     </style>
 </head>
 <body class="min-h-screen">
@@ -342,6 +448,66 @@
                 </div>
             </div>
 
+            <!-- Writing Guide -->
+            <div id="writing-guide-panel">
+                <button id="guide-toggle-btn" onclick="toggleGuide()">
+                    <span class="guide-label">Writing Guide</span>
+                    <span class="guide-arrow">▼</span>
+                </button>
+                <div id="writing-guide-body">
+
+                    <div class="guide-section">
+                        <div class="guide-section-title">Voice</div>
+                        <p class="guide-text">This reviewer has a hi-fi rig, a record collection, and a history with Austin's live music scene. He has heard these albums a hundred times and has actual opinions about them. When that context makes an opinion land harder, use it. When it doesn't, skip it and get to the music. Say the album is great or that it falls short and say exactly why. Don't hedge. Don't circle back at the end to restate what you said at the top.</p>
+                    </div>
+
+                    <div class="guide-section">
+                        <div class="guide-section-title">Be Specific or Don't Bother</div>
+                        <ul class="guide-dos">
+                            <li>Name the track. Say what the guitar actually does on it, what the rhythm section is doing, how the vocal sits in the mix.</li>
+                            <li>Use real details — chart positions, who produced it, what label it was on, which session players, who influenced whom and how you can hear it.</li>
+                            <li>If you name-drop another artist, explain the actual connection. "Sounds like" is not a connection.</li>
+                            <li>Don't say an album influenced "a generation of musicians." Name two or three of them and explain what they took.</li>
+                        </ul>
+                    </div>
+
+                    <div class="guide-section">
+                        <div class="guide-section-title">Re-Play: Each Section Has to Earn Its Place</div>
+                        <ul class="guide-dos">
+                            <li><strong>At Release</strong> — What did critics actually say? Did it chart? Was it ignored? Set the scene with real specifics, not vibes.</li>
+                            <li><strong>The Influence</strong> — Named artists, named records. Not "a template for the genre." Who picked it up and what did they do with it?</li>
+                            <li><strong>Where It Stands Today</strong> — Say something new here. Don't open this section by restating why the album mattered — that belongs in the first two sections.</li>
+                        </ul>
+                    </div>
+
+                    <div class="guide-section">
+                        <div class="guide-section-title">Kill These on Sight</div>
+                        <ul class="guide-avoids">
+                            <li>"In a world that often mistakes X for Y..."</li>
+                            <li>"...remind us that the deepest grooves are often the simplest ones"</li>
+                            <li>"played by people who have actually lived something worth saying"</li>
+                            <li>"It's the rare [adjective] record that..." / "That combination is genuinely rare"</li>
+                            <li>"serves as the essential instruction manual for..."</li>
+                            <li>"firmly holds its spot in the ongoing conversation"</li>
+                            <li>"sounds remarkably fresh today"</li>
+                            <li>"one of those rare projects that..."</li>
+                            <li>Any closing sentence that could appear on a review of a completely different album</li>
+                        </ul>
+                    </div>
+
+                    <div class="guide-section">
+                        <div class="guide-section-title">Length</div>
+                        <p class="guide-text">If the honest take on an album is four paragraphs, write four paragraphs. The padding always shows up in the last paragraph — that's where the hollow closing sentences live. Longer Re-Play reviews earn their length by going deeper on each section, not by repeating themselves in different words.</p>
+                    </div>
+
+                    <div class="guide-section">
+                        <div class="guide-section-title">Before You Finish</div>
+                        <p class="guide-test">Read the last paragraph. Ask yourself: could this closing appear on a review of a completely different album with only minor changes? If yes, cut it and end earlier — or rewrite it to say something that only applies to this record.</p>
+                    </div>
+
+                </div>
+            </div>
+
             <!-- Re-Play specific section -->
             <div id="replay-section">
                 <p class="section-title" style="color: rgba(197,160,89,0.5)">Re-Play Structure</p>
@@ -403,6 +569,15 @@
     // ─── To add a new Re-Play series ─────────────────────────────────────────
     // 1. Add an <option> in the #f-series <select> above in the HTML.
     // 2. That's it — the value you give the option becomes the `series:` key.
+
+    // Writing Guide toggle
+    function toggleGuide() {
+        const body = document.getElementById('writing-guide-body');
+        const btn  = document.getElementById('guide-toggle-btn');
+        const isOpen = body.style.display === 'block';
+        body.style.display = isOpen ? 'none' : 'block';
+        btn.classList.toggle('open', !isOpen);
+    }
 
     // Set today as default date
     document.getElementById('f-date').value = new Date().toISOString().split('T')[0];

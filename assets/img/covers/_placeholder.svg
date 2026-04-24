@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <rect width="200" height="200" fill="#111"/>
+  <circle cx="100" cy="100" r="78" fill="#1a1a1a" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+  <circle cx="100" cy="100" r="28" fill="#0a0a0a" stroke="rgba(197,160,89,0.35)" stroke-width="1"/>
+  <circle cx="100" cy="100" r="4"  fill="rgba(197,160,89,0.6)"/>
+  <g font-family="Inter, system-ui, sans-serif" font-size="7" font-weight="700" letter-spacing="3" fill="rgba(255,255,255,0.25)" text-anchor="middle" text-transform="uppercase">
+    <text x="100" y="175">NO COVER YET</text>
+  </g>
+</svg>

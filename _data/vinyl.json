@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-23T14:06:46.135384Z",
+  "generated_at": "2026-04-24T13:37:41.877804Z",
   "count": 1036,
   "records": [
     {
@@ -14,14 +14,14 @@
       "genre": [],
       "rating": 4,
       "discogs_url": "https://www.discogs.com/release/3761306",
-      "wiki_url": "",
+      "wiki_url": "https://en.wikipedia.org/wiki/The_Psychedelic_Sounds_of_the_13th_Floor_Elevators",
       "mojolists_review_url": "",
-      "shorts_url": "",
-      "has_shorts": false,
+      "shorts_url": "/NFC/13th-floor-elevators-the-psychedelic-sounds-of-the-13th-floor-elevators/",
+      "has_shorts": true,
       "cover": "covers/13th-floor-elevators-the-psychedelic-sounds-of-the-13th-floor-elevators.jpg",
       "chart_peak": "",
-      "key_tracks": "",
-      "catchy_fact": ""
+      "key_tracks": "You're Gonna Miss Me|Roller Coaster|Reverberation (Doubt)|Fire Engine",
+      "catchy_fact": "First album ever released with the word 'psychedelic' in its title — and the only national hit, 'You're Gonna Miss Me,' reached #55 on the Billboard Hot 100."
     },
     {
       "id": "28063224",
@@ -37,12 +37,12 @@
       "discogs_url": "https://www.discogs.com/release/28063224",
       "wiki_url": "",
       "mojolists_review_url": "",
-      "shorts_url": "",
-      "has_shorts": false,
+      "shorts_url": "/NFC/a-giant-dog-bite/",
+      "has_shorts": true,
       "cover": "covers/a-giant-dog-bite.jpg",
       "chart_peak": "",
-      "key_tracks": "",
-      "catchy_fact": ""
+      "key_tracks": "Bite|Different Than the Rest|Gold Star|Glide",
+      "catchy_fact": "A full sci-fi concept album about a virtual reality that promises bliss but can't deliver — A Giant Dog's most ambitious record by a wide margin."
     },
     {
       "id": "30059113",
@@ -58,12 +58,12 @@
       "discogs_url": "https://www.discogs.com/release/30059113",
       "wiki_url": "",
       "mojolists_review_url": "",
-      "shorts_url": "",
-      "has_shorts": false,
+      "shorts_url": "/NFC/a-j-fullerton-the-forgiver-and-the-runaway/",
+      "has_shorts": true,
       "cover": "covers/a-j-fullerton-the-forgiver-and-the-runaway.jpg",
       "chart_peak": "",
-      "key_tracks": "",
-      "catchy_fact": ""
+      "key_tracks": "Forgiver and the Runaway|Ramblin' Around|Reach for the Sky|Hard Times",
+      "catchy_fact": "Debuted at #1 on the iTunes Blues chart — produced in Toronto by Steve Marriner of MonkeyJunk after a year-long pandemic delay."
     },
     {
       "id": "31029931",
@@ -79,12 +79,12 @@
       "discogs_url": "https://www.discogs.com/release/31029931",
       "wiki_url": "",
       "mojolists_review_url": "",
-      "shorts_url": "",
-      "has_shorts": false,
+      "shorts_url": "/NFC/aaron-frazer-into-the-blue/",
+      "has_shorts": true,
       "cover": "covers/aaron-frazer-into-the-blue.jpg",
       "chart_peak": "",
-      "key_tracks": "",
-      "catchy_fact": ""
+      "key_tracks": "Thinking of You|Payback|Time Will Tell|Out of Luck",
+      "catchy_fact": "Co-produced with hip-hop crate-digger Alex Goose (Freddie Gibbs, Brockhampton) after Frazer's cross-country move from Brooklyn to LA."
     },
     {
       "id": "31108835",
@@ -100,12 +100,12 @@
       "discogs_url": "https://www.discogs.com/release/31108835",
       "wiki_url": "",
       "mojolists_review_url": "",
-      "shorts_url": "",
-      "has_shorts": false,
+      "shorts_url": "/NFC/aaron-frazer-into-the-blue/",
+      "has_shorts": true,
       "cover": "covers/aaron-frazer-into-the-blue.jpg",
       "chart_peak": "",
-      "key_tracks": "",
-      "catchy_fact": ""
+      "key_tracks": "Thinking of You|Payback|Time Will Tell|Out of Luck",
+      "catchy_fact": "Co-produced with hip-hop crate-digger Alex Goose (Freddie Gibbs, Brockhampton) after Frazer's cross-country move from Brooklyn to LA."
     },
     {
       "id": "16837299",
@@ -121,12 +121,12 @@
       "discogs_url": "https://www.discogs.com/release/16837299",
       "wiki_url": "",
       "mojolists_review_url": "",
-      "shorts_url": "",
-      "has_shorts": false,
+      "shorts_url": "/NFC/aaron-frazer-introducing/",
+      "has_shorts": true,
       "cover": "covers/aaron-frazer-introducing.jpg",
       "chart_peak": "",
-      "key_tracks": "",
-      "catchy_fact": ""
+      "key_tracks": "If I Got It (Your Love Brought It)|Bad News|Have Mercy|You Don't Wanna Be My Baby",
+      "catchy_fact": "Recorded in a single week at Dan Auerbach's Easy Eye Sound — Aaron Frazer is normally the drummer and falsetto vocalist of Durand Jones & The Indications."
     },
     {
       "id": "16728552",
@@ -142,12 +142,12 @@
       "discogs_url": "https://www.discogs.com/release/16728552",
       "wiki_url": "",
       "mojolists_review_url": "",
-      "shorts_url": "",
-      "has_shorts": false,
+      "shorts_url": "/NFC/aaron-frazer-introducing/",
+      "has_shorts": true,
       "cover": "covers/aaron-frazer-introducing.jpg",
       "chart_peak": "",
-      "key_tracks": "",
-      "catchy_fact": ""
+      "key_tracks": "If I Got It (Your Love Brought It)|Bad News|Have Mercy|You Don't Wanna Be My Baby",
+      "catchy_fact": "Recorded in a single week at Dan Auerbach's Easy Eye Sound — Aaron Frazer is normally the drummer and falsetto vocalist of Durand Jones & The Indications."
     },
     {
       "id": "23453627",
@@ -163,12 +163,12 @@
       "discogs_url": "https://www.discogs.com/release/23453627",
       "wiki_url": "",
       "mojolists_review_url": "",
-      "shorts_url": "",
-      "has_shorts": false,
+      "shorts_url": "/NFC/adrian-quesada-boleros-psicod-licos/",
+      "has_shorts": true,
       "cover": "covers/adrian-quesada-boleros-psicod-licos.jpg",
       "chart_peak": "",
-      "key_tracks": "",
-      "catchy_fact": ""
+      "key_tracks": "Mentiras Con Cariño (feat. iLe)|El Paraguas (feat. Gabriel Garzón-Montano)|Hielo Seco (feat. Marc Ribot & Money Mark)|Tus Tormentas (feat. Mireya Ramos)",
+      "catchy_fact": "Black Pumas co-founder Adrian Quesada's love letter to Latin America's late-'60s/'70s wave of psychedelic boleros — every track features a different guest vocalist."
     },
     {
       "id": "34360147",
@@ -184,12 +184,12 @@
       "discogs_url": "https://www.discogs.com/release/34360147",
       "wiki_url": "",
       "mojolists_review_url": "",
-      "shorts_url": "",
-      "has_shorts": false,
+      "shorts_url": "/NFC/adrian-quesada-boleros-psicod-licos-ii/",
+      "has_shorts": true,
       "cover": "covers/adrian-quesada-boleros-psicod-licos-ii.jpg",
       "chart_peak": "",
-      "key_tracks": "",
-      "catchy_fact": ""
+      "key_tracks": "Mi Vida (feat. Cuco)|Rio Frio (feat. Hermanos Gutiérrez)|Te Espero (feat. Angélica García)|Esperando Tu Amor (feat. iLe)",
+      "catchy_fact": "Sequel to the 2022 bolero-psicodélico project, this time co-produced with Alex Goose and featuring Cuco, Hermanos Gutiérrez, and a returning iLe."
     },
     {
       "id": "25230337",
@@ -205,12 +205,12 @@
       "discogs_url": "https://www.discogs.com/release/25230337",
       "wiki_url": "",
       "mojolists_review_url": "",
-      "shorts_url": "",
-      "has_shorts": false,
+      "shorts_url": "/NFC/adrian-quesada-jaguar-sound/",
+      "has_shorts": true,
       "cover": "covers/adrian-quesada-jaguar-sound.jpg",
       "chart_peak": "",
-      "key_tracks": "",
-      "catchy_fact": ""
+      "key_tracks": "Bolero Maldito|Mareado|Starlight|El Paraiso de Tu Mirar",
+      "catchy_fact": "An all-instrumental cinematic-soul record conceived during the early COVID lockdowns, with Mary Lattimore on harp and Neal Francis on piano."
     },
     {
       "id": "3558618",
@@ -245,14 +245,14 @@
       "genre": [],
       "rating": 4,
       "discogs_url": "https://www.discogs.com/release/12606584",
-      "wiki_url": "",
+      "wiki_url": "https://en.wikipedia.org/wiki/Get_Your_Wings",
       "mojolists_review_url": "",
-      "shorts_url": "",
-      "has_shorts": false,
+      "shorts_url": "/NFC/aerosmith-get-your-wings/",
+      "has_shorts": true,
       "cover": "covers/aerosmith-get-your-wings.jpg",
-      "chart_peak": "",
-      "key_tracks": "",
-      "catchy_fact": ""
+      "chart_peak": "74",
+      "key_tracks": "Same Old Song and Dance|Train Kept A-Rollin'|Seasons of Wither|S.O.S. (Too Bad)",
+      "catchy_fact": "The 'live' second half of 'Train Kept A-Rollin'' was a studio fake — and the lead solos were played by session guitarists Steve Hunter and Dick Wagner, not Joe Perry or Brad Whitford."
     },
     {
       "id": "617188",
@@ -268,12 +268,12 @@
       "discogs_url": "https://www.discogs.com/release/617188",
       "wiki_url": "",
       "mojolists_review_url": "",
-      "shorts_url": "",
-      "has_shorts": false,
+      "shorts_url": "/NFC/african-music-machine-black-water-gold/",
+      "has_shorts": true,
       "cover": "covers/african-music-machine-black-water-gold.jpg",
       "chart_peak": "",
-      "key_tracks": "",
-      "catchy_fact": ""
+      "key_tracks": "Black Water Gold|Tropical|The Dapp|Camel Walk",
+      "catchy_fact": "A New Orleans funk band who only existed inside the studio — their original 45s on Soul Power are now deep-funk holy grails fetching hundreds of dollars apiece."
     },
     {
       "id": "3438752",
@@ -289,12 +289,12 @@
       "discogs_url": "https://www.discogs.com/release/3438752",
       "wiki_url": "",
       "mojolists_review_url": "",
-      "shorts_url": "",
-      "has_shorts": false,
+      "shorts_url": "/NFC/afro-funk-body-music/",
+      "has_shorts": true,
       "cover": "covers/afro-funk-body-music.jpg",
       "chart_peak": "",
-      "key_tracks": "",
-      "catchy_fact": ""
+      "key_tracks": "Body Music|Right On|Ekonton|Jungle Beat",
+      "catchy_fact": "Lost London-recorded Afrobeat LP by West African expats that Secret Stash rescued from two tiny original pressings."
     },
     {
       "id": "6388118",
@@ -310,12 +310,12 @@
       "discogs_url": "https://www.discogs.com/release/6388118",
       "wiki_url": "",
       "mojolists_review_url": "",
-      "shorts_url": "",
-      "has_shorts": false,
+      "shorts_url": "/NFC/afro-latin-vintage-orchestra-pulsion/",
+      "has_shorts": true,
       "cover": "covers/afro-latin-vintage-orchestra-pulsion.jpg",
       "chart_peak": "",
-      "key_tracks": "",
-      "catchy_fact": ""
+      "key_tracks": "Kagemusha|Pulsion|La Traque|Code Panthera",
+      "catchy_fact": "Paris-based big band's 2014 double LP — Afro-Cuban funk with a full string quartet chasing On-the-Corner-era Miles."
     },
     {
       "id": "4194061",
@@ -329,14 +329,14 @@
       "genre": [],
       "rating": null,
       "discogs_url": "https://www.discogs.com/release/4194061",
-      "wiki_url": "",
+      "wiki_url": "https://en.wikipedia.org/wiki/The_Brothers!",
       "mojolists_review_url": "",
-      "shorts_url": "",
-      "has_shorts": false,
+      "shorts_url": "/NFC/al-cohn-bill-perkins-richie-kamuca-the-brothers/",
+      "has_shorts": true,
       "cover": "covers/al-cohn-bill-perkins-richie-kamuca-the-brothers.jpg",
       "chart_peak": "",
-      "key_tracks": "",
-      "catchy_fact": ""
+      "key_tracks": "Sioux Zan|Rolling Stone|Blue Serge|Cap Snapper",
+      "catchy_fact": "Three-tenor summit recorded at Webster Hall in June 1955 with Hank Jones on piano — a nod to the Four Brothers arrangement."
     },
     {
       "id": "29659519",
@@ -352,12 +352,12 @@
       "discogs_url": "https://www.discogs.com/release/29659519",
       "wiki_url": "",
       "mojolists_review_url": "",
-      "shorts_url": "",
-      "has_shorts": false,
+      "shorts_url": "/NFC/alanna-royale-trouble-is/",
+      "has_shorts": true,
       "cover": "covers/alanna-royale-trouble-is.jpg",
       "chart_peak": "",
-      "key_tracks": "",
-      "catchy_fact": ""
+      "key_tracks": "Trouble Is|Never Go Back|If I Could|Got It Wrong",
+      "catchy_fact": "Nashville soul singer's 2023 album, produced by Monophonics frontman Kelly Finnigan at his Transistor Sound studio."
     },
     {
       "id": "698976",
@@ -371,14 +371,14 @@
       "genre": [],
       "rating": 4,
       "discogs_url": "https://www.discogs.com/release/698976",
-      "wiki_url": "",
+      "wiki_url": "https://en.wikipedia.org/wiki/Frostbite_(album)",
       "mojolists_review_url": "",
-      "shorts_url": "",
-      "has_shorts": false,
+      "shorts_url": "/NFC/albert-collins-frostbite/",
+      "has_shorts": true,
       "cover": "covers/albert-collins-frostbite.jpg",
       "chart_peak": "",
-      "key_tracks": "",
-      "catchy_fact": ""
+      "key_tracks": "If You Love Me Like You Say|Brick|I Got A Problem|Highway Is Like a Woman",
+      "catchy_fact": "Cut at Curtis Mayfield's Curtom Studios in Chicago — the horn-heavy record where Master of the Telecaster locked in his sound."
     },
     {
       "id": "3452020",
@@ -392,14 +392,14 @@
       "genre": [],
       "rating": 4,
       "discogs_url": "https://www.discogs.com/release/3452020",
-      "wiki_url": "",
+      "wiki_url": "https://en.wikipedia.org/wiki/Frozen_Alive!",
       "mojolists_review_url": "",
-      "shorts_url": "",
-      "has_shorts": false,
+      "shorts_url": "/NFC/albert-collins-frozen-alive/",
+      "has_shorts": true,
       "cover": "covers/albert-collins-frozen-alive.jpg",
       "chart_peak": "",
-      "key_tracks": "",
-      "catchy_fact": ""
+      "key_tracks": "Listen Here!|If You Love Me Like You Say|Frosty|Cold Cold Feeling",
+      "catchy_fact": "Recorded over four nights at The Union Bar in Minneapolis in March 1981, Atlanta Journal-Constitution named it a best album of the year."
     },
     {
       "id": "32708349",
@@ -413,14 +413,14 @@
       "genre": [],
       "rating": null,
       "discogs_url": "https://www.discogs.com/release/32708349",
-      "wiki_url": "",
+      "wiki_url": "https://en.wikipedia.org/wiki/Showdown!",
       "mojolists_review_url": "",
-      "shorts_url": "",
-      "has_shorts": false,
+      "shorts_url": "/NFC/albert-collins-robert-cray-johnny-copeland-showdown/",
+      "has_shorts": true,
       "cover": "covers/albert-collins-robert-cray-johnny-copeland-showdown.jpg",
-      "chart_peak": "",
-      "key_tracks": "",
-      "catchy_fact": ""
+      "chart_peak": "124",
+      "key_tracks": "T-Bone Shuffle|The Moon Is Full|Blackjack|She's Into Something",
+      "catchy_fact": "Won the 1987 Grammy for Best Traditional Blues Recording and sold 175,000+ copies for Alligator."
     },
     {
       "id": "4789353",
@@ -434,14 +434,14 @@
       "genre": [],
       "rating": null,
       "discogs_url": "https://www.discogs.com/release/4789353",
-      "wiki_url": "",
+      "wiki_url": "https://en.wikipedia.org/wiki/Showdown!",
       "mojolists_review_url": "",
-      "shorts_url": "",
-      "has_shorts": false,
+      "shorts_url": "/NFC/albert-collins-robert-cray-johnny-copeland-showdown/",
+      "has_shorts": true,
       "cover": "covers/albert-collins-robert-cray-johnny-copeland-showdown.jpg",
-      "chart_peak": "",
-      "key_tracks": "",
-      "catchy_fact": ""
+      "chart_peak": "124",
+      "key_tracks": "T-Bone Shuffle|The Moon Is Full|Blackjack|She's Into Something",
+      "catchy_fact": "Won the 1987 Grammy for Best Traditional Blues Recording and sold 175,000+ copies for Alligator."
     },
     {
       "id": "2977851",
@@ -455,14 +455,14 @@
       "genre": [],
       "rating": 4,
       "discogs_url": "https://www.discogs.com/release/2977851",
-      "wiki_url": "",
+      "wiki_url": "https://en.wikipedia.org/wiki/Don't_Lose_Your_Cool",
       "mojolists_review_url": "",
-      "shorts_url": "",
-      "has_shorts": false,
+      "shorts_url": "/NFC/albert-collins-and-the-icebreakers-don-t-lose-your-cool/",
+      "has_shorts": true,
       "cover": "covers/albert-collins-and-the-icebreakers-don-t-lose-your-cool.jpg",
       "chart_peak": "",
-      "key_tracks": "",
-      "catchy_fact": ""
+      "key_tracks": "Don't Lose Your Cool|Quicksand|My Mind Is Trying to Leave Me|Get to Gettin'",
+      "catchy_fact": "First Alligator LP officially billed to \"Albert Collins and the Icebreakers,\" with a three-horn front line backing a remake of his Texas-era hit."
     },
     {
       "id": "4192478",
@@ -476,14 +476,14 @@
       "genre": [],
       "rating": 4,
       "discogs_url": "https://www.discogs.com/release/4192478",
-      "wiki_url": "",
+      "wiki_url": "https://en.wikipedia.org/wiki/Live_Wire/Blues_Power",
       "mojolists_review_url": "",
-      "shorts_url": "",
-      "has_shorts": false,
+      "shorts_url": "/NFC/albert-king-live-wire-blues-power/",
+      "has_shorts": true,
       "cover": "covers/albert-king-live-wire-blues-power.jpg",
       "chart_peak": "",
-      "key_tracks": "",
-      "catchy_fact": ""
+      "key_tracks": "Watermelon Man|Blues Power|Night Stomp|Blues at Sunrise",
+      "catchy_fact": "Recorded at the Fillmore Auditorium in June 1968; one of the first blues records to let solos stretch past 10 minutes."
     },
     {
       "id": "3405092",
@@ -497,14 +497,14 @@
       "genre": [],
       "rating": 4,
       "discogs_url": "https://www.discogs.com/release/3405092",
-      "wiki_url": "",
+      "wiki_url": "https://en.wikipedia.org/wiki/Lovejoy_(album)",
       "mojolists_review_url": "",
-      "shorts_url": "",
-      "has_shorts": false,
+      "shorts_url": "/NFC/albert-king-lovejoy/",
+      "has_shorts": true,
       "cover": "covers/albert-king-lovejoy.jpg",
-      "chart_peak": "",
-      "key_tracks": "",
-      "catchy_fact": ""
+      "chart_peak": "188",
+      "key_tracks": "Honky Tonk Woman|Lovejoy, Ill.|She Caught the Katy and Left Me a Mule to Ride|Everybody Wants to Go to Heaven",
+      "catchy_fact": "Half cut in Hollywood with Jesse Ed Davis, Jim Keltner, and Duck Dunn; half at Muscle Shoals with the Swampers."
     },
     {
       "id": "2832182",
@@ -21804,6 +21804,8 @@
         22
       ]
     ],
-    "genres": []
+    "genres": [],
+    "shorts_done": 26,
+    "shorts_pending": 1010
   }
 }

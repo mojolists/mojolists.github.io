@@ -1,0 +1,280 @@
+---
+layout: base.njk
+title: "Vinyl"
+permalink: /vinyl/
+---
+
+<div class="max-w-7xl mx-auto px-6 py-20 relative z-10">
+
+    <!-- ── HEADER ROW ─────────────────────────────────────────────────── -->
+    <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-4">
+        <div>
+            <h1 class="text-6xl font-light uppercase tracking-tighter text-white logo-mojo">Vinyl</h1>
+            <p class="text-[10px] uppercase tracking-[0.35em] text-white/30 mt-2">
+                {{ vinyl.count }} records · {{ vinyl.facets.shorts_done }} tagged · {{ vinyl.facets.shorts_pending }} pending
+            </p>
+        </div>
+
+        <!-- View toggle -->
+        <div class="flex items-center gap-1 bg-white/5 border border-white/10 rounded-sm p-1 self-start sm:self-auto">
+            <button id="btn-grid" onclick="setVinylView('grid')" title="Grid view"
+                class="view-btn p-2 rounded-sm transition-all" aria-label="Grid view">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="1" y="1" width="7" height="7" rx="0.5" fill="currentColor"/>
+                    <rect x="10" y="1" width="7" height="7" rx="0.5" fill="currentColor" opacity="0.7"/>
+                    <rect x="1" y="10" width="7" height="7" rx="0.5" fill="currentColor" opacity="0.5"/>
+                    <rect x="10" y="10" width="7" height="7" rx="0.5" fill="currentColor" opacity="0.3"/>
+                </svg>
+            </button>
+            <button id="btn-list" onclick="setVinylView('list')" title="List view"
+                class="view-btn p-2 rounded-sm transition-all" aria-label="List view">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="1" y="3" width="16" height="1.5" rx="0.5" fill="currentColor"/>
+                    <rect x="1" y="8" width="16" height="1.5" rx="0.5" fill="currentColor" opacity="0.7"/>
+                    <rect x="1" y="13" width="16" height="1.5" rx="0.5" fill="currentColor" opacity="0.5"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- ── SEARCH ─────────────────────────────────────────────────────── -->
+    <div class="mb-6 max-w-md">
+        <div class="relative">
+            <input type="text" id="vinylSearch" onkeyup="applyVinylFilters()"
+                placeholder="Search artist, album, label..."
+                class="w-full bg-white/5 border border-white/10 rounded-sm px-4 py-3 text-white text-xs tracking-widest uppercase placeholder:text-white/20 focus:outline-none focus:border-[#DAA520]/50 transition-all font-medium">
+            <div class="absolute right-4 top-1/2 -translate-y-1/2 opacity-20">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── FORMAT FILTER ──────────────────────────────────────────────── -->
+    <div class="mb-3 flex flex-wrap gap-2 items-center">
+        <span class="text-[8px] font-bold uppercase tracking-[0.35em] text-white/20 mr-1">Format</span>
+        <button onclick="setVinylFormat('')" data-format="" class="vinyl-pill active text-[9px] font-bold uppercase tracking-[0.25em] px-3 py-1.5 border transition-all duration-200">All</button>
+        {% for f in vinyl.facets.formats %}
+        <button onclick="setVinylFormat('{{ f[0] }}')" data-format="{{ f[0] }}" class="vinyl-pill text-[9px] font-bold uppercase tracking-[0.25em] px-3 py-1.5 border transition-all duration-200">{{ f[0] }} <span class="opacity-40">{{ f[1] }}</span></button>
+        {% endfor %}
+    </div>
+
+    <!-- ── LOCATION FILTER ────────────────────────────────────────────── -->
+    <div class="mb-3 flex flex-wrap gap-2 items-center">
+        <span class="text-[8px] font-bold uppercase tracking-[0.35em] text-white/20 mr-1">Where</span>
+        <button onclick="setVinylLocation('')" data-location="" class="vinyl-pill-loc active text-[9px] font-bold uppercase tracking-[0.25em] px-3 py-1.5 border transition-all duration-200">All</button>
+        {% for l in vinyl.facets.locations %}
+        <button onclick="setVinylLocation('{{ l[0] }}')" data-location="{{ l[0] }}" class="vinyl-pill-loc text-[9px] font-bold uppercase tracking-[0.25em] px-3 py-1.5 border transition-all duration-200">{{ l[0] }} <span class="opacity-40">{{ l[1] }}</span></button>
+        {% endfor %}
+    </div>
+
+    <!-- ── SHORTS-PAGE FILTER ─────────────────────────────────────────── -->
+    <div class="mb-10 flex flex-wrap gap-2 items-center">
+        <span class="text-[8px] font-bold uppercase tracking-[0.35em] text-white/20 mr-1">NFC Tag</span>
+        <button onclick="setVinylShorts('')"        data-shorts=""        class="vinyl-pill-shorts active text-[9px] font-bold uppercase tracking-[0.25em] px-3 py-1.5 border transition-all duration-200">All</button>
+        <button onclick="setVinylShorts('done')"    data-shorts="done"    class="vinyl-pill-shorts text-[9px] font-bold uppercase tracking-[0.25em] px-3 py-1.5 border transition-all duration-200">Tagged</button>
+        <button onclick="setVinylShorts('pending')" data-shorts="pending" class="vinyl-pill-shorts text-[9px] font-bold uppercase tracking-[0.25em] px-3 py-1.5 border transition-all duration-200">Needs Page</button>
+    </div>
+
+    <!-- ── RESULT COUNT ───────────────────────────────────────────────── -->
+    <p id="vinyl-count" class="text-[10px] uppercase tracking-[0.3em] text-white/40 mb-4"></p>
+
+    <!-- ── GRID VIEW ──────────────────────────────────────────────────── -->
+    <div id="vinyl-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3">
+        {% for r in vinyl.records %}
+        <div class="vinyl-card"
+             data-artist="{{ r.artist | lower }}"
+             data-album="{{ r.album | lower }}"
+             data-label="{{ r.label | lower }}"
+             data-format="{{ r.format }}"
+             data-location="{{ r.location }}"
+             data-shorts="{% if r.has_shorts %}done{% else %}pending{% endif %}">
+            <div class="vinyl-art">
+                <img src="/assets/img/{{ r.cover }}" alt="{{ r.artist }} – {{ r.album }}" loading="lazy" onerror="this.onerror=null;this.src='/assets/img/covers/_placeholder.svg';">
+                {% if r.has_shorts %}
+                <div class="vinyl-badge">Tag</div>
+                {% endif %}
+            </div>
+            <div class="vinyl-meta">
+                <p class="vinyl-artist">{{ r.artist }}</p>
+                <p class="vinyl-album">{{ r.album }}</p>
+                <p class="vinyl-sub">
+                    {{ r.format }}{% if r.year %} · {{ r.year }}{% endif %}{% if r.location %} · {{ r.location }}{% endif %}
+                </p>
+                <div class="vinyl-links">
+                    {% if r.has_shorts %}
+                    <a href="{{ r.shorts_url }}" class="vinyl-link vinyl-link-primary">View Short →</a>
+                    {% endif %}
+                    {% if r.mojolists_review_url %}
+                    <a href="{{ r.mojolists_review_url }}" class="vinyl-link">Review</a>
+                    {% endif %}
+                    {% if r.discogs_url %}
+                    <a href="{{ r.discogs_url }}" target="_blank" rel="noopener" class="vinyl-link">Discogs</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- ── LIST VIEW ──────────────────────────────────────────────────── -->
+    <div id="vinyl-list" class="space-y-1" style="display:none">
+        {% for r in vinyl.records %}
+        <div class="vinyl-row glass-card grid grid-cols-12 gap-3 px-4 py-2 items-center"
+             data-artist="{{ r.artist | lower }}"
+             data-album="{{ r.album | lower }}"
+             data-label="{{ r.label | lower }}"
+             data-format="{{ r.format }}"
+             data-location="{{ r.location }}"
+             data-shorts="{% if r.has_shorts %}done{% else %}pending{% endif %}">
+            <div class="col-span-1 aspect-square overflow-hidden rounded-sm border border-white/10">
+                <img src="/assets/img/{{ r.cover }}" alt="" class="w-full h-full object-cover" loading="lazy" onerror="this.onerror=null;this.src='/assets/img/covers/_placeholder.svg';">
+            </div>
+            <div class="col-span-4 truncate">
+                <div class="text-sm font-medium text-white truncate">{{ r.artist }}</div>
+                <div class="text-white/60 text-xs italic truncate">{{ r.album }}</div>
+            </div>
+            <div class="col-span-1 text-[10px] uppercase tracking-[0.2em] text-white/50">{{ r.format }}</div>
+            <div class="col-span-1 text-[10px] uppercase tracking-[0.2em] text-white/50">{{ r.year }}</div>
+            <div class="col-span-2 text-[10px] uppercase tracking-[0.2em] text-white/40 truncate">{{ r.location }}</div>
+            <div class="col-span-3 flex items-center justify-end gap-3">
+                {% if r.has_shorts %}<a href="{{ r.shorts_url }}" class="vinyl-link vinyl-link-primary">Short →</a>{% endif %}
+                {% if r.mojolists_review_url %}<a href="{{ r.mojolists_review_url }}" class="vinyl-link">Review</a>{% endif %}
+                {% if r.discogs_url %}<a href="{{ r.discogs_url }}" target="_blank" rel="noopener" class="vinyl-link">Discogs</a>{% endif %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+</div>
+
+<style>
+    .vinyl-pill, .vinyl-pill-loc, .vinyl-pill-shorts {
+        color: rgba(255,255,255,0.35);
+        border-color: rgba(255,255,255,0.1);
+        background: transparent;
+        cursor: pointer;
+    }
+    .vinyl-pill:hover, .vinyl-pill-loc:hover, .vinyl-pill-shorts:hover {
+        color: rgba(255,255,255,0.7); border-color: rgba(255,255,255,0.25);
+    }
+    .vinyl-pill.active, .vinyl-pill-loc.active, .vinyl-pill-shorts.active {
+        color: #c5a059; border-color: rgba(197,160,89,0.5); background: rgba(197,160,89,0.06);
+    }
+
+    .glass-card {
+        background: rgba(255,255,255,0.02);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255,255,255,0.08);
+        border-radius: 2px;
+    }
+    .view-btn { color: rgba(255,255,255,0.3); }
+    .view-btn:hover { color: rgba(255,255,255,0.7); background: rgba(255,255,255,0.05); }
+    .view-btn.active { color: #DAA520; background: rgba(218,165,32,0.1); }
+
+    .vinyl-card {
+        display: flex; flex-direction: column;
+        background: rgba(255,255,255,0.02);
+        border: 1px solid rgba(255,255,255,0.08);
+        border-radius: 2px;
+        overflow: hidden;
+        transition: border-color 0.2s, background 0.2s;
+    }
+    .vinyl-card:hover { border-color: rgba(218,165,32,0.35); background: rgba(255,255,255,0.04); }
+    .vinyl-art { position: relative; aspect-ratio: 1/1; overflow: hidden; background: #1a1a1a; }
+    .vinyl-art img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .vinyl-badge {
+        position: absolute; top: 6px; right: 6px;
+        background: rgba(197,160,89,0.9); color: #000;
+        font-size: 7px; font-weight: 900;
+        text-transform: uppercase; letter-spacing: 0.25em;
+        padding: 2px 6px; border-radius: 1px;
+    }
+    .vinyl-meta { padding: 10px 12px 12px; }
+    .vinyl-artist {
+        font-size: 11px; font-weight: 600; color: #fff;
+        text-transform: uppercase; letter-spacing: 0.02em;
+        overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+    }
+    .vinyl-album {
+        font-size: 11px; font-style: italic; color: rgba(255,255,255,0.55);
+        overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+        margin-top: 2px;
+    }
+    .vinyl-sub {
+        font-size: 8px; font-weight: 700; text-transform: uppercase;
+        letter-spacing: 0.2em; color: rgba(255,255,255,0.25); margin-top: 6px;
+        overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+    }
+    .vinyl-links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 8px; }
+    .vinyl-link {
+        font-size: 9px; font-weight: 700; text-transform: uppercase;
+        letter-spacing: 0.2em; color: rgba(255,255,255,0.4);
+        text-decoration: none; transition: color 0.2s;
+    }
+    .vinyl-link:hover { color: #DAA520; }
+    .vinyl-link-primary { color: #c5a059; }
+    .vinyl-link-primary:hover { color: #DAA520; }
+</style>
+
+<script>
+(function() {
+    const state = { q: '', format: '', location: '', shorts: '', view: localStorage.getItem('mojoVinylView') || 'grid' };
+
+    function applyFilters() {
+        const q = (document.getElementById('vinylSearch').value || '').toLowerCase().trim();
+        state.q = q;
+        const both = document.querySelectorAll('.vinyl-card, .vinyl-row');
+        let visible = 0;
+        both.forEach(el => {
+            const matchQ = !q
+                || el.dataset.artist.includes(q)
+                || el.dataset.album.includes(q)
+                || (el.dataset.label || '').includes(q);
+            const matchFmt = !state.format   || el.dataset.format   === state.format;
+            const matchLoc = !state.location || el.dataset.location === state.location;
+            const matchSh  = !state.shorts   || el.dataset.shorts   === state.shorts;
+            const show = matchQ && matchFmt && matchLoc && matchSh;
+            el.style.display = show ? '' : 'none';
+            if (show) visible++;
+        });
+        const total = both.length / 2; // each record is in both grid and list
+        document.getElementById('vinyl-count').textContent =
+            (visible / 2 | 0) + ' of ' + total + ' records';
+    }
+    window.applyVinylFilters = applyFilters;
+
+    function setPill(selector, attr, val) {
+        document.querySelectorAll(selector).forEach(b => {
+            b.classList.toggle('active', (b.dataset[attr] || '') === val);
+        });
+    }
+    window.setVinylFormat = function(val) {
+        state.format = val;
+        setPill('.vinyl-pill', 'format', val);
+        applyFilters();
+    };
+    window.setVinylLocation = function(val) {
+        state.location = val;
+        setPill('.vinyl-pill-loc', 'location', val);
+        applyFilters();
+    };
+    window.setVinylShorts = function(val) {
+        state.shorts = val;
+        setPill('.vinyl-pill-shorts', 'shorts', val);
+        applyFilters();
+    };
+
+    window.setVinylView = function(v) {
+        state.view = v;
+        localStorage.setItem('mojoVinylView', v);
+        document.getElementById('vinyl-grid').style.display = v === 'grid' ? '' : 'none';
+        document.getElementById('vinyl-list').style.display = v === 'list' ? '' : 'none';
+        ['grid', 'list'].forEach(x => document.getElementById('btn-' + x).classList.toggle('active', x === v));
+    };
+
+    document.addEventListener('DOMContentLoaded', function() {
+        setVinylView(state.view);
+        applyFilters();
+    });
+})();
+</script>

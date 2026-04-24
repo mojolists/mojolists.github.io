@@ -27,6 +27,7 @@
                             </div>
                         </div>
                     </div>
+                    <a href="/vinyl/" class="hover:text-white transition">Vinyl</a>
                     <a href="/archive/" class="hover:text-white transition">Archive</a>
                     <a href="/about" class="hover:text-white transition">About</a>
                 </div>
@@ -47,6 +48,7 @@
                 <a href="/archive/?series=new-wave" onclick="toggleMobileMenu()" class="text-2xl uppercase tracking-[0.3em] font-light logo-mojo text-white hover:text-[#c5a059] transition-colors">New Wave</a>
             </div>
             <div class="h-px w-16 bg-white/10"></div>
+            <a href="/vinyl/" onclick="toggleMobileMenu()" class="text-4xl uppercase tracking-[0.3em] font-light logo-mojo text-white hover:text-[#DAA520] transition-colors">Vinyl</a>
             <a href="/archive/" onclick="toggleMobileMenu()" class="text-4xl uppercase tracking-[0.3em] font-light logo-mojo text-white hover:text-[#DAA520] transition-colors">Archive</a>
             <a href="/about" onclick="toggleMobileMenu()" class="text-4xl uppercase tracking-[0.3em] font-light logo-mojo text-white hover:text-[#DAA520] transition-colors">About</a>
             <div class="absolute bottom-12 text-[10px] uppercase tracking-widest text-white/20">MojoLists</div>
@@ -97,7 +99,21 @@
 
     
     
+    <a href="/reviews/joy-division/" class="fixed left-8 top-1/2 -translate-y-1/2 hidden xl:flex flex-col items-start group z-50">
+        <span class="text-[#FFD700] text-4xl font-light mb-2 transition-transform group-hover:-translate-x-2">←</span>
+        <span class="text-[#FFD700] text-[10px] font-bold uppercase tracking-[0.3em] vertical-text opacity-60 group-hover:opacity-100 transition-opacity">
+            Joy Division
+        </span>
+    </a>
+    
 
+    
+    <a href="/reviews/antibalas-hourglass/" class="fixed right-8 top-1/2 -translate-y-1/2 hidden xl:flex flex-col items-end group z-50">
+        <span class="text-[#FFD700] text-4xl font-light mb-2 transition-transform group-hover:translate-x-2">→</span>
+        <span class="text-[#FFD700] text-[10px] font-bold uppercase tracking-[0.3em] vertical-text opacity-60 group-hover:opacity-100 transition-opacity">
+            Antibalas
+        </span>
+    </a>
     
 
     <header class="flex flex-col lg:flex-row gap-8 justify-center items-end mb-20 relative z-10">
@@ -207,9 +223,17 @@
     
     <div class="xl:hidden flex justify-between items-center mt-20 pt-10 border-t border-[#c5a059]/20 relative z-10">
         
-        <div></div>
+        <a href="/reviews/joy-division/" class="flex flex-col">
+            <span class="text-[#FFD700] text-[10px] font-bold uppercase tracking-widest mb-1">← Previous</span>
+            <span class="text-white/40 text-[9px] uppercase tracking-wider">Joy Division</span>
+        </a>
         
 
+        
+        <a href="/reviews/antibalas-hourglass/" class="flex flex-col items-end text-right">
+            <span class="text-[#FFD700] text-[10px] font-bold uppercase tracking-widest mb-1">Next →</span>
+            <span class="text-white/40 text-[9px] uppercase tracking-wider">Antibalas</span>
+        </a>
         
     </div>
 </article>
@@ -303,11 +327,4 @@
 
         </main>
 
-        <footer class="border-t border-white border-opacity-10 py-12 mt-20">
-            <div class="max-w-7xl mx-auto px-6 text-center">
-                <p class="logo-mojo text-sm opacity-50">© 2026 MOJOLISTS</p>
-            </div>
-        </footer>
-    </div>
-</body>
-</html>
+        <footer 
