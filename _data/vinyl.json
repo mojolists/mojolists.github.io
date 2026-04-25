@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-24T13:37:41.877804Z",
+  "generated_at": "2026-04-25T13:37:38.633334Z",
   "count": 1036,
   "records": [
     {
@@ -518,14 +518,14 @@
       "genre": [],
       "rating": 4,
       "discogs_url": "https://www.discogs.com/release/2832182",
-      "wiki_url": "",
+      "wiki_url": "https://en.wikipedia.org/wiki/In_Session_(Albert_King_and_Stevie_Ray_Vaughan_album)",
       "mojolists_review_url": "",
-      "shorts_url": "",
-      "has_shorts": false,
+      "shorts_url": "/NFC/albert-king-with-stevie-ray-vaughan-in-session/",
+      "has_shorts": true,
       "cover": "covers/albert-king-with-stevie-ray-vaughan-in-session.jpg",
       "chart_peak": "",
-      "key_tracks": "",
-      "catchy_fact": ""
+      "key_tracks": "Born Under a Bad Sign|Pride and Joy|Blues at Sunrise|Call It Stormy Monday",
+      "catchy_fact": "The only filmed meeting of Albert King and Stevie Ray Vaughan ever made — recorded December 6, 1983 at CHCH-TV in Hamilton, Ontario, then shelved for 16 years before Stax issued it."
     },
     {
       "id": "394398",
@@ -539,14 +539,14 @@
       "genre": [],
       "rating": 2,
       "discogs_url": "https://www.discogs.com/release/394398",
-      "wiki_url": "",
+      "wiki_url": "https://en.wikipedia.org/wiki/Subject...Aldo_Nova",
       "mojolists_review_url": "",
-      "shorts_url": "",
-      "has_shorts": false,
+      "shorts_url": "/NFC/aldo-nova-subject-aldo-nova/",
+      "has_shorts": true,
       "cover": "covers/aldo-nova-subject-aldo-nova.jpg",
-      "chart_peak": "",
-      "key_tracks": "",
-      "catchy_fact": ""
+      "chart_peak": "56",
+      "key_tracks": "Monkey on Your Back|Always Be Mine|Hey Operator|Cake Walkin'",
+      "catchy_fact": "Aldo Nova played most of the album himself — guitars, keys, and vocals — and Jon Bon Jovi has repeatedly cited him as a major early influence."
     },
     {
       "id": "13296725",
@@ -562,12 +562,12 @@
       "discogs_url": "https://www.discogs.com/release/13296725",
       "wiki_url": "",
       "mojolists_review_url": "",
-      "shorts_url": "",
-      "has_shorts": false,
+      "shorts_url": "/NFC/alexis-evans-i-ve-come-a-long-way/",
+      "has_shorts": true,
       "cover": "covers/alexis-evans-i-ve-come-a-long-way.jpg",
       "chart_peak": "",
-      "key_tracks": "",
-      "catchy_fact": ""
+      "key_tracks": "She Took Me Back|Hey Mama|Why Don't You Stay|Rock'N' Roll Healer",
+      "catchy_fact": "Recorded in Bordeaux, mixed in Sydney by Dojo Cuts' Nate Goldentone, and mastered in LA — a three-continent deep-soul album made by a 25-year-old."
     },
     {
       "id": "25989757",
@@ -583,12 +583,12 @@
       "discogs_url": "https://www.discogs.com/release/25989757",
       "wiki_url": "",
       "mojolists_review_url": "",
-      "shorts_url": "",
-      "has_shorts": false,
+      "shorts_url": "/NFC/alexis-evans-yours-truly/",
+      "has_shorts": true,
       "cover": "covers/alexis-evans-yours-truly.jpg",
       "chart_peak": "",
-      "key_tracks": "",
-      "catchy_fact": ""
+      "key_tracks": "Closer to the Water|Mister Right on Time|Do Something|Let Them Loose",
+      "catchy_fact": "\"Let Them Loose\" was singled out as a hybrid of Norman Whitfield, Rick James, and Prince — Evans stretching far beyond his deep-soul revival roots."
     },
     {
       "id": "8834522",
@@ -604,12 +604,12 @@
       "discogs_url": "https://www.discogs.com/release/8834522",
       "wiki_url": "",
       "mojolists_review_url": "",
-      "shorts_url": "",
-      "has_shorts": false,
+      "shorts_url": "/NFC/alma-afrobeat-ensemble-it-s-time/",
+      "has_shorts": true,
       "cover": "covers/alma-afrobeat-ensemble-it-s-time.jpg",
       "chart_peak": "",
-      "key_tracks": "",
-      "catchy_fact": ""
+      "key_tracks": "It's Time|We Need Education|Eko Mile|Time No Dey",
+      "catchy_fact": "Barcelona-based Afrobeat band led by guitarist Aaron Feder with Nigerian frontman Joe \"Olawale\" Psalmist singing in English, Yoruba, and Broken English the way Fela did."
     },
     {
       "id": "1313001",
@@ -623,14 +623,14 @@
       "genre": [],
       "rating": 3,
       "discogs_url": "https://www.discogs.com/release/1313001",
-      "wiki_url": "",
+      "wiki_url": "https://en.wikipedia.org/wiki/History:_America's_Greatest_Hits",
       "mojolists_review_url": "",
-      "shorts_url": "",
-      "has_shorts": false,
+      "shorts_url": "/NFC/america-2-history-america-s-greatest-hits/",
+      "has_shorts": true,
       "cover": "covers/america-2-history-america-s-greatest-hits.jpg",
-      "chart_peak": "",
-      "key_tracks": "",
-      "catchy_fact": ""
+      "chart_peak": "3",
+      "key_tracks": "A Horse with No Name|Sister Golden Hair|Tin Man|Ventura Highway",
+      "catchy_fact": "The album cover artwork was illustrated by future SNL/NewsRadio comedian Phil Hartman, who was a working graphic designer in the '70s."
     },
     {
       "id": "8551017",
@@ -646,12 +646,12 @@
       "discogs_url": "https://www.discogs.com/release/8551017",
       "wiki_url": "",
       "mojolists_review_url": "",
-      "shorts_url": "",
-      "has_shorts": false,
+      "shorts_url": "/NFC/amy-winehouse-the-best-of-amy-winehouse/",
+      "has_shorts": true,
       "cover": "covers/amy-winehouse-the-best-of-amy-winehouse.jpg",
       "chart_peak": "",
-      "key_tracks": "",
-      "catchy_fact": ""
+      "key_tracks": "Valerie|Rehab|Back to Black|You Know I'm No Good",
+      "catchy_fact": "An unofficial 2011 vinyl bootleg that the Winehouse estate never officially released — and the only convenient way to hear the singles from Frank and Back to Black on a single LP."
     },
     {
       "id": "12896124",
@@ -667,12 +667,12 @@
       "discogs_url": "https://www.discogs.com/release/12896124",
       "wiki_url": "",
       "mojolists_review_url": "",
-      "shorts_url": "",
-      "has_shorts": false,
+      "shorts_url": "/NFC/analog-son-funky-mother/",
+      "has_shorts": true,
       "cover": "covers/analog-son-funky-mother.jpg",
       "chart_peak": "",
-      "key_tracks": "",
-      "catchy_fact": ""
+      "key_tracks": "Funky Mother|Heard It Through the Grapevine|Stankin' Funky|Roll With It",
+      "catchy_fact": "The very first release on Color Red Records — Eddie Roberts of The New Mastersounds picked Analog Son to launch his label and produced it himself."
     },
     {
       "id": "31793558",
@@ -688,12 +688,12 @@
       "discogs_url": "https://www.discogs.com/release/31793558",
       "wiki_url": "",
       "mojolists_review_url": "",
-      "shorts_url": "",
-      "has_shorts": false,
+      "shorts_url": "/NFC/analog-son-keep-it-coming/",
+      "has_shorts": true,
       "cover": "covers/analog-son-keep-it-coming.jpg",
       "chart_peak": "",
-      "key_tracks": "",
-      "catchy_fact": ""
+      "key_tracks": "To The Moon and Back|Insatiable|Keep It Coming|Brand New Brunch",
+      "catchy_fact": "Features Joe Tatton (New Mastersounds), Neal Evans (Dopapod), Eric \"Benny\" Bloom (Lettuce), and ex-Orgone vocalist Adryon de León — a modern-funk supergroup."
     },
     {
       "id": "26527778",
@@ -709,12 +709,12 @@
       "discogs_url": "https://www.discogs.com/release/26527778",
       "wiki_url": "",
       "mojolists_review_url": "",
-      "shorts_url": "",
-      "has_shorts": false,
+      "shorts_url": "/NFC/andrew-gabbard-cedar-city-sweetheart/",
+      "has_shorts": true,
       "cover": "covers/andrew-gabbard-cedar-city-sweetheart.jpg",
       "chart_peak": "",
-      "key_tracks": "",
-      "catchy_fact": ""
+      "key_tracks": "Cedar City Sweetheart|Glide Like an Eagle|Bury Me Down|Roll With Me",
+      "catchy_fact": "Cosmic country in the tradition of the Byrds' Sweetheart of the Rodeo and the Flying Burrito Brothers — Gabbard cited Sweetheart specifically as the touchstone."
     },
     {
       "id": "21206980",
@@ -730,12 +730,12 @@
       "discogs_url": "https://www.discogs.com/release/21206980",
       "wiki_url": "",
       "mojolists_review_url": "",
-      "shorts_url": "",
-      "has_shorts": false,
+      "shorts_url": "/NFC/andrew-gabbard-homemade/",
+      "has_shorts": true,
       "cover": "covers/andrew-gabbard-homemade.jpg",
       "chart_peak": "",
-      "key_tracks": "",
-      "catchy_fact": ""
+      "key_tracks": "Cloud Of Smoke|Money Suit|I Don't Want To Make You Cry|Pretty Picture",
+      "catchy_fact": "Gabbard played every instrument on the record himself and recorded it at home during the 2020-21 lockdown."
     },
     {
       "id": "32274618",
@@ -751,12 +751,12 @@
       "discogs_url": "https://www.discogs.com/release/32274618",
       "wiki_url": "",
       "mojolists_review_url": "",
-      "shorts_url": "",
-      "has_shorts": false,
+      "shorts_url": "/NFC/andrew-gabbard-ramble-rave-on/",
+      "has_shorts": true,
       "cover": "covers/andrew-gabbard-ramble-rave-on.jpg",
       "chart_peak": "",
-      "key_tracks": "",
-      "catchy_fact": ""
+      "key_tracks": "Just Like Magic|Magic Taxi|I Ain't Your Average Jerk|Everywhere I Go I Don't Belong",
+      "catchy_fact": "His third solo record, again played almost entirely by himself — between tour dates as Black Keys touring guitarist."
     },
     {
       "id": "13924515",
@@ -770,14 +770,14 @@
       "genre": [],
       "rating": null,
       "discogs_url": "https://www.discogs.com/release/13924515",
-      "wiki_url": "",
+      "wiki_url": "https://en.wikipedia.org/wiki/Black_Fire_(album)",
       "mojolists_review_url": "",
-      "shorts_url": "",
-      "has_shorts": false,
+      "shorts_url": "/NFC/andrew-hill-black-fire/",
+      "has_shorts": true,
       "cover": "covers/andrew-hill-black-fire.jpg",
       "chart_peak": "",
-      "key_tracks": "",
-      "catchy_fact": ""
+      "key_tracks": "Pumpkin|Subterfuge|Black Fire|McNeil Island",
+      "catchy_fact": "Roy Haynes was a last-minute substitute for Philly Joe Jones, and his looser feel ended up shaping the album's identity."
     },
     {
       "id": "18629965",
@@ -793,12 +793,12 @@
       "discogs_url": "https://www.discogs.com/release/18629965",
       "wiki_url": "",
       "mojolists_review_url": "",
-      "shorts_url": "",
-      "has_shorts": false,
+      "shorts_url": "/NFC/andrew-hill-passing-ships/",
+      "has_shorts": true,
       "cover": "covers/andrew-hill-passing-ships.jpg",
       "chart_peak": "",
-      "key_tracks": "",
-      "catchy_fact": ""
+      "key_tracks": "Sideways|Passing Ships|Plantation Bag|Yesterday's Tomorrow",
+      "catchy_fact": "Recorded in 1969 but sat in the Blue Note vault for 34 years; first vinyl pressing didn't happen until 2021."
     },
     {
       "id": "25191424",
@@ -812,14 +812,14 @@
       "genre": [],
       "rating": null,
       "discogs_url": "https://www.discogs.com/release/25191424",
-      "wiki_url": "",
+      "wiki_url": "https://en.wikipedia.org/wiki/Point_of_Departure_(Andrew_Hill_album)",
       "mojolists_review_url": "",
-      "shorts_url": "",
-      "has_shorts": false,
+      "shorts_url": "/NFC/andrew-hill-point-of-departure/",
+      "has_shorts": true,
       "cover": "covers/andrew-hill-point-of-departure.jpg",
       "chart_peak": "",
-      "key_tracks": "",
-      "catchy_fact": ""
+      "key_tracks": "Refuge|New Monastery|Flight 19|Dedication",
+      "catchy_fact": "Eric Dolphy's last studio session — he died three months later in Berlin at age 36."
     },
     {
       "id": "15502081",
@@ -833,14 +833,14 @@
       "genre": [],
       "rating": 4,
       "discogs_url": "https://www.discogs.com/release/15502081",
-      "wiki_url": "",
+      "wiki_url": "https://en.wikipedia.org/wiki/Smoke_Stack_(album)",
       "mojolists_review_url": "",
-      "shorts_url": "",
-      "has_shorts": false,
+      "shorts_url": "/NFC/andrew-hill-smoke-stack/",
+      "has_shorts": true,
       "cover": "covers/andrew-hill-smoke-stack.jpg",
       "chart_peak": "",
-      "key_tracks": "",
-      "catchy_fact": ""
+      "key_tracks": "The Day After|Wailing Wall|Smoke Stack|Verne",
+      "catchy_fact": "Two upright basses — Richard Davis and Eddie Khan — playing simultaneously throughout the entire album."
     },
     {
       "id": "2201709",
@@ -854,14 +854,14 @@
       "genre": [],
       "rating": 3,
       "discogs_url": "https://www.discogs.com/release/2201709",
-      "wiki_url": "",
+      "wiki_url": "https://en.wikipedia.org/wiki/Symphony_No._2_(Rachmaninoff)",
       "mojolists_review_url": "",
-      "shorts_url": "",
-      "has_shorts": false,
+      "shorts_url": "/NFC/andr-previn-london-symphony-orchestra-sergei-rachmaninoff-symphony-no-2-in-e-minor-op-27-complete-version/",
+      "has_shorts": true,
       "cover": "covers/andr-previn-london-symphony-orchestra-sergei-rachmaninoff-symphony-no-2-in-e-minor-op-27-complete-version.jpg",
       "chart_peak": "",
-      "key_tracks": "",
-      "catchy_fact": ""
+      "key_tracks": "I. Largo — Allegro moderato|II. Allegro molto|III. Adagio|IV. Allegro vivace",
+      "catchy_fact": "Previn's 1973 LSO recording made the uncut version of Rachmaninoff's 2nd the standard — before this, conductors routinely made huge cuts."
     },
     {
       "id": "13751267",
@@ -875,14 +875,14 @@
       "genre": [],
       "rating": 4,
       "discogs_url": "https://www.discogs.com/release/13751267",
-      "wiki_url": "",
+      "wiki_url": "https://en.wikipedia.org/wiki/Andy_Frasco_%26_The_U.N.",
       "mojolists_review_url": "",
-      "shorts_url": "",
-      "has_shorts": false,
+      "shorts_url": "/NFC/andy-frasco-the-u-n-change-of-pace/",
+      "has_shorts": true,
       "cover": "covers/andy-frasco-the-u-n-change-of-pace.jpg",
       "chart_peak": "",
-      "key_tracks": "",
-      "catchy_fact": ""
+      "key_tracks": "Change of Pace|Let Your Mind Be Free|Waiting Game|Don't Let the Haters Get You Down",
+      "catchy_fact": "First album on Frasco's own Fun Machine label after a run on Ruf Records — a more personal, country-tinged shift."
     },
     {
       "id": "8878233",
@@ -896,14 +896,14 @@
       "genre": [],
       "rating": 5,
       "discogs_url": "https://www.discogs.com/release/8878233",
-      "wiki_url": "",
+      "wiki_url": "https://en.wikipedia.org/wiki/Andy_Frasco_%26_The_U.N.",
       "mojolists_review_url": "",
-      "shorts_url": "",
-      "has_shorts": false,
+      "shorts_url": "/NFC/andy-frasco-the-u-n-happy-bastards/",
+      "has_shorts": true,
       "cover": "covers/andy-frasco-the-u-n-happy-bastards.jpg",
       "chart_peak": "",
-      "key_tracks": "",
-      "catchy_fact": ""
+      "key_tracks": "Smokin' Drinkin' & Gettin' By|Mature As Fuck|I Like It When You're Drunk|(I Want To) Roll With You",
+      "catchy_fact": "Released on the German blues label Ruf Records, home of Walter Trout and Luther Allison."
     },
     {
       "id": "16092117",
@@ -917,14 +917,14 @@
       "genre": [],
       "rating": null,
       "discogs_url": "https://www.discogs.com/release/16092117",
-      "wiki_url": "",
+      "wiki_url": "https://en.wikipedia.org/wiki/Andy_Frasco_%26_The_U.N.",
       "mojolists_review_url": "",
-      "shorts_url": "",
-      "has_shorts": false,
+      "shorts_url": "/NFC/andy-frasco-the-u-n-keep-on-keepin-on/",
+      "has_shorts": true,
       "cover": "covers/andy-frasco-the-u-n-keep-on-keepin-on.jpg",
       "chart_peak": "",
-      "key_tracks": "",
-      "catchy_fact": ""
+      "key_tracks": "Keep On Keepin' On|Oh, What A Life|Good Old Days|Don't Wanna Know",
+      "catchy_fact": "Released April 24, 2020 — into the teeth of COVID lockdown — and produced by Widespread Panic's Dave Schools."
     },
     {
       "id": "24251834",
@@ -21805,7 +21805,7 @@
       ]
     ],
     "genres": [],
-    "shorts_done": 26,
-    "shorts_pending": 1010
+    "shorts_done": 46,
+    "shorts_pending": 990
   }
 }
