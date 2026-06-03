@@ -1,7 +1,7 @@
 {
   "meta": {
-    "lastUpdated": "2026-06-01T13:39:04.081954Z",
-    "lastScraperRun": "2026-05-27T10:55:50.977988Z",
+    "lastUpdated": "2026-06-03T11:57:03.103931Z",
+    "lastScraperRun": "2026-06-03T11:57:03.103931Z",
     "lastTMPull": "2026-06-01T13:39:04.081947Z",
     "lastRunNewShows": [],
     "lastRunVenueCount": 6,
@@ -9,48 +9,6 @@
     "lastRunNewCount": 0
   },
   "shows": [
-    {
-      "id": "tm-G5dIZ_1VvHPkL",
-      "date": "2026-06-01",
-      "time": "20:00",
-      "artist": "Blue Monday w/ Soul Man Sam & Lindsay Beaver ",
-      "opener": null,
-      "venue": "Antone's Nightclub",
-      "region": "austin",
-      "city": "Austin",
-      "price": null,
-      "url": "https://www.ticketmaster.com/blue-monday-w-soul-man-sam-austin-texas-06-01-2026/event/3A0064AD01F2519F",
-      "source": "ticketmaster",
-      "addedAt": "2026-06-01T13:39:02.993222Z"
-    },
-    {
-      "id": "tm-Z7r9jZ1A7QZuv",
-      "date": "2026-06-01",
-      "time": "20:00",
-      "artist": "Belle and Sebastian",
-      "opener": null,
-      "venue": "Austin City Limits Live at The Moody Theater",
-      "region": "austin",
-      "city": "Austin",
-      "price": null,
-      "url": "https://www.ticketmaster.com/event/Z7r9jZ1A7QZuv",
-      "source": "ticketmaster",
-      "addedAt": "2026-06-01T13:39:02.993242Z"
-    },
-    {
-      "id": "tm-Z7r9jZ1A7QZud",
-      "date": "2026-06-02",
-      "time": "20:00",
-      "artist": "Belle and Sebastian",
-      "opener": null,
-      "venue": "Austin City Limits Live at The Moody Theater",
-      "region": "austin",
-      "city": "Austin",
-      "price": null,
-      "url": "https://www.ticketmaster.com/event/Z7r9jZ1A7QZud",
-      "source": "ticketmaster",
-      "addedAt": "2026-06-01T13:39:02.993248Z"
-    },
     {
       "id": "tm-G5dIZ_6rHh_tC",
       "date": "2026-06-03",
@@ -4544,20 +4502,6 @@
       "url": "https://www.ticketmaster.com/event/Z7r9jZ1A70_P4",
       "source": "ticketmaster",
       "addedAt": "2026-06-01T13:39:02.994462Z"
-    },
-    {
-      "id": "tm-rZ7HnEZ1AfAM_0",
-      "date": "2026-06-02",
-      "time": "19:00",
-      "artist": "ChRocktikal the 1st World Tour [CRTK: The Beginning] in San Antonio",
-      "opener": null,
-      "venue": "The Rock Box",
-      "region": "san-antonio",
-      "city": "San Antonio",
-      "price": "$59+",
-      "url": "https://www.ticketweb.com/event/chrocktikal-the-1st-world-tour-the-rock-box-tickets/14177664",
-      "source": "ticketmaster",
-      "addedAt": "2026-06-01T13:39:03.756316Z"
     },
     {
       "id": "tm-G5dIZ_awrMjzG",
